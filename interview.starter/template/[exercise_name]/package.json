@@ -1,0 +1,10 @@
+{
+  "name": "st",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "scripts": {
+    "start": "jest -c ./jest/config.unit.js --watchAll"
+  }
+}
