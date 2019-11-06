@@ -18,6 +18,19 @@ module.exports.Generator = class Generator {
                 name: 'company_name',
                 default: '',
             },
+            {
+                message: 'Is this a CLI application?',
+                name: 'cli',
+                type: 'confirm',
+                default: false,
+            },
+            {
+                message: 'Command name',
+                name: 'command_name',
+                when: (answers) => {
+                    return !!answers.cli;
+                },
+            },
         ];
     }
 

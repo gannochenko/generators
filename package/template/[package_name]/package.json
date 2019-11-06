@@ -6,9 +6,18 @@
     "files": [
         "build/"
     ],
+<% if (cli) { %>
+    "bin": {
+        "<%- command_name %>": "./build/index.js"
+    },
+<% } %>
     "scripts": {
         "install-peers": "install-self-peers -- --ignore-scripts",
+<% if (cli) { %>
+        "build": "tsc -p .; chmod +x ./build/index.js",
+<% } else { %>
         "build": "tsc --p .",
+<% } %>
         "build:watch": "tsc -w -p .",
         "test": "jest -c ./jest/config.js --passWithNoTests",
         "test:watch": "jest -c ./jest/config.js --watch",
