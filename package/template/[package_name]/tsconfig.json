@@ -1,27 +1,32 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "CommonJS",
         "target": "es6",
-        "allowJs": true,
-        "skipLibCheck": true,
+        "allowJs": false,
+        "skipLibCheck": false,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "moduleResolution": "node",
         "resolveJsonModule": true,
-        "isolatedModules": true,
-        "noEmit": true,
+        "isolatedModules": false,
         "experimentalDecorators": true,
-        "lib": ["esnext.asynciterable", "esnext", "es2017", "dom"],
+        "lib": ["esnext.asynciterable", "esnext", "es2017"],
         "removeComments": true,
         "emitDecoratorMetadata": true,
         "sourceMap": true,
-        "baseUrl": "./src/"
+        "baseUrl": "./src/",
+        "outDir": "./build/",
+        "declaration": true,
+        "types": []
     },
-    "exclude": ["node_modules", "build"],
-    "include": [
-        "src/**/*",
-        "src/global.d.ts"
+    "exclude": [
+        "node_modules",
+        "build",
+        "*/**/*.test.ts"
+    ],
+    "include": ["src/**/*",
+        "src/globals.d.ts"
     ]
 }

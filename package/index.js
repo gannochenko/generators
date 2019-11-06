@@ -45,7 +45,7 @@ module.exports.Generator = class Generator {
                 'eslint-config-prettier',
                 'eslint-plugin-import',
                 '@typescript-eslint/eslint-plugin',
-                'eslint-plugin-prettier"'
+                'eslint-plugin-prettier'
             ],
         };
     }

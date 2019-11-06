@@ -1,6 +1,6 @@
 {
     "name": "<%- package_name_full %>",
-    "version": "1.0.0",
+    "version": "0.0.0",
     "license": "MIT",
     "main": "build/index.js",
     "files": [
@@ -8,7 +8,8 @@
     ],
     "scripts": {
         "install-peers": "install-self-peers -- --ignore-scripts",
-        "build": "./script/build.sh",
+        "build": "tsc --p .",
+        "build:watch": "tsc -w -p .",
         "test": "jest -c ./jest/config.js --passWithNoTests",
         "test:watch": "jest -c ./jest/config.js --watch",
         "lint": "eslint ./src --ext .js,.ts",
