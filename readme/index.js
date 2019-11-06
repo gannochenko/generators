@@ -4,7 +4,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'Cool README template';
+        return 'Cool README.md template';
     }
 
     getQuestions() {

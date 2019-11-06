@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { fireEvent, cleanup, render, prettyDOM, waitForElement } from '@testing-library/react';
+import { fireEvent, cleanup, render, prettyDOM, wait, waitForElement } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { <%- component_name_pascal %> } from '../<%- component_name_pascal %>';
@@ -34,6 +34,11 @@ describe('<<%- component_name_pascal %> />', () => {
         // // how to fire events
         // fireEvent.click(button);
         // fireEvent.change(input, { target: { value: 'some value' } });
+        //
+        // // how to wait for an assertion to be fulfilled
+        // await wait(() => {
+        //     expect(something).toBeTrue();
+        // });
         //
         // // how to wait for async events to change the DOM:
         // const element = await waitForElement(
