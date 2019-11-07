@@ -26,14 +26,8 @@
 
   <p align="center">
     Here goes the brief summary.
-    <!--
-    <br />
-    <a href="https://github.com/awesome1888/generators"><strong>Explore the docs »</strong></a>
-    -->
     <br />
     <br />
-    <a href="https://generators.netlify.com/">View Demo</a>
-    ·
     <a href="https://github.com/awesome1888/generators/issues">Report Bug</a>
     ·
     <a href="https://github.com/awesome1888/generators/issues">Request Feature</a>
