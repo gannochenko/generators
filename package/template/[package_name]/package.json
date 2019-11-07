@@ -14,9 +14,9 @@
     "scripts": {
         "install-peers": "install-self-peers -- --ignore-scripts",
 <% if (cli) { %>
-        "build": "tsc -p .; chmod +x ./build/index.js",
+        "build": "rm -rf ./build/*; tsc -p .; chmod +x ./build/index.js",
 <% } else { %>
-        "build": "tsc --p .",
+        "build": "rm -rf ./build/*; tsc --p .",
 <% } %>
         "build:watch": "tsc -w -p .",
         "test": "jest -c ./jest/config.js --passWithNoTests",

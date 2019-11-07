@@ -61,7 +61,7 @@
 
 ### Built With
 
-* [Generilla Project](http://www.typescriptlang.org/) - everything (well, almost everything) is type-safe
+* [Generilla Project](https://github.com/awesome1888/generilla) - everything (well, almost everything) is type-safe
 
 <!-- GETTING STARTED -->
 ## Getting Started
