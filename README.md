@@ -25,7 +25,7 @@
   <h3 align="center">Generators for Generilla</h3>
 
   <p align="center">
-    Here goes the brief summary.
+    This is a set of generators I use frequently in my daily routine
     <br />
     <br />
     <a href="https://github.com/awesome1888/generators/issues">Report Bug</a>
@@ -59,11 +59,9 @@
 [![Preview Screen Shot][product-screenshot]](https://example.com)
 -->
 
-Here goes the description of this lovely NPM module.
-
 ### Built With
 
-* [TypeScript](http://www.typescriptlang.org/) - everything (well, almost everything) is type-safe
+* [Generilla Project](http://www.typescriptlang.org/) - everything (well, almost everything) is type-safe
 
 <!-- GETTING STARTED -->
 ## Getting Started
