@@ -1,0 +1,170 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+
+  config.vm.hostname = "<%- machine_name %>"
+
+  # uncomment this to join a network
+  # config.vm.network "private_network", ip: "10.0.15.10"
+
+  # special
+  config.vm.network "forwarded_port", guest: 27017, host: 27017, host_ip: "127.0.0.1" # mongodb
+  config.vm.network "forwarded_port", guest: 5432, host: 5432, host_ip: "127.0.0.1" # postgres
+  config.vm.network "forwarded_port", guest: 6379, host: 6379, host_ip: "127.0.0.1" # redis
+  config.vm.network "forwarded_port", guest: 8888, host: 8888, host_ip: "0.0.0.0" # bundle analyser
+  config.vm.network "forwarded_port", guest: 8080, host: 8080, host_ip: "0.0.0.0" # adminer
+
+  # x000
+  config.vm.network "forwarded_port", guest: 2000, host: 2000, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 3000, host: 3000, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 4000, host: 4000, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 5000, host: 5000, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 6000, host: 6000, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 7000, host: 7000, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 8000, host: 8000, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 9000, host: 9000, host_ip: "0.0.0.0"
+
+  # 3x00
+  config.vm.network "forwarded_port", guest: 3100, host: 3100, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 3200, host: 3200, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 3300, host: 3300, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 3400, host: 3400, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 3500, host: 3500, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 3600, host: 3600, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 3700, host: 3700, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 3800, host: 3800, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 3900, host: 3900, host_ip: "0.0.0.0"
+
+  # 4x00
+  config.vm.network "forwarded_port", guest: 4100, host: 4100, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 4200, host: 4200, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 4300, host: 4300, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 4400, host: 4400, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 4500, host: 4500, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 4600, host: 4600, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 4700, host: 4700, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 4800, host: 4800, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 4900, host: 4900, host_ip: "0.0.0.0"
+
+  # expo
+  config.vm.network "forwarded_port", guest: 19000, host: 19000, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 19001, host: 19001, host_ip: "0.0.0.0"
+  config.vm.network "forwarded_port", guest: 19002, host: 19002, host_ip: "0.0.0.0"
+
+<% if(add_project_folder) { %>
+  config.vm.synced_folder "/Users/<%- user_name %>/proj/", "/home/vagrant/all-projects/"
+<% } %>
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.memory = "4096"
+    vb.cpus = 2
+    vb.name = "<%- machine_name %>"
+
+    # exec cap: even if the machine works at 100%+ cpu, it won't affect the host device too much, causing it's overheat
+    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50", "--nictype1", "virtio"]
+  end
+
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+
+    ### manually set timezone
+    sudo mv /etc/localtime /etc/localtime-origin;
+    sudo ln -s /usr/share/zoneinfo/Europe/Kaliningrad /etc/localtime;
+
+    ### debian repos
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -;
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list;
+
+    ### python3 + awscli
+    sudo add-apt-repository ppa:jonathonf/python-3.6;
+    sudo apt-get update;
+    sudo apt-get install -y zip unzip g++ chrony python3.6 awscli;
+
+    #### ssh
+    if [ ! -f "/home/vagrant/.ssh/id_rsa.pub" ]; then
+      ssh-keygen -t rsa -b 4096 -q -N '' -f /home/vagrant/.ssh/id_rsa;
+    fi
+    sudo sed -i -e 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config;
+    sudo usermod --password $(echo 123 | openssl passwd -1 -stdin) vagrant;
+
+    ##### useful aliases
+    sudo printf "\nexport LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8\n\n\n\nalias ll='ls -alFh'\nalias gitremote='git remote -v';\nalias removeallwork='git reset HEAD ./;git checkout -- ./; git clean -fd;'\nalias gitst='git status';\nalias gitbr='git branch';\nalias gitar='git add -A :/';\nalias gitcom='git commit -am';\nalias dlog='docker logs';\nalias dockerps='watch docker ps';\nalias dssh='function _dssh(){ docker exec -it \$1 /bin/bash; };_dssh';\nalias drun='function _drun(){ docker run -it $1 /bin/bash; };_drun';\n" >> /home/vagrant/.bashrc;
+
+    # standard ready to go shares will be mounted here:
+    # Host -> VM -> Docker
+    mkdir /home/vagrant/volume/;
+    # VM -> Docker
+    mkdir /home/vagrant/volume-development/;
+    # project folder the machine was created for
+    mkdir /home/vagrant/proj;
+
+    #### node
+    cd /home/vagrant/;
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash;
+    export NVM_DIR="/home/vagrant/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm install 11;
+    nvm use 11;
+    nvm alias default 11;
+    sudo apt-get install --no-install-recommends yarn;
+
+    #### node global modules
+    npm install --global gulp-cli mocha webpack webpack-cli create-react-app gatsby-cli typescript serverless loadtest yo generator-generator expo-cli;
+    gatsby telemetry --disable;
+
+    #### heroku
+    curl https://cli-assets.heroku.com/install.sh | sh;
+
+    ##### mongodb, just in case you want to test something without docker
+    # sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+    # echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+    # sudo apt-get update;
+    # sudo apt-get install -y mongodb-org;
+    # sudo service mongod stop;
+    # sudo sed -i -e 's/bindIp: 127\.0\.0\.1/bindIp: 0.0.0.0/g' /etc/mongod.conf;
+    # sudo service mongod start;
+    # sudo systemctl enable mongod.service;
+
+    ##### git
+    sudo apt-get install -y git;
+    git config --global user.name "awesome";
+    git config --global user.email "awesome1888@gmail.com";
+
+    ##### docker
+    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common;
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -;
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable";
+    sudo apt-get update;
+    sudo apt-get install -y docker-ce;
+    sudo usermod -a -G docker vagrant;
+    docker login -u awesome1888 -p XXXXXXXXX;
+
+    ##### docker-compose
+    sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose;
+    sudo chmod +x /usr/local/bin/docker-compose;
+
+    ##### kubectl
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    chmod +x ./kubectl;
+    sudo mv ./kubectl /usr/bin/kubectl;
+
+    ##### terraform
+    wget -O ~/terraform.zip https://releases.hashicorp.com/terraform/0.12.5/terraform_0.12.5_linux_amd64.zip;
+    sudo unzip ~/terraform.zip -d /usr/bin;
+
+    ##### ntp
+    # tmp # /etc/chrony/chrony.conf
+    # tmp # server 169.254.169.123 prefer iburst
+    sudo invoke-rc.d chrony restart
+
+    cd /home/vagrant;
+
+    ##### finalize
+    sudo locale-gen UTF-8;
+
+    echo "================================";
+    echo "Provisioning complete!";
+  SHELL
+end
