@@ -44,7 +44,7 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Usage](#usage)
+* [Available generators](#available-generators)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -83,15 +83,15 @@ This is an example of how to list things you need to use the software and how to
     cd %REPOSITORY_FOLDER%
     ln -s ~/.generilla ./
     ```
-4. Type `generilla` command. You should se a list of generators
+4. Type the `generilla` command in. You should see a list of generators.
 
-### List of available generators
+## Available generators
 
-* **Company** - a root folder for a set of so-called "company" packages, if they are being kept as monrepo
-* **Package** - a starter for an NPM package, TypeScript, Jest, Lint is included
-* **React.Component** - a boilerplate for a React component with TypeScript, Jest and Styled-components
-* **Readme** - a cool template for a README.md file
-* **Interview.Starter** - a small starter for making code challenges during the interview process
+* **Company** - a root folder for a set of so-called "company" packages, if they are being kept as monrepo,
+* **Package** - a starter for an NPM package with TypeScript, Jest, Lint on-board,
+* **React.Component** - a boilerplate for a React component built with TypeScript, Jest and Styled-Components,
+* **Readme** - a cool template for a README.md file,
+* **Interview.Starter** - a small starter for making code challenges during the interview process.
 
 <!-- ROADMAP -->
 ## Roadmap
