@@ -61,7 +61,7 @@
 
 ### Built With
 
-* [Generilla Project](https://github.com/awesome1888/generilla) - everything (well, almost everything) is type-safe
+* [Generilla Project](https://github.com/awesome1888/generilla) - a tool that runs these generators
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -73,26 +73,30 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Clone the repo
-```sh
-git clone https://github.com/awesome1888/generators.git
-```
-2. Install NPM packages
-```sh
-cd generators;
-yarn;
-```
-3. Run the application
-```sh
-yarn start;
-```
+1. [Install Generilla](https://github.com/awesome1888/generilla#installation)
+2. Clone the repo
+    ```sh
+    git clone https://github.com/awesome1888/generators.git
+    ```
+3. Link the repository folder to `~/.generilla`, so `generilla` is able to see them
+    ```sh
+    cd %REPOSITORY_FOLDER%
+    ln -s ~/.generilla ./
+    ```
+4. Type `generilla` command. You should se a list of generators
+
+### List of available generators
+
+* **Company** - a root folder for a set of so-called "company" packages, if they are being kept as monrepo
+* **Package** - a starter for an NPM package, TypeScript, Jest, Lint is included
+* **React.Component** - a boilerplate for a React component with TypeScript, Jest and Styled-components
+* **Readme** - a cool template for a README.md file
+* **Interview.Starter** - a small starter for making code challenges during the interview process
 
 <!-- ROADMAP -->
 ## Roadmap
 
-* soon this feature will be done
-* and this
-* and this too
+* add more of 'em :)
 
 See the [open issues](https://github.com/awesome1888/generators/issues) for a list of proposed features (and known issues).
 
