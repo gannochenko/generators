@@ -72,15 +72,15 @@ Here goes the description of this lovely NPM module.
 
 ### Built With
 
-* [TypeScript](http://www.typescriptlang.org/) - everything (well, almost everything) is type-safe
+* [TypeScript](http://www.typescriptlang.org/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* yarn
+* [Node](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)
+* [Yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable)
 
 ### Installation
 
