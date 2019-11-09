@@ -87,11 +87,12 @@ This is an example of how to list things you need to use the software and how to
 
 ## Available generators
 
-* **Company** - a root folder for a set of so-called "company" packages, if they are being kept as monrepo,
-* **Package** - a starter for an NPM package with TypeScript, Jest, Lint on-board,
+* **NPM Company** - a root folder for a set of so-called "company" packages, if they are being kept as monrepo,
+* **NPM Package** - a starter for an NPM package with TypeScript, Jest, Lint on-board,
 * **React.Component** - a boilerplate for a React component built with TypeScript, Jest and Styled-Components,
 * **Readme** - a cool template for a README.md file,
 * **Interview.Starter** - a small starter for making code challenges during the interview process.
+* **Microservice.composition** - a boilerplate of composition based on Docker Compose
 
 <!-- ROADMAP -->
 ## Roadmap
