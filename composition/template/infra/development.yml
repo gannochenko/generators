@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+<% if (use_postgres) { %>
+    db:
+        image: postgres
+        expose:
+            - '5432'
+        ports:
+            - '5432:5432'
+        environment:
+            POSTGRES_DB: <%- database_name %>
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: 123
+    db.gui:
+        image: adminer
+        expose:
+            - '8080'
+        ports:
+            - '8080:8080'
+        depends_on:
+            - db
+        labels:
+            com.list.name: 'Adminer'
+            com.list.sort: '2'
+            com.list.link.endpoint: 'Browse database|/?pgsql=db&username=root&db=<%- database_name %>&ns=public'
+<% } %>
+<% if (use_cache) { %>
+    cache:
+        build:
+            context: ./cache/
+            dockerfile: Dockerfile
+        expose:
+            - 6379
+        ports:
+            - 6379:6379
+    cache.gui:
+        image: marian/rebrow
+        expose:
+            - 5001
+        ports:
+            - 5001:5001
+        depends_on:
+            - cache
+        labels:
+            com.list.name: 'Redis GUI'
+            com.list.sort: '3'
+            com.list.link.endpoint: 'Browse cache|/cache:6379/0/keys/'
+<% } %>
+<% if (use_broker) { %>
+    intercom:
+        image: 'redis'
+        expose:
+            - 6380
+        ports:
+            - 6380:6379
+<% } %>
+    container-list:
+        image: 'awesome1888/container-list'
+        expose:
+            - '2000'
+        ports:
+            - '2000:2000'
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock:ro'
+        environment:
+            - PORT=2000
