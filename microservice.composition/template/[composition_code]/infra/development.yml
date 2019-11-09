@@ -48,7 +48,7 @@ services:
             com.list.link.endpoint: 'Browse cache|/cache:6379/0/keys/'
 <% } %>
 <% if (use_broker) { %>
-    intercom:
+    broker:
         image: 'redis'
         expose:
             - 6380

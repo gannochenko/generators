@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "./script/start.sh",
-        "pull-images": "./script/pull-images.sh"
+        "start": "script/start.sh",
+        "pull-images": "script/pull-images.sh"
     },
     "keywords": [],
     "author": "",
