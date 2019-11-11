@@ -1,6 +1,6 @@
-import { HomeController } from './home/home';
-import { SampleController } from './schema/schema';
-import { HealthController } from './health/health';
+import { HomeController } from './home';
+import { SampleController } from './sample';
+import { HealthController } from './health';
 
 export const controllers = [
     HomeController,

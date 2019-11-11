@@ -1,35 +1,21 @@
-import { createConnection, Connection, EntitySchema } from 'typeorm';
-import { DB_MIGRATION_TABLE_NAME } from '@project-minimum/core';
-import { injectPassword, Settings } from '@bucket-of-bolts/util';
-import SchemaEntity from '../../model/schema';
-import migrations from '../../migrations';
-
-interface ConnectionOptions {
-    settings: Settings;
-    entities?: EntitySchema[];
-    migrationsTableName?: string;
-    name?: string;
-    migrations?: Function[];
-    [key: string]: any;
-}
+import { createConnection } from 'typeorm';
+import { injectPassword } from '@bucket-of-bolts/util';
+import {DatabaseOptions} from './type';
 
 export class Database {
-    private readonly settings: Settings;
+    private readonly options: DatabaseOptions;
 
     public constructor(
-        { settings }: ConnectionOptions = { settings: null },
+        parameters: DatabaseOptions,
     ) {
-        this.settings = settings;
+        this.options = parameters;
     }
 
-    private async getConnection() {
-        const { settings } = parameters;
-        if (!settings) {
-            throw new Error('No settings provided');
-        }
+    public async getConnection() {
+        const { settings } = this.options;
 
-        const url = (await settings.get('db.url', null)) as Nullable<string>;
-        const password = (await settings.get('db.password', null)) as Nullable<string>;
+        const url = (await settings.get('DB__URL', '')) as string;
+        const password = (await settings.get('DB__PASSWORD', '')) as string;
         if (!url) {
             throw new Error('db.url not defined');
         }
@@ -37,7 +23,7 @@ export class Database {
         const sUrl = injectPassword(url, password);
 
         return createConnection({
-            ...parameters,
+            ...this.options,
             url: sUrl,
             type: 'postgres',
         });

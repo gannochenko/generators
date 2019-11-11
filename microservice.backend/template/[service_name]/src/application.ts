@@ -1,26 +1,28 @@
 import '@babel/polyfill';
-import { Settings, logInfo } from '@bucket-of-bolts/util';
+import { logInfo } from '@bucket-of-bolts/util';
 import { useControllers } from '@bucket-of-bolts/express-mvc';
 import path from 'path';
 import helmet from 'helmet';
 import express from 'express';
+import process from 'process';
 
 import useErrorHandler from './lib/error-handler';
-import useCORS from './lib/cors';
-import Cache from './lib/cache';
+import { useCORS } from './lib/cors';
+
+import { Settings } from './lib/settings';
 
 import { Database } from './lib/database';
-import useGraphQL from './lib/graphql/apollo';
+import { useGraphQL } from './graphql/server';
 import { controllers } from './controller';
 
 (async () => {
-    const settings: Settings = new Settings();
+    const settings = new Settings();
 
     const app = express();
     useErrorHandler(app);
 
-    const host = await settings.get('network.host', 'localhost');
-    const port = process.env.PORT || (await settings.get('network.port', 3000));
+    const host = await settings.get('NETWORK__HOST', 'localhost');
+    const port = process.env.PORT || (await settings.get('NETWORK__PORT', 3000));
 
     app.set('host', host);
     app.set('port', port);
@@ -28,7 +30,7 @@ import { controllers } from './controller';
     //   return qs.parse(query, { allowPrototypes: false, depth: 10 });
     // });
 
-    useCORS(app, settings);
+    await useCORS(app, settings);
 
     app.use(express.static(path.join(process.cwd(), 'public')));
     app.use(helmet());
@@ -39,15 +41,13 @@ import { controllers } from './controller';
         }),
     );
 
-    const cache = await Cache.make({ settings });
     const database = new Database({ settings });
 
-    useControllers(app, controllers, {
+    await useControllers(app, controllers, {
         database,
     });
-    useGraphQL(app, {
+    await useGraphQL(app, {
         settings,
-        cache,
         database,
     });
 

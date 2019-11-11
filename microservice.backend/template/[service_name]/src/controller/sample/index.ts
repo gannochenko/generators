@@ -20,14 +20,11 @@ export class SampleController {
     @Get(':id')
     public async get(
         { id } = { id: '' },
-        { runtime: { connectionPool } }: InputContext,
+        { runtime: { database } }: InputContext,
     ): Promise<Result> {
         const result = new Result();
 
-        result.data = {
-            id: 'fd568886-a2d1-4399-95ca-0376ea0f13d4',
-            title: 'Foo',
-        };
+        result.data = await SampleService.getById(id);
 
         if (!result.data) {
             result.status = 404;
@@ -40,15 +37,18 @@ export class SampleController {
     @BodyInput(SamplePutDTO)
     public async put(
         {},
-        { body, runtime: { connectionPool } }: InputContext,
+        { body, runtime: { database } }: InputContext,
     ): Promise<Result> {
         const result = new Result();
 
-        result.errors.push({
-            message: 'Sample error',
-            code: 'sample_error',
-            type: ERROR_INTERNAL,
-        });
+        const id = await SampleService.create(body);
+        if (!id) {
+            result.errors.push({
+                message: 'Sample error',
+                code: 'sample_error',
+                type: ERROR_INTERNAL,
+            });
+        }
 
         return result;
     }
