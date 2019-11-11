@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    application:
+        build:
+            context: ../../
+            dockerfile: infra/e2e/e2e.dockerfile
+        expose:
+            - '3010'
+        ports:
+            - '3010'
+        depends_on:
+            - db
+        environment:
+            - 'db.url=postgres://root:123@db-test:5432/db_test'
+
+    db-test:
+        image: postgres
+        expose:
+            - '5432'
+        ports:
+            - '5432'
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: 123
+            POSTGRES_DB: db_test

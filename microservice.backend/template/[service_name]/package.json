@@ -1,0 +1,34 @@
+{
+    "name": "api",
+    "version": "1.0.0",
+    "bin": {
+        "module-name": "./build/index.js"
+    },
+    "scripts": {
+        "dev": "webpack --config webpack.js --mode development --watch",
+        "test": "jest -c ./jest/config.unit.js --forceExit",
+        "test:dev": "jest -c ./jest/config.unit.js --watch",
+        "test:debug": "node --inspect-brk=0.0.0.0:4001 -r tsconfig-paths/register -r ./node_modules/.bin/jest -c ./jest/config.unit.js  --runInBand",
+        "integration": "jest -c ./jest/config.integration.js --runInBand --forceExit --passWithNoTests",
+        "integration:dev": "jest -c ./jest/config.integration.js --runInBand --watch",
+        "build": "webpack --config webpack.js --mode production",
+        "start": "node ./build/index.js",
+        "migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
+        "migrate:local": "./script/migrate.sh local",
+        "lint": "eslint ./src/",
+        "lint:fix": "eslint ./src/ --fix",
+        "techdebt": "leasot --exit-nicely --reporter table --skip-unsupported --ignore node_modules,build,migrations ./"
+    },
+    "keywords": [],
+    "author": "gannochenko.sv@gmail.com",
+    "license": "MIT",
+    "devDependencies": {
+    },
+    "dependencies": {
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    }
+}

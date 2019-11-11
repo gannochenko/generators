@@ -1,0 +1,5 @@
+type Error {
+    code: String!
+    message: String
+    subject: String
+}

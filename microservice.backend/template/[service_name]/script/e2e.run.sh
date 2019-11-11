@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# usage:
+# ./script/integration.run.sh dev
+# to run tests in the development mode
+# ./script/integration.run.sh
+# to run in production
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
+
+if [[ "${1}" == "dev" ]]
+then
+    YML="-f ${DIR}/../infra/integration/composition.development.yml"
+else
+    YML="-f ${DIR}/../infra/integration/composition.production.yml"
+fi
+
+docker stop $(docker ps -aq) > /dev/null 2> /dev/null;
+
+if [[ "${1}" == "dev" ]]
+then
+    docker-compose ${YML} up -d --force-recreate --renew-anon-volumes;
+    sleep 2s;
+    yarn run test:integration:dev;
+else
+    docker-compose ${YML} build --no-cache;
+    docker-compose ${YML} up --abort-on-container-exit;
+fi
