@@ -1,0 +1,7 @@
+{
+  "name": "template",
+  "dependencies": {
+    "js-yaml": "^3.13.1",
+    "path-exists": "^4.0.0"
+  }
+}

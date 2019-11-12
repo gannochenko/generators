@@ -1,0 +1,26 @@
+image: <%- applicationCode %>:dev
+build:
+    context: ../<%- applicationFolder %>/
+    dockerfile: infra/development.dockerfile
+expose:
+    - '<%- port %>'
+    - '<%- debuggerPort %>'
+ports:
+    - '<%- port %>:<%- port %>'
+    - '<%- debuggerPort %>:<%- debuggerPort %>'
+depends_on:
+volumes:
+    - ../<%- applicationFolder %>/:/app/
+environment:
+    - NODE_ENV=development
+    - DEBUG=gql.*
+    - DEBUG_COLORS=1
+    - DEBUG_HIDE_DATE=1
+    - NETWORK__PORT=<%- port %>
+    - NETWORK__PORT__DEBUGGER=<%- debuggerPort %>
+    - NETWORK__CORS=
+    - DATABASE__URL='postgres://root:123@db:5432/<%- applicationCode %>'
+    - INTERCOM__URL='redis://intercom:6380'
+labels:
+    com.list.name: <%- applicationName %>
+    com.list.link.endpoint: 'GraphQL endpoint|/graphql'
