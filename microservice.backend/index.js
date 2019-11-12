@@ -1,4 +1,3 @@
-const pathExists = require('path-exists');
 const path = require('path');
 const process = require('process');
 
@@ -27,7 +26,7 @@ module.exports.Generator = class Generator {
                     }
 
                     const dst = path.join(process.cwd(), value);
-                    if (await pathExists(dst)) {
+                    if (await this.util.pathExists(dst)) {
                         return `Folder exists: ${dst}`;
                     }
 
@@ -72,7 +71,7 @@ module.exports.Generator = class Generator {
 
     getDependencies() {
         return {
-            destination: '[service_name]/',
+            destination: '[service_code]/',
             packages: [
                 '@babel/polyfill', // todo: check this
 
@@ -102,7 +101,7 @@ module.exports.Generator = class Generator {
 
     getDevDependencies() {
         return {
-            destination: '[service_name]/',
+            destination: '[service_code]/',
             packages: [
                 // babel
                 'babel-loader',
