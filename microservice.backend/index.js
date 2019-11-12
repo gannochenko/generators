@@ -1,3 +1,7 @@
+const pathExists = require('path-exists');
+const path = require('path');
+const process = require('process');
+
 module.exports.Generator = class Generator {
     constructor(util) {
         this.util = util;
@@ -22,10 +26,10 @@ module.exports.Generator = class Generator {
                         return 'Must contain only letters, digits, _, - and . signs';
                     }
 
-                    // const dst = path.join(process.cwd(), value);
-                    // if (await pathExists(dst)) {
-                    //     return `Folder exists: ${dst}`;
-                    // }
+                    const dst = path.join(process.cwd(), value);
+                    if (await pathExists(dst)) {
+                        return `Folder exists: ${dst}`;
+                    }
 
                     return true;
                 },
@@ -123,7 +127,6 @@ module.exports.Generator = class Generator {
                 'jest',
                 'supertest',
                 'ts-jest',
-                '',
 
                 // lint
                 'eslint',

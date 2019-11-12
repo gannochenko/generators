@@ -1,0 +1,10 @@
+{
+  "name": "microservice.backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^3.13.1",
+    "path-exists": "^4.0.0"
+  }
+}
