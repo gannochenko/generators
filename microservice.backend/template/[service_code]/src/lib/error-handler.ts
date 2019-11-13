@@ -5,6 +5,7 @@ import process from 'process';
 const useErrorHandler = (app: Express) => {
     // catching async unhandled rejections
     process
+        // @ts-ignore
         .on('unhandledRejection', (error: Error) => {
             if (__DEV__) {
                 // eslint-disable-next-line no-console

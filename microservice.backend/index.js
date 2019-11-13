@@ -156,6 +156,7 @@ module.exports.Generator = class Generator {
                 'fork-ts-checker-webpack-plugin-alt',
                 'leasot',
                 'nodemon',
+                'moment',
             ],
         };
     }

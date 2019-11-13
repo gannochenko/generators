@@ -1,0 +1,16 @@
+type Sample {
+    id: String
+    title: String
+}
+
+input SampleInput {
+    title: String
+}
+
+type Query {
+    getSample(id: String!): Sample
+}
+
+type Mutation {
+    putSample(data: SampleInput): Sample
+}
