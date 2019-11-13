@@ -24,10 +24,10 @@ module.exports.Generator = class Generator {
                         return 'Must contain only letters, digits, _ and - signs';
                     }
 
-                    // const dst = path.join(process.cwd(), value);
-                    // if (await pathExists(dst)) {
-                    //     return `Folder exists: ${dst}`;
-                    // }
+                    const dst = path.join(process.cwd(), value);
+                    if (await this.util.pathExists(dst)) {
+                        return `Folder exists: ${dst}`;
+                    }
 
                     return true;
                 }
