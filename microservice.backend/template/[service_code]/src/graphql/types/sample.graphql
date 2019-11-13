@@ -3,14 +3,19 @@ type Sample {
     title: String
 }
 
+type SampleResult {
+    data: Sample!
+    errors: [Error]
+}
+
 input SampleInput {
     title: String
 }
 
 type Query {
-    getSample(id: String!): Sample
+    getSample(id: String!): SampleResult
 }
 
 type Mutation {
-    putSample(data: SampleInput): Sample
+    putSample(data: SampleInput): SampleResult
 }

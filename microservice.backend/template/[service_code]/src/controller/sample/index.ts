@@ -10,7 +10,7 @@ import {
 } from '@bucket-of-bolts/express-mvc';
 
 import { InputContext } from '../../lib/type';
-import SampleService from '../../service/sample';
+import { SampleService } from '../../service/sample';
 import { SamplePutDTO } from './input.dto';
 
 @Endpoint('/sample')
@@ -34,7 +34,7 @@ export class SampleController {
     @Put()
     @BodyInput(SamplePutDTO)
     public async put(
-        {},
+        params: any,
         { body, runtime: { database } }: InputContext,
     ): Promise<Result> {
         const result = new Result();

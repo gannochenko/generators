@@ -26,6 +26,7 @@
     "no-lonely-if": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
     "no-restricted-syntax": "off"
   },
   "parserOptions": {
