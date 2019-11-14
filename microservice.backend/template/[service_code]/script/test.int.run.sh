@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # usage:
-# ./script/integration.run.sh dev
+# ./script/test.int.run.sh dev
 # to run tests in the development mode
-# ./script/integration.run.sh
+# ./script/test.int.run.sh
 # to run in production
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";

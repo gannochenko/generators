@@ -20,7 +20,6 @@ environment:
     - NETWORK__PORT__DEBUGGER=<%- debuggerPort %>
     - NETWORK__CORS=
     - DATABASE__URL='postgres://root:123@db:5432/<%- applicationCode %>'
-    - INTERCOM__URL='redis://intercom:6380'
 labels:
     com.list.name: <%- applicationName %>
     com.list.link.endpoint: 'GraphQL endpoint|/graphql'
