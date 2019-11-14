@@ -21,7 +21,7 @@ if [[ "${1}" == "dev" ]]
 then
     docker-compose ${YML} up -d --force-recreate --renew-anon-volumes;
     sleep 2s;
-    yarn run test:integration:dev;
+    yarn run test:int:watch;
 else
     docker-compose ${YML} build --no-cache;
     docker-compose ${YML} up --abort-on-container-exit;

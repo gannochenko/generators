@@ -120,6 +120,7 @@ module.exports.Generator = class Generator {
                 '@types/helmet',
                 '@types/jest',
                 '@types/node',
+                'ts-node',
 
                 // testing
                 'apollo-server-testing',

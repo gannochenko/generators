@@ -7,10 +7,10 @@
     "scripts": {
         "dev": "webpack --config webpack.js --mode development --watch",
         "test": "jest -c ./jest/config.unit.js --forceExit",
-        "test:dev": "jest -c ./jest/config.unit.js --watch",
+        "test:watch": "jest -c ./jest/config.unit.js --watch",
         "test:debug": "node --inspect-brk=0.0.0.0:4001 -r tsconfig-paths/register -r ./node_modules/.bin/jest -c ./jest/config.unit.js  --runInBand",
-        "integration": "jest -c ./jest/config.integration.js --runInBand --forceExit --passWithNoTests",
-        "integration:dev": "jest -c ./jest/config.integration.js --runInBand --watch",
+        "test:int": "jest -c ./jest/config.int.js --runInBand --forceExit --passWithNoTests",
+        "test:int:watch": "jest -c ./jest/config.int.js --runInBand --watch",
         "build": "webpack --config webpack.js --mode production",
         "start": "node ./build/index.js",
         "migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
