@@ -1,5 +1,6 @@
 import { createConnection } from 'typeorm';
 import { injectPassword } from '@bucket-of-bolts/util';
+import { Express } from 'express';
 import { DatabaseOptions } from './type';
 import * as entities from '../model';
 
@@ -32,3 +33,32 @@ export class Database {
         });
     }
 }
+
+export const useConnection = (app: Express, database: Database) => {
+    app.use((req, res, next) => {
+        const originSend = res.send;
+
+        // @ts-ignore
+        res.getDatabaseConnection = async () => {
+            // @ts-ignore
+            if (!res.dbConnection) {
+                // @ts-ignore
+                res.dbConnection = await database.getConnection();
+            }
+
+            // @ts-ignore
+            return res.dbConnection;
+        };
+
+        res.send = function (...args) {
+            // @ts-ignore
+            if (res.dbConnection) {
+                // @ts-ignore
+                res.dbConnection.close();
+            }
+
+            return originSend.apply(this, args);
+        };
+        next();
+    });
+};

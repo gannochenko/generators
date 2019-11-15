@@ -9,11 +9,13 @@ import { DataSources } from './type';
 export const useGraphQL = (app: Express, { settings, database }: DataSources) => {
     const server = new ApolloServer({
         typeDefs: mergeTypes(types, { all: true }),
+        // @ts-ignore
         resolvers: mergeResolvers(resolvers),
-        context: () => {
+        context: ({ res }) => {
             return {
                 token: 'foo',
-                // connection: database.getConnection(), // todo: how to close this connection in the end?
+                // @ts-ignore
+                getDatabaseConnection: res.getDatabaseConnection,
             };
         },
         // @ts-ignore

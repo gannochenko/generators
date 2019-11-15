@@ -4,6 +4,6 @@ import { Endpoint, Get } from '@bucket-of-bolts/express-mvc';
 export class HealthController {
     @Get()
     public report() {
-        return 'Still here.';
+        return '1';
     }
 }

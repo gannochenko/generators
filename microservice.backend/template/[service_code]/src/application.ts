@@ -11,7 +11,7 @@ import { useCORS } from './lib/cors';
 
 import { Settings } from './lib/settings';
 
-import { Database } from './lib/database';
+import { Database, useConnection } from './lib/database';
 import { useGraphQL } from './graphql/server';
 import { controllers } from './controller';
 
@@ -42,6 +42,7 @@ import { controllers } from './controller';
     );
 
     const database = new Database({ settings });
+    await useConnection(app, database);
 
     await useControllers(app, controllers, {
         database,
