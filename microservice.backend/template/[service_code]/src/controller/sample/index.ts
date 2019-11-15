@@ -2,16 +2,14 @@ import {
     Endpoint,
     Get,
     Put,
-    Patch,
     BodyInput,
-    ERROR_REQUEST,
     ERROR_INTERNAL,
     Result,
 } from '@bucket-of-bolts/express-mvc';
 
 import { InputContext } from '../../lib/type';
 import { SampleService } from '../../service/sample';
-import { SamplePutDTO } from './input.dto';
+import { SamplePutDTO } from './dto';
 
 @Endpoint('/sample')
 export class SampleController {
@@ -20,12 +18,12 @@ export class SampleController {
         { id } = { id: '' },
         { context: { getDatabaseConnection } }: InputContext,
     ): Promise<Result> {
+        const connection = await getDatabaseConnection();
+        const sampleService = new SampleService(connection);
+
         const result = new Result();
 
-        const connection = await getDatabaseConnection();
-
-        result.data = await SampleService.getById(id);
-
+        result.data = await sampleService.getById(id);
         if (!result.data) {
             result.status = 404;
         }
@@ -39,15 +37,20 @@ export class SampleController {
         params: any,
         { body, context: { getDatabaseConnection } }: InputContext,
     ): Promise<Result> {
+        const connection = await getDatabaseConnection();
+        const sampleService = new SampleService(connection);
+
         const result = new Result();
 
-        const id = await SampleService.create(body);
-        if (!id) {
+        const item = await sampleService.create(body);
+        if (!item || !item.id) {
             result.errors.push({
-                message: 'Sample error',
-                code: 'sample_error',
+                message: 'Was not created',
+                code: 'not_created',
                 type: ERROR_INTERNAL,
             });
+        } else {
+            result.data = item;
         }
 
         return result;

@@ -15,5 +15,3 @@ export class SampleEntity {
     // @ts-ignore
     public title: string;
 }
-
-export default SampleEntity;

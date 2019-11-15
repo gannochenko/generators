@@ -5,23 +5,35 @@ import { Context } from '../../type';
 
 export const sampleResolvers = {
     Query: {
-        getSample: async (source: any, args: GetSampleArguments, context: Context /* , ast: any */) => {
+        getSample: async (
+            source: any,
+            args: GetSampleArguments,
+            context: Context /* , ast: any */,
+        ) => {
             const { id } = args;
             const result = new Result();
 
             const connection = await context.getDatabaseConnection();
+            const sampleService = new SampleService(connection);
 
-            result.data = await SampleService.getById(id);
+            result.data = await sampleService.getById(id);
 
             return result;
         },
     },
     Mutation: {
-        putSample: async (source: any, args: PutSampleArguments, context: Context /* , ast: any */) => {
+        putSample: async (
+            source: any,
+            args: PutSampleArguments,
+            context: Context /* , ast: any */,
+        ) => {
             const { data } = args;
             const result = new Result();
 
-            result.data = await SampleService.create(data);
+            const connection = await context.getDatabaseConnection();
+            const sampleService = new SampleService(connection);
+
+            result.data = await sampleService.create(data);
 
             return result;
         },
