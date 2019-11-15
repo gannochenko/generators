@@ -18,9 +18,11 @@ export class SampleController {
     @Get(':id')
     public async get(
         { id } = { id: '' },
-        { runtime: { database } }: InputContext,
+        { context: { getDatabaseConnection } }: InputContext,
     ): Promise<Result> {
         const result = new Result();
+
+        const connection = await getDatabaseConnection();
 
         result.data = await SampleService.getById(id);
 
@@ -35,7 +37,7 @@ export class SampleController {
     @BodyInput(SamplePutDTO)
     public async put(
         params: any,
-        { body, runtime: { database } }: InputContext,
+        { body, context: { getDatabaseConnection } }: InputContext,
     ): Promise<Result> {
         const result = new Result();
 

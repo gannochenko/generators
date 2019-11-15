@@ -44,8 +44,11 @@ import { controllers } from './controller';
     const database = new Database({ settings });
     await useConnection(app, database);
 
-    await useControllers(app, controllers, {
-        database,
+    useControllers(app, controllers, ({ res }) => {
+        return {
+            // @ts-ignore
+            getDatabaseConnection: res.getDatabaseConnection,
+        };
     });
     await useGraphQL(app, {
         settings,
