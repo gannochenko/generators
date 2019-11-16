@@ -12,6 +12,6 @@ export const useCORS = async (app: Express, settings: Settings) => {
     }
 
     if (corsHosts.length) {
-        app.use(cors(corsHosts));
+        app.use(cors({ origin: corsHosts.length === 1 ? corsHosts[0] : corsHosts }));
     }
 };
