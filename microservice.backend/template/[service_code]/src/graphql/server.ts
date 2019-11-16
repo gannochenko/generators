@@ -5,24 +5,25 @@ import { Express } from 'express';
 import { types } from './types';
 import { resolvers } from './resolvers';
 import { DataSources } from './type';
+import { ObjectLiteral } from '../type';
 
-export const useGraphQL = (app: Express, { settings, database }: DataSources) => {
+export const useGraphQL = (
+    app: Express,
+    dataSources: DataSources,
+    createContext: () => Promise<ObjectLiteral>,
+) => {
     const server = new ApolloServer({
         typeDefs: mergeTypes(types, { all: true }),
         // @ts-ignore
         resolvers: mergeResolvers(resolvers),
-        context: ({ res }) => {
+        context: async () => {
             return {
                 token: 'foo',
-                // @ts-ignore
-                getDatabaseConnection: res.getDatabaseConnection,
+                ...(await createContext()),
             };
         },
         // @ts-ignore
-        dataSources: () => ({
-            database,
-            settings,
-        }),
+        dataSources: () => dataSources,
         debug: __DEV__,
         playground: __DEV__,
         introspection: __DEV__,

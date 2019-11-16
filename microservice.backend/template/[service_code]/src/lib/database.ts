@@ -1,64 +1,43 @@
-import { createConnection } from 'typeorm';
+import { Connection, createConnection } from 'typeorm';
 import { injectPassword } from '@bucket-of-bolts/util';
-import { Express } from 'express';
 import { DatabaseOptions } from './type';
 import * as entities from '../model';
+import { ObjectLiteral } from '../type';
 
 export class Database {
     private readonly options: DatabaseOptions;
+    private connections: ObjectLiteral<Connection> = {};
 
-    public constructor(
-        parameters: DatabaseOptions,
-    ) {
+    public constructor(parameters: DatabaseOptions) {
         this.options = parameters;
     }
 
-    public async getConnection() {
+    public async getConnection(name = 'default') {
+        if (this.connections[name]) {
+            return this.connections[name];
+        }
+
         const { settings } = this.options;
 
         const url = (await settings.get('DATABASE__URL', '')) as string;
-        const password = (await settings.get('DATABASE__PASSWORD', '')) as string;
+        const password = (await settings.get(
+            'DATABASE__PASSWORD',
+            '',
+        )) as string;
         if (!url) {
             throw new Error('DB__URL not defined');
         }
 
-        const sUrl = injectPassword(url, password);
-
-        // don't forget to close() the connection to return it back to the pool
-        return createConnection({
+        const connection = await createConnection({
             ...this.options,
-            url: sUrl,
+            url: injectPassword(url, password),
             type: 'postgres',
             entities: Object.values(entities),
+            name: name || 'default',
         });
+
+        this.connections[name] = connection;
+
+        return connection;
     }
 }
-
-export const useConnection = (app: Express, database: Database) => {
-    app.use((req, res, next) => {
-        const originSend = res.send;
-
-        // @ts-ignore
-        res.getDatabaseConnection = async () => {
-            // @ts-ignore
-            if (!res.dbConnection) {
-                // @ts-ignore
-                res.dbConnection = await database.getConnection();
-            }
-
-            // @ts-ignore
-            return res.dbConnection;
-        };
-
-        res.send = function (...args) {
-            // @ts-ignore
-            if (res.dbConnection) {
-                // @ts-ignore
-                res.dbConnection.close();
-            }
-
-            return originSend.apply(this, args);
-        };
-        next();
-    });
-};

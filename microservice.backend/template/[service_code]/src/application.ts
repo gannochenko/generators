@@ -11,7 +11,7 @@ import { useCORS } from './lib/cors';
 
 import { Settings } from './lib/settings';
 
-import { Database, useConnection } from './lib/database';
+import { Database } from './lib/database';
 import { useGraphQL } from './graphql/server';
 import { controllers } from './controller';
 
@@ -22,7 +22,8 @@ import { controllers } from './controller';
     useErrorHandler(app);
 
     const host = await settings.get('NETWORK__HOST', 'localhost');
-    const port = process.env.PORT || (await settings.get('NETWORK__PORT', 3000));
+    const port =
+        process.env.PORT || (await settings.get('NETWORK__PORT', 3000));
 
     app.set('host', host);
     app.set('port', port);
@@ -42,18 +43,19 @@ import { controllers } from './controller';
     );
 
     const database = new Database({ settings });
-    await useConnection(app, database);
 
-    useControllers(app, controllers, ({ res }) => {
-        return {
-            // @ts-ignore
-            getDatabaseConnection: res.getDatabaseConnection,
-        };
-    });
-    await useGraphQL(app, {
-        settings,
-        database,
-    });
+    useControllers(app, controllers, async () => ({
+        connection: await database.getConnection(),
+    }));
+    useGraphQL(
+        app,
+        {
+            settings,
+        },
+        async () => ({
+            connection: await database.getConnection(),
+        }),
+    );
 
     app.listen({ port }, () => {
         logInfo(`🚀 API server is ready at http://${host}:${port}`);

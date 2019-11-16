@@ -18,6 +18,8 @@ describe('Settings', () => {
     });
 
     it('get the default value', async () => {
-        expect(await settings.get('ABSENT_VARIABLE', 'default-value')).toEqual('default-value');
+        expect(await settings.get('ABSENT_VARIABLE', 'default-value')).toEqual(
+            'default-value',
+        );
     });
 });

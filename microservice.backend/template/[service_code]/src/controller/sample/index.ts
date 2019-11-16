@@ -7,7 +7,7 @@ import {
     Result,
 } from '@bucket-of-bolts/express-mvc';
 
-import { InputContext } from '../../lib/type';
+import { Context } from '../type';
 import { SampleService } from '../../service/sample';
 import { SamplePutDTO } from './dto';
 
@@ -16,9 +16,8 @@ export class SampleController {
     @Get(':id')
     public async get(
         { id } = { id: '' },
-        { context: { getDatabaseConnection } }: InputContext,
+        { context: { connection } }: Context,
     ): Promise<Result> {
-        const connection = await getDatabaseConnection();
         const sampleService = new SampleService(connection);
 
         const result = new Result();
@@ -35,9 +34,8 @@ export class SampleController {
     @BodyInput(SamplePutDTO)
     public async put(
         params: any,
-        { body, context: { getDatabaseConnection } }: InputContext,
+        { body, context: { connection } }: Context,
     ): Promise<Result> {
-        const connection = await getDatabaseConnection();
         const sampleService = new SampleService(connection);
 
         const result = new Result();

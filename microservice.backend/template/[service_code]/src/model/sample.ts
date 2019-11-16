@@ -11,7 +11,7 @@ export class SampleEntity {
     // @ts-ignore
     public id: string;
 
-    @Column({ type: 'string', nullable: false })
+    @Column({ type: 'varchar', nullable: false, length: 255 })
     // @ts-ignore
     public title: string;
 }

@@ -16,6 +16,6 @@ export class Seed1517934720430 implements MigrationInterface {
         logInfo('🌱 Seed migration applied');
     }
 
-    // eslint-disable-next-line no-empty-function
+    // eslint-disable-next-line no-empty-function,@typescript-eslint/no-empty-function
     public async down() {}
 }

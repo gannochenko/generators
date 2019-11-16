@@ -15,8 +15,8 @@
         "start": "node ./build/index.js",
         "migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
         "migrate:local": "./script/migrate.sh local",
-        "lint": "eslint ./src/",
-        "lint:fix": "eslint ./src/ --fix",
+        "lint": "eslint ./src/ --ext .js,.ts",
+        "lint:fix": "eslint ./src/ --fix --ext .js,.ts",
         "techdebt": "leasot --exit-nicely --reporter table --skip-unsupported --ignore node_modules,build,migrations ./"
     },
     "keywords": [],

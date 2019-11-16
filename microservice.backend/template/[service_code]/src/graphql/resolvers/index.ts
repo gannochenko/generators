@@ -1,5 +1,3 @@
-import { sampleResolvers } from './sample/sample';
+import { sampleResolvers } from './sample';
 
-export const resolvers = [
-    sampleResolvers,
-];
+export const resolvers = [sampleResolvers];
