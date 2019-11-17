@@ -11,6 +11,7 @@ module.exports = (env, argv) => {
         argv.mode === 'development' || pEnv.NODE_ENV === 'development';
     const useDebugger = pEnv.USE_DEBUGGER;
     const useDebuggerBrk = pEnv.USE_DEBUGGER_BRK;
+    const debuggerPort = pEnv.NETWORK__PORT__DEBUGGER;
 
     const sourceFolder = path.join(__dirname, 'src');
     const destinationFolder = path.join(__dirname, 'build');
@@ -18,7 +19,7 @@ module.exports = (env, argv) => {
     const devArgs = [];
     let devtool = 'none';
     if (useDebugger || useDebuggerBrk) {
-        devArgs.push(`--inspect${useDebuggerBrk ? '-brk' : ''}=0.0.0.0:4001`);
+        devArgs.push(`--inspect${useDebuggerBrk ? '-brk' : ''}=0.0.0.0:${debuggerPort}`);
         devtool = 'inline-source-map';
     }
 

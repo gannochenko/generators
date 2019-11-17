@@ -10,4 +10,4 @@ services:
         environment:
             POSTGRES_USER: root
             POSTGRES_PASSWORD: 123
-            POSTGRES_DB: db_test
+            POSTGRES_DB: <%- database_name %>_test

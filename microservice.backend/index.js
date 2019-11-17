@@ -14,8 +14,8 @@ module.exports.Generator = class Generator {
         return [
             {
                 type: 'input',
-                name: 'service_code',
-                message: 'Service code',
+                name: 'application_code',
+                message: 'Application code',
                 validate: async (value) => {
                     if (typeof value !== 'string') {
                         return 'Must be a string';
@@ -97,7 +97,7 @@ module.exports.Generator = class Generator {
 
     getDependencies() {
         return {
-            destination: '[service_code]/',
+            destination: '[application_code]/',
             packages: [
                 '@babel/polyfill', // todo: check this
 
@@ -127,7 +127,7 @@ module.exports.Generator = class Generator {
 
     getDevDependencies() {
         return {
-            destination: '[service_code]/',
+            destination: '[application_code]/',
             packages: [
                 // babel
                 'babel-loader',

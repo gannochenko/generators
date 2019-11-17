@@ -4,7 +4,7 @@ services:
     application:
         build:
             context: ../../
-            dockerfile: infra/e2e/e2e.dockerfile
+            dockerfile: infra/int/Dockerfile
         expose:
             - '3010'
         ports:
@@ -12,7 +12,7 @@ services:
         depends_on:
             - db
         environment:
-            - 'db.url=postgres://root:123@db-test:5432/db_test'
+            - 'DATABASE__URL=postgres://root:123@db-test:5432/<%- database_name %>_test'
 
     db-test:
         image: postgres
@@ -23,4 +23,4 @@ services:
         environment:
             POSTGRES_USER: root
             POSTGRES_PASSWORD: 123
-            POSTGRES_DB: db_test
+            POSTGRES_DB: <%- database_name %>_test

@@ -4,15 +4,15 @@
 # ./script/test.int.run.sh dev
 # to run tests in the development mode
 # ./script/test.int.run.sh
-# to run in production
+# to run in cicd (like Jenkins)
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 
 if [[ "${1}" == "dev" ]]
 then
-    YML="-f ${DIR}/../infra/integration/composition.development.yml"
+    YML="-f ${DIR}/../infra/int/composition.development.yml"
 else
-    YML="-f ${DIR}/../infra/integration/composition.production.yml"
+    YML="-f ${DIR}/../infra/int/composition.cicd.yml"
 fi
 
 docker stop $(docker ps -aq) > /dev/null 2> /dev/null;
