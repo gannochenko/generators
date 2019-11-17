@@ -39,6 +39,11 @@ module.exports.Generator = class Generator {
                 message: 'Application name',
             },
             {
+                type: 'input',
+                name: 'vendor_name',
+                message: 'Vendor name (to publish at the DockerHub, etc.)',
+            },
+            {
                 type: 'confirm',
                 name: 'use_rest',
                 message: 'Do we have REST?',
@@ -83,6 +88,12 @@ module.exports.Generator = class Generator {
                 message: 'Are we inside a monorepo?',
                 default: false,
             },
+            {
+                type: 'confirm',
+                name: 'use_heroku',
+                message: 'Will this container be deployed to Heroku?',
+                default: false,
+            },
         ];
     }
 
@@ -95,6 +106,8 @@ module.exports.Generator = class Generator {
             answers.application_code_global = `${path.basename(process.cwd())}_${answers.application_code}`;
         }
 
+        console.log(answers);
+        
         answers.application_code_kebab = this.util.textConverter.toKebab(answers.application_code);
         answers.vendor_name_kebab = this.util.textConverter.toKebab(answers.vendor_name);
 
@@ -158,6 +171,7 @@ module.exports.Generator = class Generator {
                 '@types/jest',
                 '@types/node',
                 'ts-node',
+                '@types/cors',
 
                 // testing
                 !!use_graphql && 'apollo-server-testing',
