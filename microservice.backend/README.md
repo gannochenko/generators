@@ -8,3 +8,4 @@ This generator is still missing:
 * cache, rest cache, database cache, integration with redis
 * grpc
 * event system (Kafka? Redis? RabbitMQ?)
+* swagger
