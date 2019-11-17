@@ -53,7 +53,7 @@ module.exports.Generator = class Generator {
             {
                 type: 'confirm',
                 name: 'use_postgres',
-                message: 'Do we have Postgres?',
+                message: 'Do we have a database?',
                 default: false,
             },
             {
@@ -101,7 +101,9 @@ module.exports.Generator = class Generator {
         return answers;
     }
 
-    getDependencies() {
+    getDependencies(answers) {
+        const { use_postgres, use_graphql } = answers;
+
         return {
             destination: '[application_code]/',
             packages: [
@@ -115,23 +117,26 @@ module.exports.Generator = class Generator {
                 '@bucket-of-bolts/express-mvc',
 
                 // graphql
-                'graphql',
-                'apollo-server-express',
-                'merge-graphql-schemas',
+                !!use_graphql && 'graphql',
+                !!use_graphql && 'apollo-server-express',
+                !!use_graphql && 'merge-graphql-schemas',
+
+                // database
+                !!use_postgres && 'typeorm',
+                !!use_postgres && 'pg',
 
                 // other
                 'debug',
                 '@bucket-of-bolts/util',
                 '@bucket-of-bolts/microdash',
-
-                // database
-                'typeorm',
-                'pg',
+                'moment',
             ],
         };
     }
 
-    getDevDependencies() {
+    getDevDependencies(answers) {
+        const { use_graphql } = answers;
+
         return {
             destination: '[application_code]/',
             packages: [
@@ -143,7 +148,7 @@ module.exports.Generator = class Generator {
                 '@babel/plugin-proposal-decorators',
                 '@babel/plugin-transform-runtime',
                 '@babel/preset-env',
-                'babel-plugin-import-graphql',
+                !!use_graphql && 'babel-plugin-import-graphql',
                 'babel-plugin-transform-es2015-modules-commonjs',
                 '@babel/preset-typescript',
 
@@ -155,7 +160,7 @@ module.exports.Generator = class Generator {
                 'ts-node',
 
                 // testing
-                'apollo-server-testing',
+                !!use_graphql && 'apollo-server-testing',
                 'jest',
                 'supertest',
                 'ts-jest',
@@ -183,13 +188,12 @@ module.exports.Generator = class Generator {
                 'webpack-cli',
                 'webpack-merge',
                 'webpack-node-externals',
-                'graphql-tag',
+                !!use_graphql && 'graphql-tag',
 
                 // other
                 'fork-ts-checker-webpack-plugin-alt',
                 'leasot',
                 'nodemon',
-                'moment',
             ],
         };
     }

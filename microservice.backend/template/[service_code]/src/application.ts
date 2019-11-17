@@ -11,7 +11,7 @@ import { useCORS } from './lib/cors';
 
 import { Settings } from './lib/settings';
 
-import { Database } from './lib/database';
+<% if (use_postgres) { %>import { Database } from './lib/database';<% } %>
 <% if (use_graphql) { %>import { useGraphQL } from './graphql/server';<% } %>
 import { controllers } from './controller';
 
@@ -44,10 +44,13 @@ import { controllers } from './controller';
         }),
     );
 
+<% if (use_postgres) { %>
     const database = new Database({ settings });
-
+<% } %>
     useControllers(app, controllers, async () => ({
+<% if (use_postgres) { %>
         connection: await database.getConnection(),
+<% } %>
     }));
 <% if (use_graphql) { %>
     useGraphQL(
@@ -56,7 +59,9 @@ import { controllers } from './controller';
             settings,
         },
         async () => ({
+<% if (use_postgres) { %>
             connection: await database.getConnection(),
+<% } %>
         }),
     );
 <% } %>

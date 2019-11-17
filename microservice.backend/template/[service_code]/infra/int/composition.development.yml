@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+<% if (use_postgres) { %>
     db:
         image: postgres
         expose:
@@ -11,3 +12,4 @@ services:
             POSTGRES_USER: root
             POSTGRES_PASSWORD: 123
             POSTGRES_DB: <%- database_name %>_test
+<% } %>

@@ -9,6 +9,7 @@ services:
             - '3010'
         ports:
             - '3010'
+<% if (use_postgres) { %>
         depends_on:
             - db
         environment:
@@ -24,3 +25,4 @@ services:
             POSTGRES_USER: root
             POSTGRES_PASSWORD: 123
             POSTGRES_DB: <%- database_name %>_test
+<% } %>

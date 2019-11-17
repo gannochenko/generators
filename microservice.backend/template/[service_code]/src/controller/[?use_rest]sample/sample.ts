@@ -16,9 +16,11 @@ export class SampleController {
     @Get(':id')
     public async get(
         { id } = { id: '' },
+<% if (use_postgres) { %>
         { context: { connection } }: Context,
+<% } %>
     ): Promise<Result> {
-        const sampleService = new SampleService(connection);
+        const sampleService = new SampleService(<% if (use_postgres) { %>connection<% } %>);
 
         const result = new Result();
 
@@ -34,9 +36,9 @@ export class SampleController {
     @BodyInput(SamplePutDTO)
     public async put(
         params: any,
-        { body, context: { connection } }: Context,
+        { body<% if (use_postgres) { %>, context: { connection }<% } %> }: Context,
     ): Promise<Result> {
-        const sampleService = new SampleService(connection);
+        const sampleService = new SampleService(<% if (use_postgres) { %>connection<% } %>);
 
         const result = new Result();
 
