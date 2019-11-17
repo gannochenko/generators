@@ -34,6 +34,11 @@ module.exports.Generator = class Generator {
                 },
             },
             {
+                type: 'input',
+                name: 'application_name',
+                message: 'Application name',
+            },
+            {
                 type: 'confirm',
                 name: 'use_rest',
                 message: 'Do we have REST?',
@@ -66,7 +71,28 @@ module.exports.Generator = class Generator {
                     return true;
                 },
             },
+            {
+                type: 'confirm',
+                name: 'is_monorepo',
+                message: 'Are we inside a monorepo?',
+                default: false,
+            },
         ];
+    }
+
+    refineAnswers(answers) {
+        answers.port = answers.port || 3000;
+        answers.debugger_port = parseInt(answers.port, 10) + 1;
+        answers.application_folder = answers.is_monorepo ? `app.${answers.application_code}` : answers.application_code;
+        answers.application_code_global = answers.application_code;
+        if (answers.is_monorepo) {
+            answers.application_code_global = `${path.basename(process.cwd())}_${answers.application_code}`;
+        }
+
+        answers.application_code_kebab = this.util.textConverter.toKebab(answers.application_code);
+        answers.vendor_name_kebab = this.util.textConverter.toKebab(answers.vendor_name);
+
+        return answers;
     }
 
     getDependencies() {

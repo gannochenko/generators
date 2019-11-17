@@ -58,6 +58,6 @@ import { controllers } from './controller';
     );
 
     app.listen({ port }, () => {
-        logInfo(`🚀 API server is ready at http://${host}:${port}`);
+        logInfo(`🚀 <%- application_name %> is ready at http://${host}:${port}`);
     });
 })();
