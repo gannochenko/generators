@@ -73,6 +73,12 @@ module.exports.Generator = class Generator {
             },
             {
                 type: 'confirm',
+                name: 'use_static',
+                message: 'Do we serve any static content?',
+                default: false,
+            },
+            {
+                type: 'confirm',
                 name: 'is_monorepo',
                 message: 'Are we inside a monorepo?',
                 default: false,

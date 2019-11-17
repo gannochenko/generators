@@ -12,7 +12,7 @@ import { useCORS } from './lib/cors';
 import { Settings } from './lib/settings';
 
 import { Database } from './lib/database';
-import { useGraphQL } from './graphql/server';
+<% if (use_graphql) { %>import { useGraphQL } from './graphql/server';<% } %>
 import { controllers } from './controller';
 
 (async () => {
@@ -33,7 +33,9 @@ import { controllers } from './controller';
 
     await useCORS(app, settings);
 
+<% if (use_static) { %>
     app.use(express.static(path.join(process.cwd(), 'public')));
+<% } %>
     app.use(helmet());
     app.use(express.json());
     app.use(
@@ -47,6 +49,7 @@ import { controllers } from './controller';
     useControllers(app, controllers, async () => ({
         connection: await database.getConnection(),
     }));
+<% if (use_graphql) { %>
     useGraphQL(
         app,
         {
@@ -56,6 +59,7 @@ import { controllers } from './controller';
             connection: await database.getConnection(),
         }),
     );
+<% } %>
 
     app.listen({ port }, () => {
         logInfo(`🚀 <%- application_name %> is ready at http://${host}:${port}`);
