@@ -110,7 +110,7 @@ module.exports.Generator = class Generator {
                 type: 'confirm',
                 name: 'is_monorepo',
                 message: 'Are we inside a monorepo?',
-                default: true, //false,
+                default: false,
             },
             {
                 type: 'confirm',
