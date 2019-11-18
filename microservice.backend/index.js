@@ -138,114 +138,112 @@ module.exports.Generator = class Generator {
         return answers;
     }
 
-    getDependencies(answers) {
-        const { use_postgres, use_graphql } = answers;
-
-        return {
-            destination: '[application_code]/',
-            packages: [
-                '@babel/polyfill', // todo: check this
-
-                // express
-                'express',
-                'body-parser',
-                'cors',
-                'helmet',
-                '@bucket-of-bolts/express-mvc',
-
-                // graphql
-                !!use_graphql && 'graphql',
-                !!use_graphql && 'apollo-server-express',
-                !!use_graphql && 'merge-graphql-schemas',
-
-                // database
-                !!use_postgres && 'typeorm',
-                !!use_postgres && 'pg',
-
-                // other
-                'debug',
-                '@bucket-of-bolts/util',
-                '@bucket-of-bolts/microdash',
-                'moment',
-            ],
-        };
-    }
-
-    getDevDependencies(answers) {
-        const { use_graphql } = answers;
-
-        return {
-            destination: '[application_code]/',
-            packages: [
-                // babel
-                'babel-loader',
-                '@babel/core',
-                '@babel/plugin-proposal-object-rest-spread',
-                '@babel/plugin-proposal-class-properties',
-                '@babel/plugin-proposal-decorators',
-                '@babel/plugin-transform-runtime',
-                '@babel/preset-env',
-                !!use_graphql && 'babel-plugin-import-graphql',
-                'babel-plugin-transform-es2015-modules-commonjs',
-                '@babel/preset-typescript',
-
-                // typescript
-                'typescript',
-                '@types/helmet',
-                '@types/jest',
-                '@types/node',
-                'ts-node',
-                '@types/cors',
-
-                // testing
-                !!use_graphql && 'apollo-server-testing',
-                'jest',
-                'supertest',
-                'ts-jest',
-
-                // lint
-                'eslint',
-                'babel-eslint',
-                'eslint-loader',
-                'eslint-config-airbnb-base',
-                'eslint-config-prettier',
-                'eslint-plugin-import',
-                'eslint-plugin-prettier',
-                '@typescript-eslint/eslint-plugin',
-                '@typescript-eslint/parser',
-
-                // code format
-                'husky',
-                'prettier',
-                'pretty-quick',
-
-                // webpack
-                'webpack',
-                'nodemon-webpack-plugin',
-                'ts-loader',
-                'webpack-cli',
-                'webpack-merge',
-                'webpack-node-externals',
-                !!use_graphql && 'graphql-tag',
-
-                // other
-                'fork-ts-checker-webpack-plugin-alt',
-                'leasot',
-                'nodemon',
-            ],
-        };
-    }
+    // getDependencies(answers) {
+    //     const { use_postgres, use_graphql } = answers;
+    //
+    //     return {
+    //         destination: '[application_folder]/',
+    //         packages: [
+    //             '@babel/polyfill', // todo: check this
+    //
+    //             // express
+    //             'express',
+    //             'body-parser',
+    //             'cors',
+    //             'helmet',
+    //             '@bucket-of-bolts/express-mvc',
+    //
+    //             // graphql
+    //             !!use_graphql && 'graphql',
+    //             !!use_graphql && 'apollo-server-express',
+    //             !!use_graphql && 'merge-graphql-schemas',
+    //
+    //             // database
+    //             !!use_postgres && 'typeorm',
+    //             !!use_postgres && 'pg',
+    //
+    //             // other
+    //             'debug',
+    //             '@bucket-of-bolts/util',
+    //             '@bucket-of-bolts/microdash',
+    //             'moment',
+    //         ],
+    //     };
+    // }
+    //
+    // getDevDependencies(answers) {
+    //     const { use_graphql } = answers;
+    //
+    //     return {
+    //         destination: '[application_folder]/',
+    //         packages: [
+    //             // babel
+    //             'babel-loader',
+    //             '@babel/core',
+    //             '@babel/plugin-proposal-object-rest-spread',
+    //             '@babel/plugin-proposal-class-properties',
+    //             '@babel/plugin-proposal-decorators',
+    //             '@babel/plugin-transform-runtime',
+    //             '@babel/preset-env',
+    //             !!use_graphql && 'babel-plugin-import-graphql',
+    //             'babel-plugin-transform-es2015-modules-commonjs',
+    //             '@babel/preset-typescript',
+    //
+    //             // typescript
+    //             'typescript',
+    //             '@types/helmet',
+    //             '@types/jest',
+    //             '@types/node',
+    //             'ts-node',
+    //             '@types/cors',
+    //
+    //             // testing
+    //             !!use_graphql && 'apollo-server-testing',
+    //             'jest',
+    //             'supertest',
+    //             'ts-jest',
+    //
+    //             // lint
+    //             'eslint',
+    //             'babel-eslint',
+    //             'eslint-loader',
+    //             'eslint-config-airbnb-base',
+    //             'eslint-config-prettier',
+    //             'eslint-plugin-import',
+    //             'eslint-plugin-prettier',
+    //             '@typescript-eslint/eslint-plugin',
+    //             '@typescript-eslint/parser',
+    //
+    //             // code format
+    //             'husky',
+    //             'prettier',
+    //             'pretty-quick',
+    //
+    //             // webpack
+    //             'webpack',
+    //             'nodemon-webpack-plugin',
+    //             'ts-loader',
+    //             'webpack-cli',
+    //             'webpack-merge',
+    //             'webpack-node-externals',
+    //             !!use_graphql && 'graphql-tag',
+    //
+    //             // other
+    //             'fork-ts-checker-webpack-plugin-alt',
+    //             'leasot',
+    //             'nodemon',
+    //         ],
+    //     };
+    // }
 
     async onAfterExecution() {
         await this.addToComposition();
+        await this.makeScriptsExecutable();
     }
 
     async addToComposition() {
         const { pathExists, ejs } = this.util;
         if (this.answers.is_monorepo) {
-
-            console.log(this.context);
-
             const cDevPath = path.join(process.cwd(), 'infra', 'development.yml');
             if (!await pathExists(cDevPath)) {
                 return;
@@ -279,10 +277,14 @@ module.exports.Generator = class Generator {
         }
     }
 
-    // async makeScriptsExecutable() {
-    //     const scriptsPath = path.join(process.cwd(), this.answers.applicationFolder, 'script');
-    //     if (await pathExists(scriptsPath)) {
-    //         this.spawnCommand('chmod', ['+x', path.join(scriptsPath, '*')]);
-    //     }
-    // }
+    async makeScriptsExecutable() {
+        const { execa, pathExists } = this.util;
+
+        const scriptsPath = path.join(this.context.destinationPath, this.answers.application_folder, 'script');
+        if (await pathExists(scriptsPath)) {
+            await execa('chmod', ['-R', '+x', scriptsPath], {
+                stdio: ['inherit', 'inherit', 'inherit'],
+            });
+        }
+    }
 };
