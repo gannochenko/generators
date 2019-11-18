@@ -1,9 +1,15 @@
 const path = require('path');
 const process = require('process');
+const fs = require('fs');
+const yaml = require('js-yaml');
 
 module.exports.Generator = class Generator {
     constructor(util) {
         this.util = util;
+    }
+
+    setContext(context) {
+        this.context = context;
     }
 
     getName() {
@@ -86,7 +92,7 @@ module.exports.Generator = class Generator {
                 type: 'confirm',
                 name: 'is_monorepo',
                 message: 'Are we inside a monorepo?',
-                default: false,
+                default: true, //false,
             },
             {
                 type: 'confirm',
@@ -105,11 +111,11 @@ module.exports.Generator = class Generator {
         if (answers.is_monorepo) {
             answers.application_code_global = `${path.basename(process.cwd())}_${answers.application_code}`;
         }
-
-        console.log(answers);
         
         answers.application_code_kebab = this.util.textConverter.toKebab(answers.application_code);
         answers.vendor_name_kebab = this.util.textConverter.toKebab(answers.vendor_name);
+
+        this.answers = answers;
 
         return answers;
     }
@@ -211,4 +217,54 @@ module.exports.Generator = class Generator {
             ],
         };
     }
+
+    async onAfterExecution() {
+        await this.addToComposition();
+    }
+
+    async addToComposition() {
+        const { pathExists, ejs } = this.util;
+        if (this.answers.is_monorepo) {
+
+            console.log(this.context);
+
+            const cDevPath = path.join(process.cwd(), 'infra', 'development.yml');
+            if (!await pathExists(cDevPath)) {
+                return;
+            }
+
+            const devPart = path.join(this.context.generatorPath, 'template.composition.yml');
+            if (!await pathExists(devPart)) {
+                return;
+            }
+
+            const part = await new Promise((resolve, reject) => {
+                ejs.renderFile(devPart, this.answers, {}, (err, str) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(str);
+                    }
+                });
+            });
+
+            let ymlPart = yaml.safeLoad(part);
+
+            // some hard-coded fixes
+            ymlPart.depends_on = ymlPart.depends_on || [];
+
+            const ymlWhole = yaml.safeLoad(fs.readFileSync(cDevPath, 'utf8'));
+            ymlWhole.services = ymlWhole.services || {};
+            ymlWhole.services[this.answers.application_code] = ymlPart;
+
+            fs.writeFileSync(cDevPath, yaml.safeDump(ymlWhole));
+        }
+    }
+
+    // async makeScriptsExecutable() {
+    //     const scriptsPath = path.join(process.cwd(), this.answers.applicationFolder, 'script');
+    //     if (await pathExists(scriptsPath)) {
+    //         this.spawnCommand('chmod', ['+x', path.join(scriptsPath, '*')]);
+    //     }
+    // }
 };

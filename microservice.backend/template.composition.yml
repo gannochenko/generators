@@ -24,4 +24,6 @@ environment:
 <% } %>
 labels:
     com.list.name: <%- application_name %>
+<% if (use_graphql) { %>
     com.list.link.endpoint: 'GraphQL endpoint|/graphql'
+<% } %>

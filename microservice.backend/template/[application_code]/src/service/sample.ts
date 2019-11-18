@@ -20,7 +20,7 @@ export class SampleService {
 <% } else { %>
         return {
             id,
-            title: 'Some demo data'
+            title: 'Some demo data',
         };
 <% } %>
     }
@@ -36,7 +36,7 @@ export class SampleService {
 <% } else { %>
         return {
             ...data,
-            id: '6e086b10-b0ee-4d21-a1ed-66704219d54f'
+            id: '6e086b10-b0ee-4d21-a1ed-66704219d54f',
         };
 <% } %>
     }
