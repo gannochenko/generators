@@ -46,6 +46,24 @@ module.exports.Generator = class Generator {
             },
             {
                 type: 'input',
+                name: 'port',
+                message: 'Port number',
+                default: 3000,
+                validate: async (value) => {
+                    if (typeof value !== 'string') {
+                        return true; // the default value will be used
+                    }
+
+                    value = parseInt(value, 10);
+                    if (isNaN(value) || value < 0 || value > 65535) {
+                        return `Must be a number between 0 and 65535`;
+                    }
+
+                    return true;
+                },
+            },
+            {
+                type: 'input',
                 name: 'vendor_name',
                 message: 'Vendor name (to publish at the DockerHub, etc.)',
             },
@@ -111,7 +129,7 @@ module.exports.Generator = class Generator {
         if (answers.is_monorepo) {
             answers.application_code_global = `${path.basename(process.cwd())}_${answers.application_code}`;
         }
-        
+
         answers.application_code_kebab = this.util.textConverter.toKebab(answers.application_code);
         answers.vendor_name_kebab = this.util.textConverter.toKebab(answers.vendor_name);
 
