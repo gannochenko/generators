@@ -1,10 +1,8 @@
 import { InputContext as MVCInputContext } from '@bucket-of-bolts/express-mvc';
-<% if(use_postgres) { %>
-import { Connection } from 'typeorm';
-<% } %>
+<% if(use_postgres) { %>import { Connection } from 'typeorm';<% } %>
 
 export interface CustomContext {
-<% if(use_postgres) { %>}
+<% if(use_postgres) { %>
     connection: Connection;
 <% } %>
 }

@@ -9,3 +9,5 @@ This generator is still missing:
 * grpc
 * event system (Kafka? Redis? RabbitMQ?)
 * swagger
+
+See [the board](https://trello.com/b/dxMcr9Ac/generators) for details.
