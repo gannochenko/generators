@@ -1,6 +1,7 @@
+import { Notify } from '@bucket-of-bolts/ui';
 import { Error, Route } from '../lib/type';
-import { Client } from '../lib/client';
-import { Notify } from '../lib/ew-internals-ui';
+import { Client } from '../lib';
+import { Nullable, ObjectLiteral } from '../../type';
 
 export interface PageState {
     loading: boolean;
@@ -16,7 +17,7 @@ export interface Action {
 export interface ControllerProperties {
     ready: boolean;
     client: Client;
-    theme: StringToNullableObjectMap;
+    theme: ObjectLiteral;
     error: Nullable<Error[]>;
     dispatch?: (action: Action) => void;
     dispatchLoad?: DispatchLoad;

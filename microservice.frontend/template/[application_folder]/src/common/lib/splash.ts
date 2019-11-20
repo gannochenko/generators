@@ -3,7 +3,7 @@ export const dismissOnReady = ({ store, unsubscribe }) => {
         const state = store.getState();
         if (state.application.ready) {
             const pageCodes = Object.keys(state);
-            for (let i = 0; i < pageCodes.length; i++) {
+            for (let i = 0; i < pageCodes.length; i += 1) {
                 const pageCode = pageCodes[i];
                 if (pageCode !== 'application' && state[pageCode].ready) {
                     window.splash.dismiss();

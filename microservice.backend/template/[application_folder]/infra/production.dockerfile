@@ -11,5 +11,5 @@ COPY . .
 # todo: this is not good, we need to build outside of the container, and then just add files!
 RUN yarn run build
 
-EXPOSE 3010
+EXPOSE <%- port %>
 CMD [ "yarn", "start" ]

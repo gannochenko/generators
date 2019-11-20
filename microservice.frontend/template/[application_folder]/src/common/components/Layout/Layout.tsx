@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { VerticalTriplet } from 'ew-internals-ui';
+import { VerticalTriplet } from '@bucket-of-bolts/ui';
 
 import {
     Top,
@@ -12,9 +12,9 @@ import {
 import { LayoutProperties } from './type';
 
 export const Layout: FunctionComponent<LayoutProperties> = ({
-                                                                children,
-                                                                title = 'Untitled page',
-                                                            }) => (
+    children,
+    title = 'Untitled page',
+}) => (
     <VerticalTriplet
         top={
             <Top>
@@ -29,8 +29,7 @@ export const Layout: FunctionComponent<LayoutProperties> = ({
             <Footer>
                 <Central>
                     &copy; 2019 &laquo;
-                    <
-                    %- applicationName %>&raquo; team
+                    <%- application_name %>&raquo; team
                 </Central>
             </Footer>
         }

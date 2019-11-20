@@ -1,6 +1,6 @@
 import cors from 'cors';
 
-export const useCORS = async (app, settings) => {
+export const enableCORS = async (app, settings) => {
     let corsHosts = await settings.get('NETWORK__CORS', []);
     if (corsHosts) {
         corsHosts = corsHosts

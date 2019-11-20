@@ -48,7 +48,7 @@ module.exports.Generator = class Generator {
                 type: 'input',
                 name: 'port',
                 message: 'Port number',
-                default: 3000,
+                default: 4000,
                 validate: async (value) => {
                     if (typeof value !== 'string') {
                         return true; // the default value will be used

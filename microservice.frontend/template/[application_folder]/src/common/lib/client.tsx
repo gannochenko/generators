@@ -11,12 +11,12 @@ import { onError } from 'apollo-link-error';
 import Axios from 'axios';
 import { Settings } from '@bucket-of-bolts/util';
 
-export const Context = React.createContext({});
+export const ClientContext = React.createContext({});
 export const withClient = Component => {
     const WithClient = props => (
-        <Context.Consumer>
+        <ClientContext.Consumer>
             {value => <Component {...props} client={value}/>}
-        </Context.Consumer>
+        </ClientContext.Consumer>
     );
 
     const wrappedComponentName =

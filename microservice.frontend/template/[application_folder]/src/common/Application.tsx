@@ -2,15 +2,10 @@ import React, { useRef, FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
 import { Notification, NotificationContext } from '@bucket-of-bolts/ui';
 
-import { Application as UI } from './components';
-import { ThemeContext } from './style/global';
-import { createSettings } from './lib/settings';
-import { Context as ClientContext, createClient } from './lib/client';
-import { createHistory } from './lib/history';
+import { UI } from './components';
+import { ThemeContext, theme } from './style';
+import { createSettings, ClientContext, createClient, createHistory, dismissOnReady } from './lib';
 import { createStore } from './store';
-import { dismissOnReady } from './splash/splash';
-
-import theme from './style/theme';
 
 const history = createHistory();
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -21,7 +16,7 @@ const { store, saga, unsubscribe } = createStore({
 const settings = createSettings();
 const client = createClient(settings);
 
-const Application: FunctionComponent<{}> = () => {
+const Application: FunctionComponent = () => {
     const notificationRef = useRef();
 
     return (

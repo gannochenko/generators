@@ -2,12 +2,12 @@ import React from 'react';
 import { Settings } from '@bucket-of-bolts/util';
 
 export const createSettings = () => new Settings();
-export const Context = React.createContext(null);
+export const SettingsContext = React.createContext(null);
 export const withSettings = Component => {
     const WithSettings = props => (
-        <Context.Consumer>
+        <SettingsContext.Consumer>
             {value => <Component {...props} settings={value}/>}
-        </Context.Consumer>
+        </SettingsContext.Consumer>
     );
 
     const wrappedComponentName = Component.displayName

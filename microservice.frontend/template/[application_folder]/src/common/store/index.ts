@@ -14,23 +14,19 @@ export const createStore = ({ history, onChange }) => {
         middleware.push(logger);
     }
     const store = createRawStore(
-        combineReducers(
-            Object.assign(
-                {
-                    router: connectRouter(history),
-                },
-                reducers,
-            ),
-        ),
+        combineReducers({
+            router: connectRouter(history),
+            ...reducers,
+        }),
         {},
         compose(applyMiddleware(...middleware)),
     );
-    saga.run(function* () {
+    saga.run(function* rootSaga() {
         yield all(sagas.map(sagaItem => fork(sagaItem)));
     });
 
     let unsubscribe = null;
-    if (_.isFunction(onChange)) {
+    if (typeof onChange === 'function') {
         unsubscribe = store.subscribe(() => {
             onChange({ store, unsubscribe });
         });

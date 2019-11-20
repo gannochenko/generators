@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { rectangle, align, backgroundCover } from 'sc-companion';
-import CoinImg from '../../../public/coin.png';
+import { rectangle, align, backgroundCover } from '@bucket-of-bolts/styled-companion';
+import CoinImg from '../../../../public/coin.png';
 
 export const CoinRow = styled.div`
     ${rectangle('3rem', '5rem')}

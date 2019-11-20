@@ -1,2 +1,2 @@
-export * from './Application';
+export * from './UI';
 export * from './Layout';

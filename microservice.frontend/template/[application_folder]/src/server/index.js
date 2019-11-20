@@ -3,7 +3,7 @@ import app from './server';
 
 const server = http.createServer(app);
 let currentApp = app;
-server.listen(<%- port %>);
+server.listen(process.env.PORT || process.env.NETWORK__PORT);
 
 if (module.hot) {
     module.hot.accept('./server', () => {

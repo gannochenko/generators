@@ -10,7 +10,7 @@ const grid = {
     },
 };
 
-export default {
+export const theme = {
     // general settings
     font: {
         normal: '1rem',

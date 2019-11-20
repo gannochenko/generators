@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Dispatch } from '../store/type';
-import { Error } from './type';
-import { Notify } from './ew-internals-ui';
+import { Error, Notify } from './type';
 import { Nullable } from '../../type';
 
 export const useNetworkMonitor = (

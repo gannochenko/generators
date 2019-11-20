@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { align, rectangle, group, central } from 'sc-companion';
+import { align, rectangle, group, central } from '@bucket-of-bolts/styled-companion';
 import { Link } from 'react-router-dom';
-import { withTheme } from '../../style/global';
+import { withTheme } from '../../style';
 
 export const Top = styled.div`
     min-height: 3rem;
@@ -34,7 +34,7 @@ export const Title = styled.div`
 `;
 
 export const Central = styled.div`
-    ${central()}
+    ${central()};
     width: 100%;
     padding: 1rem;
 `;

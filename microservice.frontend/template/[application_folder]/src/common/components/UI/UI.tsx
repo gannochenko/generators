@@ -7,7 +7,7 @@ import {
     withNotification,
     Modal,
     ModalContext,
-} from 'ew-internals-ui';
+} from '@bucket-of-bolts/ui';
 
 import { MainProgressBar } from './style';
 import { ApplicationProperties } from './type';
@@ -16,29 +16,27 @@ import {
     useNetworkMonitor,
     useErrorNotification,
     useNetworkNotification,
-} from '../../lib/hooks';
+} from '../../lib';
 
 import { SHOW_OFFLINE, SHOW_ONLINE } from './reducer';
-import { GlobalStyle } from '../../style/global';
+import { GlobalStyle } from '../../style';
 
-import HomePage from '../../pages/home';
-import ForbiddenPage from '../../pages/403';
-import NotFoundPage from '../../pages/404';
+import { HomePage, ForbiddenPage, NotFoundPage } from '../../pages';
 
-const ApplicationComponent: FunctionComponent<ApplicationProperties> = ({
-                                                                            ready = false,
-                                                                            client,
-                                                                            history,
-                                                                            theme,
-                                                                            error = null,
-                                                                            notify = () => {
-                                                                            },
-                                                                            offline = false,
-                                                                            dispatch = () => {
-                                                                            },
-                                                                            dispatchLoad = () => {
-                                                                            },
-                                                                        }) => {
+const UIComponent: FunctionComponent<ApplicationProperties> = ({
+    ready = false,
+    client,
+    history,
+    theme,
+    error = null,
+    notify = () => {
+    },
+    offline = false,
+    dispatch = () => {
+    },
+    dispatchLoad = () => {
+    },
+}) => {
     useEffect(() => {
         dispatchLoad(client);
     }, []);
@@ -82,4 +80,4 @@ const ApplicationComponent: FunctionComponent<ApplicationProperties> = ({
     );
 };
 
-export const Application = withNotification(connect(s => s.application, mapDispatchToProps)(ApplicationComponent));
+export const UI = withNotification(connect(s => s.application, mapDispatchToProps)(UIComponent));

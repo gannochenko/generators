@@ -17,9 +17,9 @@
         "removeComments": true,
         "emitDecoratorMetadata": true,
         "sourceMap": true,
-        "baseUrl": "./common/",
+        "baseUrl": "./src/common/",
         "jsx": "preserve"
     },
-    "exclude": ["node_modules", ".build"],
-    "include": ["common/**/*", "common/global.d.ts"]
+    "exclude": ["node_modules", "build"],
+    "include": ["src/common/**/*", "src/global.d.ts"]
 }
