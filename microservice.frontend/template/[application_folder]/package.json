@@ -1,0 +1,22 @@
+{
+    "scripts": {
+        "start": "node ./build/server.js",
+        "dev:server": "webpack --config webpack.server.js --mode development",
+        "dev:client": "webpack-dev-server --config webpack.client.js --mode development",
+        "dev": "rm -rf ./build && npm-run-all --parallel dev:server dev:client",
+        "test": "jest -c ./jest/config.unit.js --forceExit",
+        "test:watch": "jest -c ./jest/config.unit.js --watch",
+        "lint": "eslint ./common/ ./client/ ./server/ --ext .js,.ts",
+        "lint:fix": "eslint ./common/ ./client/ ./server/ --fix --ext .js,.ts",
+        "techdebt": "leasot --exit-nicely --reporter table --skip-unsupported --ignore node_modules,build ./",
+        "image:build": "./script/image.build.sh",
+        "image:push": "./script/image.push.sh",
+        "image:run": "./script/image.run.sh"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    },
+    "private": true
+}

@@ -3,15 +3,13 @@
 .git
 node_modules
 infra
-script
 .babelrc
 .dockerignore
 .eslintignore
 .eslintrc
 .gitignore
-.prettierignore
-.prettierrc
 README.md
 tsconfig.json
-webpack.js
+webpack.client.js
+webpack.server.js
 yarn-error.log

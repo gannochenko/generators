@@ -1,10 +1,8 @@
 {
     "name": "<%- application_code %>",
     "version": "1.0.0",
-    "bin": {
-        "module-name": "./build/index.js"
-    },
     "scripts": {
+        "start": "node ./build/index.js",
         "dev": "webpack --config webpack.js --mode development --watch",
         "test": "jest -c ./jest/config.unit.js --forceExit",
         "test:watch": "jest -c ./jest/config.unit.js --watch",
@@ -12,25 +10,23 @@
         "test:int": "jest -c ./jest/config.int.js --runInBand --forceExit --passWithNoTests",
         "test:int:watch": "jest -c ./jest/config.int.js --runInBand --watch",
         "build": "webpack --config webpack.js --mode production",
-        "start": "node ./build/index.js",
 <% if (use_postgres) { %>
         "migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
         "migrate:local": "./script/migrate.sh local",
 <% } %>
         "lint": "eslint ./src/ --ext .js,.ts",
         "lint:fix": "eslint ./src/ --fix --ext .js,.ts",
-        "techdebt": "leasot --exit-nicely --reporter table --skip-unsupported --ignore node_modules,build,migrations ./"
-    },
+        "techdebt": "leasot --exit-nicely --reporter table --skip-unsupported --ignore node_modules,build,migrations ./",
+        "image:build": "./script/image.build.sh",
+        "image:push": "./script/image.push.sh"
+},
     "keywords": [],
     "author": "gannochenko.sv@gmail.com",
     "license": "MIT",
-    "devDependencies": {
-    },
-    "dependencies": {
-    },
     "husky": {
         "hooks": {
             "pre-commit": "pretty-quick --staged"
         }
-    }
+    },
+    "private": true
 }

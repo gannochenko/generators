@@ -13,6 +13,8 @@ environment:
     - NODE_ENV=development
     - DEBUG_COLORS=1
     - DEBUG_HIDE_DATE=1
+    - NETWORK__PORT__HMR=<%- port_hmr %>
+    - NETWORK__PORT__BUNDLE_ANALYSER=<%- port_bundle_analyzer %>
     - NETWORK__CORS=
 <% if (use_rest) { %>
     - API__URL=http://localhost:<%- api_port %>
