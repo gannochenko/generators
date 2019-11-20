@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title><%- application_name %></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        .splash {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            z-index: 6000; /* zIxVenus */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 500ms ease;
+        }
+
+        .splash_dismissed {
+            opacity: 0;
+        }
+
+        .splash__central {
+        }
+
+        .splash__logo {
+            text-align: center;
+        }
+
+        .splash__progress {
+            margin-top: 1rem;
+            border-radius: 3px;
+            border: 1px solid gray;
+            padding: 0.1rem;
+            position: relative;
+            width: 7rem;
+        }
+
+        .splash__progress-indicator {
+            width: 0;
+            background-color: lightgray;
+            height: 0.2rem;
+            transition: width 200ms ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="splash">
+        <div class="splash__central">
+            <div class="splash__logo">
+                <%- applicationName %>
+            </div>
+            <div class="splash__progress">
+                <div class="splash__progress-indicator"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function splash() {
+            var splash = window.document.querySelector('.splash');
+            var progress = window.document.querySelector('.splash__progress-indicator');
+            if (splash && progress) {
+                var stepCount = 15;
+                var step = 0;
+                var width = 0;
+                var timer = null;
+
+                var dismiss = function dismiss() {
+                    clearTimeout(timer);
+                    progress.style.width = '100%';
+                    splash.className += ' splash_dismissed';
+                    setTimeout(function hideSplash() {
+                        splash.style.display = 'none';
+                    }, 500);
+                };
+
+                var makeStep = function makeStep() {
+                    timer = setTimeout(
+                        function setWidth() {
+                            width += 100 / stepCount;
+                            step += 1;
+                            progress.style.width = width + '%';
+                            if (step < stepCount - 1) {
+                                makeStep();
+                            }
+                        },
+                        step ? Math.floor(Math.random() * 1000) : 50,
+                    );
+                };
+                makeStep();
+                window.splash = {
+                    dismiss: dismiss,
+                };
+            }
+        })();
+    </script>
+    <div id="root"></div>
+    <script src="/client.js"></script>
+</body>
+</html>

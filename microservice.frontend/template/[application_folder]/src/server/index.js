@@ -6,9 +6,9 @@ let currentApp = app;
 server.listen(<%- port %>);
 
 if (module.hot) {
-    module.hot.accept("./server", () => {
-        server.removeListener("request", currentApp);
-        server.on("request", app);
+    module.hot.accept('./server', () => {
+        server.removeListener('request', currentApp);
+        server.on('request', app);
         currentApp = app;
     });
 }

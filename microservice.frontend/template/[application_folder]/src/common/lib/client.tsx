@@ -9,7 +9,7 @@ import { onError } from 'apollo-link-error';
 // import { RetryLink } from 'apollo-link-retry';
 
 import Axios from 'axios';
-import { Settings } from 'ew-internals';
+import { Settings } from '@bucket-of-bolts/util';
 
 export const Context = React.createContext({});
 export const withClient = Component => {

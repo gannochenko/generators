@@ -1,6 +1,6 @@
 import React, { useRef, FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
-import { Notification, NotificationContext } from 'ew-internals-ui';
+import { Notification, NotificationContext } from '@bucket-of-bolts/ui';
 
 import { Application as UI } from './components';
 import { ThemeContext } from './style/global';
@@ -8,7 +8,7 @@ import { createSettings } from './lib/settings';
 import { Context as ClientContext, createClient } from './lib/client';
 import { createHistory } from './lib/history';
 import { createStore } from './store';
-import { dismissOnReady } from './splash/client';
+import { dismissOnReady } from './splash/splash';
 
 import theme from './style/theme';
 

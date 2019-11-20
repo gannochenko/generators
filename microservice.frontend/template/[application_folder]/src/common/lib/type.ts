@@ -17,3 +17,14 @@ export interface RouteLocation {
 export interface Route {
     location: RouteLocation;
 }
+
+export interface ErrorMessage {
+    text: string;
+    type?: string;
+    code?: string;
+    icon?: string;
+    closeable?: boolean;
+    lifeTime?: number;
+}
+
+export type Notify = (message: ErrorMessage) => void;

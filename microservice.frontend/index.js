@@ -106,6 +106,12 @@ module.exports.Generator = class Generator {
                 message: 'Do we have GraphQL?',
                 default: false,
             },
+            {
+                type: 'confirm',
+                name: 'use_materialui',
+                message: 'Do we have MaterialUI?',
+                default: false,
+            },
         ];
     }
 
@@ -126,11 +132,61 @@ module.exports.Generator = class Generator {
     }
 
     getDependencies(answers) {
-        const { use_graphql, use_rest } = answers;
+        const { use_graphql, use_rest, use_materialui } = answers;
 
         return {
             destination: '[application_folder]/',
             packages: [
+                // babel
+                '@babel/polyfill',
+
+                // express (server-side)
+                'express',
+                'body-parser',
+                'cors',
+                'helmet',
+
+                // aux
+                'debug',
+                '@bucket-of-bolts/util',
+                '@bucket-of-bolts/ui',
+
+                // front
+                'react',
+                'react-dom',
+                'redux',
+                'redux-logger',
+                'redux-saga',
+                'react-redux',
+                'react-router',
+                'react-router-dom',
+                'connected-react-router',
+                'history',
+
+                // styles
+                'styled-components',
+                '@bucket-of-bolts/styled-companion',
+
+                // demo ui
+                use_materialui && '@material-ui/core',
+                use_materialui & '@material-ui/icons',
+
+                // graphql
+                use_graphql && 'graphql',
+                use_graphql && 'graphql-tag',
+
+                // networking
+                use_graphql && 'apollo-client',
+                use_graphql && 'apollo-cache-inmemory',
+                use_graphql && 'apollo-link-http',
+                use_graphql && 'apollo-link',
+                use_graphql && 'apollo-link-error',
+                use_rest && 'axios',
+
+                // for Material UI
+                use_materialui && 'prop-types',
+                use_materialui && 'jss',
+                use_materialui && 'classnames',
             ],
         };
     }
@@ -141,6 +197,67 @@ module.exports.Generator = class Generator {
         return {
             destination: '[application_folder]/',
             packages: [
+                // babel
+                '@babel/core',
+                '@babel/plugin-proposal-object-rest-spread',
+                '@babel/plugin-proposal-class-properties',
+                '@babel/plugin-proposal-decorators',
+                '@babel/plugin-transform-runtime',
+                '@babel/preset-env',
+                '@babel/preset-react',
+                'babel-eslint',
+                'babel-loader',
+                'babel-plugin-styled-components',
+                'babel-polyfill',
+
+                // lint
+                'eslint',
+                'eslint-config-airbnb-base',
+                'eslint-config-prettier',
+                'eslint-plugin-import',
+                'eslint-plugin-prettier',
+                'eslint-plugin-react',
+                'eslint-plugin-jsx-a11y',
+                'eslint-plugin-react-hooks',
+                'eslint-loader',
+
+                // dev cycle
+                'npm-run-all',
+                'webpack-bundle-analyzer',
+                'leasot',
+
+                // codestyle
+                'husky',
+                'prettier',
+                'pretty-quick',
+
+                // webpack
+                'start-server-webpack-plugin',
+                'url-loader',
+                'file-loader',
+                'raw-loader',
+                'webpack',
+                'webpack-cli',
+                'webpack-node-externals',
+                'webpack-dev-server',
+
+                // testing
+                'jest',
+                '@testing-library/react',
+                '@testing-library/user-event',
+                'jest-dom',
+                'redux-mock-store',
+
+                // hmr
+                'react-hot-loader',
+
+                // typescript
+                'fork-ts-checker-webpack-plugin-alt',
+                'react-dev-utils',
+                'typescript',
+                '@babel/preset-typescript',
+                '@typescript-eslint/eslint-plugin',
+                '@typescript-eslint/parser',
             ],
         };
     }

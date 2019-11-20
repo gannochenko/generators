@@ -1,5 +1,5 @@
 import React from 'react';
-import { Settings } from 'ew-internals';
+import { Settings } from '@bucket-of-bolts/util';
 
 export const createSettings = () => new Settings();
 export const Context = React.createContext(null);

@@ -1,4 +1,4 @@
-import { palette, zIxEverest, zIxStratosphere, zIxSun } from 'sc-companion';
+import { palette, zIxEverest, zIxStratosphere, zIxSun } from '@bucket-of-bolts/styled-companion';
 
 const grid = {
     resolution: 12,

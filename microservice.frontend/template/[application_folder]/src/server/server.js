@@ -1,10 +1,10 @@
 import express from 'express';
 // import React from 'react';
-import cors from 'cors';
+import { useCORS } from "./cors";
 import helmet from 'helmet';
 import path from 'path';
 
-import { Settings, logger } from 'ew-internals';
+import { Settings, logger } from '@bucket-of-bolts/util';
 
 // import { renderToString } from 'react-dom/server';
 // import Application from "../common/Application";
@@ -28,44 +28,9 @@ app.use((err, req, res, next) => {
     logger.error('Unhandled exception', err);
     res.send(__DEV__ ? err.message : 'Nasty error');
 });
-
 app.set('port', <%- port %>);
 
-app.use(
-    cors({
-        origin: (origin, cb) => {
-            // allow requests with no origin, like mobile apps or curl requests
-            if (!origin || __DEV__) {
-                return cb(null, true);
-            }
-
-            // get cors settings on each hit, to be able to change it at the run-time
-            settings
-                .get('network.cors', null)
-                .then(corsSettings => {
-                    const origins = _.isne(corsSettings)
-                        ? corsSettings.split(',').map(x => x.trim())
-                        : [];
-
-                    let match = false;
-                    if (_.iane(origins)) {
-                        // we have CORS settings
-                        match = origins.indexOf(origin) >= 0;
-                    }
-
-                    if (match) {
-                        return cb(null, true);
-                    } else {
-                        return cb(new Error('CORS mismatch'), false); // todo: throw 403
-                    }
-                })
-                .catch(error => {
-                    logger.error('Error occurred when checking CORS', error);
-                    return cb(new Error('CORS error'), false); // todo: throw 500
-                });
-        },
-    }),
-);
+useCORS(app, settings);
 
 app.use(helmet());
 app.use(express.static(path.join(process.cwd(), 'public')));

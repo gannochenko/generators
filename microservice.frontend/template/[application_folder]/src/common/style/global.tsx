@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { fontMaterialIcons } from 'sc-companion';
+import { fontMaterialIcons } from '@bucket-of-bolts/styled-companion';
 import makeCss from './css';
 
 export const ThemeContext = React.createContext({});

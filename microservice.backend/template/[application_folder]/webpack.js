@@ -117,7 +117,7 @@ module.exports = (env, argv) => {
                 }),
             new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
             new webpack.ProvidePlugin({
-                logger: ['ew-internals', 'logger'],
+                logger: ['@bucket-of-bolts/util', 'logger'],
             }),
             new webpack.DefinePlugin({
                 __DEV__: development,

@@ -13,8 +13,8 @@ module.exports = (env, argv) => {
     const sourceFolder = path.join(__dirname, 'src/common');
     const destinationFolder = path.join(__dirname, 'build');
 
-    const hmrPort = pEnv.NETWORK__PORT__HMR;
-    const bundleAnalyserPort = pEnv.NETWORK__PORT__BUNDLE_ANALYSER;
+    const hmrPort = pEnv.NETWORK__PORT__HMR || 4001;
+    const bundleAnalyserPort = pEnv.NETWORK__PORT__BUNDLE_ANALYSER || 4010;
 
     return {
         entry: [
