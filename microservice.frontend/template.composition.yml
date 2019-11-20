@@ -14,7 +14,9 @@ environment:
     - DEBUG_COLORS=1
     - DEBUG_HIDE_DATE=1
     - NETWORK__CORS=
-    - API__URL=
+<% if (use_rest) { %>
+    - API__URL=http://localhost:<%- api_port %>
+<% } %>
 labels:
     com.list.name: <%- application_name %>
     com.list.link.analyzer: Bundle analyzer|http://localhost:<%- port_bundle_analyzer %>
