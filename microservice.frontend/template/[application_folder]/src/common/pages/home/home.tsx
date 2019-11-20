@@ -1,13 +1,12 @@
 import React, { useEffect, FunctionComponent } from 'react';
 import { connect } from 'react-redux';
-import { withNotification, withModal } from 'ew-internals-ui';
-import { useErrorNotification, useDispatchUnload } from '../../lib/hooks';
+import { withNotification, withModal } from '@bucket-of-bolts/ui';
+import { useErrorNotification, useDispatchUnload, withClient } from '../../lib';
 
-import { withClient } from '../../lib/client';
 import { Layout } from '../../components';
 
 import Button from '../../material-kit/CustomButtons';
-import Mushroom from '../../../public/mushroom.png';
+import Mushroom from '../../../../public/mushroom.png';
 import { CoinRow, Coin, ButtonWrap } from './style';
 import { HomePageProperties } from './type';
 import mapDispatchToProps from './dispatch';

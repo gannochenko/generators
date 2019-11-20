@@ -60,7 +60,7 @@ export class Client {
                 link: ApolloLink.from([
                     onError(({ graphQLErrors, networkError }) => {
                         if (graphQLErrors) {
-                            graphQLErrors.map(({ message, locations, path }) => {
+                            graphQLErrors.forEach(({ message, locations, path }) => {
                                 console.log(`[GraphQL error]: ${message}, Location: ${locations}, Path: ${path}`);
                             });
                         }

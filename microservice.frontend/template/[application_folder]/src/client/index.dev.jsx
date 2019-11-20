@@ -1,6 +1,7 @@
 import '@babel/polyfill';
 import React from 'react';
 import { render } from 'react-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { AppContainer } from 'react-hot-loader';
 import Application from '../common/Application';
 
