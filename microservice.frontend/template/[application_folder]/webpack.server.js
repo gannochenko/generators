@@ -11,7 +11,7 @@ module.exports = (env, argv) => {
     const destinationFolder = path.join(__dirname, 'build');
 
     return {
-        entry: ['webpack/hot/poll?1000', './server/index'],
+        entry: ['webpack/hot/poll?1000', './src/server/index'],
         watch: development,
         target: 'node',
         mode: development ? 'development' : 'production',

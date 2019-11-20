@@ -21,7 +21,7 @@ module.exports = (env, argv) => {
             'react-hot-loader/patch',
             `webpack-dev-server/client?http://localhost:${hmrPort}`,
             'webpack/hot/only-dev-server',
-            './client/index',
+            './src/client/index.dev',
         ],
         target: 'web',
         mode: development ? 'development' : 'production',
@@ -86,7 +86,7 @@ module.exports = (env, argv) => {
                         },
                     ],
                     include: [
-                        path.join(__dirname, 'client'),
+                        path.join(__dirname, 'src/client'),
                         sourceFolder,
                     ],
                 },
@@ -149,6 +149,7 @@ module.exports = (env, argv) => {
             new BundleAnalyzerPlugin({
                 analyzerHost: '0.0.0.0',
                 analyzerPort: bundleAnalyserPort,
+                openAnalyzer: false,
             }),
         ],
         devServer: {

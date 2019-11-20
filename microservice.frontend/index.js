@@ -187,6 +187,9 @@ module.exports.Generator = class Generator {
                 use_materialui && 'prop-types',
                 use_materialui && 'jss',
                 use_materialui && 'classnames',
+
+                // other
+                'moment',
             ],
         };
     }
