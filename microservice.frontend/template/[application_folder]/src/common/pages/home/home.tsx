@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { withNotification, withModal } from '@bucket-of-bolts/ui';
 import { useErrorNotification, useDispatchUnload, withClient } from '../../lib';
 
-import { Layout } from '../../components';
-
-import Button from '../../material-kit/CustomButtons';
+import { Layout, Button } from '../../components';
 import Mushroom from '../../../../public/mushroom.png';
 import { CoinRow, Coin, ButtonWrap } from './style';
 import { HomePageProperties } from './type';
