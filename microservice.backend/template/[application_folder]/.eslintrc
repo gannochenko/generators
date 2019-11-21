@@ -27,7 +27,8 @@
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "no-console": ["error", { "allow": ["error"]}]
   },
   "parserOptions": {
     "ecmaVersion": 6,

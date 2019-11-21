@@ -184,12 +184,12 @@ module.exports.Generator = class Generator {
                 use_rest && 'axios',
 
                 // for Material UI
-                use_materialui && 'prop-types',
                 use_materialui && 'jss',
                 use_materialui && 'classnames',
 
                 // other
                 'moment',
+                'prop-types', // required now, should be removed later
             ],
         };
     }
@@ -261,6 +261,7 @@ module.exports.Generator = class Generator {
                 '@babel/preset-typescript',
                 '@typescript-eslint/eslint-plugin',
                 '@typescript-eslint/parser',
+                '@types/styled-components',
             ],
         };
     }

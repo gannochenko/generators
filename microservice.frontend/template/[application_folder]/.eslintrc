@@ -49,7 +49,8 @@
         "lines-between-class-members": "off",
         "@typescript-eslint/ban-ts-ignore": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "no-lonely-if": "off"
+        "no-lonely-if": "off",
+        "no-console": ["error", { "allow": ["error"]}]
     },
     "parserOptions": {
         "ecmaVersion": 6,

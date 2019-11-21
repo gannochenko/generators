@@ -61,12 +61,12 @@ export class Client {
                     onError(({ graphQLErrors, networkError }) => {
                         if (graphQLErrors) {
                             graphQLErrors.forEach(({ message, locations, path }) => {
-                                console.log(`[GraphQL error]: ${message}, Location: ${locations}, Path: ${path}`);
+                                console.error(`[GraphQL error]: ${message}, Location: ${locations}, Path: ${path}`);
                             });
                         }
 
                         if (networkError) {
-                            console.log(`[Network error]: ${networkError}`);
+                            console.error(`[Network error]: ${networkError}`);
                         }
                     }),
                     new HttpLink(`${await this.getUrl()}/graphql`),
