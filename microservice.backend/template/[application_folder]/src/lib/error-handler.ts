@@ -2,7 +2,7 @@ import { Request, Response, Express, NextFunction } from 'express';
 import { logError } from '@bucket-of-bolts/util';
 import process from 'process';
 
-const useErrorHandler = (app: Express) => {
+export const useErrorHandler = (app: Express) => {
     // catching async unhandled rejections
     process
         // @ts-ignore
@@ -28,5 +28,3 @@ const useErrorHandler = (app: Express) => {
         return res.send('Nasty error'); // todo: explain here
     });
 };
-
-export default useErrorHandler;

@@ -169,7 +169,7 @@ module.exports.Generator = class Generator {
 
                 // demo ui
                 use_materialui && '@material-ui/core',
-                use_materialui & '@material-ui/icons',
+                use_materialui && '@material-ui/icons',
 
                 // graphql
                 use_graphql && 'graphql',
@@ -261,7 +261,15 @@ module.exports.Generator = class Generator {
                 '@babel/preset-typescript',
                 '@typescript-eslint/eslint-plugin',
                 '@typescript-eslint/parser',
+
+                // types
                 '@types/styled-components',
+                '@types/react-redux',
+                '@types/react-router-dom',
+                '@types/react-router',
+                '@types/history',
+                '@types/redux-logger',
+                '@types/express',
             ],
         };
     }

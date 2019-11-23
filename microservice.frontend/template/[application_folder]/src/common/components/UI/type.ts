@@ -1,4 +1,5 @@
 import { ControllerProperties, PageState } from '../../store/type';
+import { Nullable } from '../../../type';
 
 export interface ApplicationProperties extends ControllerProperties {
     history: object;

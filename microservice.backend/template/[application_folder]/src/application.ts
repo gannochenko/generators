@@ -6,9 +6,8 @@ import helmet from 'helmet';
 import express from 'express';
 import process from 'process';
 
-import useErrorHandler from './lib/error-handler';
+import { useErrorHandler } from './lib/error-handler';
 import { useCORS } from './lib/cors';
-
 import { Settings } from './lib/settings';
 
 <% if (use_postgres) { %>import { Database } from './lib/database';<% } %>
