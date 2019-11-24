@@ -20,7 +20,7 @@ export const Layout: FunctionComponent<LayoutProperties> = ({
         }
         bottom={
             <Footer>
-                <Central>&copy; 2019 &laquo;Front&raquo; team</Central>
+                <Central>&copy; 2020 &laquo;<%- application_name %>&raquo; team</Central>
             </Footer>
         }
     >

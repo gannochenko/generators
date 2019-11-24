@@ -8,5 +8,8 @@ PORT="<%- port %>"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 VERSION="${1:-latest}"
+TAG=${VENDOR}/${APPLICATION_NAME}:${VERSION}
 
-docker run -d -p ${PORT}:${PORT} ${VENDOR}/${APPLICATION_NAME}:${VERSION}
+echo Running ${TAG} image;
+
+docker run -d -p ${PORT}:${PORT} ${TAG}

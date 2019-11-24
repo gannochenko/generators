@@ -18,7 +18,7 @@ export const app = express();
 useErrorHandler(app);
 
 const host = settings.getSync('NETWORK__HOST', 'localhost');
-const port = process.env.PORT || settings.getSync('NETWORK__PORT', 4000);
+const port = process.env.PORT || settings.getSync('NETWORK__PORT', <%- port %>);
 
 app.set('host', host);
 app.set('port', port);

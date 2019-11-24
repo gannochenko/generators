@@ -8,5 +8,5 @@ ENV NODE_ENV=production
 COPY ./build/ .
 RUN yarn
 
-EXPOSE 4000
+EXPOSE <%- port %>
 CMD [ "yarn", "start" ]

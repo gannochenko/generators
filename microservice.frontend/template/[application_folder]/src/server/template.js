@@ -1,12 +1,11 @@
 import fs from 'fs';
 import util from 'util';
-import path from 'path';
 
 export class Template {
     constructor(settings) {
         this.settings = settings;
         this.portHMR = __DEV__
-            ? settings.getSync('NETWORK__PORT__HMR', 4001)
+            ? settings.getSync('NETWORK__PORT__HMR', <%- port_hmr %>)
             : 0;
         this.templatePath = settings.getSync('TEMPLATE__PATH', './index.html');
     }

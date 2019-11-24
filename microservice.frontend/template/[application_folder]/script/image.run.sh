@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-VENDOR="aw"
-APPLICATION_NAME="front"
-PORT="4000"
+VENDOR="<%- vendor_name %>"
+APPLICATION_NAME="<%- application_code_global %>"
+PORT="<%- port %>"
 
 # this script runs a standalone image built with script/image.build.sh
 
