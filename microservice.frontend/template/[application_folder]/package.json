@@ -1,9 +1,12 @@
 {
     "scripts": {
-        "start": "node ./build/server.js",
+        "start": "node ./server.js",
         "dev:server": "webpack --config webpack.server.js --mode development",
         "dev:client": "webpack-dev-server --config webpack.client.js --mode development",
         "dev": "rm -rf ./build && npm-run-all --parallel dev:server dev:client",
+        "build:server": "webpack --config webpack.server.js --mode production",
+        "build:client": "webpack --config webpack.client.js --mode production",
+        "build": "rm -rf ./build && npm-run-all --parallel build:client build:server",
         "test": "jest -c ./jest/config.unit.js --forceExit",
         "test:watch": "jest -c ./jest/config.unit.js --watch",
         "lint": "eslint ./src/ --ext .js,.ts,.jsx,.tsx",
