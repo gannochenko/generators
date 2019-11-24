@@ -60,7 +60,7 @@ class CustomTabs extends React.Component {
                                         typeof prop.tabIcon === 'string' ? (
                                             <Icon>{prop.tabIcon}</Icon>
                                         ) : (
-                                            <prop.tabIcon/>
+                                            <prop.tabIcon />
                                         ),
                                 };
                             }
@@ -69,7 +69,7 @@ class CustomTabs extends React.Component {
                                     classes={{
                                         root: classes.tabRootButton,
                                         labelContainer:
-                                        classes.tabLabelContainer,
+                                            classes.tabLabelContainer,
                                         label: classes.tabLabel,
                                         selected: classes.tabSelected,
                                         wrapper: classes.tabWrapper,

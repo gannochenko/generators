@@ -4,6 +4,6 @@ export const createHistory = (url?: string) => {
     return __CLIENT__
         ? createBrowserHistory()
         : createMemoryHistory({
-            initialEntries: [url],
-        });
+              initialEntries: url ? [url] : [],
+          });
 };

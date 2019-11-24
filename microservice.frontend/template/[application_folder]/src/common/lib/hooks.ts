@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { Dispatch } from '../store/type';
-import { Error, Notify } from './type';
+import { DispatchUnload, DispatchLoad, Dispatch } from '../store/type';
+import { Error, Notify } from '../type';
 import { Nullable } from '../../type';
+import { Client } from './client';
 
 export const useNetworkMonitor = (
     dispatch: Dispatch,
@@ -10,10 +11,10 @@ export const useNetworkMonitor = (
 ) => {
     useEffect(() => {
         const onOnline = () => {
-            dispatch({ type: actionOnline });
+            dispatch({ type: actionOnline, payload: {} });
         };
         const onOffline = () => {
-            dispatch({ type: actionOffline });
+            dispatch({ type: actionOffline, payload: {} });
         };
 
         window.addEventListener('online', onOnline);
@@ -23,7 +24,7 @@ export const useNetworkMonitor = (
             window.removeEventListener('online', onOnline);
             window.removeEventListener('offline', onOffline);
         };
-    }, []);
+    }, [actionOffline, actionOnline, dispatch]);
 };
 
 export const useErrorNotification = (
@@ -41,11 +42,29 @@ export const useErrorNotification = (
                 });
             }
         }
-    }, [errors]);
+    }, [errors, notify]);
 };
 
-export const useDispatchUnload = dispatchUnload => {
-    useEffect(() => () => dispatchUnload(), []);
+export const useDispatchLoad = (
+    dispatchLoad?: DispatchLoad,
+    client?: Client,
+) => {
+    useEffect(() => {
+        if (dispatchLoad) {
+            dispatchLoad(client);
+        }
+    }, [dispatchLoad, client]);
+};
+
+export const useDispatchUnload = (dispatchUnload?: DispatchUnload) => {
+    useEffect(
+        () => () => {
+            if (dispatchUnload) {
+                dispatchUnload();
+            }
+        },
+        [dispatchUnload],
+    );
 };
 
 export const useNetworkNotification = (
@@ -69,5 +88,5 @@ export const useNetworkNotification = (
                 lifeTime: 3000,
             });
         }
-    }, [offline]);
+    }, [notify, offline]);
 };

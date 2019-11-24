@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const StartServerPlugin = require('start-server-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => {
     const pEnv = process.env;
@@ -11,7 +12,10 @@ module.exports = (env, argv) => {
     const destinationFolder = path.join(__dirname, 'build');
 
     return {
-        entry: ['webpack/hot/poll?1000', './src/server/index'],
+        entry: [
+            development && 'webpack/hot/poll?1000',
+            development ? './src/server/index.dev' : './src/server/index',
+        ].filter(x => !!x),
         watch: development,
         target: 'node',
         mode: development ? 'development' : 'production',
@@ -20,7 +24,9 @@ module.exports = (env, argv) => {
             __dirname: true,
         },
         externals: [
-            nodeExternals({ whitelist: ['webpack/hot/poll?1000'] }),
+            nodeExternals(
+                development ? { whitelist: ['webpack/hot/poll?1000'] } : {},
+            ),
         ],
         resolve: {
             extensions: ['.js', '.jsx'],
@@ -84,9 +90,9 @@ module.exports = (env, argv) => {
             // new webpack.ProvidePlugin({
             //     _: [path.join(__dirname, `common/lib/lodash.js`), 'default'],
             // }),
-            new StartServerPlugin('server.js'),
+            development && new StartServerPlugin('server.js'),
             new webpack.NamedModulesPlugin(),
-            new webpack.HotModuleReplacementPlugin(),
+            development && new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin(),
             new webpack.DefinePlugin({
                 __CLIENT__: false,
@@ -94,7 +100,14 @@ module.exports = (env, argv) => {
                 __DEV__: development,
                 __TEST__: false,
             }),
-        ],
+            !development &&
+                new CopyPlugin([
+                    {
+                        from: path.join(__dirname, 'package.json'),
+                        to: path.join(destinationFolder, 'package.json'),
+                    },
+                ]),
+        ].filter(x => !!x),
         output: {
             path: destinationFolder,
             filename: 'server.js',

@@ -3,11 +3,7 @@ import { Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import {
-    withNotification,
-    Modal,
-    ModalContext,
-} from '@bucket-of-bolts/ui';
+import { withNotification, Modal, ModalContext } from '@bucket-of-bolts/ui';
 
 import { MainProgressBar } from './style';
 import { ApplicationProperties } from './type';
@@ -22,6 +18,7 @@ import { SHOW_OFFLINE, SHOW_ONLINE } from './reducer';
 import { GlobalStyle } from '../../style';
 
 import { HomePage, ForbiddenPage, NotFoundPage } from '../../pages';
+import { ObjectLiteral } from '../../../type';
 
 const UIComponent: FunctionComponent<ApplicationProperties> = ({
     ready = false,
@@ -29,17 +26,14 @@ const UIComponent: FunctionComponent<ApplicationProperties> = ({
     history,
     theme,
     error = null,
-    notify = () => {
-    },
+    notify = () => {},
     offline = false,
-    dispatch = () => {
-    },
-    dispatchLoad = () => {
-    },
+    dispatch = () => {},
+    dispatchLoad = () => {},
 }) => {
     useEffect(() => {
         dispatchLoad(client);
-    }, []);
+    }, [client, dispatchLoad]);
 
     const modalRef = useRef();
 
@@ -49,9 +43,9 @@ const UIComponent: FunctionComponent<ApplicationProperties> = ({
 
     return (
         <>
-            <GlobalStyle/>
-            <Modal ref={modalRef} theme={theme.modal} active/>
-            <MainProgressBar observeGlobalLock/>
+            <GlobalStyle />
+            <Modal ref={modalRef} theme={theme.modal} active />
+            <MainProgressBar observeGlobalLock />
             <ModalContext.Provider value={modalRef}>
                 {ready && (
                     <ConnectedRouter history={history}>
@@ -59,19 +53,13 @@ const UIComponent: FunctionComponent<ApplicationProperties> = ({
                             <Route
                                 exact
                                 path="/"
-                                render={route => <HomePage route={route}/>}
+                                render={route => <HomePage route={route} />}
                             />
                             <Route
                                 path="/403"
-                                render={() => (
-                                    <ForbiddenPage/>
-                                )}
+                                render={() => <ForbiddenPage />}
                             />
-                            <Route
-                                render={() => (
-                                    <NotFoundPage/>
-                                )}
-                            />
+                            <Route render={() => <NotFoundPage />} />
                         </Switch>
                     </ConnectedRouter>
                 )}
@@ -80,4 +68,9 @@ const UIComponent: FunctionComponent<ApplicationProperties> = ({
     );
 };
 
-export const UI = withNotification(connect(s => s.application, mapDispatchToProps)(UIComponent));
+export const UI = withNotification(
+    connect(
+        (store: ObjectLiteral) => store.application,
+        mapDispatchToProps,
+    )(UIComponent),
+);

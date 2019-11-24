@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { rectangle, align, backgroundCover } from '@bucket-of-bolts/styled-companion';
+import {
+    rectangle,
+    align,
+    backgroundCover,
+} from '@bucket-of-bolts/styled-companion';
 import CoinImg from '../../../../public/coin.png';
 
 export const CoinRow = styled.div`

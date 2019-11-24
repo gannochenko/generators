@@ -1,9 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
 const resolve = require('resolve');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+    .BundleAnalyzerPlugin;
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInjector = require('html-webpack-injector');
 
 module.exports = (env, argv) => {
     const pEnv = process.env;
@@ -11,18 +15,23 @@ module.exports = (env, argv) => {
         argv.mode === 'development' || pEnv.NODE_ENV === 'development';
 
     const sourceFolder = path.join(__dirname, 'src/common');
-    const destinationFolder = path.join(__dirname, 'build');
+    const buildFolder = path.join(__dirname, 'build');
+    const destinationFolder = development
+        ? buildFolder
+        : path.join(buildFolder, 'public');
 
     const hmrPort = pEnv.NETWORK__PORT__HMR || 4001;
     const bundleAnalyserPort = pEnv.NETWORK__PORT__BUNDLE_ANALYSER || 4010;
 
     return {
-        entry: [
-            'react-hot-loader/patch',
-            `webpack-dev-server/client?http://localhost:${hmrPort}`,
-            'webpack/hot/only-dev-server',
-            './src/client/index.dev',
-        ],
+        entry: development
+            ? [
+                  'react-hot-loader/patch',
+                  `webpack-dev-server/client?http://localhost:${hmrPort}`,
+                  'webpack/hot/only-dev-server',
+                  './src/client/index.dev',
+              ]
+            : { index: './src/client/index' },
         target: 'web',
         mode: development ? 'development' : 'production',
         resolve: {
@@ -49,13 +58,13 @@ module.exports = (env, argv) => {
                     ],
                     include: sourceFolder,
                 },
-<% if (use_graphql) { %>
+
                 {
                     test: /\.(graphql|gql)$/,
                     exclude: /node_modules/,
                     loader: 'graphql-tag/loader',
                 },
-<% } %>
+
                 {
                     test: /\.(j|t)sx?$/,
                     use: [
@@ -76,7 +85,10 @@ module.exports = (env, argv) => {
                                     '@babel/preset-typescript',
                                 ],
                                 plugins: [
-                                    ['@babel/plugin-proposal-decorators', { 'legacy': true }],
+                                    [
+                                        '@babel/plugin-proposal-decorators',
+                                        { legacy: true },
+                                    ],
                                     '@babel/plugin-proposal-object-rest-spread',
                                     '@babel/plugin-proposal-class-properties',
                                     'babel-plugin-styled-components',
@@ -85,10 +97,7 @@ module.exports = (env, argv) => {
                             },
                         },
                     ],
-                    include: [
-                        path.join(__dirname, 'src/client'),
-                        sourceFolder,
-                    ],
+                    include: [path.join(__dirname, 'src/client'), sourceFolder],
                 },
                 {
                     test: /\.(txt|html)$/,
@@ -129,7 +138,7 @@ module.exports = (env, argv) => {
                     '!**/__test__/**',
                     '!**/?(*.)test.*',
                 ],
-                watch: sourceFolder,
+                watch: development ? sourceFolder : null,
                 silent: true,
                 formatter: typescriptFormatter,
             }),
@@ -138,7 +147,7 @@ module.exports = (env, argv) => {
             //     _: [path.join(__dirname, `common/lib/lodash.js`), 'default'],
             // }),
             new webpack.NamedModulesPlugin(),
-            new webpack.HotModuleReplacementPlugin(),
+            development && new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin(),
             new webpack.DefinePlugin({
                 __CLIENT__: true,
@@ -146,12 +155,27 @@ module.exports = (env, argv) => {
                 __DEV__: development,
                 __TEST__: false,
             }),
-            new BundleAnalyzerPlugin({
-                analyzerHost: '0.0.0.0',
-                analyzerPort: bundleAnalyserPort,
-                openAnalyzer: false,
-            }),
-        ],
+            development &&
+                new BundleAnalyzerPlugin({
+                    analyzerHost: '0.0.0.0',
+                    analyzerPort: bundleAnalyserPort,
+                    openAnalyzer: false,
+                }),
+            !development &&
+                new CopyPlugin([
+                    {
+                        from: path.join(__dirname, 'public'),
+                        to: destinationFolder,
+                    },
+                ]),
+            !development &&
+                new HtmlWebpackPlugin({
+                    template: './index.html',
+                    filename: path.join(buildFolder, 'index.html'),
+                    // chunks: ['index']
+                }),
+            !development && new HtmlWebpackInjector(),
+        ].filter(x => !!x),
         devServer: {
             host: '0.0.0.0',
             port: hmrPort,
@@ -165,8 +189,8 @@ module.exports = (env, argv) => {
         },
         output: {
             path: destinationFolder,
-            publicPath: `http://localhost:${hmrPort}/`,
-            filename: 'client.js',
+            publicPath: development ? `http://localhost:${hmrPort}/` : '',
+            filename: development ? 'client.js' : '[name].[hash].js',
         },
     };
 };

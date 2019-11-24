@@ -1,14 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { VerticalTriplet } from '@bucket-of-bolts/ui';
 
-import {
-    Top,
-    Footer,
-    Logo,
-    Header,
-    Title,
-    Central,
-} from './style';
+import { Top, Footer, Logo, Header, Title, Central } from './style';
 import { LayoutProperties } from './type';
 
 export const Layout: FunctionComponent<LayoutProperties> = ({
@@ -27,10 +20,7 @@ export const Layout: FunctionComponent<LayoutProperties> = ({
         }
         bottom={
             <Footer>
-                <Central>
-                    &copy; 2019 &laquo;
-                    <%- application_name %>&raquo; team
-                </Central>
+                <Central>&copy; 2019 &laquo;Front&raquo; team</Central>
             </Footer>
         }
     >

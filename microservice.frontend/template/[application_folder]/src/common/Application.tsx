@@ -4,7 +4,13 @@ import { Notification, NotificationContext } from '@bucket-of-bolts/ui';
 
 import { UI } from './components';
 import { ThemeContext, theme } from './style';
-import { createSettings, ClientContext, createClient, createHistory, dismissOnReady } from './lib';
+import {
+    Settings,
+    Client,
+    ClientContext,
+    createHistory,
+    dismissOnReady,
+} from './lib';
 import { createStore } from './store';
 
 const history = createHistory();
@@ -13,10 +19,10 @@ const { store, saga, unsubscribe } = createStore({
     history,
     onChange: dismissOnReady,
 });
-const settings = createSettings();
-const client = createClient(settings);
+const settings = new Settings();
+const client = new Client(settings);
 
-const Application: FunctionComponent = () => {
+export const Application: FunctionComponent = () => {
     const notificationRef = useRef();
 
     return (
@@ -28,16 +34,10 @@ const Application: FunctionComponent = () => {
                         theme={theme.notifications}
                     />
                     <NotificationContext.Provider value={notificationRef}>
-                        <UI
-                            history={history}
-                            theme={theme}
-                            client={client}
-                        />
+                        <UI history={history} theme={theme} client={client} />
                     </NotificationContext.Provider>
                 </Provider>
             </ClientContext.Provider>
         </ThemeContext.Provider>
     );
 };
-
-export default Application;

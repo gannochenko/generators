@@ -3,12 +3,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends vim && apt-get 
 
 WORKDIR /app
 
-COPY . .
-RUN yarn
-
 ENV NODE_ENV=production
 
-RUN yarn run build
+COPY ./build/ .
+RUN yarn
 
-EXPOSE <%- port %>
+EXPOSE 4000
 CMD [ "yarn", "start" ]

@@ -26,7 +26,7 @@ class SnackbarContent extends React.Component {
                     color="inherit"
                     onClick={this.closeAlert}
                 >
-                    <Close className={classes.close}/>
+                    <Close className={classes.close} />
                 </IconButton>,
             ];
         }
@@ -34,7 +34,7 @@ class SnackbarContent extends React.Component {
         let snackIcon = null;
         switch (typeof icon) {
             case 'function':
-                snackIcon = <props.icon className={classes.icon}/>;
+                snackIcon = <props.icon className={classes.icon} />;
                 break;
             case 'string':
                 snackIcon = <Icon className={classes.icon}>{props.icon}</Icon>;

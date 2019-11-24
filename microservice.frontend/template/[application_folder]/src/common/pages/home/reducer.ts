@@ -12,7 +12,10 @@ export const initialState: HomePageState = {
     error: null,
 };
 
-export const homePageReducer = (state: HomePageState = initialState, action: Action) => {
+export const homePageReducer = (
+    state: HomePageState = initialState,
+    action: Action,
+) => {
     switch (action.type) {
         case LOAD:
             return { ...state, loading: true };

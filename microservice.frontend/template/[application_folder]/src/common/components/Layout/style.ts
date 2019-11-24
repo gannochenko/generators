@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { align, rectangle, group, central } from '@bucket-of-bolts/styled-companion';
+import {
+    align,
+    rectangle,
+    group,
+    central,
+} from '@bucket-of-bolts/styled-companion';
 import { Link } from 'react-router-dom';
 import { withTheme } from '../../style';
 

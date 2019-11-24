@@ -243,6 +243,9 @@ module.exports.Generator = class Generator {
                 'webpack-cli',
                 'webpack-node-externals',
                 'webpack-dev-server',
+                'copy-webpack-plugin',
+                'html-webpack-plugin',
+                'html-webpack-injector',
 
                 // testing
                 'jest',

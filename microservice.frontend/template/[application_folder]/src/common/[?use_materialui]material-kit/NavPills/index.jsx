@@ -60,7 +60,7 @@ class NavPills extends React.Component {
                     var icon = {};
                     if (prop.tabIcon !== undefined) {
                         icon['icon'] = (
-                            <prop.tabIcon className={classes.tabIcon}/>
+                            <prop.tabIcon className={classes.tabIcon} />
                         );
                     }
                     const pillsClasses = classNames({

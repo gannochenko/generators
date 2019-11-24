@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-VENDOR="<%- vendor_name %>"
-APPLICATION_NAME="<%- application_code_global %>"
+VENDOR="aw"
+APPLICATION_NAME="front"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 VERSION="${1:-latest}"

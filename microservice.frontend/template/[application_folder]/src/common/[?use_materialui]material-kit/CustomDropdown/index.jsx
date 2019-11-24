@@ -74,7 +74,7 @@ class CustomDropdown extends React.Component {
         let icon = null;
         switch (typeof buttonIcon) {
             case 'function':
-                icon = <this.props.buttonIcon className={classes.buttonIcon}/>;
+                icon = <this.props.buttonIcon className={classes.buttonIcon} />;
                 break;
             case 'string':
                 icon = (
@@ -102,7 +102,7 @@ class CustomDropdown extends React.Component {
                     >
                         {icon}
                         {buttonText !== undefined ? buttonText : null}
-                        {caret ? <b className={caretClasses}/> : null}
+                        {caret ? <b className={caretClasses} /> : null}
                     </Button>
                 </div>
                 <Popper
@@ -113,8 +113,8 @@ class CustomDropdown extends React.Component {
                     placement={
                         dropup
                             ? left
-                            ? 'top-start'
-                            : 'top'
+                                ? 'top-start'
+                                : 'top'
                             : left
                             ? 'bottom-start'
                             : 'bottom'

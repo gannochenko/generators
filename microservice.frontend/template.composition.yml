@@ -2,10 +2,10 @@ image: <%- application_code %>:dev
 build:
     context: ../<%- application_folder %>/
     dockerfile: infra/development.dockerfile
-expose:
-    - '<%- port_bundle_analyzer %>'
-    - '<%- port_hmr %>'
-    - '<%- port %>'
+ports:
+    - '<%- port_bundle_analyzer %>:<%- port_bundle_analyzer %>'
+    - '<%- port_hmr %>:<%- port_hmr %>'
+    - '<%- port %>:<%- port %>'
 depends_on: []
 volumes:
     - ../<%- application_folder %>/:/app/
@@ -13,9 +13,11 @@ environment:
     - NODE_ENV=development
     - DEBUG_COLORS=1
     - DEBUG_HIDE_DATE=1
+    - NETWORK__PORT=<%- port %>
     - NETWORK__PORT__HMR=<%- port_hmr %>
     - NETWORK__PORT__BUNDLE_ANALYSER=<%- port_bundle_analyzer %>
     - NETWORK__CORS=
+    - TEMPLATE__PATH=./index.html
 <% if (use_rest) { %>
     - API__URL=http://localhost:<%- api_port %>
 <% } %>

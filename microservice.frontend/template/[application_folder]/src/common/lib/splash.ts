@@ -1,4 +1,14 @@
-export const dismissOnReady = ({ store, unsubscribe }) => {
+import { SplashParameters } from './type';
+
+declare const window: CustomWindow;
+interface CustomWindow extends Window {
+    splash?: {
+        dismiss: () => void;
+    };
+    splashProgressBarUnlocked: boolean;
+}
+
+export const dismissOnReady = ({ store, unsubscribe }: SplashParameters) => {
     if (window.splash) {
         const state = store.getState();
         if (state.application.ready) {

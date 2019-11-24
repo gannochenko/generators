@@ -1,7 +1,13 @@
-import { Notify } from '@bucket-of-bolts/ui';
-import { Error, Route } from '../lib/type';
+import { History } from 'history';
+import { Store } from 'redux';
+import { Error, Route, Notify } from '../type';
 import { Client } from '../lib';
 import { Nullable, ObjectLiteral } from '../../type';
+
+export interface StoreParameters {
+    history: History<any>;
+    onChange: (parameters: { store: Store; unsubscribe: () => void }) => void;
+}
 
 export interface PageState {
     loading: boolean;
@@ -9,10 +15,12 @@ export interface PageState {
     error: Nullable<Error[]>;
 }
 
-export interface Action {
+export interface Action<P = ObjectLiteral> {
     type: string;
-    payload?: object;
+    payload: P;
 }
+
+export type LoadAction = Action<Partial<{ client: Client }>>;
 
 export interface ControllerProperties {
     ready: boolean;
@@ -32,8 +40,8 @@ export interface PageProperties extends ControllerProperties {
 export type Dispatch = (action: Action) => void;
 
 export type DispatchLoad = (
-    client: Nullable<Client>,
-    parameters?: Nullable<object>,
+    client?: Client,
+    parameters?: ObjectLiteral,
 ) => void;
 
 export type DispatchUnload = () => void;

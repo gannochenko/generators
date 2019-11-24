@@ -1,9 +1,12 @@
+import { ReactNode } from 'react';
 import { PageProperties, PageState } from '../../store/type';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HomePageProperties extends PageProperties {
+    openConfirmModal: (
+        text: ReactNode,
+        onAction: (parameters: { closeModal: () => void }) => void,
+    ) => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface HomePageState extends PageState {
-}
+export interface HomePageState extends PageState {}

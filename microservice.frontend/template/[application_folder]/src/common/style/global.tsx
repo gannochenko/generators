@@ -1,21 +1,30 @@
-import React, { forwardRef } from 'react';
+import React, { ComponentType, forwardRef, Ref } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { fontMaterialIcons } from '@bucket-of-bolts/styled-companion';
-import makeCss from './css';
+import { ObjectLiteral } from '../../type';
 
-export const ThemeContext = React.createContext({});
-export const withTheme = (Component, path = '') => {
-    const WithTheme = (props, ref) => (
+type Theme = ObjectLiteral;
+type RefUnknown = Ref<unknown>;
+
+export const ThemeContext = React.createContext<Theme>({});
+export const withTheme = (
+    Component: ComponentType<{ ref?: RefUnknown; theme?: Theme }>,
+    path = '',
+) => {
+    const WithTheme = (props: ObjectLiteral, ref: RefUnknown) => (
         <ThemeContext.Consumer>
             {value => (
-                <Component {...props} ref={ref} theme={path.length ? value[path] : value}/>
+                <Component
+                    {...props}
+                    ref={ref}
+                    theme={path.length ? value[path] : value}
+                />
             )}
         </ThemeContext.Consumer>
     );
 
-    const wrappedComponentName = Component.displayName
-        || Component.name
-        || 'Component';
+    const wrappedComponentName =
+        Component.displayName || Component.name || 'Component';
 
     WithTheme.displayName = `withTheme(${wrappedComponentName})`;
 
@@ -25,11 +34,11 @@ export const withTheme = (Component, path = '') => {
 };
 
 export const GlobalStyle = withTheme(createGlobalStyle`
-    ${props =>
-    makeCss({
-        theme: props.theme,
-        prepend: `
-            ${fontMaterialIcons()}
-        `,
-    })}
+    ${({ theme }: { theme: Theme }) => `
+        ${fontMaterialIcons()}
+        body {
+            color: ${theme.body.color};
+            background-color: ${theme.body.background.color};
+        }
+    `}
 `);

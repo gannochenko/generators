@@ -1,7 +1,16 @@
-import { takeLatest, put, call } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 import * as reducer from './reducer';
+import { LoadAction } from '../../store/type';
 
-function* load({ payload: { client } }) {
+function* load(action: LoadAction) {
+    if (!action) {
+        return;
+    }
+    const {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        payload: { client },
+    } = action;
+
     try {
         const data = {};
         yield put({ type: reducer.LOAD_SUCCESS, payload: { data } });

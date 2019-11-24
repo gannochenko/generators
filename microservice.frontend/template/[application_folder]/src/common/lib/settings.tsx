@@ -1,19 +1,14 @@
-import React from 'react';
-import { Settings } from '@bucket-of-bolts/util';
+export class Settings {
+    public getSync(name: string, defaultValue?: any) {
+        if (!window.process) {
+            return defaultValue;
+        }
 
-export const createSettings = () => new Settings();
-export const SettingsContext = React.createContext(null);
-export const withSettings = Component => {
-    const WithSettings = props => (
-        <SettingsContext.Consumer>
-            {value => <Component {...props} settings={value}/>}
-        </SettingsContext.Consumer>
-    );
+        const value = window.process.env[name];
+        if (value === null || value === undefined) {
+            return defaultValue;
+        }
 
-    const wrappedComponentName = Component.displayName
-        || Component.name
-        || 'Component';
-
-    WithSettings.displayName = `withSettings(${wrappedComponentName})`;
-    return WithSettings;
-};
+        return value;
+    }
+}

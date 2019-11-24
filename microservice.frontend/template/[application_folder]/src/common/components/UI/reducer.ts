@@ -14,7 +14,10 @@ const initialState: ApplicationState = {
     offline: null,
 };
 
-export const applicationReducer = (state: ApplicationState = initialState, action: Action) => {
+export const applicationReducer = (
+    state: ApplicationState = initialState,
+    action: Action,
+) => {
     switch (action.type) {
         case LOAD:
             return { ...state, loading: true };
