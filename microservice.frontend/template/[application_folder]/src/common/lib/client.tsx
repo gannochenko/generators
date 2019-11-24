@@ -1,10 +1,14 @@
 import React, { ComponentType } from 'react';
+<% if (use_graphql) { %>
 import { ApolloClient, MutationOptions, QueryOptions } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
+<% } %>
+<% if (use_rest) { %>
 import Axios from 'axios';
+<% } %>
 
 import { Settings } from './settings';
 // import { createUploadLink } from 'apolloClientInstance-upload-link';
@@ -36,18 +40,28 @@ export const withClient = <L extends { client: NullableClient }>(
 export class Client {
     protected settings: Settings;
     protected url = '';
+<% if (use_graphql) { %>
     protected apolloClientInstance?: ApolloClient<unknown>;
+<% } %>
 
     public constructor(settings: Settings) {
         this.settings = settings;
     }
 
-    public get apollo() {
-        return this.makeApollo();
-    }
-
+<% if (use_rest) { %>
     public get axios() {
         return Axios;
+    }
+
+    public async get(path: string) {
+        const url = this.getUrl();
+        return Axios.get(`${url}/${path}`);
+    }
+<% } %>
+
+<% if (use_graphql) { %>
+    public get apollo() {
+        return this.makeApollo();
     }
 
     public async query(parameters: QueryOptions) {
@@ -59,11 +73,6 @@ export class Client {
 
     public async mutate(parameters: MutationOptions) {
         return this.apollo.mutate(parameters);
-    }
-
-    public async get(path: string) {
-        const url = this.getUrl();
-        return Axios.get(`${url}/${path}`);
     }
 
     private makeApollo() {
@@ -95,6 +104,7 @@ export class Client {
 
         return this.apolloClientInstance;
     }
+<% } %>
 
     public getUrl() {
         if (!this.url) {
