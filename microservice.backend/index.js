@@ -227,6 +227,7 @@ module.exports.Generator = class Generator {
                 'webpack-merge',
                 'webpack-node-externals',
                 !!use_graphql && 'graphql-tag',
+                'copy-webpack-plugin',
 
                 // other
                 'fork-ts-checker-webpack-plugin-alt',

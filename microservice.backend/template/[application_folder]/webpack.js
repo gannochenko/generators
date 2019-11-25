@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const resolve = require('resolve');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => {
     const pEnv = process.env;
@@ -123,6 +124,13 @@ module.exports = (env, argv) => {
                 __DEV__: development,
                 __TEST__: false,
             }),
+            !development &&
+                new CopyPlugin([
+                    {
+                        from: path.join(__dirname, 'package.json'),
+                        to: path.join(destinationFolder, 'package.json'),
+                    },
+                ]),
             development &&
                 new NodemonPlugin({
                     nodeArgs: devArgs,
