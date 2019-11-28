@@ -24,6 +24,8 @@ module.exports = (env, argv) => {
         devtool = 'inline-source-map';
     }
 
+    const useGraphQL = !!<%- use_graphql %>;
+
     return {
         entry: path.join(sourceFolder, 'application.ts'),
         target: 'node',
@@ -60,7 +62,7 @@ module.exports = (env, argv) => {
                     include: sourceFolder,
                     exclude: /node_modules/,
                 },
-                {
+                useGraphQL && {
                     test: /\.(graphql|gql)$/,
                     exclude: /node_modules/,
                     loader: 'graphql-tag/loader',
@@ -96,7 +98,7 @@ module.exports = (env, argv) => {
                         },
                     ],
                 },
-            ],
+            ].filter(x => !!x),
         },
         plugins: [
             development &&
@@ -135,7 +137,11 @@ module.exports = (env, argv) => {
                 new NodemonPlugin({
                     nodeArgs: devArgs,
                     watch: destinationFolder,
-                    ext: 'js,ts,graphql',
+                    ext: [
+                        'js',
+                        'ts',
+                        useGraphQL && 'graphql',
+                    ].filter(x => !!x).join(','),
                 }),
         ].filter(x => !!x),
     };
