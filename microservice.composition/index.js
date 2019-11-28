@@ -65,4 +65,19 @@ module.exports.Generator = class Generator {
             },
         ];
     }
+
+    async onAfterExecution() {
+        await this.makeScriptsExecutable();
+    }
+
+    async makeScriptsExecutable() {
+        const { execa, pathExists } = this.util;
+
+        const scriptsPath = path.join(this.context.destinationPath, this.answers.composition_code, 'script');
+        if (await pathExists(scriptsPath)) {
+            await execa('chmod', ['-R', '+x', scriptsPath], {
+                stdio: ['inherit', 'inherit', 'inherit'],
+            });
+        }
+    }
 };
