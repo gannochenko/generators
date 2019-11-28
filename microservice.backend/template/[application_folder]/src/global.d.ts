@@ -7,3 +7,11 @@ declare module '*.graphql' {
     export default content;
 }
 <% } %>
+
+<% if (use_grpc) { %>
+declare module '*.proto' {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const content: any;
+    export default content;
+}
+<% } %>

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package <%- application_code_pascal %>;
+
+service Generator {
+    rpc GenerateNumber (RangeRequest) returns (NumberReply) {}
+}
+
+message RangeRequest {
+    int32 start = 1;
+    int32 end = 2;
+}
+
+message NumberReply {
+    int32 number = 1;
+}

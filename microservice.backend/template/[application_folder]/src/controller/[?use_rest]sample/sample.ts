@@ -13,6 +13,22 @@ import { SamplePutDTO } from './dto';
 
 @Endpoint('/sample')
 export class SampleController {
+<% if (use_grpc) { %>
+    @Get('random/:start/:end/')
+    public async get(
+        { start, end }: any,
+        { context: { grpc } }: Context,
+    ): Promise<Result> {
+        const result = new Result();
+
+        result.data = await grpc.<%- application_code_pascal %>.Generator.generateNumber({
+            start,
+            end,
+        });
+
+        return result;
+    }
+<% } %>
     @Get(':id')
     public async get(
         { id } = { id: '' },

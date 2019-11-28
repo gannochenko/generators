@@ -87,6 +87,12 @@ module.exports.Generator = class Generator {
             },
             {
                 type: 'confirm',
+                name: 'use_grpc',
+                message: 'Do we have gRPC?',
+                default: false,
+            },
+            {
+                type: 'confirm',
                 name: 'use_postgres',
                 message: 'Do we have a database?',
                 default: false,
@@ -131,6 +137,7 @@ module.exports.Generator = class Generator {
         }
 
         answers.application_code_kebab = this.util.textConverter.toKebab(answers.application_code);
+        answers.application_code_pascal = this.util.textConverter.toPascal(answers.application_code);
         answers.vendor_name_kebab = this.util.textConverter.toKebab(answers.vendor_name);
 
         this.answers = answers;
@@ -139,7 +146,7 @@ module.exports.Generator = class Generator {
     }
 
     getDependencies(answers) {
-        const { use_postgres, use_graphql } = answers;
+        const { use_postgres, use_graphql, use_grpc } = answers;
 
         return {
             destination: '[application_folder]/',
@@ -162,6 +169,9 @@ module.exports.Generator = class Generator {
                 !!use_postgres && 'typeorm',
                 !!use_postgres && 'pg',
 
+                // grpc
+                !!use_grpc && 'grpc',
+
                 // other
                 'debug',
                 '@bucket-of-bolts/util',
@@ -172,7 +182,7 @@ module.exports.Generator = class Generator {
     }
 
     getDevDependencies(answers) {
-        const { use_graphql } = answers;
+        const { use_graphql, use_grpc } = answers;
 
         return {
             destination: '[application_folder]/',
@@ -228,6 +238,9 @@ module.exports.Generator = class Generator {
                 'webpack-node-externals',
                 !!use_graphql && 'graphql-tag',
                 'copy-webpack-plugin',
+
+                // grpc
+                !!use_grpc && '@grpc/proto-loader',
 
                 // other
                 'fork-ts-checker-webpack-plugin-alt',

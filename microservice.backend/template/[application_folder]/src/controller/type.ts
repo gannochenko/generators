@@ -5,5 +5,8 @@ export interface CustomContext {
 <% if(use_postgres) { %>
     connection: Connection;
 <% } %>
+<% if(use_grpc) { %>
+    grpc: any; // todo: fix me
+<% } %>
 }
 export type Context = MVCInputContext<CustomContext>;

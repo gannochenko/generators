@@ -25,6 +25,7 @@ module.exports = (env, argv) => {
     }
 
     const useGraphQL = !!<%- use_graphql %>;
+    const useGRPC = !!<%- use_grpc %>;
 
     return {
         entry: path.join(sourceFolder, 'application.ts'),
@@ -41,7 +42,10 @@ module.exports = (env, argv) => {
             filename: 'index.js',
         },
         resolve: {
-            extensions: ['.js', '.ts'],
+            extensions: [
+                '.js',
+                '.ts',
+            ],
             symlinks: false,
         },
         devtool,
@@ -66,6 +70,15 @@ module.exports = (env, argv) => {
                     test: /\.(graphql|gql)$/,
                     exclude: /node_modules/,
                     loader: 'graphql-tag/loader',
+                },
+                useGRPC && {
+                    test: /\.proto$/,
+                    use: [
+                        {
+                            loader: path.resolve('webpack/grpc-loader.js'),
+                            options: {},
+                        },
+                    ],
                 },
                 {
                     test: /\.(j|t)s?$/,
@@ -141,6 +154,7 @@ module.exports = (env, argv) => {
                         'js',
                         'ts',
                         useGraphQL && 'graphql',
+                        useGRPC && 'proto',
                     ].filter(x => !!x).join(','),
                 }),
         ].filter(x => !!x),

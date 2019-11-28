@@ -13,6 +13,7 @@ import { Settings } from './lib/settings';
 <% if (use_postgres) { %>import { Database } from './lib/database';<% } %>
 <% if (use_graphql) { %>import { useGraphQL } from './graphql/server';<% } %>
 import { controllers } from './controller';
+<% if (use_grpc) { %>import { useGRPC } from './grpc';<% } %>
 
 (async () => {
     const settings = new Settings();
@@ -43,12 +44,23 @@ import { controllers } from './controller';
         }),
     );
 
+<% if (use_grpc) { %>
+    const grpc = await useGRPC({
+        settings,
+        server: true, // remove this if you don't need a server
+        client: true, // remove this if you don't need clients
+    });
+<% } %>
+
 <% if (use_postgres) { %>
     const database = new Database({ settings });
 <% } %>
     useControllers(app, controllers, async () => ({
 <% if (use_postgres) { %>
         connection: await database.getConnection(),
+<% } %>
+<% if (use_grpc) { %>
+        grpc,
 <% } %>
     }));
 <% if (use_graphql) { %>
@@ -60,6 +72,9 @@ import { controllers } from './controller';
         async () => ({
 <% if (use_postgres) { %>
             connection: await database.getConnection(),
+<% } %>
+<% if (use_grpc) { %>
+            grpc,
 <% } %>
         }),
     );
