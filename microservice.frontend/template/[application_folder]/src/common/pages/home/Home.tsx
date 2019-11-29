@@ -29,7 +29,7 @@ const HomePageComponent: FunctionComponent<HomePageProperties> = ({
     useErrorNotification(error, notify);
 
     return (
-        <Layout title="Hello from Front">
+        <Layout title="Hello from <%- application_name %>">
             <p>
                 This is a demo page. If you see this page, it means that at
                 least <code>react</code>, <code>react-router</code>,{' '}
