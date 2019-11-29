@@ -16,7 +16,7 @@ module.exports = (env, argv) => {
 
     const sourceFolder = path.join(__dirname, 'src/common');
     const buildFolder = path.join(__dirname, 'build');
-    const destinationFolder = development
+    const publicFolder = development
         ? buildFolder
         : path.join(buildFolder, 'public');
 
@@ -165,13 +165,13 @@ module.exports = (env, argv) => {
                 new CopyPlugin([
                     {
                         from: path.join(__dirname, 'public'),
-                        to: destinationFolder,
+                        to: publicFolder,
                     },
                 ]),
             !development &&
                 new HtmlWebpackPlugin({
                     template: './index.html',
-                    filename: path.join(buildFolder, 'index.html'),
+                    filename: path.join(publicFolder, 'index.html'),
                     // chunks: ['index']
                 }),
             !development && new HtmlWebpackInjector(),
@@ -188,8 +188,8 @@ module.exports = (env, argv) => {
             overlay: true,
         },
         output: {
-            path: destinationFolder,
-            publicPath: development ? `http://localhost:${hmrPort}/` : '',
+            path: publicFolder,
+            publicPath: development ? `http://localhost:${hmrPort}/` : '/',
             filename: development ? 'client.js' : '[name].[hash].js',
         },
     };

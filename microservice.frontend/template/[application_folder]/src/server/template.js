@@ -7,7 +7,7 @@ export class Template {
         this.portHMR = __DEV__
             ? settings.getSync('NETWORK__PORT__HMR', <%- port_hmr %>)
             : 0;
-        this.templatePath = settings.getSync('TEMPLATE__PATH', './index.html');
+        this.templatePath = settings.getSync('TEMPLATE__PATH', __DEV__ ? './index.html' : './public/index.html');
     }
 
     readFile = util.promisify(fs.readFile);
