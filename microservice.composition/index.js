@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports.Generator = class Generator {
     constructor(util) {
         this.util = util;
@@ -5,6 +7,10 @@ module.exports.Generator = class Generator {
 
     getName() {
         return 'Microservice composition';
+    }
+
+    setContext(context) {
+        this.context = context;
     }
 
     getQuestions() {
@@ -64,6 +70,12 @@ module.exports.Generator = class Generator {
                 default: false,
             },
         ];
+    }
+
+    refineAnswers(answers) {
+        this.answers = answers;
+
+        return answers;
     }
 
     async onAfterExecution() {
