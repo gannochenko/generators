@@ -48,7 +48,7 @@ module.exports.Generator = class Generator {
                 type: 'input',
                 name: 'port',
                 message: 'Port number',
-                default: 4000,
+                default: 3000,
                 validate: async (value) => {
                     if (typeof value !== 'string') {
                         return true; // the default value will be used
@@ -66,7 +66,7 @@ module.exports.Generator = class Generator {
                 type: 'input',
                 name: 'api_port',
                 message: 'API port number',
-                default: 3000,
+                default: 4000,
                 when: answers => {
                     return answers.use_rest;
                 },
@@ -116,8 +116,8 @@ module.exports.Generator = class Generator {
     }
 
     refineAnswers(answers) {
-        answers.port = answers.port || 4000;
-        answers.api_port = answers.api_port || 3000;
+        answers.port = answers.port || 3000;
+        answers.api_port = answers.api_port || 4000;
         answers.port_hmr = parseInt(answers.port, 10) + 1;
         answers.port_bundle_analyzer = parseInt(answers.port, 10) + 10;
         answers.application_folder = answers.is_monorepo ? `app.${answers.application_code}` : answers.application_code;

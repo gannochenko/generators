@@ -48,7 +48,7 @@ module.exports.Generator = class Generator {
                 type: 'input',
                 name: 'port',
                 message: 'Port number',
-                default: 3000,
+                default: 4000,
                 validate: async (value) => {
                     if (typeof value !== 'string') {
                         return true; // the default value will be used
@@ -128,7 +128,7 @@ module.exports.Generator = class Generator {
     }
 
     refineAnswers(answers) {
-        answers.port = answers.port || 3000;
+        answers.port = answers.port || 4000;
         answers.debugger_port = parseInt(answers.port, 10) + 1;
         answers.application_folder = answers.is_monorepo ? `app.${answers.application_code}` : answers.application_code;
         answers.application_code_global = answers.application_code;
