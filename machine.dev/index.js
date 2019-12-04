@@ -1,4 +1,6 @@
 //const pathExists = require('path-exists');
+const process = require('process');
+const path = require('path');
 
 module.exports.Generator = class Generator {
     constructor(util) {
