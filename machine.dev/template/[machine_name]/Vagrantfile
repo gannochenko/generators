@@ -6,6 +6,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.hostname = "<%- machine_name %>"
 
+  config.disksize.size = '20GB' # vagrant plugin install vagrant-disksize
+
   # uncomment this to join a network
   # config.vm.network "private_network", ip: "10.0.15.10"
 
@@ -151,7 +153,7 @@ Vagrant.configure("2") do |config|
     sudo mv ./kubectl /usr/bin/kubectl;
 
     ##### terraform
-    wget -O ~/terraform.zip https://releases.hashicorp.com/terraform/0.12.5/terraform_0.12.5_linux_amd64.zip;
+    wget -O ~/terraform.zip https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_linux_amd64.zip;
     sudo unzip ~/terraform.zip -d /usr/bin;
 
     ##### ntp
