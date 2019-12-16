@@ -84,6 +84,8 @@ module.exports.Generator = class Generator {
     }
 
     refineAnswers(answers) {
+        answers.composition_code_kebab = this.util.textConverter.toKebab(answers.composition_code);
+
         this.answers = answers;
 
         return answers;

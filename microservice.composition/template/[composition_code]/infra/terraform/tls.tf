@@ -98,7 +98,6 @@ resource "kubernetes_role" "letsencrypt-certs-create" {
   }
 }
 
-# todo: rename to "letsencrypt-certs-update-to-sa"
 resource "kubernetes_role_binding" "letsencrypt-certs-update" {
   metadata {
     name      = "letsencrypt-certs-update"
