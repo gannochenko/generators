@@ -187,6 +187,10 @@ module.exports.Generator = class Generator {
                 use_materialui && 'jss',
                 use_materialui && 'classnames',
 
+                // metrics
+                'prom-client',
+                'response-time',
+
                 // other
                 'moment',
                 'prop-types', // required now, should be removed later

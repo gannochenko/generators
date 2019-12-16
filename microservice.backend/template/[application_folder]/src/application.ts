@@ -8,6 +8,7 @@ import process from 'process';
 
 import { useErrorHandler } from './lib/error-handler';
 import { useCORS } from './lib/cors';
+import { useMetrics } from './lib/metrics';
 import { Settings } from './lib/settings';
 
 <% if (use_postgres) { %>import { Database } from './lib/database';<% } %>
@@ -32,6 +33,7 @@ import { controllers } from './controller';
     // });
 
     await useCORS(app, settings);
+    const metricsInterval = useMetrics(app);
 
 <% if (use_static) { %>
     app.use(express.static(path.join(process.cwd(), 'public')));
@@ -80,7 +82,20 @@ import { controllers } from './controller';
     );
 <% } %>
 
-    app.listen({ port }, () => {
+    const server = app.listen({ port }, () => {
         logInfo(`🚀 <%- application_name %> is ready at http://${host}:${port}`);
+    });
+
+    process.on('SIGTERM', () => {
+        clearInterval(metricsInterval);
+
+        server.close(error => {
+            if (error) {
+                console.error(error);
+                process.exit(1);
+            }
+
+            process.exit(0);
+        });
     });
 })();

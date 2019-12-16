@@ -1,4 +1,5 @@
 const path = require('path');
+const process = require('process');
 
 module.exports.Generator = class Generator {
     constructor(util) {
@@ -28,10 +29,20 @@ module.exports.Generator = class Generator {
                         return 'Must contain only letters, digits, _, - and . signs';
                     }
 
-                    // const dst = path.join(process.cwd(), value);
-                    // if (await this.util.pathExists(dst)) {
-                    //     return `Folder exists: ${dst}`;
-                    // }
+                    const dst = path.join(process.cwd(), value);
+                    if (await this.util.pathExists(dst)) {
+                        return `Folder exists: ${dst}`;
+                    }
+
+                    return true;
+                },
+            },
+            {
+                type: 'input',
+                name: 'domain',
+                message: 'Public domain (i.e. "my-cool-website.com")',
+                validate: async () => {
+                    // todo
 
                     return true;
                 },

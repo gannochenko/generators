@@ -172,6 +172,10 @@ module.exports.Generator = class Generator {
                 // grpc
                 !!use_grpc && 'grpc',
 
+                // metrics
+                'prom-client',
+                'response-time',
+
                 // other
                 'debug',
                 '@bucket-of-bolts/util',
@@ -241,6 +245,9 @@ module.exports.Generator = class Generator {
 
                 // grpc
                 !!use_grpc && '@grpc/proto-loader',
+
+                // metrics
+                '@types/response-time',
 
                 // other
                 'fork-ts-checker-webpack-plugin-alt',

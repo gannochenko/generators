@@ -5,6 +5,7 @@ import path from 'path';
 import { useErrorHandler } from './error-handler';
 
 import { useCORS } from './cors';
+import { useMetrics } from './metrics';
 import { Settings } from './settings';
 import { Template } from './template';
 
@@ -26,6 +27,10 @@ app.set('port', port);
 // eslint-disable-next-line react-hooks/rules-of-hooks
 useCORS(app, settings);
 app.use(helmet());
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+useMetrics(app);
+
 app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.get('/health', (req, res) => {
