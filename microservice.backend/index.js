@@ -147,9 +147,6 @@ module.exports.Generator = class Generator {
     }
 
     getDependencies(answers) {
-
-        return { destination: '[application_folder]/', packages: [] }; // tmp
-
         const { use_postgres, use_graphql, use_grpc } = answers;
 
         return {
@@ -190,9 +187,6 @@ module.exports.Generator = class Generator {
     }
 
     getDevDependencies(answers) {
-
-        return { destination: '[application_folder]/', packages: [] }; // tmp
-
         const { use_graphql, use_grpc } = answers;
 
         return {
@@ -267,7 +261,7 @@ module.exports.Generator = class Generator {
     async onAfterExecution() {
         await this.addToComposition();
         await this.makeScriptsExecutable();
-        // await this.runLinter(); // tmp
+        await this.runLinter();
         await this.updateInfra();
     }
 
