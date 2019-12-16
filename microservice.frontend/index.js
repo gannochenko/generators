@@ -122,6 +122,7 @@ module.exports.Generator = class Generator {
         answers.port_bundle_analyzer = parseInt(answers.port, 10) + 10;
         answers.application_folder = answers.is_monorepo ? `app.${answers.application_code}` : answers.application_code;
         answers.application_code_global = answers.application_code;
+        answers.application_code_global_kebab = `app-${this.util.textConverter.toKebab(answers.application_code)}`;
         if (answers.is_monorepo) {
             answers.application_code_global = `${path.basename(process.cwd())}_${answers.application_code}`;
         }

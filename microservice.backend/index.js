@@ -137,6 +137,7 @@ module.exports.Generator = class Generator {
         }
 
         answers.application_code_kebab = this.util.textConverter.toKebab(answers.application_code);
+        answers.application_code_global_kebab = `app-${this.util.textConverter.toKebab(answers.application_code)}`;
         answers.application_code_pascal = this.util.textConverter.toPascal(answers.application_code);
         answers.vendor_name_kebab = this.util.textConverter.toKebab(answers.vendor_name);
 
