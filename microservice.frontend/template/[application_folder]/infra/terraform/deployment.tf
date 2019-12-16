@@ -1,9 +1,9 @@
-resource "kubernetes_deployment" "<%- application_code_global_kebab ->" {
+resource "kubernetes_deployment" "<%- application_code_global_kebab %>" {
   metadata {
-    name = "<%- application_code_global_kebab ->"
+    name = "<%- application_code_global_kebab %>"
     namespace = var.namespace
     labels = {
-      name = "<%- application_code_global_kebab ->"
+      name = "<%- application_code_global_kebab %>"
     }
   }
 
@@ -12,7 +12,7 @@ resource "kubernetes_deployment" "<%- application_code_global_kebab ->" {
 
     selector {
       match_labels = {
-        name = "<%- application_code_global_kebab ->"
+        name = "<%- application_code_global_kebab %>"
       }
     }
 
@@ -20,14 +20,14 @@ resource "kubernetes_deployment" "<%- application_code_global_kebab ->" {
       metadata {
         namespace = var.namespace
         labels = {
-          name = "<%- application_code_global_kebab ->"
+          name = "<%- application_code_global_kebab %>"
         }
       }
 
       spec {
         container {
           image = "<%- vendor_name %>/<%- application_code_global %>:${local.version}"
-          name  = "<%- application_code_global_kebab ->"
+          name  = "<%- application_code_global_kebab %>"
 
           env {
             name = "NETWORK__HOST"

@@ -1,11 +1,11 @@
 resource "kubernetes_ingress" "ingress" {
   metadata {
-    name      = "<%- composition_code %>"
+    name      = "ingress"
     namespace = local.namespace
   }
 
   spec {
-    ### RULES ###
+/* PH:RULES */
 
     tls {
       hosts       = local.hosts

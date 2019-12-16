@@ -147,6 +147,9 @@ module.exports.Generator = class Generator {
     }
 
     getDependencies(answers) {
+
+        return { destination: '[application_folder]/', packages: [] }; // tmp
+
         const { use_postgres, use_graphql, use_grpc } = answers;
 
         return {
@@ -187,6 +190,9 @@ module.exports.Generator = class Generator {
     }
 
     getDevDependencies(answers) {
+
+        return { destination: '[application_folder]/', packages: [] }; // tmp
+
         const { use_graphql, use_grpc } = answers;
 
         return {
@@ -261,7 +267,8 @@ module.exports.Generator = class Generator {
     async onAfterExecution() {
         await this.addToComposition();
         await this.makeScriptsExecutable();
-        await this.runLinter();
+        // await this.runLinter(); // tmp
+        await this.updateInfra();
     }
 
     async addToComposition() {
@@ -311,6 +318,45 @@ module.exports.Generator = class Generator {
         }
     }
 
+    async updateInfra() {
+        if (!this.answers.is_monorepo) {
+            return;
+        }
+
+        const { pathExists } = this.util;
+
+        const terraformPath = path.join(process.cwd(), 'infra', 'terraform');
+        const templatePath = path.join(this.context.generatorPath, 'template.k8s');
+
+        // update ingress
+        const ingressPath = path.join(terraformPath, 'ingress.tf');
+        if (await pathExists(ingressPath)) {
+            const ingressRulesPath = path.join(templatePath, 'ingress.rules.tf');
+            await this.replaceFilePlaceholders(ingressPath, {
+                'RULES': `${await this.renderFile(ingressRulesPath)}\n    /* PH:RULES */`
+            });
+        }
+
+        // update locals
+        const localsPath = path.join(terraformPath, 'locals.app.tf');
+        if (await pathExists(localsPath)) {
+            const localsAppPath = path.join(templatePath, 'locals.app.tf');
+            await this.replaceFilePlaceholders(localsPath, {
+                'LOCALS': `${await this.renderFile(localsAppPath)}\n/* PH:LOCALS */`,
+                'HOSTS': `local.${this.answers.application_code_global_kebab}-host, /* PH:HOSTS */`
+            });
+        }
+
+        // add a module
+        const modulesPath = path.join(terraformPath, 'modules.tf');
+        if (await pathExists(modulesPath)) {
+            const modulePath = path.join(templatePath, 'module.tf');
+            await this.replaceFilePlaceholders(modulesPath, {
+                'MODULES': `${await this.renderFile(modulePath)}\n/* PH:MODULES */`,
+            });
+        }
+    }
+
     async runLinter() {
         const { execa, pathExists } = this.util;
 
@@ -321,5 +367,31 @@ module.exports.Generator = class Generator {
                 stdio: ['inherit', 'inherit', 'inherit'],
             });
         }
+    }
+
+    async replaceFilePlaceholders(filePath, replacements = {}) {
+        let contents = fs.readFileSync(filePath).toString('utf8');
+
+        Object.keys(replacements).forEach(placeholder => {
+            const replacement = replacements[placeholder];
+            const placeholderFull = `/\\*\\s+PH:${placeholder}\\s+\\*/`;
+
+            contents = contents.replace(new RegExp(placeholderFull, 'g'), replacement);
+        });
+
+        fs.writeFileSync(filePath, contents);
+    }
+
+    async renderFile(filePath) {
+        const { ejs } = this.util;
+        return new Promise((resolve, reject) => {
+            ejs.renderFile(filePath, this.answers, {}, (err, str) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(str);
+                }
+            });
+        });
     }
 };

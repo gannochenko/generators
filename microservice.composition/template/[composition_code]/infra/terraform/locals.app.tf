@@ -1,6 +1,6 @@
 locals {
-  hosts = [/*HOSTS*/]
+  hosts = [/* PH:HOSTS */]
   domains = join(",", local.hosts)
 }
 
-### APP-LOCALS ###
+/* PH:LOCALS */
