@@ -82,7 +82,7 @@ Vagrant.configure("2") do |config|
     ### python3 + awscli
     sudo add-apt-repository ppa:jonathonf/python-3.6;
     sudo apt-get update;
-    sudo apt-get install -y zip unzip g++ chrony python3.6 awscli;
+    sudo apt-get install -y zip unzip g++ chrony python python3.6 awscli;
 
     #### ssh
     if [ ! -f "/home/vagrant/.ssh/id_rsa.pub" ]; then
