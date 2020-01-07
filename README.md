@@ -139,5 +139,5 @@ Project Link: [https://github.com/gannochenko/generators](https://github.com/gan
 [license-shield]: https://img.shields.io/github/license/gannochenko/generators.svg?style=flat-square
 [license-url]: https://github.com/gannochenko/generators/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/sergey-gannochenko/
+[linkedin-url]: https://www.linkedin.com/in/gannochenko/
 [product-screenshot]: images/screenshot.png
