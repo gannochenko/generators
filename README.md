@@ -17,7 +17,7 @@
 <br />
 <p align="center">
   <!--
-  <a href="https://github.com/awesome1888/generators">
+  <a href="https://github.com/gannochenko/generators">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
   -->
@@ -28,9 +28,9 @@
     This is a set of generators I use frequently in my daily routine
     <br />
     <br />
-    <a href="https://github.com/awesome1888/generators/issues">Report Bug</a>
+    <a href="https://github.com/gannochenko/generators/issues">Report Bug</a>
     ·
-    <a href="https://github.com/awesome1888/generators/issues">Request Feature</a>
+    <a href="https://github.com/gannochenko/generators/issues">Request Feature</a>
   </p>
 </p>
 
@@ -61,7 +61,7 @@
 
 ### Built With
 
-* [Generilla Project](https://github.com/awesome1888/generilla) - a tool that runs these generators
+* [Generilla Project](https://github.com/gannochenko/generilla) - a tool that runs these generators
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -73,10 +73,10 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. [Install Generilla](https://github.com/awesome1888/generilla#installation)
+1. [Install Generilla](https://github.com/gannochenko/generilla#installation)
 2. Clone the repo
     ```sh
-    git clone https://github.com/awesome1888/generators.git
+    git clone https://github.com/gannochenko/generators.git
     ```
 3. Link the repository folder to `~/.generilla`, so `generilla` is able to see them
     ```sh
@@ -99,7 +99,7 @@ This is an example of how to list things you need to use the software and how to
 
 * add more of 'em :)
 
-See the [open issues](https://github.com/awesome1888/generators/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/gannochenko/generators/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -122,22 +122,22 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Sergei Gannochenko - [Linkedin](https://www.linkedin.com/in/gannochenko/)
 
-Project Link: [https://github.com/awesome1888/generators](https://github.com/awesome1888/generators)
+Project Link: [https://github.com/gannochenko/generators](https://github.com/gannochenko/generators)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/awesome1888/generators.svg?style=flat-square
-[contributors-url]: https://github.com/awesome1888/generators/graphs/contributors
-[language-shield]: https://img.shields.io/github/languages/top/awesome1888/generators.svg?style=flat-square
-[language-url]: https://github.com/awesome1888/generators
-[forks-shield]: https://img.shields.io/github/forks/awesome1888/generators.svg?style=flat-square
-[forks-url]: https://github.com/awesome1888/generators/network/members
-[stars-shield]: https://img.shields.io/github/stars/awesome1888/generators.svg?style=flat-square
-[stars-url]: https://github.com/awesome1888/generators/stargazers
-[issues-shield]: https://img.shields.io/github/issues/awesome1888/generators.svg?style=flat-square
-[issues-url]: https://github.com/awesome1888/generators/issues
-[license-shield]: https://img.shields.io/github/license/awesome1888/generators.svg?style=flat-square
-[license-url]: https://github.com/awesome1888/generators/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/gannochenko/generators.svg?style=flat-square
+[contributors-url]: https://github.com/gannochenko/generators/graphs/contributors
+[language-shield]: https://img.shields.io/github/languages/top/gannochenko/generators.svg?style=flat-square
+[language-url]: https://github.com/gannochenko/generators
+[forks-shield]: https://img.shields.io/github/forks/gannochenko/generators.svg?style=flat-square
+[forks-url]: https://github.com/gannochenko/generators/network/members
+[stars-shield]: https://img.shields.io/github/stars/gannochenko/generators.svg?style=flat-square
+[stars-url]: https://github.com/gannochenko/generators/stargazers
+[issues-shield]: https://img.shields.io/github/issues/gannochenko/generators.svg?style=flat-square
+[issues-url]: https://github.com/gannochenko/generators/issues
+[license-shield]: https://img.shields.io/github/license/gannochenko/generators.svg?style=flat-square
+[license-url]: https://github.com/gannochenko/generators/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/sergey-gannochenko/
 [product-screenshot]: images/screenshot.png
