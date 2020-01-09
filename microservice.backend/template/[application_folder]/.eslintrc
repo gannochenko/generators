@@ -28,7 +28,8 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
     "no-restricted-syntax": "off",
-    "no-console": ["error", { "allow": ["error"]}]
+    "no-console": ["error", { "allow": ["error"]}],
+    "import/extensions": "off"
   },
   "parserOptions": {
     "ecmaVersion": 6,
