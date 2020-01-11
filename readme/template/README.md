@@ -53,6 +53,8 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
+* [Development](#development)
+  * [Prerequisites](#prerequisites)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -97,6 +99,16 @@ yarn;
 ```sh
 yarn start;
 ```
+
+<!-- USAGE -->
+## Usage
+
+<!-- DEVELOPMENT -->
+## Development
+### Prerequisites
+
+* [Node](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)
+* [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 <!-- ROADMAP -->
 ## Roadmap
