@@ -3,10 +3,11 @@
  */
 
 import React from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { fireEvent, cleanup, render, prettyDOM } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event';
 
-import <%- page_name_pascal %>Page from '..';
+import { <%- page_name_pascal %>Page } from '..';
 
 describe('<<%- page_name_pascal %>Page />', () => {
     // beforeAll(async () => {

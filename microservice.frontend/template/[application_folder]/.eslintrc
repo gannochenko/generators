@@ -53,7 +53,8 @@
         "no-console": ["error", { "allow": ["error"]}],
         "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/no-empty-interface": "off",
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.js", "**/*.test.jsx", "**/*.test.ts", "**/*.test.tsx"]}]
     },
     "parserOptions": {
         "ecmaVersion": 6,

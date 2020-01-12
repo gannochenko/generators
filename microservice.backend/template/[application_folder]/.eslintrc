@@ -29,7 +29,8 @@
     "@typescript-eslint/ban-ts-ignore": "off",
     "no-restricted-syntax": "off",
     "no-console": ["error", { "allow": ["error"]}],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.js", "**/*.test.jsx", "**/*.test.ts", "**/*.test.tsx"]}]
   },
   "parserOptions": {
     "ecmaVersion": 6,
