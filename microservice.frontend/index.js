@@ -278,6 +278,7 @@ module.exports.Generator = class Generator {
                 '@types/history',
                 '@types/redux-logger',
                 '@types/express',
+                '@types/jest',
             ],
         };
     }
