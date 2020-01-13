@@ -20,7 +20,7 @@ import { GlobalStyle } from '../../style';
 import { HomePage, ForbiddenPage, NotFoundPage } from '../../pages';
 import { ObjectLiteral } from '../../../type';
 
-const UIComponent: FunctionComponent<ApplicationProperties> = ({
+const ApplicationUIComponent: FunctionComponent<ApplicationProperties> = ({
     ready = false,
     client,
     history,
@@ -68,9 +68,9 @@ const UIComponent: FunctionComponent<ApplicationProperties> = ({
     );
 };
 
-export const UI = withNotification(
+export const ApplicationUI = withNotification(
     connect(
         (store: ObjectLiteral) => store.application,
         mapDispatchToProps,
-    )(UIComponent),
+    )(ApplicationUIComponent),
 );

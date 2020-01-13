@@ -2,7 +2,7 @@ import React, { useRef, FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
 import { Notification, NotificationContext } from '@bucket-of-bolts/ui';
 
-import { UI } from './components';
+import { ApplicationUI } from './components';
 import { ThemeContext, theme } from './style';
 import {
     Settings,
@@ -34,7 +34,7 @@ export const Application: FunctionComponent = () => {
                         theme={theme.notifications}
                     />
                     <NotificationContext.Provider value={notificationRef}>
-                        <UI history={history} theme={theme} client={client} />
+                        <ApplicationUI history={history} theme={theme} client={client} />
                     </NotificationContext.Provider>
                 </Provider>
             </ClientContext.Provider>

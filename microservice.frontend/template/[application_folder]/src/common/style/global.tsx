@@ -9,6 +9,6 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     a {
-      ${fgColor(theme.link.color.hout, theme.link.color.hover, `300ms`)}
+        ${fgColor(theme.link.color.hout, theme.link.color.hover, `300ms`)}
     }
 `;
