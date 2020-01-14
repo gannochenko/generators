@@ -163,6 +163,7 @@ module.exports.Generator = class Generator {
                 'react-router-dom',
                 'connected-react-router',
                 'history',
+                'throttle-debounce',
 
                 // styles
                 'styled-components',
@@ -269,6 +270,7 @@ module.exports.Generator = class Generator {
                 '@babel/preset-typescript',
                 '@typescript-eslint/eslint-plugin',
                 '@typescript-eslint/parser',
+                '@types/throttle-debounce',
 
                 // types
                 '@types/styled-components',
