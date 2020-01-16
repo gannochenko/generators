@@ -109,8 +109,17 @@ module.exports.Generator = class Generator {
             {
                 type: 'confirm',
                 name: 'use_materialui',
-                message: 'Do we have MaterialUI?',
+                message: 'Would you like to use MaterialUI in the project?',
                 default: false,
+            },
+            {
+                type: 'confirm',
+                name: 'use_materialkit',
+                message: 'Would you like to use MaterialKit along with MaterialUI?',
+                default: false,
+                when: answers => {
+                    return answers.use_materialui;
+                },
             },
         ];
     }
@@ -169,9 +178,11 @@ module.exports.Generator = class Generator {
                 'styled-components',
                 '@bucket-of-bolts/styled-companion',
 
-                // demo ui
+                // UI kit
                 use_materialui && '@material-ui/core',
                 use_materialui && '@material-ui/icons',
+                use_materialui && 'jss',
+                use_materialui && 'classnames',
 
                 // graphql
                 use_graphql && 'graphql',
@@ -184,10 +195,6 @@ module.exports.Generator = class Generator {
                 use_graphql && 'apollo-link',
                 use_graphql && 'apollo-link-error',
                 use_rest && 'axios',
-
-                // for Material UI
-                use_materialui && 'jss',
-                use_materialui && 'classnames',
 
                 // metrics
                 'prom-client',
