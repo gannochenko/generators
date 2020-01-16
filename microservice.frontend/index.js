@@ -107,6 +107,7 @@ module.exports.Generator = class Generator {
                 default: false,
             },
             {
+                // https://www.codeinwp.com/blog/react-ui-component-libraries-frameworks/
                 type: 'confirm',
                 name: 'use_materialui',
                 message: 'Would you like to use MaterialUI in the project?',
@@ -120,6 +121,12 @@ module.exports.Generator = class Generator {
                 when: answers => {
                     return answers.use_materialui;
                 },
+            },
+            {
+                type: 'confirm',
+                name: 'use_fontawesome',
+                message: 'Would you like to use FontAwesome in the project?',
+                default: false,
             },
         ];
     }
@@ -142,7 +149,7 @@ module.exports.Generator = class Generator {
     }
 
     getDependencies(answers) {
-        const { use_graphql, use_rest, use_materialui } = answers;
+        const { use_graphql, use_rest, use_materialui, use_fontawesome } = answers;
 
         return {
             destination: '[application_folder]/',
@@ -183,6 +190,10 @@ module.exports.Generator = class Generator {
                 use_materialui && '@material-ui/icons',
                 use_materialui && 'jss',
                 use_materialui && 'classnames',
+
+                use_fontawesome && '@fortawesome/fontawesome-svg-core',
+                use_fontawesome && '@fortawesome/free-brands-svg-icons',
+                use_fontawesome && '@fortawesome/react-fontawesome',
 
                 // graphql
                 use_graphql && 'graphql',
