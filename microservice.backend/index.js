@@ -182,6 +182,7 @@ module.exports.Generator = class Generator {
                 '@bucket-of-bolts/util',
                 '@bucket-of-bolts/microdash',
                 'moment',
+                'clone-deep',
             ],
         };
     }
@@ -211,6 +212,7 @@ module.exports.Generator = class Generator {
                 '@types/node',
                 'ts-node',
                 '@types/cors',
+                '@types/clone-deep',
 
                 // testing
                 !!use_graphql && 'apollo-server-testing',

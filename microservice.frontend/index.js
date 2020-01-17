@@ -180,6 +180,7 @@ module.exports.Generator = class Generator {
                 'connected-react-router',
                 'history',
                 'throttle-debounce',
+                'clone-deep',
 
                 // styles
                 'styled-components',
@@ -299,6 +300,7 @@ module.exports.Generator = class Generator {
                 '@types/redux-logger',
                 '@types/express',
                 '@types/jest',
+                '@types/clone-deep',
             ],
         };
     }
