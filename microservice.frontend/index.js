@@ -253,6 +253,7 @@ module.exports.Generator = class Generator {
                 'npm-run-all',
                 'webpack-bundle-analyzer',
                 'leasot',
+                'serve',
 
                 // codestyle
                 'husky',

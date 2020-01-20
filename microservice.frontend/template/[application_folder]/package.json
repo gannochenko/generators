@@ -14,7 +14,8 @@
         "techdebt": "leasot --exit-nicely --reporter table --skip-unsupported --ignore node_modules,build ./",
         "image:build": "./script/image.build.sh",
         "image:push": "./script/image.push.sh",
-        "image:run": "./script/image.run.sh"
+        "image:run": "./script/image.run.sh",
+        "serve": "serve ./build/public/"
     },
     "husky": {
         "hooks": {
