@@ -23,7 +23,7 @@
         "test:watch": "jest -c ./jest/config.js --watch",
         "lint": "eslint ./src --ext .js,.ts",
         "lint:fix": "eslint ./src --fix --ext .js,.ts",
-        "release": "./script/release.sh",
+        "release": "./script/release.sh"
     },
     "dependencies": {
     },
