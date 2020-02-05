@@ -44,6 +44,8 @@ module.exports.Generator = class Generator {
     }
 
     getDevDependencies() {
+        const { company_name } = this.answers;
+
         return {
             destination: '[package_name]/',
             packages: [
@@ -58,7 +60,11 @@ module.exports.Generator = class Generator {
                 'eslint-config-prettier',
                 'eslint-plugin-import',
                 '@typescript-eslint/eslint-plugin',
-                'eslint-plugin-prettier'
+                'eslint-plugin-prettier',
+
+                !company_name && 'husky',
+                !company_name && 'prettier',
+                !company_name && 'pretty-quick',
             ],
         };
     }
