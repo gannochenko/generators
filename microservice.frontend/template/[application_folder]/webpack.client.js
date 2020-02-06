@@ -39,6 +39,9 @@ module.exports = (env, argv) => {
             symlinks: false,
         },
         devtool: development ? 'source-map' : false,
+        optimization: {
+            usedExports: true,
+        },
         module: {
             rules: [
                 {

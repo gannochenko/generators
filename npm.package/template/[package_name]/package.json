@@ -2,21 +2,24 @@
     "name": "<%- package_name_full %>",
     "version": "0.0.0",
     "license": "MIT",
-    "main": "build/index.js",
+    "main": "build.cjs/index.js",
+    "module": "build/index.js",
     "files": [
-        "build/"
+        "build/",
+        "build.cjs/"
     ],
 <% if (cli) { %>
     "bin": {
-        "<%- command_name %>": "./build/index.js"
+        "<%- command_name %>": "./build.cjs/index.js"
     },
 <% } %>
     "scripts": {
         "install-peers": "install-self-peers -- --ignore-scripts",
 <% if (cli) { %>
-        "build": "rm -rf ./build/*; tsc -p ./tsconfig.build.json; chmod +x ./build/index.js",
+        "build": "rm -rf ./build.cjs/*; tsc -p ./tsconfig.build.cjs.json; chmod +x ./build.cjs/index.js",
 <% } else { %>
         "build": "rm -rf ./build/*; tsc -p ./tsconfig.build.json",
+        "build:cjs": "rm -rf ./build.cjs/*; tsc -p ./tsconfig.build.cjs.json",
 <% } %>
         "build:watch": "tsc -w -p .",
         "test": "jest -c ./jest/config.js --passWithNoTests",
