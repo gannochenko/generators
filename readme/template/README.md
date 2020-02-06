@@ -24,6 +24,7 @@
   </a>
   -->
 
+  <h3 align="center">😱 + 😰 + 😅 = 😎</h3>
   <h3 align="center"><%- project_name %></h3>
 
   <p align="center">
@@ -48,7 +49,6 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Built With](#built-with)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
@@ -59,6 +59,7 @@
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
+* [Built With](#built-with)
 * [Acknowledgements](#acknowledgements)
 
 
@@ -71,10 +72,6 @@
 -->
 
 Here goes the description of this lovely NPM module.
-
-### Built With
-
-* [TypeScript](http://www.typescriptlang.org/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -141,6 +138,11 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <%- author_name %> - [Linkedin](https://www.linkedin.com/in/<%- author_linkedin_profile %>/)
 
 Project Link: [https://github.com/<%- github_account_name %>/<%- repository_name %>](https://github.com/<%- github_account_name %>/<%- repository_name %>)
+
+<!-- BUILT WITH -->
+### Built With
+
+* [TypeScript](http://www.typescriptlang.org/)
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
