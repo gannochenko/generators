@@ -44,7 +44,7 @@ module.exports.Generator = class Generator {
     }
 
     getDevDependencies() {
-        const { company_name } = this.answers;
+        const { company_name, cli } = this.answers;
 
         return {
             destination: '[package_name]/',
@@ -65,6 +65,8 @@ module.exports.Generator = class Generator {
                 !company_name && 'husky',
                 !company_name && 'prettier',
                 !company_name && 'pretty-quick',
+
+                !!cli && 'ts-node',
             ],
         };
     }

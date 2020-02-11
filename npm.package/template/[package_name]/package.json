@@ -16,6 +16,7 @@
     "scripts": {
         "install-peers": "install-self-peers -- --ignore-scripts",
 <% if (cli) { %>
+        "start": "ts-node src/index.ts",
         "build": "rm -rf ./build.cjs/*; tsc -p ./tsconfig.build.cjs.json; chmod +x ./build.cjs/index.js",
 <% } else { %>
         "build": "rm -rf ./build/*; tsc -p ./tsconfig.build.json",
