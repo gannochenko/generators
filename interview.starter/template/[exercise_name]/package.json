@@ -1,5 +1,5 @@
 {
-  "name": "<%- exercise_name ->",
+  "name": "<%- exercise_name %>",
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
