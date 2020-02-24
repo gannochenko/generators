@@ -65,13 +65,13 @@ module.exports.Generator = class Generator {
         return {
             destination: '[package_name]/',
             packages: [
-                !use_cli_boilerplate && 'commander',
-                !use_cli_boilerplate && 'inquirer',
-                !use_cli_boilerplate && 'execa',
-                !use_cli_boilerplate && 'chalk',
-                !use_cli_boilerplate && 'fs-extra',
-                !use_cli_boilerplate && 'clear',
-                !use_cli_boilerplate && 'figlet',
+                !!use_cli_boilerplate && 'commander',
+                !!use_cli_boilerplate && 'inquirer',
+                !!use_cli_boilerplate && 'execa',
+                !!use_cli_boilerplate && 'chalk',
+                !!use_cli_boilerplate && 'fs-extra',
+                !!use_cli_boilerplate && 'clear',
+                !!use_cli_boilerplate && 'figlet',
             ],
         };
     }
