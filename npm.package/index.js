@@ -10,11 +10,11 @@ module.exports.Generator = class Generator {
     getQuestions() {
         return [
             {
-                message: 'What is the NPM package name?',
+                message: 'NPM package name',
                 name: 'package_name',
             },
             {
-                message: 'What is the NPM company name? (optional)',
+                message: 'NPM company name (optional)',
                 name: 'company_name',
                 default: '',
             },
@@ -31,6 +31,21 @@ module.exports.Generator = class Generator {
                     return !!answers.cli;
                 },
             },
+            {
+                message: 'Application name',
+                name: 'application_name',
+                when: (answers) => {
+                    return !!answers.cli;
+                },
+            },
+            {
+                message: 'Would you like to add CLI application boilerplate?',
+                name: 'use_cli_boilerplate',
+                when: (answers) => {
+                    return !!answers.cli;
+                },
+                default: true,
+            },
         ];
     }
 
@@ -43,8 +58,25 @@ module.exports.Generator = class Generator {
         return answers;
     }
 
+    getDependencies() {
+        const { use_cli_boilerplate } = this.answers;
+
+        return {
+            destination: '[package_name]/',
+            packages: [
+                !use_cli_boilerplate && 'commander',
+                !use_cli_boilerplate && 'inquirer',
+                !use_cli_boilerplate && 'execa',
+                !use_cli_boilerplate && 'chalk',
+                !use_cli_boilerplate && 'fs-extra',
+                !use_cli_boilerplate && 'clear',
+                !use_cli_boilerplate && 'figlet',
+            ],
+        };
+    }
+
     getDevDependencies() {
-        const { company_name, cli } = this.answers;
+        const { company_name, cli, use_cli_boilerplate } = this.answers;
 
         return {
             destination: '[package_name]/',
@@ -67,6 +99,9 @@ module.exports.Generator = class Generator {
                 !company_name && 'pretty-quick',
 
                 !!cli && 'ts-node',
+
+                !!use_cli_boilerplate && '@types/inquire',
+                !!use_cli_boilerplate && '@types/fs-extra',
             ],
         };
     }
