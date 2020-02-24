@@ -41,10 +41,11 @@ module.exports.Generator = class Generator {
             {
                 message: 'Would you like to add CLI application boilerplate?',
                 name: 'use_cli_boilerplate',
+                type: 'confirm',
+                default: true,
                 when: (answers) => {
                     return !!answers.cli;
                 },
-                default: true,
             },
         ];
     }
@@ -100,7 +101,7 @@ module.exports.Generator = class Generator {
 
                 !!cli && 'ts-node',
 
-                !!use_cli_boilerplate && '@types/inquire',
+                !!use_cli_boilerplate && '@types/inquirer',
                 !!use_cli_boilerplate && '@types/fs-extra',
             ],
         };
