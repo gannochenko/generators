@@ -1,7 +1,6 @@
 {
     "name": "<%- company_name %>",
     "description": "",
-    "main": "index.js",
     "scripts": {
         "build": "lerna run build --npm-client=yarn",
         "bootstrap": "lerna bootstrap --npm-client=yarn",
@@ -12,7 +11,7 @@
     },
     "keywords": [],
     "author": "",
-    "license": "ISC",
+    "license": "MIT",
     "devDependencies": {
     },
     "publishConfig": {
