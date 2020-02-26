@@ -56,6 +56,9 @@ module.exports.Generator = class Generator {
             answers.package_name_full = `@${answers.company_name}/${answers.package_name}`;
         }
 
+        answers.use_cli_boilerplate = !!answers.use_cli_boilerplate;
+        answers.application_name = answers.application_name || '';
+
         return answers;
     }
 

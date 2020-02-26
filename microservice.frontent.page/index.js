@@ -4,7 +4,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'React Component Page for microservice.frontend';
+        return 'Page for microservice.frontend';
     }
 
     getQuestions() {
