@@ -8,14 +8,14 @@
         "build/",
         "build.cjs/"
     ],
-<% if (cli) { %>
+<% if (is_cli) { %>
     "bin": {
         "<%- command_name %>": "./build.cjs/index.js"
     },
 <% } %>
     "scripts": {
         "install-peers": "install-self-peers -- --ignore-scripts",
-<% if (cli) { %>
+<% if (is_cli) { %>
         "start": "SOME_ENV_VAR=1 ts-node src/index.ts",
         "build": "rm -rf ./build.cjs/*; tsc -p ./tsconfig.build.cjs.json; chmod +x ./build.cjs/index.js",
 <% } else { %>
@@ -31,6 +31,13 @@
     },
     "dependencies": {
     },
+<% if (is_ui) { %>
+    "peerDependencies": {
+        "react": "^16.8.0",
+        "react-dom": "^16.8.0",
+        "styled-components": "^5.0.0"
+    },
+<% } %>
     "publishConfig": {
         "access": "public"
     }

@@ -1,7 +1,14 @@
 {
   "compilerOptions": {
+    "module": "es6",
+    "target": "es6",
     "types": []
   },
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "build", "**/**/*.test.ts"]
+  "exclude": [
+    "node_modules",
+    "build",
+    <% if (is_ui) { %>"**/**/*.test.tsx",<% } %>
+    "**/**/*.test.ts"
+  ]
 }

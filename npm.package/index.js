@@ -20,7 +20,7 @@ module.exports.Generator = class Generator {
             },
             {
                 message: 'Is this a CLI application?',
-                name: 'cli',
+                name: 'is_cli',
                 type: 'confirm',
                 default: false,
             },
@@ -28,14 +28,14 @@ module.exports.Generator = class Generator {
                 message: 'Command name',
                 name: 'command_name',
                 when: (answers) => {
-                    return !!answers.cli;
+                    return !!answers.is_cli;
                 },
             },
             {
                 message: 'Application name',
                 name: 'application_name',
                 when: (answers) => {
-                    return !!answers.cli;
+                    return !!answers.is_cli;
                 },
             },
             {
@@ -44,7 +44,16 @@ module.exports.Generator = class Generator {
                 type: 'confirm',
                 default: true,
                 when: (answers) => {
-                    return !!answers.cli;
+                    return !!answers.is_cli;
+                },
+            },
+            {
+                message: 'Is this a UI library?',
+                name: 'is_ui',
+                type: 'confirm',
+                default: false,
+                when: (answers) => {
+                    return !answers.is_cli;
                 },
             },
         ];
@@ -58,6 +67,7 @@ module.exports.Generator = class Generator {
 
         answers.use_cli_boilerplate = !!answers.use_cli_boilerplate;
         answers.application_name = answers.application_name || '';
+        answers.is_ui = !!answers.is_ui;
 
         return answers;
     }
@@ -80,7 +90,7 @@ module.exports.Generator = class Generator {
     }
 
     getDevDependencies() {
-        const { company_name, cli, use_cli_boilerplate } = this.answers;
+        const { company_name, is_cli, use_cli_boilerplate, is_ui } = this.answers;
 
         return {
             destination: '[package_name]/',
@@ -102,10 +112,16 @@ module.exports.Generator = class Generator {
                 !company_name && 'prettier',
                 !company_name && 'pretty-quick',
 
-                !!cli && 'ts-node',
+                !!is_cli && 'ts-node',
 
                 !!use_cli_boilerplate && '@types/inquirer',
                 !!use_cli_boilerplate && '@types/fs-extra',
+
+                !!is_ui && '@types/react',
+                !!is_ui && '@types/react-dom',
+                !!is_ui && '@types/styled-components',
+                !!is_ui && '@testing-library/react',
+                !!is_ui && '@testing-library/user-event',
             ],
         };
     }

@@ -3,7 +3,7 @@ module.exports = {
     rootDir: '../src',
     setupFiles: ['<rootDir>/../jest/setup.ts'],
     transform: {
-        '^.+\\.ts$': 'ts-jest',
+        '^.+\\.tsx?$': 'ts-jest',
     },
-    testRegex: '\\.test\\.ts$',
+    testRegex: '\\.test\\.tsx?$',
 };
