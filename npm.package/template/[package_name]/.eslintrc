@@ -3,14 +3,24 @@
   "plugins": [
     "prettier",
     "import",
+<% if (is_ui) { %>
+    "jsx-a11y",
+    "react-hooks",
+<% } >,
     "@typescript-eslint"
   ],
   "extends": [
     "eslint:recommended",
     "airbnb-base",
     "prettier",
+<% if (is_ui) { %>
+    "prettier/react",
+<% } >,
     "plugin:import/errors",
     "plugin:import/warnings",
+<% if (is_ui) { %>
+    "plugin:react/recommended",
+<% } >,
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint"
   ],
@@ -26,7 +36,11 @@
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
-    "no-useless-constructor": "off"
+    "no-useless-constructor": "off",
+<% if (is_ui) { %>
+    "react/prop-types": "off",
+<% } >
+    "import/extensions": "off"
   },
   "parserOptions": {
     "ecmaVersion": 6,
@@ -35,9 +49,14 @@
   "globals": {
   },
   "settings": {
+<% if (is_ui) { %>
+    "react": {
+      "version": "detect"
+    },
+<% } >
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".ts"]
+        "extensions": [".js", ".ts", ".tsx"]
       }
     }
   },

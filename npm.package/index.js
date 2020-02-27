@@ -117,11 +117,13 @@ module.exports.Generator = class Generator {
                 !!use_cli_boilerplate && '@types/inquirer',
                 !!use_cli_boilerplate && '@types/fs-extra',
 
-                !!is_ui && '@types/react',
                 !!is_ui && '@types/react-dom',
-                !!is_ui && '@types/styled-components',
                 !!is_ui && '@testing-library/react',
                 !!is_ui && '@testing-library/user-event',
+                !!is_ui && '@testing-library/jest-dom',
+                !!is_ui && 'eslint-plugin-jsx-a11y',
+                !!is_ui && 'eslint-plugin-react',
+                !!is_ui && 'eslint-plugin-react-hooks',
             ],
         };
     }

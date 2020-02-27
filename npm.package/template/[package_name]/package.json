@@ -25,8 +25,8 @@
         "build:watch": "tsc -w -p .",
         "test": "jest -c ./jest/config.js --passWithNoTests",
         "test:watch": "jest -c ./jest/config.js --watch",
-        "lint": "eslint ./src --ext .js,.ts",
-        "lint:fix": "eslint ./src --fix --ext .js,.ts",
+        "lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",
+        "lint:fix": "eslint ./src --fix --ext .js,.ts,.jsx,.tsx",
         "release": "./script/release.sh"
     },
     "dependencies": {
@@ -34,7 +34,6 @@
 <% if (is_ui) { %>
     "peerDependencies": {
         "react": "^16.8.0",
-        "react-dom": "^16.8.0",
         "styled-components": "^5.0.0"
     },
 <% } %>
