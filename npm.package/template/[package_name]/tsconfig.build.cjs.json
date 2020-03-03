@@ -1,8 +1,17 @@
 {
   "compilerOptions": {
-      "module": "CommonJS",
-      "target": "es5",
-      "outDir": "./build.cjs/"
+    "module": "CommonJS",
+    "target": "es5",
+    "outDir": "./build.cjs/",
+    "types": []
   },
-  "extends": "./tsconfig.build.json"
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "node_modules",
+    "build",
+    "build:esm",
+    "build:cjs",
+    <% if (is_ui) { %>"**/**/*.test.tsx",<% } %>
+    "**/**/*.test.ts"
+  ]
 }

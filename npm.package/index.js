@@ -69,6 +69,9 @@ module.exports.Generator = class Generator {
         answers.application_name = answers.application_name || '';
         answers.is_ui = !!answers.is_ui;
 
+        answers.is_monorepo = !!answers.company_name;
+        answers.is_not_monorepo = !answers.is_monorepo;
+
         return answers;
     }
 

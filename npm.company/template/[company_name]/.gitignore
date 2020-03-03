@@ -3,3 +3,5 @@ node_modules/
 *.tar.gz
 .idea/
 packages/**/build/*
+packages/**/build.esm/*
+packages/**/build.cjs/*

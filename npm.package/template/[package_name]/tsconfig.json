@@ -17,13 +17,14 @@
         "emitDecoratorMetadata": true,
         "sourceMap": true,
         "baseUrl": "./src/",
-        "outDir": "./build/",
         <% if (is_ui) { %>"jsx": "react",<% } %>
         "declaration": true
     },
     "exclude": [
         "node_modules",
-        "build"
+        "build",
+        "build:esm",
+        "build:cjs"
     ],
     "include": [
         "src/**/*",

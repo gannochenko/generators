@@ -3,9 +3,9 @@
     "version": "0.0.0",
     "license": "MIT",
     "main": "build.cjs/index.js",
-    "module": "build/index.js",
+    "module": "build.esm/index.js",
     "files": [
-        "build/",
+        "build.esm/",
         "build.cjs/"
     ],
 <% if (is_cli) { %>
@@ -17,12 +17,11 @@
         "install-peers": "install-self-peers -- --ignore-scripts",
 <% if (is_cli) { %>
         "start": "SOME_ENV_VAR=1 ts-node src/index.ts",
-        "build": "rm -rf ./build.cjs/*; tsc -p ./tsconfig.build.cjs.json; chmod +x ./build.cjs/index.js",
-<% } else { %>
-        "build": "rm -rf ./build/*; tsc -p ./tsconfig.build.json",
-        "build:cjs": "rm -rf ./build.cjs/*; tsc -p ./tsconfig.build.cjs.json",
 <% } %>
-        "build:watch": "tsc -w -p .",
+        "build": "rm -rf ./build/*; yarn run build:esm; yarn run build:cjs",
+        "build:cjs": "rm -rf ./build.cjs/*; tsc -p ./tsconfig.build.cjs.json<% if (is_cli) { %>; chmod +x ./build.cjs/index.js<% } %>",
+        "build:esm": "rm -rf ./build.esm/*; tsc -p ./tsconfig.build.esm.json",
+        "build:watch": "tsc -w -p ./tsconfig.build.cjs.json",
         "test": "jest -c ./jest/config.js --passWithNoTests",
         "test:watch": "jest -c ./jest/config.js --watch",
         "lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",
