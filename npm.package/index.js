@@ -122,11 +122,22 @@ module.exports.Generator = class Generator {
 
                 !!is_ui && '@types/react-dom',
                 !!is_ui && '@testing-library/react',
+                !!is_ui && '@testing-library/dom',
                 !!is_ui && '@testing-library/user-event',
                 !!is_ui && '@testing-library/jest-dom',
                 !!is_ui && 'eslint-plugin-jsx-a11y',
                 !!is_ui && 'eslint-plugin-react',
                 !!is_ui && 'eslint-plugin-react-hooks',
+
+                !!is_ui && '@babel/core',
+                !!is_ui && 'babel-loader',
+                !!is_ui && 'ts-loader',
+                !!is_ui && '@storybook/addon-actions',
+                !!is_ui && '@storybook/addon-info',
+                !!is_ui && '@storybook/addon-links',
+                !!is_ui && '@storybook/addons',
+                !!is_ui && '@storybook/react',
+                !!is_ui && 'react-docgen-typescript-loader',
             ],
         };
     }

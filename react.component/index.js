@@ -23,6 +23,12 @@ module.exports.Generator = class Generator {
                 name: 'use_tests',
                 default: true,
             },
+            {
+                message: 'Add stories?',
+                type: 'confirm',
+                name: 'use_stories',
+                default: false,
+            },
         ];
     }
 
