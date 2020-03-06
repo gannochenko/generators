@@ -6,7 +6,7 @@
 <% if (is_ui) { %>
     "jsx-a11y",
     "react-hooks",
-<% } >,
+<% } %>,
     "@typescript-eslint"
   ],
   "extends": [
@@ -15,12 +15,12 @@
     "prettier",
 <% if (is_ui) { %>
     "prettier/react",
-<% } >,
+<% } %>,
     "plugin:import/errors",
     "plugin:import/warnings",
 <% if (is_ui) { %>
     "plugin:react/recommended",
-<% } >,
+<% } %>,
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint"
   ],
@@ -39,7 +39,7 @@
     "no-useless-constructor": "off",
 <% if (is_ui) { %>
     "react/prop-types": "off",
-<% } >
+<% } %>
     "import/extensions": "off"
   },
   "parserOptions": {
@@ -53,7 +53,7 @@
     "react": {
       "version": "detect"
     },
-<% } >
+<% } %>
     "import/resolver": {
       "node": {
         "extensions": [".js", ".ts", ".tsx"]
