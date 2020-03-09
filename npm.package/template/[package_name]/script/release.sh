@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-<% if (!cli) { %>
+<% if (!is_cli) { %>
 yarn run install-peers;
 if ! [ $? -eq 0 ]
 then
