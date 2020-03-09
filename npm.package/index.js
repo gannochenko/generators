@@ -137,6 +137,7 @@ module.exports.Generator = class Generator {
                 !!is_ui && '@storybook/addon-links',
                 !!is_ui && '@storybook/addons',
                 !!is_ui && '@storybook/react',
+                !!is_ui && 'themeprovider-storybook',
                 !!is_ui && 'react-docgen-typescript-loader',
             ],
         };
