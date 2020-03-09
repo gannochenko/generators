@@ -15,6 +15,9 @@
     },
 <% } %>
     "scripts": {
+<% if (is_ui) { %>
+        "dev": "yarn run storybook",
+<% } %>
         "install-peers": "install-self-peers -- --ignore-scripts",
 <% if (is_cli) { %>
         "start": "SOME_ENV_VAR=1 ts-node src/index.ts",
