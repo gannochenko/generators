@@ -56,6 +56,15 @@ module.exports.Generator = class Generator {
                     return !answers.is_cli;
                 },
             },
+            {
+                message: 'Would you like to add UI library boilerplate?',
+                name: 'use_ui_boilerplate',
+                type: 'confirm',
+                default: true,
+                when: (answers) => {
+                    return !!answers.is_ui;
+                },
+            },
         ];
     }
 
@@ -71,6 +80,8 @@ module.exports.Generator = class Generator {
 
         answers.is_monorepo = !!answers.company_name;
         answers.is_not_monorepo = !answers.is_monorepo;
+
+        answers.use_ui_boilerplate = !!answers.use_ui_boilerplate;
 
         return answers;
     }
@@ -128,17 +139,6 @@ module.exports.Generator = class Generator {
                 !!is_ui && 'eslint-plugin-jsx-a11y',
                 !!is_ui && 'eslint-plugin-react',
                 !!is_ui && 'eslint-plugin-react-hooks',
-
-                !!is_ui && '@babel/core',
-                !!is_ui && 'babel-loader',
-                !!is_ui && 'ts-loader',
-                !!is_ui && '@storybook/addon-actions',
-                !!is_ui && '@storybook/addon-info',
-                !!is_ui && '@storybook/addon-links',
-                !!is_ui && '@storybook/addons',
-                !!is_ui && '@storybook/react',
-                !!is_ui && 'themeprovider-storybook',
-                !!is_ui && 'react-docgen-typescript-loader',
             ],
         };
     }

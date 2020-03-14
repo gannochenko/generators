@@ -16,7 +16,7 @@
 <% } %>
     "scripts": {
 <% if (is_ui) { %>
-        "dev": "yarn run storybook",
+        "dev": "./script/dev.sh",
 <% } %>
         "install-peers": "install-self-peers -- --ignore-scripts",
 <% if (is_cli) { %>
@@ -30,10 +30,6 @@
         "test:watch": "jest -c ./jest/config.js --watch",
         "lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",
         "lint:fix": "eslint ./src --fix --ext .js,.ts,.jsx,.tsx",
-<% if (is_ui) { %>
-        "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook",
-<% } %>
         "release": "./script/release.sh"
     },
     "dependencies": {
