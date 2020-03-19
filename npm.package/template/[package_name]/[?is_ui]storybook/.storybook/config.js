@@ -1,5 +1,6 @@
-import { addDecorator } from '@storybook/react';
+import { addDecorator, addParameters } from '@storybook/react';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 <% if (use_ui_boilerplate) { %>
 import { defaultTheme } from "../../src/themes";
@@ -16,3 +17,11 @@ const themes = [
 ];
 
 addDecorator(withThemesProvider(themes));
+
+addParameters({
+    viewport: {
+        viewports: {
+            ...INITIAL_VIEWPORTS,
+        },
+    },
+});

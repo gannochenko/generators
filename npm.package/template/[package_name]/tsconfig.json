@@ -16,7 +16,14 @@
         "removeComments": true,
         "emitDecoratorMetadata": true,
         "sourceMap": true,
-        "baseUrl": "./src/",
+        "baseUrl": ".",
+        "paths": {
+<% if (is_ui) { %>
+            "@storybook/addon-knobs": [
+                "storybook/node_modules/@storybook/addon-knobs"
+            ]
+<% } %>
+        },
         <% if (is_ui) { %>"jsx": "react",<% } %>
         "declaration": true
     },
