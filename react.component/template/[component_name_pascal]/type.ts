@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
 
-export interface Props {
-    children?: ReactNode;
-}
+export type <%- component_name_pascal %>PropsType {
+    // custom props here
+} & HTMLAttributes<HTMLElement>;
