@@ -29,6 +29,12 @@ module.exports.Generator = class Generator {
                 name: 'use_stories',
                 default: false,
             },
+            {
+                message: 'Add readme?',
+                type: 'confirm',
+                name: 'use_readme',
+                default: false,
+            },
         ];
     }
 
