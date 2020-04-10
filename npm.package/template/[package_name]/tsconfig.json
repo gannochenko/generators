@@ -20,7 +20,10 @@
         "paths": {
 <% if (is_ui) { %>
             "@storybook/addon-knobs": [
-                "storybook/node_modules/@storybook/addon-knobs"
+                "dev/node_modules/@storybook/addon-knobs"
+            ],
+            "@storybook/addon-actions": [
+                "dev/node_modules/@storybook/addon-actions"
             ]
 <% } %>
         },

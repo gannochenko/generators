@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/bionic64"
 
   config.vm.hostname = "<%- machine_name %>"
 
@@ -107,15 +107,28 @@ Vagrant.configure("2") do |config|
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash;
     export NVM_DIR="/home/vagrant/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    nvm install 11;
-    nvm use 11;
-    nvm alias default 11;
+    nvm install 13;
+    nvm use 13;
+    nvm alias default 13;
     sudo apt-get install --no-install-recommends yarn;
 
     #### node global modules
     npm install --global create-react-app gatsby-cli typescript loadtest;
     # npm install --global gulp-cli mocha serverless yo generator-generator expo-cli webpack webpack-cli;
     gatsby telemetry --disable;
+
+    #### ruby
+    ## https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04
+    # sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev libpq-dev;
+    # git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
+    # echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc;
+    # echo 'eval "$(rbenv init -)"' >> ~/.bashrc;
+    # source ~/.bashrc;
+    # git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build;
+    # rbenv install 2.7.0;
+    # rbenv global 2.7.0;
+    # echo "gem: --no-document" > ~/.gemrc;
+    # gem install bundler;
 
     #### heroku
     curl https://cli-assets.heroku.com/install.sh | sh;
