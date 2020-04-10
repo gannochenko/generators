@@ -132,6 +132,7 @@ module.exports.Generator = class Generator {
                 !!use_cli_boilerplate && '@types/fs-extra',
 
                 !!is_ui && '@types/react-dom',
+                !!is_ui && '@types/styled-components',
                 !!is_ui && '@testing-library/react',
                 !!is_ui && '@testing-library/dom',
                 !!is_ui && '@testing-library/user-event',
@@ -141,5 +142,12 @@ module.exports.Generator = class Generator {
                 !!is_ui && 'eslint-plugin-react-hooks',
             ],
         };
+    }
+
+    async onAfterExecution() {
+        // todo:
+        // 1. yarn install-peers
+        // 2. cd dev; yarn;
+        // 3. cd doc; yarn;
     }
 };
