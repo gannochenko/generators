@@ -41,6 +41,13 @@
         "styled-components": "^5.0.0"
     },
 <% } %>
+<% if (is_not_monorepo) { %>
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    },
+<% } %>
     "publishConfig": {
         "access": "public"
     }
