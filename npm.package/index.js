@@ -131,6 +131,8 @@ module.exports.Generator = class Generator {
 
                 !!use_cli_boilerplate && '@types/inquirer',
                 !!use_cli_boilerplate && '@types/fs-extra',
+                !!use_cli_boilerplate && '@types/figlet',
+                !!use_cli_boilerplate && '@types/clear',
 
                 !!is_ui && 'react-dom',
                 !!is_ui && '@types/react-dom',
