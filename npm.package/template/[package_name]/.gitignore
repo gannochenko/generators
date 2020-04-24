@@ -2,3 +2,4 @@
 build/*
 build.esm/*
 build.cjs/*
+node_modules
