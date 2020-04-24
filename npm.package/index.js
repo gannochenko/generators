@@ -121,7 +121,7 @@ module.exports.Generator = class Generator {
                 'eslint-plugin-import',
                 '@typescript-eslint/eslint-plugin',
                 'eslint-plugin-prettier',
-                'prettier',
+                is_not_monorepo && 'prettier',
 
                 !company_name && 'husky',
                 !company_name && 'prettier',
