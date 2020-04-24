@@ -21,6 +21,7 @@ export interface CommandProcessor {
 
 export function Implements<T>() {
     return <U extends T>(constructor: U) => {
+        // eslint-disable-next-line no-unused-expressions
         constructor;
     };
 }
