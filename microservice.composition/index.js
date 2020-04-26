@@ -39,6 +39,11 @@ module.exports.Generator = class Generator {
             },
             {
                 type: 'input',
+                name: 'composition_name',
+                message: 'Composition name',
+            },
+            {
+                type: 'input',
                 name: 'domain',
                 message: 'Public domain (i.e. "my-cool-website.com")',
                 validate: async () => {
