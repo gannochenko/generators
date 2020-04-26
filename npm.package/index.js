@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports.Generator = class Generator {
     constructor(util) {
         this.util = util;
