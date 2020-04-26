@@ -104,7 +104,7 @@ module.exports.Generator = class Generator {
     }
 
     getDevDependencies() {
-        const { company_name, is_cli, use_cli_boilerplate, is_ui } = this.answers;
+        const { company_name, is_cli, use_cli_boilerplate, is_ui, is_not_monorepo } = this.answers;
 
         return {
             destination: '[package_name]/',
