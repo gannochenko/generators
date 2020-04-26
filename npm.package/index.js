@@ -150,6 +150,15 @@ module.exports.Generator = class Generator {
 
     async onAfterExecution() {
         // todo:
+        const { execa, pathExists } = this.util;
+
+        const rootPath = path.join(this.context.destinationPath, this.answers.package_name);
+        if (await pathExists(rootPath)) {
+            await execa('yarn', ['install-peers'], {
+                cwd: rootPath,
+                stdio: ['inherit', 'inherit', 'inherit'],
+            });
+        }
         // 1. yarn install-peers
         // 2. cd dev; yarn;
         // 3. cd doc; yarn;
