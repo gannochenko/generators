@@ -8,4 +8,11 @@ if [[ $1 = "-r" ]]; then
 fi
 
 docker stop $(docker ps -aq) > /dev/null;
-docker-compose -f ${DIR}/../infra/development.yml up ${REBUILD};
+
+if [[ $1 = "-d" ]] || [[ $2 = "-d" ]]; then
+    docker-compose -f ${DIR}/../infra/development.infra.yml -f ${DIR}/../infra/development.yml up ${REBUILD};
+else
+    # todo: replace with some adequate concurrency manager
+    docker-compose -f ${DIR}/../infra/development.infra.yml up &
+    sleep 5; ${DIR}/applications.launch.js;
+fi

@@ -185,7 +185,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Sergei Gannochenko - [Linkedin](https://www.linkedin.com/in/gannochenko/)
+[Sergei Gannochenko](https://gannochenko.dev)
 
 Project Link: [https://github.com/gannochenko/<%- composition_code %>](https://github.com/gannochenko/<%- composition_code %>)
 
