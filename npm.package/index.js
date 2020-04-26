@@ -136,7 +136,6 @@ module.exports.Generator = class Generator {
                 !!use_cli_boilerplate && '@types/figlet',
                 !!use_cli_boilerplate && '@types/clear',
 
-                !!is_ui && 'react-dom',
                 !!is_ui && '@types/react-dom',
                 !!is_ui && '@types/styled-components',
                 !!is_ui && '@testing-library/react',
@@ -161,8 +160,21 @@ module.exports.Generator = class Generator {
                 stdio: ['inherit', 'inherit', 'inherit'],
             });
         }
-        // 1. yarn install-peers
-        // 2. cd dev; yarn;
-        // 3. cd doc; yarn;
+
+        const docPath = path.join(rootPath, 'doc');
+        if (await pathExists(docPath)) {
+            await execa('yarn', [], {
+                cwd: docPath,
+                stdio: ['inherit', 'inherit', 'inherit'],
+            });
+        }
+
+        const devPath = path.join(rootPath, 'dev');
+        if (await pathExists(devPath)) {
+            await execa('yarn', [], {
+                cwd: devPath,
+                stdio: ['inherit', 'inherit', 'inherit'],
+            });
+        }
     }
 };

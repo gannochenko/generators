@@ -37,8 +37,9 @@
     },
 <% if (is_ui) { %>
     "peerDependencies": {
-        "react": "^16.8.0",
-        "styled-components": "^5.0.0"
+        "react": ">=16.8.0",
+        "react-dom": ">=16.8.0",
+        "styled-components": ">=5.0.0"
     },
 <% } %>
 <% if (is_not_monorepo) { %>
