@@ -176,5 +176,12 @@ module.exports.Generator = class Generator {
                 stdio: ['inherit', 'inherit', 'inherit'],
             });
         }
+
+        const scriptsPath = path.join(rootPath, 'script');
+        if (await pathExists(scriptsPath)) {
+            await execa('chmod', ['-R', '+x', scriptsPath], {
+                stdio: ['inherit', 'inherit', 'inherit'],
+            });
+        }
     }
 };
