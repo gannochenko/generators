@@ -12,7 +12,7 @@
         "resolveJsonModule": true,
         "isolatedModules": false,
         "experimentalDecorators": true,
-        "lib": ["esnext.asynciterable", "esnext", "es2017"],
+        "lib": ["esnext.asynciterable", "esnext", "es2017"<% if (is_ui) { %>, "dom"<% } %>],
         "removeComments": true,
         "emitDecoratorMetadata": true,
         "sourceMap": true,

@@ -12,6 +12,8 @@
     "build:esm",
     "build:cjs",
     <% if (is_ui) { %>"**/**/*.test.tsx",<% } %>
+    <% if (is_ui) { %>"**/**/*.story.tsx",<% } %>
+    <% if (is_ui) { %>"**/**/*.story.ts",<% } %>,
     "**/**/*.test.ts"
   ]
 }
