@@ -123,6 +123,7 @@ module.exports.Generator = class Generator {
                 'eslint-plugin-import',
                 '@typescript-eslint/eslint-plugin',
                 'eslint-plugin-prettier',
+                'ts-essentials',
                 is_not_monorepo && 'prettier',
 
                 !company_name && 'husky',

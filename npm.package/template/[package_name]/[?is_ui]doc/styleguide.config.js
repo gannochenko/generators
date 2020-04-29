@@ -10,6 +10,16 @@ module.exports = {
     },
     skipComponentsWithoutExample: true,
     pagePerSection: true,
+    template: {
+        head: {
+            links: [
+                {
+                    rel: 'stylesheet',
+                    href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900',
+                },
+            ],
+        },
+    },
     // sections: [ {
     //     name: 'Test section 1',
     //     description: 'Test secion 1 description',

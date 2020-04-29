@@ -287,6 +287,7 @@ module.exports.Generator = class Generator {
                 'fork-ts-checker-webpack-plugin-alt',
                 'react-dev-utils',
                 'typescript',
+                'ts-essentials',
                 '@babel/preset-typescript',
                 '@typescript-eslint/eslint-plugin',
                 '@typescript-eslint/parser',

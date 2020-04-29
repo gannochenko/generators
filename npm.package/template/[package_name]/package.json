@@ -18,6 +18,7 @@
 <% if (is_ui) { %>
         "dev": "./script/dev.sh",
         "doc": "./script/doc.sh",
+        "doc:deploy": "./script/doc.deploy.sh",
 <% } %>
         "install-peers": "install-self-peers -- --ignore-scripts",
 <% if (is_cli) { %>
