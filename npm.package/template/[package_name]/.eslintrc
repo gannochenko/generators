@@ -37,6 +37,9 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
     "no-useless-constructor": "off",
+    "no-console": ["error", {
+      "allow": ["error"]
+    }],
 <% if (is_ui) { %>
     "react/prop-types": "off",
 <% } %>

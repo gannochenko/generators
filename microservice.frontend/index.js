@@ -113,21 +113,6 @@ module.exports.Generator = class Generator {
                 message: 'Would you like to use MaterialUI in the project?',
                 default: false,
             },
-            {
-                type: 'confirm',
-                name: 'use_materialkit',
-                message: 'Would you like to use MaterialKit along with MaterialUI?',
-                default: false,
-                when: answers => {
-                    return answers.use_materialui;
-                },
-            },
-            {
-                type: 'confirm',
-                name: 'use_fontawesome',
-                message: 'Would you like to use FontAwesome in the project?',
-                default: false,
-            },
         ];
     }
 
@@ -149,7 +134,7 @@ module.exports.Generator = class Generator {
     }
 
     getDependencies(answers) {
-        const { use_graphql, use_rest, use_materialui, use_fontawesome } = answers;
+        const { use_graphql, use_rest, use_materialui } = answers;
 
         return {
             destination: '[application_folder]/',
@@ -191,10 +176,6 @@ module.exports.Generator = class Generator {
                 use_materialui && '@material-ui/icons',
                 use_materialui && 'jss',
                 use_materialui && 'classnames',
-
-                use_fontawesome && '@fortawesome/fontawesome-svg-core',
-                use_fontawesome && '@fortawesome/free-brands-svg-icons',
-                use_fontawesome && '@fortawesome/react-fontawesome',
 
                 // graphql
                 use_graphql && 'graphql',
@@ -309,9 +290,9 @@ module.exports.Generator = class Generator {
 
     async onAfterExecution() {
         await this.addToComposition();
+        await this.addToInfra();
         await this.makeScriptsExecutable();
         await this.runLinter();
-        await this.updateInfra();
     }
 
     async addToComposition() {
@@ -361,7 +342,7 @@ module.exports.Generator = class Generator {
         }
     }
 
-    async updateInfra() {
+    async addToInfra() {
         if (!this.answers.is_monorepo) {
             return;
         }

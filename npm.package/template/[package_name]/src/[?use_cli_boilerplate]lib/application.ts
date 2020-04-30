@@ -46,6 +46,7 @@ export class Application {
             .description('<%- application_name %>: a new fancy application')
             .option('-d, --debug', 'output an additional debug info');
 
+        // @ts-ignore
         Commands.attachCommands(program, command => {
             commandToRun = command.command;
             commandArguments = command.arguments || {};
@@ -61,7 +62,6 @@ export class Application {
             command: commandToRun!,
             arguments: {
                 ...commandArguments,
-                mould: program.mould,
                 debug: program.debug,
             },
         };

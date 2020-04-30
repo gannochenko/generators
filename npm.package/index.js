@@ -34,6 +34,10 @@ module.exports.Generator = class Generator {
                 },
             },
             {
+                message: 'Are we inside of a monorepo?',
+                name: 'is_monorepo',
+            },
+            {
                 message: 'Application name',
                 name: 'application_name',
                 when: (answers) => {
@@ -80,7 +84,6 @@ module.exports.Generator = class Generator {
         answers.application_name = answers.application_name || '';
         answers.is_ui = !!answers.is_ui;
 
-        answers.is_monorepo = !!answers.company_name;
         answers.is_not_monorepo = !answers.is_monorepo;
 
         answers.use_ui_boilerplate = !!answers.use_ui_boilerplate;
@@ -95,7 +98,6 @@ module.exports.Generator = class Generator {
             destination: '[package_name]/',
             packages: [
                 !!use_cli_boilerplate && 'commander',
-                !!use_cli_boilerplate && 'inquirer',
                 !!use_cli_boilerplate && 'execa',
                 !!use_cli_boilerplate && 'chalk',
                 !!use_cli_boilerplate && 'fs-extra',
@@ -124,7 +126,6 @@ module.exports.Generator = class Generator {
                 '@typescript-eslint/eslint-plugin',
                 'eslint-plugin-prettier',
                 'ts-essentials',
-                is_not_monorepo && 'prettier',
 
                 !company_name && 'husky',
                 !company_name && 'prettier',
@@ -132,7 +133,6 @@ module.exports.Generator = class Generator {
 
                 !!is_cli && 'ts-node',
 
-                !!use_cli_boilerplate && '@types/inquirer',
                 !!use_cli_boilerplate && '@types/fs-extra',
                 !!use_cli_boilerplate && '@types/figlet',
                 !!use_cli_boilerplate && '@types/clear',

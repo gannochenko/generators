@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * https://github.com/sapegin/jest-cheat-sheet
  */

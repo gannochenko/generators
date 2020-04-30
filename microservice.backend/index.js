@@ -263,9 +263,9 @@ module.exports.Generator = class Generator {
 
     async onAfterExecution() {
         await this.addToComposition();
+        await this.addToInfra();
         await this.makeScriptsExecutable();
         await this.runLinter();
-        await this.updateInfra();
     }
 
     async addToComposition() {
@@ -315,7 +315,7 @@ module.exports.Generator = class Generator {
         }
     }
 
-    async updateInfra() {
+    async addToInfra() {
         if (!this.answers.is_monorepo) {
             return;
         }

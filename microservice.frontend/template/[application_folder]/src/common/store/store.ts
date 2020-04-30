@@ -35,6 +35,7 @@ export const createStore = ({ history, onChange }: StoreParameters) => {
     let unsubscribe = () => {};
     if (typeof onChange === 'function') {
         unsubscribe = store.subscribe(() => {
+            // @ts-ignore
             onChange({ store, unsubscribe });
         });
     }
