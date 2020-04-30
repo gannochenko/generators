@@ -3,6 +3,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 ENV="${1:-prod}"
 
+<% if(use_k8s) { %>
 cd ${DIR}/../infra/terraform/;
 
 if [[ ! -d ./.terraform ]]; then
@@ -11,3 +12,4 @@ if [[ ! -d ./.terraform ]]; then
 fi
 
 terraform apply -auto-approve -var="env=${ENV}" -state=./state/${ENV}/terraform.tfstate -state-out=./state/${ENV}/terraform.tfstate;
+<% } %>
