@@ -21,6 +21,22 @@ module.exports.Generator = class Generator {
                 default: '',
             },
             {
+                message: 'Project name',
+                name: 'application_name',
+            },
+            {
+                message: 'Author\'s full name',
+                name: 'author_full_name',
+            },
+            {
+                message: 'Author\'s account code on GitHub',
+                name: 'github_author_code',
+            },
+            {
+                message: 'Author\'s account code on LinkedIn',
+                name: 'linkedin_author_code',
+            },
+            {
                 message: 'Is this a CLI application?',
                 name: 'is_cli',
                 type: 'confirm',
@@ -36,13 +52,6 @@ module.exports.Generator = class Generator {
             {
                 message: 'Are we inside of a monorepo?',
                 name: 'is_monorepo',
-            },
-            {
-                message: 'Application name',
-                name: 'application_name',
-                when: (answers) => {
-                    return !!answers.is_cli;
-                },
             },
             {
                 message: 'Would you like to add CLI application boilerplate?',
