@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { VerticalTriplet } from '@bucket-of-bolts/ui';
+import { VerticalTriplet } from '@gannochenko/ui';
 
 import { Top, Footer, Logo, Header, Title, Central } from './style';
 import { LayoutProperties } from './type';

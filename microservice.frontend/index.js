@@ -152,6 +152,7 @@ module.exports.Generator = class Generator {
                 'debug',
                 '@bucket-of-bolts/util',
                 '@bucket-of-bolts/ui',
+                '@gannochenko/ui',
 
                 // front
                 'react',

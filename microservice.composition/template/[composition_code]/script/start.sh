@@ -7,12 +7,21 @@ if [[ $1 = "-r" ]]; then
   REBUILD="--build"
 fi
 
-docker stop $(docker ps -aq) > /dev/null;
-
 if [[ $1 = "-d" ]] || [[ $2 = "-d" ]]; then
+    docker stop $(docker ps -aq) > /dev/null;
     docker-compose -f ${DIR}/../infra/development.infra.yml -f ${DIR}/../infra/development.yml up ${REBUILD};
 else
-    # todo: replace with some adequate concurrency manager
-    docker-compose -f ${DIR}/../infra/development.infra.yml up &
-    sleep 5; ${DIR}/applications.launch.js;
+    if [[ $1 = "-i" ]] || [[ $2 = "-i" ]]; then
+        docker stop $(docker ps -aq) > /dev/null;
+        docker-compose -f ${DIR}/../infra/development.infra.yml up
+    else
+        if [[ $1 = "-p" ]] || [[ $2 = "-p" ]]; then
+            ${DIR}/applications.launch.js;
+        else
+            docker stop $(docker ps -aq) > /dev/null;
+            # todo: replace with some adequate concurrency manager
+            docker-compose -f ${DIR}/../infra/development.infra.yml up &
+            sleep 5; ${DIR}/applications.launch.js;
+        fi
+    fi
 fi
