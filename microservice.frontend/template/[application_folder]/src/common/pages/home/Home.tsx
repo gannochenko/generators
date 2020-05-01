@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
 import { withNotification, withModal } from '@bucket-of-bolts/ui';
+import { Button } from '@material-ui/core';
 import {
     useErrorNotification,
     useDispatchUnload,
@@ -8,7 +9,7 @@ import {
     useDispatchLoad,
 } from '../../lib';
 
-import { Layout, Button } from '../../components';
+import { Layout } from '../../components';
 
 import Mushroom from '../../../../public/mushroom.png';
 import { CoinRow, Coin, ButtonWrap } from './style';
@@ -52,6 +53,8 @@ const HomePageComponent: FunctionComponent<HomePageProperties> = ({
                 <code>jss</code> plugin works:
                 <br />
                 <Button
+                    variant="contained"
+                    color="primary"
                     onClick={() => {
                         openConfirmModal(
                             <span>This is how we ask questions.</span>,
