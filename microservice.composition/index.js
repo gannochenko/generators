@@ -88,7 +88,7 @@ module.exports.Generator = class Generator {
             {
                 type: 'confirm',
                 name: 'use_k8s',
-                message: 'Do we have use K8S?',
+                message: 'Do we have K8S?',
                 default: false,
             },
         ];
