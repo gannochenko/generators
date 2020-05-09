@@ -15,6 +15,7 @@
         "image:build": "./script/image.build.sh",
         "image:push": "./script/image.push.sh",
         "image:run": "./script/image.run.sh",
+        <% if (use_ghpages) { %>}"deploy:ghp": "gh-pages -d build/public",<% } %>
         "serve": "serve ./build/public/"
     },
     "husky": {

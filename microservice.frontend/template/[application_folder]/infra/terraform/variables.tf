@@ -5,7 +5,7 @@ variable "namespace" {
 
 variable "host" {
   type = string
-  default = ""
+  default = "<%- domain_name %>"
 }
 
 variable "port" {

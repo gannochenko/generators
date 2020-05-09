@@ -107,12 +107,24 @@ module.exports.Generator = class Generator {
                 default: false,
             },
             {
-                // https://www.codeinwp.com/blog/react-ui-component-libraries-frameworks/
                 type: 'confirm',
-                name: 'use_materialui',
-                message: 'Would you like to use MaterialUI in the project?',
+                name: 'use_ghpages',
+                message: 'Do we use GitHUB pages?',
                 default: false,
             },
+            {
+                type: 'input',
+                name: 'domain_name',
+                message: 'What will be the domain name?',
+                default: false,
+            },
+            // {
+            //     // https://www.codeinwp.com/blog/react-ui-component-libraries-frameworks/
+            //     type: 'confirm',
+            //     name: 'use_materialui',
+            //     message: 'Would you like to use MaterialUI in the project?',
+            //     default: false,
+            // },
         ];
     }
 
@@ -127,6 +139,8 @@ module.exports.Generator = class Generator {
         if (answers.is_monorepo) {
             answers.application_code_global = `${path.basename(process.cwd())}_${answers.application_code}`;
         }
+
+        answers.use_materialui = true;
 
         this.answers = answers;
 
@@ -150,8 +164,7 @@ module.exports.Generator = class Generator {
 
                 // aux
                 'debug',
-                '@bucket-of-bolts/util',
-                '@bucket-of-bolts/ui',
+                '@gannochenko/etc',
                 '@gannochenko/ui',
 
                 // front
@@ -167,6 +180,7 @@ module.exports.Generator = class Generator {
                 'history',
                 'throttle-debounce',
                 'clone-deep',
+                'react-helmet',
 
                 // styles
                 'styled-components',
@@ -202,7 +216,7 @@ module.exports.Generator = class Generator {
     }
 
     getDevDependencies(answers) {
-        const { use_graphql, use_rest } = answers;
+        const { use_graphql, use_rest, use_ghpages } = answers;
 
         return {
             destination: '[application_folder]/',
@@ -254,6 +268,7 @@ module.exports.Generator = class Generator {
                 'copy-webpack-plugin',
                 'html-webpack-plugin',
                 'html-webpack-injector',
+                'dotenv-webpack',
 
                 // testing
                 'jest',
@@ -274,6 +289,7 @@ module.exports.Generator = class Generator {
                 '@typescript-eslint/eslint-plugin',
                 '@typescript-eslint/parser',
                 '@types/throttle-debounce',
+                '@types/react-helmet',
 
                 // types
                 '@types/styled-components',
@@ -285,6 +301,9 @@ module.exports.Generator = class Generator {
                 '@types/express',
                 '@types/jest',
                 '@types/clone-deep',
+
+                // deploy
+                use_ghpages && 'gh-pages',
             ],
         };
     }
