@@ -269,6 +269,10 @@ module.exports.Generator = class Generator {
                 'html-webpack-plugin',
                 'html-webpack-injector',
                 'dotenv-webpack',
+                'image-webpack-loader',
+                'html-loader',
+                'favicons-webpack-plugin',
+                'terser-webpack-plugin',
 
                 // testing
                 'jest',

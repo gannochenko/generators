@@ -8,6 +8,8 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInjector = require('html-webpack-injector');
+const Dotenv = require('dotenv-webpack');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = (env, argv) => {
     const pEnv = process.env;
@@ -103,8 +105,20 @@ module.exports = (env, argv) => {
                     include: [path.join(__dirname, 'src/client'), sourceFolder],
                 },
                 {
-                    test: /\.(txt|html)$/,
+                    test: /\.(txt)$/,
                     use: 'raw-loader',
+                },
+                {
+                    test: /\.(html)$/,
+                    use: 'html-loader',
+                },
+                {
+                    test: /\.(eot|otf|ttf|woff|woff2)$/i,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                        },
+                    ],
                 },
                 {
                     test: /\.(jpe?g|gif|png|svg|ico)$/i,
@@ -112,7 +126,29 @@ module.exports = (env, argv) => {
                         {
                             loader: 'url-loader',
                             options: {
-                                limit: 8192,
+                                limit: 10 * 1024,
+                            },
+                        },
+                        {
+                            loader: 'image-webpack-loader',
+                            options: {
+                                mozjpeg: {
+                                    progressive: true,
+                                    quality: 65,
+                                },
+                                optipng: {
+                                    optimizationLevel: 7,
+                                },
+                                pngquant: {
+                                    quality: [0.65, 0.9],
+                                    speed: 4,
+                                },
+                                gifsicle: {
+                                    interlaced: false,
+                                },
+                                // webp: {
+                                //     quality: 75,
+                                // },
                             },
                         },
                     ],
@@ -178,6 +214,20 @@ module.exports = (env, argv) => {
                     // chunks: ['index']
                 }),
             !development && new HtmlWebpackInjector(),
+            new Dotenv({
+                systemvars: true,
+            }),
+            !development && new FaviconsWebpackPlugin({
+                logo: './src/common/components/Header/assets/logo.png',
+                cache: true,
+                prefix: '/assets/',
+                favicons: {
+                    appName: 'Rasp Dashboard',
+                    appDescription: 'Rasp Dashboard',
+                    background: '#ddd',
+                    theme_color: '#333',
+                },
+            }),
         ].filter(x => !!x),
         devServer: {
             host: '0.0.0.0',
