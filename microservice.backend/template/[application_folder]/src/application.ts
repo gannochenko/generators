@@ -9,7 +9,6 @@ import process from 'process';
 import { useErrorHandler } from './lib/error-handler';
 import { useCORS } from './lib/cors';
 import { useMetrics } from './lib/metrics';
-import { Settings } from './lib/settings';
 
 <% if (use_postgres) { %>import { Database } from './lib/database';<% } %>
 <% if (use_graphql) { %>import { useGraphQL } from './graphql/server';<% } %>
@@ -17,45 +16,40 @@ import { controllers } from './controller';
 <% if (use_grpc) { %>import { useGRPC } from './grpc';<% } %>
 
 (async () => {
-    const settings = new Settings();
-
     const app = express();
     useErrorHandler(app);
 
-    const host = await settings.get('NETWORK__HOST', 'localhost');
-    const port =
-        process.env.PORT || (await settings.get('NETWORK__PORT', 3000));
+    const host = process.env.NETWORK__HOST || 'localhost';
+    const port = process.env.PORT || process.env.NETWORK__PORT || 3000;
 
     app.set('host', host);
     app.set('port', port);
-    // app.set('query parser', query => {
-    //   return qs.parse(query, { allowPrototypes: false, depth: 10 });
-    // });
 
-    await useCORS(app, settings);
-    const metricsInterval = useMetrics(app);
+    await useCORS(app);
+    useMetrics(app);
 
 <% if (use_static) { %>
     app.use(express.static(path.join(process.cwd(), 'public')));
 <% } %>
     app.use(helmet());
+<% if (use_rest) { %>
     app.use(express.json());
     app.use(
         express.urlencoded({
             extended: true,
         }),
     );
+    // app.set('query parser', query => {
+    //   return qs.parse(query, { allowPrototypes: false, depth: 10 });
+    // });
+<% } %>
 
 <% if (use_grpc) { %>
-    const grpc = await useGRPC({
-        settings,
-        server: true, // remove this if you don't need a server
-        client: true, // remove this if you don't need clients
-    });
+    const grpc = await useGRPC();
 <% } %>
 
 <% if (use_postgres) { %>
-    const database = new Database({ settings });
+    const database = new Database();
 <% } %>
     useControllers(app, controllers, async () => ({
 <% if (use_postgres) { %>
@@ -68,9 +62,7 @@ import { controllers } from './controller';
 <% if (use_graphql) { %>
     useGraphQL(
         app,
-        {
-            settings,
-        },
+        {},
         async () => ({
 <% if (use_postgres) { %>
             connection: await database.getConnection(),
@@ -87,8 +79,6 @@ import { controllers } from './controller';
     });
 
     process.on('SIGTERM', () => {
-        clearInterval(metricsInterval);
-
         server.close(error => {
             if (error) {
                 console.error(error);

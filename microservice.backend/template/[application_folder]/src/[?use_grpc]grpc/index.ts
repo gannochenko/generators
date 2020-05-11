@@ -32,7 +32,7 @@ const hasServer = () => !!serverInstance;
 
 const transformToCallbacks = (handlers: HandlersAsync) => {
     const result: HandlersCallback = {};
-    Object.keys(handlers).forEach(handlerName => {
+    Object.keys(handlers).forEach((handlerName) => {
         result[handlerName] = (call: any, callback: Callback) => {
             handlers[handlerName](call)
                 .then((res: unknown) => callback(null, res))
@@ -43,9 +43,11 @@ const transformToCallbacks = (handlers: HandlersAsync) => {
     return result;
 };
 
-export const useGRPC = async ({ settings, server, client }: any) => {
-    const host = await settings.get('GRPC__HOST', '0.0.0.0');
-    const port = await settings.get('GRPC__PORT', 50051);
+export const useGRPC = async (options?: { server: boolean, client: boolean; }) => {
+    const { server, client } = options || {};
+
+    const host = process.env.GRPC__HOST || '0.0.0.0';
+    const port = process.env.GRPC__PORT || 50051;
 
     const definition = grpc.loadPackageDefinition(gRPCSchema);
     const namespaces = Object.keys(definition);
@@ -59,10 +61,10 @@ export const useGRPC = async ({ settings, server, client }: any) => {
         const nameSpaceServices = definition[nameSpaceCode];
         const serviceNames = Object.keys(nameSpaceServices);
 
-        serviceNames.forEach(serviceName => {
+        serviceNames.forEach((serviceName) => {
             const Service = nameSpaceServices[serviceName];
             if (Service.service) {
-                if (server) {
+                if (server !== false) {
                     if (
                         !implementation[nameSpaceCode] ||
                         !implementation[nameSpaceCode][serviceName]
@@ -80,14 +82,14 @@ export const useGRPC = async ({ settings, server, client }: any) => {
                     );
                 }
 
-                if (client) {
+                if (client !== false) {
                     const clientInstance = new Service(
                         `${host}:${port}`,
                         grpc.credentials.createInsecure(),
                     );
 
                     const methodNames = Object.keys(Service.service);
-                    methodNames.forEach(methodName => {
+                    methodNames.forEach((methodName) => {
                         methodName = lCFirst(methodName);
                         if (typeof clientInstance[methodName] === 'function') {
                             clientInstance[methodName] = util.promisify(
