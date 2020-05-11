@@ -4,8 +4,8 @@
         "dev:server": "webpack --config webpack.server.js --mode development",
         "dev:client": "webpack-dev-server --config webpack.client.js --mode development",
         "dev": "rm -rf ./build && npm-run-all --parallel dev:server dev:client",
-        "build:server": "webpack --config webpack.server.js --mode production",
-        "build:client": "webpack --config webpack.client.js --mode production",
+        "build:server": "NODE_ENV=production webpack --config webpack.server.js --mode production",
+        "build:client": "NODE_ENV=production webpack --config webpack.client.js --mode production --progress",
         "build": "rm -rf ./build && npm-run-all --parallel build:client build:server",
         "test": "jest -c ./jest/config.unit.js --forceExit",
         "test:watch": "jest -c ./jest/config.unit.js --watch",
@@ -15,6 +15,9 @@
         "image:build": "./script/image.build.sh",
         "image:push": "./script/image.push.sh",
         "image:run": "./script/image.run.sh",
+        "stats:client": "NODE_ENV=production webpack --config webpack.client.js --mode production --profile --json > /tmp/stats.json",
+        "stats:client:rating": "webpack-bundle-size-analyzer /tmp/stats.json",
+        "stats:client:view": "webpack-bundle-analyzer /tmp/stats.json",
         <% if (use_ghpages) { %>}"deploy:ghp": "gh-pages -d build/public",<% } %>
         "serve": "serve ./build/public/"
     },

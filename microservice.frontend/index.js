@@ -209,7 +209,7 @@ module.exports.Generator = class Generator {
                 'response-time',
 
                 // other
-                'moment',
+                // 'moment',
                 'prop-types', // required now, should be removed later
             ],
         };
@@ -273,6 +273,8 @@ module.exports.Generator = class Generator {
                 'html-loader',
                 'favicons-webpack-plugin',
                 'terser-webpack-plugin',
+                'webpack-bundle-size-analyzer',
+                'webpack-bundle-analyzer',
 
                 // testing
                 'jest',
