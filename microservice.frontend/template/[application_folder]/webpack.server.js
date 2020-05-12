@@ -3,6 +3,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
     const pEnv = process.env;
@@ -107,6 +108,9 @@ module.exports = (env, argv) => {
                         to: path.join(destinationFolder, 'package.json'),
                     },
                 ]),
+            new Dotenv({
+                systemvars: true,
+            }),
         ].filter(x => !!x),
         output: {
             path: destinationFolder,
