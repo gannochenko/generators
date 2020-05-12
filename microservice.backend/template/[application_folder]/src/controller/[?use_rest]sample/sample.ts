@@ -5,7 +5,7 @@ import {
     BodyInput,
     ERROR_INTERNAL,
     Result,
-} from '@bucket-of-bolts/express-mvc';
+} from '@gannochenko/express.mvc';
 
 import { Context } from '../type';
 import { SampleService } from '../../service/sample';

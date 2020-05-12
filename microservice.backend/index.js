@@ -159,7 +159,7 @@ module.exports.Generator = class Generator {
                 'body-parser',
                 'cors',
                 'helmet',
-                '@bucket-of-bolts/express-mvc',
+                '@gannochenko/express.mvc',
 
                 // graphql
                 !!use_graphql && 'graphql',
@@ -179,8 +179,7 @@ module.exports.Generator = class Generator {
 
                 // other
                 'debug',
-                '@bucket-of-bolts/util',
-                '@bucket-of-bolts/microdash',
+                '@gannochenko/etc',
                 'moment',
                 'clone-deep',
             ],

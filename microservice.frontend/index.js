@@ -184,7 +184,6 @@ module.exports.Generator = class Generator {
 
                 // styles
                 'styled-components',
-                '@bucket-of-bolts/styled-companion',
 
                 // UI kit
                 use_materialui && '@material-ui/core',

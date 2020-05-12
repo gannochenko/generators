@@ -1,4 +1,4 @@
-import { Endpoint, Get } from '@bucket-of-bolts/express-mvc';
+import { Endpoint, Get } from '@gannochenko/express.mvc';
 
 @Endpoint('/')
 export class HomeController {

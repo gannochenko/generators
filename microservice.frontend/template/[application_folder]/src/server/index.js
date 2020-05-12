@@ -1,4 +1,4 @@
-import { logInfo } from '@bucket-of-bolts/util';
+import { logInfo } from '@gannochenko/etc';
 import { app } from './server';
 
 const host = app.get('host');

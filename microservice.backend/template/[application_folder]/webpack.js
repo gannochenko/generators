@@ -133,7 +133,7 @@ module.exports = (env, argv) => {
                 }),
             new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
             new webpack.ProvidePlugin({
-                logger: ['@bucket-of-bolts/util', 'logger'],
+                logger: ['@gannochenko/etc', 'logger'],
             }),
             new webpack.DefinePlugin({
                 __DEV__: development,

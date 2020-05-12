@@ -1,5 +1,5 @@
 import { Connection, createConnection } from 'typeorm';
-import { injectPassword } from '@bucket-of-bolts/util';
+import { injectPassword } from '@gannochenko/etc';
 import * as entities from '../model';
 import { ObjectLiteral } from '../type';
 

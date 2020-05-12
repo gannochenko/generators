@@ -1,4 +1,4 @@
-import { logError } from '@bucket-of-bolts/util';
+import { logError } from '@gannochenko/etc';
 import process from 'process';
 
 export const useErrorHandler = app => {

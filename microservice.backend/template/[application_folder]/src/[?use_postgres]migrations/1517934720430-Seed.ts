@@ -1,5 +1,5 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
-import { logInfo } from '@bucket-of-bolts/util';
+import { logInfo } from '@gannochenko/etc';
 import process from 'process';
 
 /**

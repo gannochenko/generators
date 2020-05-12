@@ -1,6 +1,6 @@
 // @ts-ignore
 import grpc from 'grpc';
-import { logInfo, lCFirst } from '@bucket-of-bolts/util';
+import { logInfo, lCFirst } from '@gannochenko/etc';
 import util from 'util';
 
 import gRPCSchema from './schema.proto';

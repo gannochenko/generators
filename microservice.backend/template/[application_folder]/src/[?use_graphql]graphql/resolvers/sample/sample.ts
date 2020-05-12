@@ -1,4 +1,4 @@
-import { Result } from '@bucket-of-bolts/express-mvc';
+import { Result } from '@gannochenko/express.mvc';
 import { GetSampleArguments, PutSampleArguments } from './type';
 import { SampleService } from '../../../service/sample';
 import { Context } from '../../type';

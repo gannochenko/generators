@@ -1,6 +1,6 @@
 import '@babel/polyfill';
-import { logInfo } from '@bucket-of-bolts/util';
-import { useControllers } from '@bucket-of-bolts/express-mvc';
+import { logInfo } from '@gannochenko/etc';
+import { useControllers } from '@gannochenko/express.mvc';
 import path from 'path';
 import helmet from 'helmet';
 import express from 'express';

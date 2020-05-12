@@ -1,6 +1,6 @@
 import promClient from 'prom-client';
 import responseTime from 'response-time';
-import { logInfo } from '@bucket-of-bolts/util';
+import { logInfo } from '@gannochenko/etc';
 
 /**
  * A counter that counts the invocations of the different HTTP verbs

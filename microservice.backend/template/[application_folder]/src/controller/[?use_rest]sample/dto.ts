@@ -1,4 +1,4 @@
-import { DTO, Attribute } from '@bucket-of-bolts/express-mvc';
+import { DTO, Attribute } from '@gannochenko/express.mvc';
 
 @DTO()
 export class SamplePutDTO {
