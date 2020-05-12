@@ -1,14 +1,14 @@
 import { LOAD } from './reducer';
 import { Dispatch } from '../../store/type';
-import { Client } from '../../lib';
+import { ServiceManager } from '../../lib';
 
 export default (dispatch: Dispatch) => ({
     dispatch,
-    dispatchLoad: (client: Client) =>
+    dispatchLoad: (serviceManager: ServiceManager) =>
         dispatch({
             type: LOAD,
             payload: {
-                client,
+                serviceManager,
             },
         }),
 });

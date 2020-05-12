@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, FunctionComponent } from 'react';
-import { Switch } from 'react-router';
+import React, { useEffect, FunctionComponent } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
-import { withNotification, Modal, ModalContext } from '@bucket-of-bolts/ui';
+import {
+    withNotification,
+    Notifications,
+    Route,
+    Switch,
+} from '@gannochenko/ui';
 
-import { MainProgressBar } from './style';
-import { ApplicationProperties } from './type';
+import { ApplicationProperties, ApplicationPropertiesAlt } from './type';
 import mapDispatchToProps from './dispatch';
 import {
     useNetworkMonitor,
@@ -17,25 +19,31 @@ import {
 import { SHOW_OFFLINE, SHOW_ONLINE } from './reducer';
 import { GlobalStyle } from '../../style';
 
-import { HomePage, ForbiddenPage, NotFoundPage } from '../../pages';
+import {
+    HomePageRenderer,
+    NotFoundPageRenderer,
+    ForbiddenPageRenderer,
+    Page2Renderer,
+    CookiePolicyRenderer,
+} from '../../pages';
 import { ObjectLiteral } from '../../../type';
+import { NotificationUI } from '../NotificationUI';
+import { PageProgress } from '../PageProgress';
 
 const ApplicationUIComponent: FunctionComponent<ApplicationProperties> = ({
     ready = false,
-    client,
+    serviceManager,
     history,
-    theme,
     error = null,
     notify = () => {},
+    notificationsEventEmitter,
     offline = false,
     dispatch = () => {},
     dispatchLoad = () => {},
 }) => {
     useEffect(() => {
-        dispatchLoad(client);
-    }, [client, dispatchLoad]);
-
-    const modalRef = useRef();
+        dispatchLoad(serviceManager);
+    }, [serviceManager, dispatchLoad]);
 
     useNetworkMonitor(dispatch, SHOW_ONLINE, SHOW_OFFLINE);
     useErrorNotification(error, notify);
@@ -44,31 +52,30 @@ const ApplicationUIComponent: FunctionComponent<ApplicationProperties> = ({
     return (
         <>
             <GlobalStyle />
-            <Modal ref={modalRef} theme={theme.modal} active />
-            <MainProgressBar observeGlobalLock />
-            <ModalContext.Provider value={modalRef}>
-                {ready && (
-                    <ConnectedRouter history={history}>
-                        <Switch>
-                            <Route
-                                exact
-                                path="/"
-                                render={route => <HomePage route={route} />}
-                            />
-                            <Route
-                                path="/403"
-                                render={() => <ForbiddenPage />}
-                            />
-                            <Route render={() => <NotFoundPage />} />
-                        </Switch>
-                    </ConnectedRouter>
-                )}
-            </ModalContext.Provider>
+            <Notifications emitter={notificationsEventEmitter}>
+                {(props) => <NotificationUI {...props} />}
+            </Notifications>
+            <PageProgress />
+            {ready && (
+                <ConnectedRouter history={history}>
+                    <Switch>
+                        <Route exact path="/" renderer={HomePageRenderer} />
+                        <Route exact path="/page2" renderer={Page2Renderer} />
+                        <Route
+                            exact
+                            path="/cookie-policy"
+                            renderer={CookiePolicyRenderer}
+                        />
+                        <Route path="/403" renderer={ForbiddenPageRenderer} />
+                        <Route renderer={NotFoundPageRenderer} />
+                    </Switch>
+                </ConnectedRouter>
+            )}
         </>
     );
 };
 
-export const ApplicationUI = withNotification(
+export const ApplicationUI = withNotification<ApplicationPropertiesAlt>(
     connect(
         (store: ObjectLiteral) => store.application,
         mapDispatchToProps,

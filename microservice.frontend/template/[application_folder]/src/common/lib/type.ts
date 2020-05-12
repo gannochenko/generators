@@ -1,6 +1,6 @@
 import { Store } from 'redux';
 
-export interface SplashParameters {
+export type SplashParameters = {
     store: Store;
     unsubscribe: () => void;
-}
+};

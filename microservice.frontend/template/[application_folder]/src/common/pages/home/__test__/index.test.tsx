@@ -9,7 +9,7 @@ import { fireEvent, cleanup, render, prettyDOM } from '@testing-library/react';
 
 import { HomePage } from '..';
 
-describe('<HomePage />', () => {
+describe('<Page2 />', () => {
     // beforeAll(async () => {
     // });
     // beforeEach(async () => {
@@ -20,10 +20,7 @@ describe('<HomePage />', () => {
 
     it('should render itself', async () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { getByText, getByTestId, container } = render(
-            <HomePage
-            />,
-        );
+        const { getByText, getByTestId, container } = render(<HomePage />);
 
         // console.dir(prettyDOM(container)); // to see what a render contains
         //

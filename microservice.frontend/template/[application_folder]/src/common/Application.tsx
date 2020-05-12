@@ -1,17 +1,19 @@
-import React, { useRef, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
-import { Notification, NotificationContext } from '@bucket-of-bolts/ui';
+import { EventEmitter } from 'events';
+import { NotificationContext } from '@gannochenko/ui';
+import { ThemeProvider as MUIThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from 'styled-components';
 
 import { ApplicationUI } from './components';
-import { ThemeContext, theme } from './style';
 import {
-    Settings,
-    Client,
-    ClientContext,
+    ServiceManager,
+    ServiceManagerContext,
     createHistory,
     dismissOnReady,
 } from './lib';
 import { createStore } from './store';
+import { theme } from './style';
 
 const history = createHistory();
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -19,25 +21,24 @@ const { store, saga, unsubscribe } = createStore({
     history,
     onChange: dismissOnReady,
 });
-const settings = new Settings();
-const client = new Client(settings);
+const serviceManager = new ServiceManager();
+const emitter = new EventEmitter();
 
 export const Application: FunctionComponent = () => {
-    const notificationRef = useRef();
-
     return (
-        <ThemeContext.Provider value={theme}>
-            <ClientContext.Provider value={client}>
-                <Provider store={store}>
-                    <Notification
-                        ref={notificationRef}
-                        theme={theme.notifications}
-                    />
-                    <NotificationContext.Provider value={notificationRef}>
-                        <ApplicationUI history={history} theme={theme} client={client} />
-                    </NotificationContext.Provider>
-                </Provider>
-            </ClientContext.Provider>
-        </ThemeContext.Provider>
+        <ServiceManagerContext.Provider value={serviceManager}>
+            <Provider store={store}>
+                <NotificationContext.Provider value={emitter}>
+                    <MUIThemeProvider theme={theme}>
+                        <ThemeProvider theme={theme}>
+                            <ApplicationUI
+                                history={history}
+                                serviceManager={serviceManager}
+                            />
+                        </ThemeProvider>
+                    </MUIThemeProvider>
+                </NotificationContext.Provider>
+            </Provider>
+        </ServiceManagerContext.Provider>
     );
 };

@@ -29,7 +29,7 @@ export const createStore = ({ history, onChange }: StoreParameters) => {
         compose(applyMiddleware(...middleware)),
     );
     saga.run(function* rootSaga() {
-        yield all(sagas.map(sagaItem => fork(sagaItem)));
+        yield all(sagas.map((sagaItem) => fork(sagaItem)));
     });
 
     let unsubscribe = () => {};

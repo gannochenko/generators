@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
-export interface LayoutProperties {
-    title: string;
+export type LayoutProperties = {
     children: ReactNode;
-    actions?: ReactNode;
-}
+    topPadding?: boolean;
+    bottomPadding?: boolean;
+};

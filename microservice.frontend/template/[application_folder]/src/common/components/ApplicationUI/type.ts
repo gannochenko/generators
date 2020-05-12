@@ -1,11 +1,16 @@
 import { History } from 'history';
+import { NotificationContextPropsType } from '@gannochenko/ui';
 import { ControllerProperties, PageState } from '../../store/type';
 import { Nullable } from '../../../type';
 
-export interface ApplicationProperties extends ControllerProperties {
+export type ApplicationPropertiesAlt = {
     history: History<any>;
-    offline?: boolean;
-}
+    serviceManager: any;
+};
+
+export type ApplicationProperties = ApplicationPropertiesAlt &
+    NotificationContextPropsType &
+    ControllerProperties;
 
 export interface ApplicationState extends PageState {
     offline: Nullable<boolean>;

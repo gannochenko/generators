@@ -8,7 +8,7 @@ function* load(action: LoadAction) {
     }
     const {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        payload: { client },
+        payload: { serviceManager },
     } = action;
 
     try {

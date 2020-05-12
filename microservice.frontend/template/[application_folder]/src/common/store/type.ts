@@ -1,46 +1,41 @@
 import { History } from 'history';
 import { Store } from 'redux';
-import { Error, Route, Notify } from '../type';
-import { Client } from '../lib';
+import { Error } from '../type';
+import { ServiceManager } from '../lib';
 import { Nullable, ObjectLiteral } from '../../type';
 
-export interface StoreParameters {
+export type StoreParameters = {
     history: History<any>;
     onChange: (parameters: { store: Store; unsubscribe: () => void }) => void;
-}
+};
 
-export interface PageState {
+export type PageState = {
     loading: boolean;
     ready: boolean;
     error: Nullable<Error[]>;
-}
+};
 
-export interface Action<P = ObjectLiteral> {
+export type Action<P = ObjectLiteral> = {
     type: string;
     payload: P;
-}
+};
 
-export type LoadAction = Action<Partial<{ client: Client }>>;
+export type LoadAction = Action<Partial<{ serviceManager: ServiceManager }>>;
 
-export interface ControllerProperties {
+export type ControllerProperties = {
     ready: boolean;
-    client: Client;
-    theme: ObjectLiteral;
+    offline: boolean;
+    serviceManager: ServiceManager;
     error: Nullable<Error[]>;
     dispatch?: (action: Action) => void;
     dispatchLoad?: DispatchLoad;
     dispatchUnload?: DispatchUnload;
-    notify: Notify;
-}
-
-export interface PageProperties extends ControllerProperties {
-    route: Route;
-}
+};
 
 export type Dispatch = (action: Action) => void;
 
 export type DispatchLoad = (
-    client?: Client,
+    serviceManager?: ServiceManager,
     parameters?: ObjectLiteral,
 ) => void;
 

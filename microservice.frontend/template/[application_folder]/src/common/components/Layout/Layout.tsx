@@ -1,34 +1,26 @@
 import React, { FunctionComponent } from 'react';
-import { VerticalTriplet } from '@gannochenko/ui';
+import { TripleVerticalLayout } from '@gannochenko/ui';
+import { CentralContainer } from './style';
 
-import { Top, Footer, Logo, Header, Title, Central } from './style';
 import { LayoutProperties } from './type';
+import { Footer } from '../Footer';
+import { Header } from '../Header';
+import { CookiePopup } from '../CookiePopup';
 
 export const Layout: FunctionComponent<LayoutProperties> = ({
     children,
-    title = 'Untitled page',
+    topPadding,
+    bottomPadding,
 }) => (
-    <VerticalTriplet
-        top={
-            <Top>
-                <Central>
-                    <Logo to="/">
-                        <div>L</div>
-                    </Logo>
-                </Central>
-            </Top>
-        }
-        bottom={
-            <Footer>
-                <Central>&copy; 2020 &laquo;<%- application_name %>&raquo; team</Central>
-            </Footer>
-        }
-    >
-        <Central>
-            <Header>
-                <Title>{title}</Title>
-            </Header>
+    <TripleVerticalLayout header={<Header />} footer={<Footer />}>
+        <CentralContainer topPadding={topPadding} bottomPadding={bottomPadding}>
             {children}
-        </Central>
-    </VerticalTriplet>
+        </CentralContainer>
+        <CookiePopup />
+    </TripleVerticalLayout>
 );
+
+Layout.defaultProps = {
+    topPadding: true,
+    bottomPadding: true,
+};
