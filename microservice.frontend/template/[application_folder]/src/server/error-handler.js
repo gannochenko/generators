@@ -1,18 +1,18 @@
 import { logError } from '@gannochenko/etc';
 import process from 'process';
 
-export const useErrorHandler = app => {
+export const useErrorHandler = (app) => {
     // catching async unhandled rejections
     process
-        // @ts-ignore
-        .on('unhandledRejection', error => {
+    // @ts-ignore
+        .on('unhandledRejection', (error) => {
             if (__DEV__) {
                 // eslint-disable-next-line no-console
                 console.error(error);
             }
             logError('Unhandled rejection', error);
         })
-        .on('uncaughtException', error => {
+        .on('uncaughtException', (error) => {
             if (__DEV__) {
                 // eslint-disable-next-line no-console
                 console.error(error);

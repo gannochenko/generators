@@ -71,7 +71,7 @@ export const startCollection = () => {
     return promClient.collectDefaultMetrics();
 };
 
-export const useMetrics = app => {
+export const useMetrics = (app) => {
     app.use(requestCounters);
     app.use(responseCounters);
 

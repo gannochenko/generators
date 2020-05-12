@@ -6,26 +6,23 @@ import { useErrorHandler } from './error-handler';
 
 import { useCORS } from './cors';
 import { useMetrics } from './metrics';
-import { Settings } from './settings';
 import { Template } from './template';
 
 // import { renderToString } from 'react-dom/server';
 // import Application from "../common/Application";
 
-const settings = new Settings();
-
 export const app = express();
 // eslint-disable-next-line react-hooks/rules-of-hooks
 useErrorHandler(app);
 
-const host = settings.getSync('NETWORK__HOST', 'localhost');
-const port = process.env.PORT || settings.getSync('NETWORK__PORT', <%- port %>);
+const host = process.env.NETWORK__HOST || 'localhost';
+const port = process.env.PORT || <%- port %>;
 
 app.set('host', host);
 app.set('port', port);
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
-useCORS(app, settings);
+useCORS(app);
 app.use(helmet());
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -37,7 +34,7 @@ app.get('/health', (req, res) => {
     res.send('1');
 });
 
-const template = new Template(settings);
+const template = new Template();
 
 // todo: use renderer here
 app.get('*', async (req, res) => {
