@@ -1,6 +1,7 @@
 import { ApolloServer } from 'apollo-server-express';
 import { mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import { Express } from 'express';
+import { logInfo } from '@gannochenko/etc';
 
 import { types } from './types';
 import { resolvers } from './resolvers';
@@ -29,4 +30,8 @@ export const useGraphQL = (
         introspection: __DEV__,
     });
     server.applyMiddleware({ app });
+
+    if (__DEV__) {
+        logInfo(`🚀 <%- application_name %> GraphQL playground is running at http://${app.get('host')}:${app.get('port')}/graphql`);
+    }
 };

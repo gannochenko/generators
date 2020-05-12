@@ -1,9 +1,9 @@
-import { Connection } from 'typeorm';
+<% if (use_postgres) { %>import { Connection } from 'typeorm';<% } %>
 
 export interface DataSources {
 }
 
 export interface Context {
     token: string;
-    connection: Connection;
+<% if (use_postgres) { %>    connection: Connection;<% } %>
 }

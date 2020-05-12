@@ -8,12 +8,12 @@ export const sampleResolvers = {
         getSample: async (
             source: any,
             args: GetSampleArguments,
-            { connection }: Context /* , ast: any */,
+            { <% if (use_postgres) { %>connection<% } %> }: Context /* , ast: any */,
         ) => {
             const { id } = args;
             const result = new Result();
 
-            const sampleService = new SampleService(connection);
+            const sampleService = new SampleService(<% if (use_postgres) { %>connection<% } %>);
 
             result.data = await sampleService.getById(id);
 
@@ -24,12 +24,12 @@ export const sampleResolvers = {
         putSample: async (
             source: any,
             args: PutSampleArguments,
-            { connection }: Context /* , ast: any */,
+            { <% if (use_postgres) { %>connection<% } %> }: Context /* , ast: any */,
         ) => {
             const { data } = args;
             const result = new Result();
 
-            const sampleService = new SampleService(connection);
+            const sampleService = new SampleService(<% if (use_postgres) { %>connection<% } %>);
 
             result.data = await sampleService.create(data);
 

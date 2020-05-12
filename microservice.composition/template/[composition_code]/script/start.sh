@@ -15,8 +15,8 @@ else
         docker stop $(docker ps -aq) > /dev/null;
         docker-compose -f ${DIR}/../infra/development.infra.yml up
     else
-        if [[ $1 = "-p" ]] || [[ $2 = "-p" ]]; then
-            ${DIR}/applications.launch.js;
+        if [[ $1 = "-p" ]]; then
+            ${DIR}/applications.launch.js $2;
         else
             docker stop $(docker ps -aq) > /dev/null;
             # todo: replace with some adequate concurrency manager
