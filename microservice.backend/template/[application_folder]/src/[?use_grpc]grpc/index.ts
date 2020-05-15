@@ -2,6 +2,7 @@
 import grpc from 'grpc';
 import { logInfo, lCFirst } from '@gannochenko/etc';
 import util from 'util';
+import { Express } from 'express';
 
 import gRPCSchema from './schema.proto';
 import { implementation } from './implementation';
@@ -43,10 +44,10 @@ const transformToCallbacks = (handlers: HandlersAsync) => {
     return result;
 };
 
-export const useGRPC = async (options?: { server: boolean, client: boolean; }) => {
+export const useGRPC = async (app: Express, options?: { server: boolean, client: boolean; }) => {
     const { server, client } = options || {};
 
-    const host = process.env.GRPC__HOST || '0.0.0.0';
+    const host = app.get('host') || '0.0.0.0';
     const port = process.env.GRPC__PORT || 50051;
 
     const definition = grpc.loadPackageDefinition(gRPCSchema);

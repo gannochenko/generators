@@ -23,8 +23,7 @@ environment:
     - DATABASE__URL=postgres://root:123@db:5432/<%- database_name %>
 <% } %>
 <% if (use_grpc) { %>
-    - GRPC__PORT=5000
-    - GRPC__HOST=<%- application_code %>
+    - GRPC__PORT=<%- grpc_port %>
 <% } %>
 labels:
     com.list.name: <%- application_name %>
