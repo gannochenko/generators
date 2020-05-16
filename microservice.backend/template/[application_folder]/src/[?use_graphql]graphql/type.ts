@@ -6,4 +6,5 @@ export interface DataSources {
 export interface Context {
     token: string;
 <% if (use_postgres) { %>    connection: Connection;<% } %>
+    [k: string]: any;
 }

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+service Sample {
+    rpc doStuff (DoStuffRequest) returns (DoStuffReply) {}
+}
+
+message DoStuffRequest {
+    int32 counter = 1;
+}
+
+message DoStuffReply {
+}

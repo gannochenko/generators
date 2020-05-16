@@ -44,7 +44,9 @@ import { controllers } from './controller';
 <% } %>
 
 <% if (use_grpc) { %>
-    const grpc = await useGRPC(app);
+    const grpc = await useGRPC(app, {
+        Sample: 'sample.host.com',
+    });
 <% } %>
 
 <% if (use_postgres) { %>
