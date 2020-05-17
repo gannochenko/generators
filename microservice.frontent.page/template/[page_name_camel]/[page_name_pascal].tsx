@@ -1,12 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
-import { withNotification } from '@bucket-of-bolts/ui';
-import {
-    usePage,
-} from '../../lib';
+import { RendererType, withNotification } from '@gannochenko/ui';
+import { withClient, usePage } from '../../lib';
 import { Container, Layout, Link, SEO } from '../../components';
 
-import { <%- page_name_pascal %>PageProperties } from './type';
+import { <%- page_name_pascal %>PagePropsType, <%- page_name_pascal %>PageOwnPropsType } from './type';
 import { mapDispatchToProps } from './dispatch';
 
 import { ObjectLiteral } from '../../../type';
@@ -24,7 +22,7 @@ const <%- page_name_pascal %>PageComponent: FunctionComponent<<%- page_name_pasc
     );
 };
 
-export const <%- page_name_pascal %>Page = withNotification(
+export const <%- page_name_pascal %>Page = withNotification<<%- page_name_pascal %>PageOwnPropsType>(
     withClient(
         connect(
             (state: ObjectLiteral) => state.<%- page_name_camel %>,
