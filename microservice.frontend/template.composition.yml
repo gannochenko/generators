@@ -19,7 +19,7 @@ environment:
     - NETWORK__CORS=
     - TEMPLATE__PATH=./index.html
 <% if (use_rest) { %>
-    - API__URL=http://localhost:<%- api_port %>
+    - NETWORK__API=http://localhost:<%- api_port %>
 <% } %>
 labels:
     com.list.name: <%- application_name %>
