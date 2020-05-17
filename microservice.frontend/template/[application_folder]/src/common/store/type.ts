@@ -22,11 +22,9 @@ export type Action<P = ObjectLiteral> = {
 
 export type LoadAction = Action<Partial<{ serviceManager: ServiceManager }>>;
 
-export type ControllerProperties = {
-    ready: boolean;
+export type ControllerProperties = PageState & {
     offline: boolean;
     serviceManager: ServiceManager;
-    error: Nullable<Error[]>;
     dispatch?: (action: Action) => void;
     dispatchLoad?: DispatchLoad;
     dispatchUnload?: DispatchUnload;
