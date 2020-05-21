@@ -20,4 +20,21 @@ export class SampleGQLService extends Service {
             },
         });
     }
+
+    async querySomething() {
+        return Service.getApollo().mutate({
+            mutation: gql`
+                mutation MutateSomething($flag: Boolean) {
+                    mutateSomething(flag: $flag) {
+                        errors {
+                            code
+                        }
+                    }
+                }
+            `,
+            variables: {
+                flag,
+            },
+        });
+    }
 }

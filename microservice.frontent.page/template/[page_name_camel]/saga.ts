@@ -15,7 +15,7 @@ function* load(action: LoadAction) {
     const service = serviceManager.getService('sample') as SampleService;
 
     try {
-        const result = yield call(() => service.doSomething());
+        const result = (yield call(() => service.doSomething()));
         if (result.errors.length) {
             const error = result.errors[0];
             yield put({ type: reducer.LOAD_FAILURE, payload: error });
