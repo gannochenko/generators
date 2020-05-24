@@ -9,7 +9,7 @@ import { mapDispatchToProps } from './dispatch';
 
 import { ObjectLiteral } from '../../../type';
 
-const <%- page_name_pascal %>PageComponent: FunctionComponent<<%- page_name_pascal %>PageProperties> = (props) => {
+const <%- page_name_pascal %>PageComponent: FunctionComponent<<%- page_name_pascal %>PagePropsType> = (props) => {
     usePage(props);
 
     return (
