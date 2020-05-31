@@ -1,11 +1,16 @@
 import React, { FunctionComponent } from 'react';
+import {HeaderMainContainer} from './style';
+<% if (use_blog) { %>
+import animateScrollTo from 'animated-scroll-to';
+<% } %>
 
 import { Props } from './type';
-import animateScrollTo from 'animated-scroll-to';
+import { Menu } from '../../../Menu';
 import {
+    HeaderMainContainer,
+<% if (use_blog) { %>
     Arrow,
     BackgroundImage,
-    HeaderMainContainer,
     Data,
     DataColumn,
     GreetingBlock,
@@ -16,16 +21,20 @@ import {
     NameBlock,
     SocialBar,
     MenuOffset,
+<% } %>
 } from './style';
+<% if (use_blog) { %>
 import { Avatar } from '../../../Avatar';
 import { Social } from '../../../Social';
 import { Copyright } from '../../../Copyright';
 import { links } from '../../../../lib/[?use_blog]links';
-import { Menu } from '../../../Menu';
+<% } %>
 
 export const HeaderMain: FunctionComponent<Props> = ({
+<% if (use_blog) { %>
     backgroundImage,
     inner,
+<% } %>
 }) => {
     const scrollWindow = () => {
         const data = document.querySelector('.intro-data');
@@ -45,6 +54,7 @@ export const HeaderMain: FunctionComponent<Props> = ({
     return (
         <>
             <HeaderMainContainer>
+<% if (use_blog) { %>
                 {!inner && (
                     <>
                         <BackgroundImage
@@ -53,7 +63,6 @@ export const HeaderMain: FunctionComponent<Props> = ({
                         <ImageOverlay />
                         <Data className="intro-data">
                             <DataColumn>
-<% if (use_blog) { %>
                                 <HelloBlock>
                                     <HelloLeft
                                         effectName="fade-enter"
@@ -109,7 +118,6 @@ export const HeaderMain: FunctionComponent<Props> = ({
                                         </SocialBar>
                                     </HelloRight>
                                 </HelloBlock>
-<% } %>
                             </DataColumn>
                         </Data>
                         <Arrow
@@ -119,8 +127,13 @@ export const HeaderMain: FunctionComponent<Props> = ({
                     </>
                 )}
                 {inner && <MenuOffset />}
+<% } %>
+<% if (no_blog) { %>
+                <MenuOffset />
+<% } %>
                 <Menu />
             </HeaderMainContainer>
+<% if (use_blog) { %>
             {!inner && (
                 <Copyright
                     author="Caspar Camille Rubin"
@@ -128,6 +141,7 @@ export const HeaderMain: FunctionComponent<Props> = ({
                     sourceText="Unsplash"
                 />
             )}
+<% } %>
         </>
     );
 };

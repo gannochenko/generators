@@ -14,7 +14,6 @@ export const LayoutInner: FunctionComponent<Props> = props => {
                 backUrl = '',
                 keywords = [],
                 description = '',
-                // eslint-disable-next-line @typescript-eslint/camelcase
                 show_title = 1,
                 images = [],
             } = {},

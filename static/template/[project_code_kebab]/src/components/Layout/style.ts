@@ -7,7 +7,7 @@ export const Main = styled.div`
 `;
 
 export const Body = styled.main`
-    flex-grow: 2;
+    flex-grow: 1;
 `;
 
 export const Overflow = styled.div`

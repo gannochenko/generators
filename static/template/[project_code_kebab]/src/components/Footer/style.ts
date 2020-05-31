@@ -4,7 +4,7 @@ import { align, gap } from '@gannochenko/etc';
 export const Container = styled.footer`
     position: relative;
     margin: 0;
-    padding: 4rem 1rem;
+    padding: 2rem 1rem;
     ${align('center', 'center', 'column')}
 
     background-color: ${({ theme }) => theme.color.backgroundSecondary};
@@ -16,7 +16,6 @@ export const Container = styled.footer`
 `;
 
 export const Info = styled.div`
-    margin-top: 1rem;
     display: flex;
     ${gap(null, '1rem')};
 `;

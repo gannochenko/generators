@@ -165,7 +165,7 @@ module.exports.Generator = class Generator {
     async runLinter() {
         const { execa, pathExists } = this.util;
 
-        const applicationFolder = path.join(this.context.destinationPath, this.answers.application_folder);
+        const applicationFolder = path.join(this.context.destinationPath, this.answers.project_code_kebab);
         if (await pathExists(applicationFolder)) {
             await execa('yarn', ['run', 'lint:fix'], {
                 cwd: applicationFolder,

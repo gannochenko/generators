@@ -21,8 +21,7 @@ export const H4 = styled.h3`
     font-size: 1.1rem;
 `;
 
-export const Anchor = styled.a`
+export const Anchor = styled.a<{ name: string; }>`
     text-decoration: none;
-    ${({ theme }) =>
-        foregroundColor(colorEdward, theme.color.link.hover, '300ms')}
+    ${({ theme }) => foregroundColor(colorEdward, theme.color.link.hover, '300ms')}
 `;

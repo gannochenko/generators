@@ -49,7 +49,6 @@ export const Typography: FunctionComponent<Props> = ({
         <Tag {...restProps}>
             {trueChildren}{' '}
             {!!aKey && (
-                // @ts-ignore
                 <Anchor href={`#${aKey}`} name={aKey}>
                     #
                 </Anchor>

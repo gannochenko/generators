@@ -33,6 +33,7 @@ export type ContentRecordType = {
         description?: string;
         published?: boolean;
 <% } %>
+        show_title?: boolean;
         path?: string;
     } & ObjectLiteral;
     body: string;

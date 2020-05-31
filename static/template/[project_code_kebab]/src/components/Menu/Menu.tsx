@@ -33,7 +33,7 @@ export const Menu: FunctionComponent<Props> = () => {
 <% if (use_blog) { %>
                         <Item to="/blog">Blog</Item>
 <% } %>
-<% if (use_blog) { %>
+<% if (no_blog) { %>
                         <Item to="/content">Content</Item>
 <% } %>
                     </Items>

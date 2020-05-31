@@ -1,13 +1,9 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 module.exports = {
     // pathPrefix: '/path-prefix',
     siteMetadata: {
         title: '<%- project_web_title %>',
         description: '<%- project_description %>',
-<% if(github_account_name) { %>
         author: '@<%- github_account_name %>',
-<% } %>
         keywords: ['update', 'these', 'keywords', 'later', 'on'],
         siteUrl: 'https://<%- project_domain %>',
     },

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { Props } from './type';
 import { Query } from './query';
 
@@ -33,23 +33,23 @@ export const SEO: FunctionComponent<Props> = ({
                             lang,
                         }}
                         title={title}
-                        titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+                        titleTemplate={'%s | ${data.site.siteMetadata.title}'}
                         meta={[
                             {
-                                name: `description`,
+                                name: 'description',
                                 content: metaDescription,
                             },
                             {
-                                property: `og:title`,
+                                property: 'og:title',
                                 content: title,
                             },
                             {
-                                property: `og:description`,
+                                property: 'og:description',
                                 content: metaDescription,
                             },
                             {
-                                property: `og:type`,
-                                content: `website`,
+                                property: 'og:type',
+                                content: 'website',
                             },
                             image
                                 ? {
@@ -62,8 +62,8 @@ export const SEO: FunctionComponent<Props> = ({
                                 allKeywords.length > 0
                                     ? [
                                           {
-                                              name: `keywords`,
-                                              content: allKeywords.join(`, `),
+                                              name: 'keywords',
+                                              content: allKeywords.join(', '),
                                           },
                                       ]
                                     : [],
