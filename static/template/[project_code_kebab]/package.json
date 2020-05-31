@@ -1,0 +1,103 @@
+{
+    "name": "<%- project_code %>",
+    "description": "",
+    "version": "1.0.0",
+    "author": "<%- author_name %>",
+    "dependencies": {
+        "@gannochenko/etc": "^1.0.3",
+        "@gannochenko/ui": "^1.0.14",
+        "@mdx-js/mdx": "^1.5.7",
+        "@mdx-js/react": "^1.5.7",
+        "animated-scroll-to": "^2.0.3",
+        "babel-plugin-styled-components": "^1.10.0",
+        "color": "^3.1.2",
+        "copy-to-clipboard": "^3.3.1",
+        "debounce": "^1.2.0",
+        "events": "^3.0.0",
+        "gatsby": "^2.1.18",
+        "gatsby-image": "^2.0.30",
+        "gatsby-plugin-catch-links": "^2.1.26",
+        "gatsby-plugin-google-analytics": "^2.2.2",
+        "gatsby-plugin-manifest": "^2.0.19",
+        "gatsby-plugin-mdx": "^1.0.74",
+        "gatsby-plugin-netlify-cms": "^4.1.21",
+        "gatsby-plugin-offline": "^3.1.2",
+        "gatsby-plugin-react-helmet": "^3.0.7",
+        "gatsby-plugin-sharp": "^2.0.22",
+        "gatsby-plugin-sitemap": "^2.4.3",
+        "gatsby-plugin-styled-components": "^3.0.6",
+        "gatsby-remark-images": "^3.1.25",
+        "gatsby-remark-relative-images": "^0.2.3",
+        "gatsby-source-filesystem": "^2.0.23",
+        "gatsby-transformer-remark": "^2.6.26",
+        "gatsby-transformer-sharp": "^2.1.14",
+        "markdown-it": "^10.0.0",
+        "netlify-cms-app": "^2.9.7",
+        "prism-react-renderer": "^1.0.2",
+        "react": "^16.8.3",
+        "react-dom": "^16.8.3",
+        "react-helmet": "^5.2.0",
+        "sharp": "^0.23.0",
+        "styled-components": "^4.3.2",
+        "throttle-debounce": "^2.1.0",
+        "write": "^2.0.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.6.0",
+        "@types/color": "^3.0.1",
+        "@types/debounce": "^1.2.0",
+        "@types/events": "^3.0.0",
+        "@types/markdown-it": "^0.0.9",
+        "@types/mdx-js__react": "^1.5.0",
+        "@types/react-helmet": "^5.0.10",
+        "@types/styled-components": "^4.1.19",
+        "@types/throttle-debounce": "^2.1.0",
+        "@typescript-eslint/eslint-plugin": "^2.3.0",
+        "@typescript-eslint/parser": "^2.3.0",
+        "eslint": "^6.4.0",
+        "eslint-config-airbnb-base": "^14.0.0",
+        "eslint-config-prettier": "^6.3.0",
+        "eslint-plugin-import": "^2.17.3",
+        "eslint-plugin-jsx-a11y": "^6.2.1",
+        "eslint-plugin-prettier": "^3.1.0",
+        "eslint-plugin-react": "^7.13.0",
+        "eslint-plugin-react-hooks": "^2.0.1",
+        "gatsby-plugin-typescript": "^2.1.8",
+        "gh-pages": "^2.0.1",
+        "husky": "^3.0.5",
+        "prettier": "^1.17.1",
+        "pretty-quick": "^1.11.0",
+        "typescript": "^3.6.3",
+        "typescript-styled-plugin": "^0.14.0"
+    },
+    "keywords": [
+        "gatsby"
+    ],
+    "license": "MIT",
+    "scripts": {
+        "build": "gatsby build",
+        "build:gh": "gatsby build --prefix-paths; cp CNAME public/CNAME",
+        "deploy:gh": "gh-pages -d public",
+        "develop": "rm -rf ./.cache/; gatsby develop --host=0.0.0.0",
+        "dev": "yarn run develop",
+        "format": "prettier --write src/**/*.{js,jsx}",
+        "start": "yarn run develop",
+        "serve": "gatsby serve --host=0.0.0.0",
+        "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
+        "lint": "eslint ./src/ --ext .jsx,.tsx",
+        "lint:fix": "eslint ./src/ --ext .ts,.tsx --fix",
+        "start:local": "yarn build; yarn serve"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/<%- github_account_name %>/<%- github_repository_name %>"
+    },
+    "bugs": {
+        "url": "https://github.com/<%- github_account_name %>/<%- github_repository_name %>/issues"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    }
+}

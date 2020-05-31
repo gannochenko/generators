@@ -1,0 +1,59 @@
+---
+title: Home
+---
+
+import { Container } from '../../src/components/Container';
+import { Effect } from '@gannochenko/ui';
+import { BlogPostList } from '../components/BlogPostList';
+import { graphql } from 'gatsby';
+
+## Latest in Blog
+
+<Container>
+    <BlogPostList data={props.data.allMdx.edges} showLink />
+</Container>
+
+<Effect>
+
+## Hi
+
+My name is Sergei, I am a **full-stack software engineer in JavaScript domain**. My life is tech and tech is my life. I enjoy writing efficient, clean code of high standard, as well as making crappy prototypes to validate ideas. Sometimes I publish articles on what I recently discovered, hoping to save somebody else's efforts.
+
+Besides coding I adore good XII-XIX century european brick architecture, as well as some modern one, so when I travel I take photos here and there. I am also studying German, because, you know, I need that to survive in Germany^^. On top of that, right now I am learning investment and finance as a hobby. Who knows where it brings me, haha.
+
+So yeh, I am a passionate learner, in deep love with what I do. Currently I am based in Berlin, Germany, where I help great companies in making products of their customers dreams.
+
+</Effect>
+
+export const homePageQuery = graphql`
+    query homePageQuery {
+        allMdx(
+            sort: { fields: [frontmatter___date], order: DESC }
+            filter: { frontmatter: { published: { eq: true } } }
+            limit: 3
+        ) {
+            edges {
+                node {
+                    id
+                    frontmatter {
+                        title
+                        date
+                        path
+                        preview
+                        description
+                        images {
+                            image {
+                                childImageSharp {
+                                    fluid(maxWidth: 1240, quality: 80) {
+                                        ...GatsbyImageSharpFluid_tracedSVG
+                                    }
+                                }
+                            }
+                            is_cover
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
