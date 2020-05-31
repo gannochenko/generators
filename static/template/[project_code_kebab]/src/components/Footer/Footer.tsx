@@ -10,7 +10,7 @@ export const Footer: FunctionComponent = () => {
     return (
         <Container>
             <Info>
-                <NoWrap>&copy; 2017 &mdash; current</NoWrap>
+                <NoWrap>&copy; then &mdash; now</NoWrap>
                 <Link to="/cookie-policy" bright>
                     Cookie policy
                 </Link>
