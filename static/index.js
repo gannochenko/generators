@@ -75,33 +75,90 @@ module.exports.Generator = class Generator {
 
     async getDependencies(answers) {
         // list your dependencies here
-        const { use_react } = answers;
+        const { use_blog, ga_id } = answers;
 
         return {
-            destination: '[project_name_kebab]/',
-            packages: [!!use_react && 'react', !!use_react && 'react-dom'],
+            destination: '[project_code_kebab]/',
+            packages: [
+                '@gannochenko/etc',
+                '@gannochenko/ui',
+                '@mdx-js/mdx',
+                '@mdx-js/react',
+                'animated-scroll-to',
+                'babel-plugin-styled-components',
+                'color',
+                !!ga_id && 'copy-to-clipboard',
+                'debounce',
+                'events',
+                'gatsby',
+                'gatsby-image',
+                'gatsby-plugin-catch-links',
+                !!ga_id && 'gatsby-plugin-google-analytics',
+                'gatsby-plugin-manifest',
+                'gatsby-plugin-mdx',
+                'gatsby-plugin-netlify-cms',
+                'gatsby-plugin-offline',
+                'gatsby-plugin-react-helmet',
+                'gatsby-plugin-sharp',
+                'gatsby-plugin-sitemap',
+                'gatsby-plugin-styled-components',
+                'gatsby-remark-images',
+                'gatsby-remark-relative-images',
+                'gatsby-source-filesystem',
+                'gatsby-transformer-remark',
+                'gatsby-transformer-sharp',
+                'markdown-it',
+                'netlify-cms-app',
+                !!use_blog && 'prism-react-renderer',
+                'react',
+                'react-dom',
+                'react-helmet',
+                'sharp',
+                'styled-components@4',
+                'throttle-debounce',
+                'write',
+            ],
         };
     }
 
     async getDevDependencies(answers) {
         // list your dev dependencies here
-        const { use_react } = answers;
+        const { use_blog } = answers;
 
         return {
-            destination: '[project_name_kebab]/',
-            packages: ['jest', !!use_react && '@testing-library/react'],
+            destination: '[project_code_kebab]/',
+            packages: [
+                '@babel/core',
+                '@types/color',
+                '@types/debounce',
+                '@types/events',
+                '@types/markdown-it',
+                '@types/mdx-js__react',
+                '@types/react-helmet',
+                '@types/styled-components@4',
+                '@types/throttle-debounce',
+                '@typescript-eslint/eslint-plugin',
+                '@typescript-eslint/parser',
+                'eslint',
+                'eslint-config-airbnb-base',
+                'eslint-config-prettier',
+                'eslint-plugin-import',
+                'eslint-plugin-jsx-a11y',
+                'eslint-plugin-prettier',
+                'eslint-plugin-react',
+                'eslint-plugin-react-hooks',
+                'gatsby-plugin-typescript',
+                'gh-pages',
+                'husky',
+                'prettier',
+                'pretty-quick',
+                'typescript',
+                'typescript-styled-plugin',
+            ],
         };
     }
 
-    // async onAfterExecution() {
-    //     // do something after the code gets generated
-    //     console.log('onAfterExecution()');
-    //     await this.util.execa('git', ['init'], {
-    //         cwd: path.join(
-    //             this.context.destinationPath,
-    //             this.answers.package_name_kebab,
-    //         ),
-    //         stdio: ['inherit', 'inherit', 'inherit'],
-    //     });
-    // }
+    async onAfterExecution() {
+        await this.runLinter();
+    }
 };
