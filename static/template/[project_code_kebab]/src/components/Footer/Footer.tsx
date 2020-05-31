@@ -6,7 +6,7 @@ import {
 } from './style';
 import { Link } from '../Link';
 
-export const Footer: FunctionComponent<{}> = () => {
+export const Footer: FunctionComponent = () => {
     return (
         <Container>
             <Info>

@@ -30,10 +30,10 @@ export const Menu: FunctionComponent<Props> = () => {
                 <Home to="/" onClick={onMobileItemClick} />
                 <Right>
                     <Items>
-<%- if (use_blog) { %>
+<% if (use_blog) { %>
                         <Item to="/blog">Blog</Item>
 <% } %>
-<%- if (use_blog) { %>
+<% if (use_blog) { %>
                         <Item to="/content">Content</Item>
 <% } %>
                     </Items>
@@ -45,12 +45,12 @@ export const Menu: FunctionComponent<Props> = () => {
                 </Right>
             </InnerContainer>
             <MobileItems open={mobileMenuOpen}>
-<%- if (use_blog) { %>
+<% if (use_blog) { %>
                 <MobileItem to="/blog" onClick={onMobileItemClick}>
                     Blog
                 </MobileItem>
 <% } %>
-<%- if (no_blog) { %>
+<% if (no_blog) { %>
                 <MobileItem to="/content" onClick={onMobileItemClick}>
                     Content
                 </MobileItem>

@@ -53,7 +53,7 @@ export const HeaderMain: FunctionComponent<Props> = ({
                         <ImageOverlay />
                         <Data className="intro-data">
                             <DataColumn>
-<%- if (use_blog) { %>
+<% if (use_blog) { %>
                                 <HelloBlock>
                                     <HelloLeft
                                         effectName="fade-enter"
@@ -109,7 +109,7 @@ export const HeaderMain: FunctionComponent<Props> = ({
                                         </SocialBar>
                                     </HelloRight>
                                 </HelloBlock>
-<% { %>
+<% } %>
                             </DataColumn>
                         </Data>
                         <Arrow

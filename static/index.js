@@ -3,7 +3,7 @@ const path = require('path');
 module.exports.Generator = class Generator {
     getName() {
         // this is the name your generator will appear in the list under
-        return 'static';
+        return 'Static website on Gatsby';
     }
 
     async getQuestions() {
@@ -160,5 +160,17 @@ module.exports.Generator = class Generator {
 
     async onAfterExecution() {
         await this.runLinter();
+    }
+
+    async runLinter() {
+        const { execa, pathExists } = this.util;
+
+        const applicationFolder = path.join(this.context.destinationPath, this.answers.application_folder);
+        if (await pathExists(applicationFolder)) {
+            await execa('yarn', ['run', 'lint:fix'], {
+                cwd: applicationFolder,
+                stdio: ['inherit', 'inherit', 'inherit'],
+            });
+        }
     }
 };

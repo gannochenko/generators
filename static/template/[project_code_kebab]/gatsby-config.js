@@ -5,7 +5,7 @@ module.exports = {
     siteMetadata: {
         title: '<%- project_web_title %>',
         description: '<%- project_description %>',
-<% if(author_code) { %>
+<% if(github_account_name) { %>
         author: '@<%- github_account_name %>',
 <% } %>
         keywords: ['update', 'these', 'keywords', 'later', 'on'],

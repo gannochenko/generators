@@ -101,7 +101,7 @@ export const MenuOffset = styled.div`
     height: 40px;
 `;
 
-<%- if (use_blog) { %>
+<% if (use_blog) { %>
 export const HelloBlock = styled.div`
     color: #fff;
     ${({ theme }) =>

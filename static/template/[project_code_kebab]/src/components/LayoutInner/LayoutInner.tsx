@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import React, { FunctionComponent } from 'react';
 import { Body, BackLink } from './style';
 import { Props } from './type';
