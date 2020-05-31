@@ -16,7 +16,7 @@
 <br />
 <p align="center">
   <!--
-  <a href="https://github.com/gannochenko/linguacourse">
+  <a href="https://github.com/gannochenko/<%- composition_code %>">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
   -->
