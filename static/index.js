@@ -56,7 +56,7 @@ module.exports.Generator = class Generator {
             },
             {
                 message: 'Bootstrap blog?',
-                name: 'ga_id',
+                name: 'use_blog',
                 type: 'confirm',
                 default: false,
             },
@@ -68,6 +68,7 @@ module.exports.Generator = class Generator {
         answers.project_code_kebab = this.util.textConverter.toKebab(
             answers.project_code,
         );
+        answers.no_blog = !answers.use_blog;
 
         return answers;
     }

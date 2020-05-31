@@ -36,6 +36,7 @@ exports.onCreateNode = ({ node }) => {
     fmImagesToRelative(node);
 };
 
+<% if(use_blog) { %>
 exports.createPages = ({ graphql, actions }) => {
     return new Promise((resolve, reject) => {
         resolve(
@@ -95,6 +96,59 @@ exports.createPages = ({ graphql, actions }) => {
         );
     });
 };
+<% } %>
+<% if(no_blog) { %>
+    exports.createPages = ({ graphql, actions }) => {
+        return new Promise((resolve, reject) => {
+            resolve(
+                graphql(`
+                query CreatePagesQuery {
+                    allMdx {
+                        edges {
+                            node {
+                                id
+                                frontmatter {
+                                    path
+                                }
+                            }
+                        }
+                    }
+                }
+            `).then(result => {
+                    if (result.errors) {
+                        console.error(result.errors);
+                        reject(result.errors);
+                    }
+
+                    let edges = result.data.allMdx.edges;
+                    if (!edges) {
+                        return;
+                    }
+
+                    edges.forEach(({ node }) => {
+                        const {
+                            frontmatter: { path: pathProperty, published },
+                        } = node;
+
+                        actions.createPage({
+                            // Encode the route
+                            path: pathProperty,
+                            // Layout for the page
+                            component: path.resolve(
+                                './src/components/ContentPageLayout/ContentPageLayout.tsx',
+                            ),
+                            // Values defined here are injected into the page as props and can
+                            // be passed to a GraphQL query as arguments
+                            context: {
+                                id: node.id,
+                            },
+                        });
+                    });
+                }),
+            );
+        });
+    };
+<% } %>
 
 exports.onCreateWebpackConfig = ({
     stage,

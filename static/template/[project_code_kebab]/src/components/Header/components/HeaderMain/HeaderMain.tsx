@@ -20,7 +20,7 @@ import {
 import { Avatar } from '../../../Avatar';
 import { Social } from '../../../Social';
 import { Copyright } from '../../../Copyright';
-import { links } from '../../../../lib/links';
+import { links } from '../../../../lib/[?use_blog]links';
 import { Menu } from '../../../Menu';
 
 export const HeaderMain: FunctionComponent<Props> = ({
@@ -53,6 +53,7 @@ export const HeaderMain: FunctionComponent<Props> = ({
                         <ImageOverlay />
                         <Data className="intro-data">
                             <DataColumn>
+<%- if (use_blog) { %>
                                 <HelloBlock>
                                     <HelloLeft
                                         effectName="fade-enter"
@@ -108,6 +109,7 @@ export const HeaderMain: FunctionComponent<Props> = ({
                                         </SocialBar>
                                     </HelloRight>
                                 </HelloBlock>
+<% { %>
                             </DataColumn>
                         </Data>
                         <Arrow

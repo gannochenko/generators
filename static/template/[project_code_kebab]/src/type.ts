@@ -10,6 +10,7 @@ export interface ObjectLiteral<P = any> {
 
 export type Nullable<P> = P | null;
 
+<% if(use_blog) { %>
 export type ContentRecordImageType = {
     author?: string;
     source?: string;
@@ -19,9 +20,11 @@ export type ContentRecordImageType = {
         childImageSharp: ObjectLiteral;
     }>;
 };
+<% } %>
 
 export type ContentRecordType = {
     frontmatter: {
+<% if(use_blog) { %>
         images: ContentRecordImageType[];
         title: string;
         date: string;
@@ -29,6 +32,7 @@ export type ContentRecordType = {
         keywords?: string[];
         description?: string;
         published?: boolean;
+<% } %>
         path?: string;
     } & ObjectLiteral;
     body: string;

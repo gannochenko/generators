@@ -97,6 +97,11 @@ export const DataColumn = styled.div`
     position: relative;
 `;
 
+export const MenuOffset = styled.div`
+    height: 40px;
+`;
+
+<%- if (use_blog) { %>
 export const HelloBlock = styled.div`
     color: #fff;
     ${({ theme }) =>
@@ -145,7 +150,5 @@ export const SocialBar = withEffects(styled.div`
     // @ts-ignore
     ${props => props.runStandardEffect()}
 `);
+<% } %>
 
-export const MenuOffset = styled.div`
-    height: 40px;
-`;

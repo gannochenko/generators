@@ -19,6 +19,7 @@ module.exports = {
                 path: `${__dirname}/static/assets`,
             },
         },
+<% if(use_blog) { %>
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -26,6 +27,16 @@ module.exports = {
                 path: `${__dirname}/content/blog`,
             },
         },
+<% } %>
+<% if(no_blog) { %>
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `content`,
+                path: `${__dirname}/content`,
+            },
+        },
+<% } %>
         'gatsby-plugin-react-helmet',
         'gatsby-transformer-sharp',
         'gatsby-plugin-sharp',
