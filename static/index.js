@@ -51,6 +51,10 @@ module.exports.Generator = class Generator {
                 name: 'author_name',
             },
             {
+                message: 'Author email',
+                name: 'author_email',
+            },
+            {
                 message: 'Google Analytics ID',
                 name: 'ga_id',
             },
@@ -69,6 +73,10 @@ module.exports.Generator = class Generator {
             answers.project_code,
         );
         answers.no_blog = !answers.use_blog;
+
+        const emailParts = answers.author_email.split('@');
+        answers.author_email_start = emailParts[0];
+        answers.author_email_end = emailParts[1];
 
         return answers;
     }

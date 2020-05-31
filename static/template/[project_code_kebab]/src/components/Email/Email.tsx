@@ -7,7 +7,7 @@ export const Email: FunctionComponent<EmailPropsType> = ({ ...restProps }) => {
     const [email, setEmail] = useState('');
     useEffect(() => {
         setTimeout(() => {
-            setEmail('gannochenko.sv');
+            setEmail('<%- author_email_start %>');
         }, 500);
     }, []);
 
@@ -15,5 +15,5 @@ export const Email: FunctionComponent<EmailPropsType> = ({ ...restProps }) => {
         return null;
     }
 
-    return <EmailRoot {...restProps}>{email}@gmail.com</EmailRoot>;
+    return <EmailRoot {...restProps}>{email}@<%- author_email_end %></EmailRoot>;
 };
