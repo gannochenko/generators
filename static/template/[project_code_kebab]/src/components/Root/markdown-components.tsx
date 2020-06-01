@@ -19,6 +19,11 @@ export const markdownComponents = {
             <p {...props} style={margins} />
         </Container>
     ),
+    h1: (props: ObjectLiteral) => (
+        <Container>
+            <Typography {...props} />
+        </Container>
+    ),
     h2: (props: ObjectLiteral) => (
         <Container>
             <Typography h2 {...props} />

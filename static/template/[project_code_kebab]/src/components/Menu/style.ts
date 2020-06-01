@@ -49,7 +49,6 @@ export const Home = styled(Link)`
         )};
     text-decoration: none;
     flex-shrink: 0;
-    width: 2.5rem;
     height: 2.5rem;
     font-size: ${({ theme }) => theme.fontSize.small};
     font-weight: bold;
