@@ -1,14 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import {HeaderMainContainer} from './style';
-<% if (use_blog) { %>
 import animateScrollTo from 'animated-scroll-to';
-<% } %>
 
 import { Props } from './type';
 import { Menu } from '../../../Menu';
 import {
     HeaderMainContainer,
-<% if (use_blog) { %>
     Arrow,
     BackgroundImage,
     Data,
@@ -21,20 +17,15 @@ import {
     NameBlock,
     SocialBar,
     MenuOffset,
-<% } %>
 } from './style';
-<% if (use_blog) { %>
 import { Avatar } from '../../../Avatar';
 import { Social } from '../../../Social';
 import { Copyright } from '../../../Copyright';
 import { links } from '../../../../lib/[?use_blog]links';
-<% } %>
 
 export const HeaderMain: FunctionComponent<Props> = ({
-<% if (use_blog) { %>
     backgroundImage,
     inner,
-<% } %>
 }) => {
     const scrollWindow = () => {
         const data = document.querySelector('.intro-data');
@@ -54,7 +45,6 @@ export const HeaderMain: FunctionComponent<Props> = ({
     return (
         <>
             <HeaderMainContainer>
-<% if (use_blog) { %>
                 {!inner && (
                     <>
                         <BackgroundImage
@@ -68,38 +58,38 @@ export const HeaderMain: FunctionComponent<Props> = ({
                                         effectName="fade-enter"
                                         effectTimeout={timeoutBase}
                                         effectEaseA="preset:bounce"
+                                </HelloLeft>
+                                <HelloRight>
+                                    <NameBlock
+                                        effectName="fade-slide-bottom"
+                                        effectTimeout={timeoutRight}
+                                        effectEaseA="preset:bounce"
                                     >
+                                        <%- author_name %>
+                                    </NameBlock>
+                                    <GreetingBlock
+                                        effectName="fade-slide-bottom"
+                                        effectTimeout={timeoutRight + 300}
+                                        effectEaseA="preset:bounce"
+                                    >
+                                        Fullstack software engineer in
+                                        JS/JS,
+                                        <br />
+                                        open-source contributor, in ❤️ with
+                                        tech
+                                    </GreetingBlock>
+                                    <SocialBar
+                                        effectName="fade-slide-bottom"
+                                        effectTimeout={timeoutRight + 600}
+                                        effectEaseA="preset:bounce"
+                                    >
+                                        <Social
+                                            type="github"
+                                            src={links.github}
+                                        />
+                                        <Social
+                                        >
                                         <Avatar />
-                                    </HelloLeft>
-                                    <HelloRight>
-                                        <NameBlock
-                                            effectName="fade-slide-bottom"
-                                            effectTimeout={timeoutRight}
-                                            effectEaseA="preset:bounce"
-                                        >
-                                            <%- author_name %>
-                                        </NameBlock>
-                                        <GreetingBlock
-                                            effectName="fade-slide-bottom"
-                                            effectTimeout={timeoutRight + 300}
-                                            effectEaseA="preset:bounce"
-                                        >
-                                            Fullstack software engineer in
-                                            JS/JS,
-                                            <br />
-                                            open-source contributor, in ❤️ with
-                                            tech
-                                        </GreetingBlock>
-                                        <SocialBar
-                                            effectName="fade-slide-bottom"
-                                            effectTimeout={timeoutRight + 600}
-                                            effectEaseA="preset:bounce"
-                                        >
-                                            <Social
-                                                type="github"
-                                                src={links.github}
-                                            />
-                                            <Social
                                                 type="linkedin"
                                                 src={links.linkedin}
                                             />
@@ -127,13 +117,8 @@ export const HeaderMain: FunctionComponent<Props> = ({
                     </>
                 )}
                 {inner && <MenuOffset />}
-<% } %>
-<% if (no_blog) { %>
-                <MenuOffset />
-<% } %>
                 <Menu />
             </HeaderMainContainer>
-<% if (use_blog) { %>
             {!inner && (
                 <Copyright
                     author="Caspar Camille Rubin"
@@ -141,7 +126,6 @@ export const HeaderMain: FunctionComponent<Props> = ({
                     sourceText="Unsplash"
                 />
             )}
-<% } %>
         </>
     );
 };

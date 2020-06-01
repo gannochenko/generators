@@ -47,5 +47,5 @@ export const markdownComponents = {
     hr: () => <HR />,
 <% if (use_blog) { %>
     pre: Listing,
-<% } %> ,
+<% } %>
 };
