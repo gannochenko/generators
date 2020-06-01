@@ -24,9 +24,9 @@ export type ContentRecordImageType = {
 
 export type ContentRecordType = {
     frontmatter: {
+        title: string;
 <% if(use_blog) { %>
         images: ContentRecordImageType[];
-        title: string;
         date: string;
         backUrl?: string;
         keywords?: string[];

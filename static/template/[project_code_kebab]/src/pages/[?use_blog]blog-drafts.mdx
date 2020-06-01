@@ -14,7 +14,7 @@ export const blogIndexDraftsQuery = graphql`
     query blogIndexDraftsQuery {
         allMdx(
             sort: { fields: [frontmatter___date], order: DESC }
-            filter: { frontmatter: { published: { eq: false } } }
+            filter: { frontmatter: { published: { eq: false }, path: {regex: "/\/blog/"} } }
         ) {
             edges {
                 node {
