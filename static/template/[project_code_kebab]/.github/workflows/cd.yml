@@ -15,8 +15,8 @@ jobs:
     - run: yarn
     - run: yarn run build:gh
     - name: GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v1.3.0
+      uses: crazy-max/ghaction-github-pages@v2
       with:
         build_dir: public
       env:
-        GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+        GITHUB_PAT: ${{ secrets.CICD_TOKEN }}
