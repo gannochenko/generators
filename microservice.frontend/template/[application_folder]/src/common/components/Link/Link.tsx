@@ -31,24 +31,39 @@ const getLinkStyle = ({
     inverse,
 }: PropLinks) => css`
     ${
-        underline === 'hover'
-            ? css`
+    underline === 'hover'
+        ? css`
                   text-decoration: none;
                   &:hover {
                       text-decoration: underline;
                   }
               `
-            : ''
+        : ''
     }
     font-size: ${fontSize ? theme.typography.fontSize[fontSize] : 'inherit'};
     ${fgColors({ theme, inverse })};
 `;
 
-export const RouterLinkStyled = styled(RouterLink)<PropLinks>`
+const propListRouterLink = {
+    fontSize: true,
+    inverse: true,
+    underline: true,
+};
+
+export const RouterLinkStyled = styled(RouterLink).withConfig({
+    shouldForwardProp: (prop) => !(prop in propListRouterLink),
+})<PropLinks>`
     ${getLinkStyle}
 `;
 
-export const LinkStyled = styled.a<PropLinks>`
+const propListNativeLink = {
+    to: true,
+    ...propListRouterLink,
+};
+
+export const LinkStyled = styled.a.withConfig({
+    shouldForwardProp: (prop) => !(prop in propListNativeLink),
+})<PropLinks>`
     ${getLinkStyle}
 `;
 
