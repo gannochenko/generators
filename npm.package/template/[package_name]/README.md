@@ -34,7 +34,7 @@
     <br />
     <br />
     <!--
-    <a href="https://<%- github_author_code %>.github.io/<%- package_name %">View Demo</a>
+    <a href="https://<%- github_author_code %>.github.io/<%- package_name %>">View Demo</a>
     ·
     -->
     <a href="https://github.com/<%- github_author_code %>/<%- package_name %>/issues">Report Bug</a>
