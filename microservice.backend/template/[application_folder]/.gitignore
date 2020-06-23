@@ -1,6 +1,7 @@
 node_modules/
 *.log
 *.tar.gz
-.idea/
+.idea/workspace.xml
+.idea/libraries
 build/*
 !build/

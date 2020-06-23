@@ -4,4 +4,4 @@ export interface ObjectLiteral<P = any> {
     [k: string]: P;
 }
 
-export type Scalar = string | number | boolean;
+export type ScalarType = string | number | boolean;
