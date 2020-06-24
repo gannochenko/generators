@@ -45,6 +45,7 @@
   "settings": {
     "import/resolver": {
       "node": {
+        "paths": ["node_modules", "./"],
         "extensions": [".js", ".ts"]
       }
     }

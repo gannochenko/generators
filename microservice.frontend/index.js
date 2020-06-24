@@ -278,6 +278,8 @@ module.exports.Generator = class Generator {
                 // testing
                 'jest',
                 '@testing-library/react',
+                '@testing-library/dom',
+                '@testing-library/jest-dom',
                 '@testing-library/user-event',
                 'jest-dom',
                 'redux-mock-store',
