@@ -295,8 +295,8 @@ module.exports = (env, argv) => {
                 cache: true,
                 prefix: '/assets/',
                 favicons: {
-                    appName: 'Rasp Dashboard',
-                    appDescription: 'Rasp Dashboard',
+                    appName: '<%- application_name %>',
+                    appDescription: '<%- application_name %>',
                     background: '#ddd',
                     theme_color: '#333',
                 },

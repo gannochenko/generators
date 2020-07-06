@@ -9,8 +9,10 @@ import {
     gap,
 } from '@gannochenko/etc';
 import { withEffects } from '@gannochenko/ui';
-const arrow = require('./assets/arrow.svg') as string;
 import { theme } from '../../../../style';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const arrow = require('./assets/arrow.svg') as string;
 
 const bouncedAnimation = keyframes`
   from {

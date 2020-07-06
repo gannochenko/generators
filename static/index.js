@@ -64,6 +64,12 @@ module.exports.Generator = class Generator {
                 type: 'confirm',
                 default: false,
             },
+            {
+                message: 'Enable MaterialUI?',
+                name: 'use_mui',
+                type: 'confirm',
+                default: false,
+            },
         ];
     }
 

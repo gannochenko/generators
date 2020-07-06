@@ -19,7 +19,7 @@ export const Header: FunctionComponent<HeaderPropsType> = ({
             <HeaderBar>
                 <HeaderContainer>
                     <Left>
-                        <Logo to="/">Rasp Dashboard</Logo>
+                        <Logo to="/"><%- application_name %></Logo>
                     </Left>
                     <Right>
                         <Menu />

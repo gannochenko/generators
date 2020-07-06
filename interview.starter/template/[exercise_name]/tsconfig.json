@@ -21,7 +21,7 @@
     },
     "exclude": ["node_modules", ".build"],
     "include": [
-        "template/src/**/*",
-        "template/src/global.d.ts"
+        "src/**/*",
+        "src/global.d.ts"
     ]
 }

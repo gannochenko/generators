@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { backgroundCover, absoluteCover, align } from '@gannochenko/etc';
 import { Button } from '../Button';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const cookies = require('../../../static/assets/aux/cookies.jpg') as string;
 
 export const CookiePopupContainer = styled.div<{ fadingAway: boolean }>`

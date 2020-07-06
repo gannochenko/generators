@@ -3,8 +3,11 @@ import { ThemeContext } from 'styled-components';
 import { colorWhite, makeTheme, grid, cell } from '@gannochenko/etc';
 import { ObjectLiteral } from '../type';
 import { fontFamilyRaleway, fontFamilyRoboto } from './tokens';
+<% if (use_mui) { %>
+import { createMuiTheme } from '@material-ui/core';
+<% } %>
 
-export const theme = makeTheme({
+export const themeDeclaration = {
     color: {
         backgroundPrimary: colorWhite,
         backgroundSecondary: '#20232a',
@@ -51,16 +54,28 @@ export const theme = makeTheme({
             sm: 770,
             md: 990,
             lg: 1200,
+            xl: 1920
         },
     },
-    util: {
-        grid: (config: ObjectLiteral<string>) => grid(theme, config),
-        cell: (config: ObjectLiteral<string>) => cell(theme, config),
-    },
-    zIndex: {
+    elevation: {
         everest: 1000,
     },
-});
+    shape: {
+        borderRadius: 2,
+    },
+};
+
+export const theme = makeTheme(themeDeclaration);
+
+theme.util = {
+    ...theme.util,
+    grid: (config: ObjectLiteral<string>) => grid(theme, config),
+    cell: (config: ObjectLiteral<string>) => cell(theme, config),
+};
+
+<% if (use_mui) { %>
+export const MUITheme = createMuiTheme(themeDeclaration);
+<% } %>
 
 export const useTheme = () => {
     const theme = useContext(ThemeContext);

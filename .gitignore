@@ -1,3 +1,4 @@
-.idea
+.idea/workspace.xml
+.idea/libraries
 node_modules
 yarn-error.log

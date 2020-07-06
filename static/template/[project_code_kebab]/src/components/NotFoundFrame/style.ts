@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { backgroundCover } from '@gannochenko/etc';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const image01 = require('../../../static/assets/404/01.jpg') as string;
 
 export const NotFoundFrameRoot = styled.div`
