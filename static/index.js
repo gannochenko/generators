@@ -89,7 +89,7 @@ module.exports.Generator = class Generator {
 
     async getDependencies(answers) {
         // list your dependencies here
-        const { use_blog, ga_id } = answers;
+        const { use_blog, ga_id, use_mui } = answers;
 
         return {
             destination: '[project_code_kebab]/',
@@ -131,13 +131,14 @@ module.exports.Generator = class Generator {
                 'styled-components@4',
                 'throttle-debounce',
                 'write',
+                !!use_mui && '@material-ui/core',
             ],
         };
     }
 
     async getDevDependencies(answers) {
         // list your dev dependencies here
-        const { use_blog } = answers;
+        const { use_blog, use_mui } = answers;
 
         return {
             destination: '[project_code_kebab]/',
@@ -151,6 +152,7 @@ module.exports.Generator = class Generator {
                 '@types/react-helmet',
                 '@types/styled-components@4',
                 '@types/throttle-debounce',
+                !!use_mui && '@types/material-ui',
                 '@typescript-eslint/eslint-plugin',
                 '@typescript-eslint/parser',
                 'eslint',

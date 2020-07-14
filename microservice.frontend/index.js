@@ -292,6 +292,7 @@ module.exports.Generator = class Generator {
                 'react-dev-utils',
                 'typescript',
                 'ts-essentials',
+                'utility-types',
                 '@babel/preset-typescript',
                 '@typescript-eslint/eslint-plugin',
                 '@typescript-eslint/parser',

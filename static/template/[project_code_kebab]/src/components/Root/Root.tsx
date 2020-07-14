@@ -1,5 +1,8 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { MDXProvider } from '@mdx-js/react';
+<% if (use_mui) { %>
+import { ThemeProvider as MUIThemeProvider } from '@material-ui/core/styles';
+<% } %>
 import { ThemeProvider } from 'styled-components';
 // import { Provider as StateProvider } from "unstated"
 import { theme, GlobalStyle, markdownComponents<% if (use_mui) { %>, MUITheme<% } %> } from '../../style';

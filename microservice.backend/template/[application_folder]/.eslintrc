@@ -30,7 +30,8 @@
     "no-restricted-syntax": "off",
     "no-console": ["error", { "allow": ["error"]}],
     "import/extensions": "off",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.js", "**/*.test.jsx", "**/*.test.ts", "**/*.test.tsx"]}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.js", "**/*.test.jsx", "**/*.test.ts", "**/*.test.tsx"]}],
+    "no-useless-constructor": "off"
   },
   "parserOptions": {
     "ecmaVersion": 6,

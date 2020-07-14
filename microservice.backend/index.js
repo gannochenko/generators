@@ -208,6 +208,7 @@ module.exports.Generator = class Generator {
                 // typescript
                 'typescript',
                 'ts-essentials',
+                'utility-types',
                 '@types/helmet',
                 '@types/jest',
                 '@types/node',
