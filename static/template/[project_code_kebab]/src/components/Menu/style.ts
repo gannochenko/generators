@@ -33,7 +33,7 @@ export const Items = styled.nav`
 export const Home = styled(Link)`
     ${align('center', 'center')}
     &:before {
-        content: '<%- project_code %>';
+        content: '<%- project_name %>';
     }
     ${({ theme }) => css`
         &:active,

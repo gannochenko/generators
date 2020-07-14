@@ -1,7 +1,7 @@
 module.exports = {
     // pathPrefix: '/path-prefix',
     siteMetadata: {
-        title: '<%- project_web_title %>',
+        title: '<%- project_name %>',
         description: '<%- project_description %>',
         author: '@<%- github_account_name %>',
         keywords: ['update', 'these', 'keywords', 'later', 'on'],
@@ -88,7 +88,7 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-manifest',
             options: {
-                name: '<%- project_pwa_name %>',
+                name: '<%- project_name %>',
                 short_name: '<%- project_pwa_short_name %>',
                 description: '<%- project_description %>',
                 start_url: '/',

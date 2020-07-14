@@ -19,17 +19,12 @@ module.exports.Generator = class Generator {
                 name: 'project_domain',
             },
             {
-                message: 'Project web title',
-                name: 'project_web_title',
+                message: 'Project name',
+                name: 'project_name',
                 default: 'New project',
             },
             {
-                message: 'Project PWA name',
-                name: 'project_pwa_name',
-                default: 'New project',
-            },
-            {
-                message: 'Project PWA short name',
+                message: 'Project short name',
                 name: 'project_pwa_short_name',
                 default: 'New project',
             },
