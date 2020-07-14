@@ -9,7 +9,7 @@ export const MenuContainer = styled.header`
     left: 0;
     right: 0;
     background-color: ${({ theme }) => theme.color.backgroundSecondary};
-    z-index: ${({ theme }) => theme.zIndex.everest};
+    z-index: ${({ theme }) => theme.elevation.everest};
     box-shadow: 0px 6px 30px -8px rgba(0, 0, 0, 0.55);
 `;
 
