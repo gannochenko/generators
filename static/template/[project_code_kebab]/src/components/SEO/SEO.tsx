@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Helmet } from 'react-helmet';
+import Helmet from 'react-helmet';
 import { Props } from './type';
 import { Query } from './query';
 
@@ -36,6 +36,14 @@ export const SEO: FunctionComponent<Props> = ({
                         titleTemplate={`%s | ${data.site.siteMetadata.title}`}
                         meta={[
                             {
+                                name: 'twitter:card',
+                                content: 'summary',
+                            },
+                            {
+                                name: 'twitter:creator',
+                                content: '@<%- github_account_name %>',
+                            },
+                            {
                                 name: 'description',
                                 content: metaDescription,
                             },
@@ -62,8 +70,8 @@ export const SEO: FunctionComponent<Props> = ({
                                 allKeywords.length > 0
                                     ? [
                                           {
-                                              name: 'keywords',
-                                              content: allKeywords.join(', '),
+                                              name: `keywords`,
+                                              content: allKeywords.join(`, `),
                                           },
                                       ]
                                     : [],
