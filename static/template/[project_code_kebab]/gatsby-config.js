@@ -100,6 +100,16 @@ module.exports = {
                 cache_busting_mode: 'none',
             },
         },
+<% if(use_mui) { %>
+        {
+            resolve: `gatsby-plugin-material-ui`,
+            options: {
+                stylesProvider: {
+                    injectFirst: true,
+                },
+            },
+        },
+<% } %>
         'gatsby-plugin-styled-components',
         'gatsby-plugin-typescript',
         'gatsby-plugin-catch-links',

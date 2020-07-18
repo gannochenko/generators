@@ -127,6 +127,7 @@ module.exports.Generator = class Generator {
                 'throttle-debounce',
                 'write',
                 !!use_mui && '@material-ui/core',
+                !!use_mui && 'gatsby-plugin-material-ui',
             ],
         };
     }
