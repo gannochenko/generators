@@ -13,6 +13,8 @@ import {
     MobileItem,
 } from './style';
 
+import { items } from './items';
+
 import { Props } from './type';
 
 export const Menu: FunctionComponent<Props> = () => {
@@ -30,12 +32,7 @@ export const Menu: FunctionComponent<Props> = () => {
                 <Home to="/" onClick={onMobileItemClick} />
                 <Right>
                     <Items>
-<% if (use_blog) { %>
-                        <Item to="/blog">Blog</Item>
-<% } %>
-<% if (no_blog) { %>
-                        <Item to="/content">Content</Item>
-<% } %>
+                        {items.map(item => <Item to={item.link} key={item.link}>{item.text}</Item>)}
                     </Items>
                     <Hamburger onClick={onHamburgerClick}>
                         <Bar />
@@ -45,16 +42,11 @@ export const Menu: FunctionComponent<Props> = () => {
                 </Right>
             </InnerContainer>
             <MobileItems open={mobileMenuOpen}>
-<% if (use_blog) { %>
-                <MobileItem to="/blog" onClick={onMobileItemClick}>
-                    Blog
-                </MobileItem>
-<% } %>
-<% if (no_blog) { %>
-                <MobileItem to="/content" onClick={onMobileItemClick}>
-                    Content
-                </MobileItem>
-<% } %>
+                {items.map(item => (
+                    <MobileItem to={item.link} onClick={onMobileItemClick}>
+                        {item.text}
+                    </MobileItem>
+                ))}
             </MobileItems>
         </MenuContainer>
     );
