@@ -13,7 +13,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'React/Redux/Saga frontend';
+        return 'React front-end boilerplate';
     }
 
     getQuestions() {
