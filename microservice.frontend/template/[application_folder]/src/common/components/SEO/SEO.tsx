@@ -30,6 +30,14 @@ export const SEO: FunctionComponent<Props> = ({
             titleTemplate={`%s | ${metaData.title}`}
             meta={[
                 {
+                    name: 'twitter:card',
+                    content: 'summary',
+                },
+                {
+                    name: 'twitter:creator',
+                    content: '@gannochenko',
+                },
+                {
                     name: `description`,
                     content: metaDescription,
                 },

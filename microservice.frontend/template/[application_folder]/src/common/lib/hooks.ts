@@ -1,26 +1,32 @@
 import { useEffect } from 'react';
-import { NotificationContextPropsType } from '@gannochenko/ui';
-import {
-    DispatchUnload,
-    DispatchLoad,
-    Dispatch,
-    ControllerProperties,
-} from '../store/type';
-import { Error, Notify } from '../type';
+import { Notify } from '../type';
 import { Nullable } from '../../type';
-import { ServiceManager } from './service-manager';
+import { State } from '../state/state';
 
-export const useNetworkMonitor = (
-    dispatch: Dispatch,
-    actionOnline: string,
-    actionOffline: string,
+export const useErrorNotification = (
+    errors: Nullable<Error[]>,
+    notify: Notify,
 ) => {
     useEffect(() => {
+        if (errors) {
+            errors.forEach((error) =>
+                notify({
+                    text: error.message,
+                    type: 'error',
+                    code: error.name,
+                }),
+            );
+        }
+    }, [errors, notify]);
+};
+
+export const useNetworkMonitor = (state: State) => {
+    useEffect(() => {
         const onOnline = () => {
-            dispatch({ type: actionOnline, payload: {} });
+            state.setOfflineStatus(false);
         };
         const onOffline = () => {
-            dispatch({ type: actionOffline, payload: {} });
+            state.setOfflineStatus(true);
         };
 
         window.addEventListener('online', onOnline);
@@ -30,53 +36,13 @@ export const useNetworkMonitor = (
             window.removeEventListener('online', onOnline);
             window.removeEventListener('offline', onOffline);
         };
-    }, [actionOffline, actionOnline, dispatch]);
-};
-
-export const useErrorNotification = (
-    errors: Nullable<Error[]>,
-    notify: Notify,
-) => {
-    useEffect(() => {
-        if (errors) {
-            const error = errors.shift();
-            if (error) {
-                notify({
-                    text: error.message,
-                    type: 'error',
-                    code: 'error',
-                });
-            }
-        }
-    }, [errors, notify]);
-};
-
-export const useDispatchLoad = (
-    dispatchLoad?: DispatchLoad,
-    serviceManager?: ServiceManager,
-) => {
-    useEffect(() => {
-        if (dispatchLoad) {
-            dispatchLoad(serviceManager);
-        }
-    }, [dispatchLoad, serviceManager]);
-};
-
-export const useDispatchUnload = (dispatchUnload?: DispatchUnload) => {
-    useEffect(
-        () => () => {
-            if (dispatchUnload) {
-                dispatchUnload();
-            }
-        },
-        [dispatchUnload],
-    );
+    }, [state]);
 };
 
 export const useNetworkNotification = (
     offline: Nullable<boolean>,
     notify: Notify,
-) => {
+) =>
     useEffect(() => {
         if (offline === true) {
             notify({
@@ -95,22 +61,13 @@ export const useNetworkNotification = (
             });
         }
     }, [notify, offline]);
-};
 
 export const useScrollTop = () =>
     useEffect(() => {
         window.scrollTo({ top: 0 });
     }, []);
 
-export const usePage = ({
-    dispatchLoad,
-    dispatchUnload,
-    serviceManager,
-    notify,
-    error,
-}: ControllerProperties & NotificationContextPropsType) => {
-    useDispatchLoad(dispatchLoad, serviceManager);
-    useDispatchUnload(dispatchUnload);
-    useErrorNotification(error, notify);
-    useScrollTop();
-};
+export const useCurrentPageName = (state: State, pageName: string) =>
+    useEffect(() => {
+        state.setPageName(pageName);
+    }, [state, pageName]);

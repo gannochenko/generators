@@ -1,6 +1,5 @@
 import { HTMLAttributes } from 'react';
-import { ObjectLiteral } from '../../../type';
+import { StatePropsType } from '../../state/context';
 
-export type PageProgressPropsType = {
-    state: ObjectLiteral;
-} & HTMLAttributes<HTMLElement>;
+export type PageProgressPropsType = StatePropsType &
+    HTMLAttributes<HTMLElement>;

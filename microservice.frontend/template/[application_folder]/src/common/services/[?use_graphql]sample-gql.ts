@@ -33,7 +33,7 @@ export class SampleGQLService extends Service {
                 }
             `,
             variables: {
-                flag,
+                flag: true,
             },
         });
     }

@@ -1,26 +1,33 @@
-import React, { FunctionComponent } from 'react';
-import { connect } from 'react-redux';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Button } from '@material-ui/core';
-import { RendererType, withNotification } from '@gannochenko/ui';
-import { withClient, usePage } from '../../lib';
+import { RendererType, useNotification } from '@gannochenko/ui';
 
-import { Container, Layout, Link } from '../../components';
+import { useCurrentPageName, useScrollTop } from '../../lib';
 
-import { HomePagePropsType, HomePagePropsAlt } from './type';
-import { mapDispatchToProps } from './dispatch';
-import { ObjectLiteral } from '../../../type';
+import { Container, Layout, Link, Notifier } from '../../components';
+import { HomePagePropsType } from './type';
 import { SEO } from '../../components/SEO';
+import { useGlobalState } from '../../state/context';
 
-const HomePageComponent: FunctionComponent<HomePagePropsType> = (props) => {
-    const { notify } = props;
-    usePage(props);
+const HomePage: FunctionComponent<HomePagePropsType> = () => {
+    const notify = useNotification();
+    const state = useGlobalState()!;
+    const { homePage } = state;
+
+    useEffect(() => {
+        homePage.onLoad();
+
+        return () => homePage.onUnload();
+    }, [homePage]);
+
+    useCurrentPageName(state, 'home');
+    useScrollTop();
 
     return (
         <>
+            <Notifier state={state.homePage} />
             <SEO title="Home" />
             <Container>
-                <Link to="/page2">Page 2</Link>
-                <br />
                 <Link to="/missing-page">Missing page</Link>
                 <br />
                 <Link to="/403">Forbidden page</Link>
@@ -117,17 +124,8 @@ const HomePageComponent: FunctionComponent<HomePagePropsType> = (props) => {
     );
 };
 
-export const HomePage = withNotification<HomePagePropsAlt>(
-    withClient(
-        connect(
-            (state: ObjectLiteral) => state.home,
-            mapDispatchToProps,
-        )(HomePageComponent),
-    ),
-);
-
-export const HomePageRenderer: RendererType = () => (
+export const HomePageRenderer: RendererType = ({ route }) => (
     <Layout>
-        <HomePage />
+        <HomePage route={route} />
     </Layout>
 );

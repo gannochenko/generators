@@ -1,19 +1,17 @@
 import React, { FunctionComponent } from 'react';
-import { connect } from 'react-redux';
-import { RendererType, withNotification } from '@gannochenko/ui';
-import { withClient, usePage } from '../../lib';
+import { RendererType } from '@gannochenko/ui';
 
 import { Container, Layout, Link } from '../../components';
 
-import { CookiePolicyPagePropsType, CookiePolicyPagePropsAlt } from './type';
-import { mapDispatchToProps } from './dispatch';
-import { ObjectLiteral } from '../../../type';
+import { CookiePolicyPagePropsType } from './type';
 import { SEO } from '../../components/SEO';
+import { useGlobalState } from '../../state/context';
+import { useCurrentPageName, useScrollTop } from '../../lib';
 
-const CookiePolicyPageComponent: FunctionComponent<CookiePolicyPagePropsType> = (
-    props,
-) => {
-    usePage(props);
+const CookiePolicyPage: FunctionComponent<CookiePolicyPagePropsType> = () => {
+    const state = useGlobalState()!;
+    useCurrentPageName(state, 'cookiePolicy');
+    useScrollTop();
 
     return (
         <>
@@ -97,17 +95,8 @@ const CookiePolicyPageComponent: FunctionComponent<CookiePolicyPagePropsType> = 
     );
 };
 
-export const CookiePolicyPage = withNotification<CookiePolicyPagePropsAlt>(
-    withClient(
-        connect(
-            (state: ObjectLiteral) => state.cookiePolicy,
-            mapDispatchToProps,
-        )(CookiePolicyPageComponent),
-    ),
-);
-
-export const CookiePolicyRenderer: RendererType = () => (
+export const CookiePolicyRenderer: RendererType = ({ route }) => (
     <Layout topPadding>
-        <CookiePolicyPage />
+        <CookiePolicyPage route={route} />
     </Layout>
 );

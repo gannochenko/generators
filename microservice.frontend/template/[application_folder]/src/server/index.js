@@ -5,5 +5,5 @@ const host = app.get('host');
 const port = app.get('port');
 
 app.listen({ port }, () => {
-    logInfo(`🚀 Front is ready at http://${host}:${port}`);
+    logInfo(`🚀 <%- application_code %> is ready at http://${host}:${port}`);
 });

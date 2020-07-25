@@ -170,13 +170,10 @@ module.exports.Generator = class Generator {
                 // front
                 'react',
                 'react-dom',
-                'redux',
-                'redux-logger',
-                'redux-saga',
-                'react-redux',
+                'mobx',
+                'mobx-react',
                 'react-router',
                 'react-router-dom',
-                'connected-react-router',
                 'history',
                 'throttle-debounce',
                 'clone-deep',
@@ -301,11 +298,9 @@ module.exports.Generator = class Generator {
 
                 // types
                 '@types/styled-components',
-                '@types/react-redux',
                 '@types/react-router-dom',
                 '@types/react-router',
                 '@types/history',
-                '@types/redux-logger',
                 '@types/express',
                 '@types/jest',
                 '@types/clone-deep',

@@ -1,8 +1,3 @@
-export type Error = {
-    message: string;
-    code: string;
-};
-
 export type ErrorMessage = {
     text: string;
     type?: string;

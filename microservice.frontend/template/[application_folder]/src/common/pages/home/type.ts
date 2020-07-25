@@ -1,10 +1,3 @@
-import { NotificationContextPropsType } from '@gannochenko/ui';
-import { ControllerProperties, PageState } from '../../store/type';
+import { PagePropsType } from '../type';
 
-export type HomePagePropsAlt = {};
-
-export type HomePagePropsType = HomePagePropsAlt &
-    NotificationContextPropsType &
-    ControllerProperties;
-
-export type HomePageState = {} & PageState;
+export type HomePagePropsType = PagePropsType;

@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState, useCallback } from 'react';
+import { menu } from '../../menu';
 
 import {
     MenuRoot,
@@ -26,7 +27,11 @@ export const Menu: FunctionComponent<Props> = () => {
         <MenuRoot>
             <Main>
                 <Items>
-                    <Item to="/page2">Page 2</Item>
+                    {menu.map((item) => (
+                        <Item to={item.link} key={item.link}>
+                            {item.text}
+                        </Item>
+                    ))}
                 </Items>
                 <Hamburger onClick={onHamburgerClick}>
                     <Bar />
@@ -35,9 +40,11 @@ export const Menu: FunctionComponent<Props> = () => {
                 </Hamburger>
             </Main>
             <MobileItems open={mobileMenuOpen}>
-                <MobileItem to="/page2" onClick={onMobileItemClick}>
-                    Page 2
-                </MobileItem>
+                {menu.map((item) => (
+                    <MobileItem to={item.link} onClick={onMobileItemClick}>
+                        {item.text}
+                    </MobileItem>
+                ))}
             </MobileItems>
         </MenuRoot>
     );

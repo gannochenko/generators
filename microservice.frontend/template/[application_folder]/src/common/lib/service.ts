@@ -10,7 +10,7 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 <% } %>
 
 export abstract class Service {
-    <% if (use_graphql) { %>private static apollo?: ApolloClient<unknown>;<% } %>
+<% if (use_graphql) { %>private static apollo?: ApolloClient<unknown>;<% } %>
     private static url = '';
 
     protected static getUrl() {
