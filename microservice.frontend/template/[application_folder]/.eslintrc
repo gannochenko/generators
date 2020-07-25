@@ -54,7 +54,8 @@
         "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/no-empty-interface": "off",
         "import/extensions": "off",
-        "no-useless-constructor": "off"
+        "no-useless-constructor": "off",
+        "@typescript-eslint/ban-ts-comment": "off"
     },
     "parserOptions": {
         "ecmaVersion": 6,

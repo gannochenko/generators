@@ -8,7 +8,7 @@ import { useCurrentPageName, useScrollTop } from '../../lib';
 import { NotFoundPagePropsType } from './type';
 import { useGlobalState } from '../../state/context';
 
-// eslint-disable-next-line global-require
+// eslint-disable-next-line global-require,@typescript-eslint/no-var-requires
 const image = require('./assets/image.jpg').default as string;
 
 const NotFoundPage: FunctionComponent<NotFoundPagePropsType> = () => {

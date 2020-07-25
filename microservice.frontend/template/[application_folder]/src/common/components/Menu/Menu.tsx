@@ -41,7 +41,7 @@ export const Menu: FunctionComponent<Props> = () => {
             </Main>
             <MobileItems open={mobileMenuOpen}>
                 {menu.map((item) => (
-                    <MobileItem to={item.link} onClick={onMobileItemClick}>
+                    <MobileItem to={item.link} onClick={onMobileItemClick} key={item.link}>
                         {item.text}
                     </MobileItem>
                 ))}

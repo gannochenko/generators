@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { backgroundCover, foregroundColor } from '@gannochenko/etc';
 import { Container } from '../Container';
 
-// eslint-disable-next-line global-require
+// eslint-disable-next-line global-require,@typescript-eslint/no-var-requires
 const logo = require('./assets/logo.png').default as string;
 
 export const HeaderRoot = styled.div`

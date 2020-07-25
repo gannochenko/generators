@@ -26,7 +26,7 @@ module.exports = (env, argv) => {
         },
         externals: [
             nodeExternals(
-                development ? { whitelist: ['webpack/hot/poll?1000'] } : {},
+                development ? { allowlist: ['webpack/hot/poll?1000'] } : {},
             ),
         ],
         resolve: {

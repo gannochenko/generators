@@ -1,4 +1,5 @@
 import { action, observable, flow, isFlowCancellationError } from 'mobx';
+// eslint-disable-next-line import/no-unresolved
 import { CancellablePromise } from 'mobx/lib/api/flow';
 import { Nullable, ObjectLiteral } from '../../../type';
 import { State } from '../../state/state';
@@ -52,6 +53,7 @@ export class HomePageState implements SubState {
             setTimeout(resolve, 2000);
         });
 
+        // eslint-disable-next-line no-console
         console.log('Homepage loaded');
 
         yield self.finishLoading();

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Button, withStyles } from '@material-ui/core';
 import { absoluteCover, align, backgroundCover } from '@gannochenko/etc';
 
-// eslint-disable-next-line global-require
+// eslint-disable-next-line global-require,@typescript-eslint/no-var-requires
 const cookies = require('./assets/cookies.jpg').default as string;
 
 export const CookiePopupContainer = styled.div<{ fadingAway: boolean }>`

@@ -14,6 +14,7 @@ const state = new State();
 
 if (__DEV__) {
     // @ts-ignore
+    // eslint-disable-next-line no-underscore-dangle
     window.__state = state;
 }
 
