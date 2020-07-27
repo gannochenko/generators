@@ -6,7 +6,7 @@ export class Template {
         this.portHMR = __DEV__ ? process.env.NETWORK__PORT__HMR || <%- port_hmr %> : 0;
         this.templatePath =
             process.env.TEMPLATE__PATH ||
-            (__DEV__ ? './index.html' : './public/index.html');
+            (__DEV__ ? './src/index.html' : './public/index.html');
     }
 
     readFile = util.promisify(fs.readFile);

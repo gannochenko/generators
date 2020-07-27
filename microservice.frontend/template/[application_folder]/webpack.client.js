@@ -264,7 +264,7 @@ module.exports = (env, argv) => {
                 ]),
             !development &&
                 new HtmlWebpackPlugin({
-                    template: './index.html',
+                    template: './src/index.html',
                     filename: path.join(publicFolder, 'index.html'),
                     inject: true,
                     minify: {
