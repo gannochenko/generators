@@ -124,6 +124,7 @@ module.exports.Generator = class Generator {
             packages: [
                 '@team-griffin/install-self-peers',
                 'jest',
+                'jest-chain',
                 'ts-jest',
                 'typescript',
                 '@types/jest',
@@ -149,12 +150,15 @@ module.exports.Generator = class Generator {
                 !!is_ui && '@types/react-dom',
                 !!is_ui && '@types/styled-components',
                 !!is_ui && '@testing-library/react',
+                !!is_ui && '@testing-library/react-hooks',
                 !!is_ui && '@testing-library/dom',
                 !!is_ui && '@testing-library/user-event',
                 !!is_ui && '@testing-library/jest-dom',
                 !!is_ui && 'eslint-plugin-jsx-a11y',
                 !!is_ui && 'eslint-plugin-react',
                 !!is_ui && 'eslint-plugin-react-hooks',
+                !!is_ui && 'jest-styled-components',
+                !!is_ui && 'react-test-renderer',
             ],
         };
     }

@@ -28,8 +28,6 @@ const HomePage: FunctionComponent<HomePagePropsType> = () => {
             <Notifier state={state.homePage} />
             <SEO title="Home" />
             <Container>
-                <Link to="/missing-page">Missing page</Link>
-                <br />
                 <Link to="/403">Forbidden page</Link>
                 <br />
                 <br />
