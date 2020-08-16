@@ -113,6 +113,7 @@ module.exports = {
         'gatsby-plugin-styled-components',
         'gatsby-plugin-typescript',
         'gatsby-plugin-catch-links',
+<% if (use_offline) { %>
         {
             resolve: 'gatsby-plugin-offline',
             options: {
@@ -121,6 +122,7 @@ module.exports = {
                 },
             },
         },
+<% } %>
 <% if(ga_id) { %>
         {
             resolve: `gatsby-plugin-google-analytics`,

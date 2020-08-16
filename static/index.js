@@ -65,6 +65,12 @@ module.exports.Generator = class Generator {
                 type: 'confirm',
                 default: false,
             },
+            {
+                message: 'Enable offline support? (not recommended for frequently changing website)',
+                name: 'use_offline',
+                type: 'confirm',
+                default: false,
+            },
         ];
     }
 
