@@ -19,6 +19,10 @@
         "dev": "./script/dev.sh",
         "doc": "./script/doc.sh",
         "doc:deploy": "./script/doc.deploy.sh",
+        "test:visual": "cd ./visual; yarn loki test",
+        "test:visual:update": "cd ./visual; yarn loki update",
+        "test:visual:approve": "cd ./visual; yarn loki approve",
+        "test:visual:cicd": "cd ./visual; yarn build-storybook && yarn loki --requireReference --reactUri file:./storybook-static",
 <% } %>
         "install-peers": "install-self-peers -- --ignore-scripts",
 <% if (is_cli) { %>
