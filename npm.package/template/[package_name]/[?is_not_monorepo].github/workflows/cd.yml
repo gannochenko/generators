@@ -1,9 +1,8 @@
-name: CI
+name: CD
 
 on:
-    pull_request:
+    push:
         branches:
-            - dev
             - master
 
 jobs:
@@ -22,4 +21,5 @@ jobs:
               run: yarn run test
             - name: Build
               run: yarn run build
-
+            - name: Publish
+              run: yarn semantic-release

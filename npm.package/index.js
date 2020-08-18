@@ -136,6 +136,10 @@ module.exports.Generator = class Generator {
                 '@typescript-eslint/eslint-plugin',
                 'eslint-plugin-prettier',
                 'ts-essentials',
+                'semantic-release',
+                '@semantic-release/commit-analyzer',
+                '@semantic-release/release-notes-generator',
+                '@semantic-release/npm',
 
                 !company_name && 'husky',
                 !company_name && 'prettier',

@@ -16,10 +16,9 @@ import { controllers } from './controller';
 
 (async () => {
     const app = express();
-    useErrorHandler(app);
 
     const host = process.env.NETWORK__HOST || 'localhost';
-    const port = process.env.PORT || process.env.NETWORK__PORT || 3000;
+    const port = process.env.PORT || process.env.NETWORK__PORT || <%- port %>;
 
     app.set('host', host);
     app.set('port', port);
@@ -74,6 +73,8 @@ import { controllers } from './controller';
         }),
     );
 <% } %>
+
+    useErrorHandler(app);
 
     const server = app.listen({ port }, () => {
         logInfo(`🚀 <%- application_name %> is ready at http://${host}:${port}`);

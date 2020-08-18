@@ -157,7 +157,6 @@ module.exports.Generator = class Generator {
 
                 // express
                 'express',
-                'body-parser',
                 'cors',
                 'helmet',
                 '@gannochenko/express.mvc',
