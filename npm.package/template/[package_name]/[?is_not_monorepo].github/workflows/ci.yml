@@ -20,6 +20,11 @@ jobs:
               run: yarn run lint
             - name: Test
               run: yarn run test
+            - name: Test visual (install)
+              working-directory: ./visual
+              run: yarn install
+            - name: Test visual
+              run: yarn test:visual:cicd
             - name: Build
               run: yarn run build
 
