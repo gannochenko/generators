@@ -29,7 +29,7 @@ module.exports.Generator = class Generator {
     getDevDependencies() {
         return {
             destination: '[company_name]/',
-            packages: ['lerna', 'husky', 'prettier', 'pretty-quick'],
+            packages: ['husky', 'prettier', 'pretty-quick', 'multi-semantic-release'],
         };
     }
 };

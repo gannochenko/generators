@@ -54,6 +54,12 @@
         }
     },
 <% } %>
+<% if (github_author_code) { %>
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:<%- github_author_code %>/<%- package_name %>.git"
+    },
+<% } %>
     "publishConfig": {
         "access": "public"
     }

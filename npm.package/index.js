@@ -140,6 +140,8 @@ module.exports.Generator = class Generator {
                 '@semantic-release/commit-analyzer',
                 '@semantic-release/release-notes-generator',
                 '@semantic-release/npm',
+                '@semantic-release/changelog',
+                '@semantic-release/git',
 
                 !company_name && 'husky',
                 !company_name && 'prettier',

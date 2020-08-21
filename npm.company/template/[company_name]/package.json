@@ -17,6 +17,9 @@
     "publishConfig": {
         "access": "public"
     },
+    "private": true,
+    "workspaces": [
+    ],
     "husky": {
         "hooks": {
             "pre-commit": "pretty-quick --staged"
