@@ -97,6 +97,10 @@ module.exports.Generator = class Generator {
 
         answers.use_ui_boilerplate = !!answers.use_ui_boilerplate;
 
+        if (process.env.DEBUG) {
+            console.log(answers);
+        }
+
         return answers;
     }
 
