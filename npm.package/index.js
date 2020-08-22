@@ -118,6 +118,7 @@ module.exports.Generator = class Generator {
                 !!use_cli_boilerplate && 'fs-extra',
                 !!use_cli_boilerplate && 'clear',
                 !!use_cli_boilerplate && 'figlet',
+                !!use_cli_boilerplate && 'inquirer',
             ],
         };
     }
@@ -149,9 +150,9 @@ module.exports.Generator = class Generator {
                 '@semantic-release/changelog',
                 '@semantic-release/git',
 
-                !company_name && 'husky',
-                !company_name && 'prettier',
-                !company_name && 'pretty-quick',
+                !is_not_monorepo && 'husky',
+                !is_not_monorepo && 'prettier',
+                !is_not_monorepo && 'pretty-quick',
 
                 !!is_cli && 'ts-node',
 
