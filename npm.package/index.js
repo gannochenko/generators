@@ -107,7 +107,7 @@ module.exports.Generator = class Generator {
     }
 
     getDependencies() {
-        const { use_cli_boilerplate } = this.answers;
+        const { use_cli_boilerplate, is_ui } = this.answers;
 
         return {
             destination: '[package_name]/',
@@ -119,12 +119,13 @@ module.exports.Generator = class Generator {
                 !!use_cli_boilerplate && 'clear',
                 !!use_cli_boilerplate && 'figlet',
                 !!use_cli_boilerplate && 'inquirer',
+                !is_ui && 'debug',
             ],
         };
     }
 
     getDevDependencies() {
-        const { company_name, is_cli, use_cli_boilerplate, is_ui, is_not_monorepo } = this.answers;
+        const { is_cli, use_cli_boilerplate, is_ui, is_not_monorepo } = this.answers;
 
         return {
             destination: '[package_name]/',
@@ -173,6 +174,8 @@ module.exports.Generator = class Generator {
                 !!is_ui && 'eslint-plugin-react-hooks',
                 !!is_ui && 'jest-styled-components',
                 !!is_ui && 'react-test-renderer',
+
+                !is_ui && '@types/debug',
             ],
         };
     }

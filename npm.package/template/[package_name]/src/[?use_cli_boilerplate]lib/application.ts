@@ -25,6 +25,7 @@ export class Application {
         }
 
         clear();
+        // eslint-disable-next-line no-console
         console.log(
             chalk.red(
                 figlet.textSync('<%- application_name %>', { horizontalLayout: 'full' }),

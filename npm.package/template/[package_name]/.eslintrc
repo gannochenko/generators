@@ -43,7 +43,9 @@
 <% if (is_ui) { %>
     "react/prop-types": "off",
 <% } %>
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   },
   "parserOptions": {
     "ecmaVersion": 6,
