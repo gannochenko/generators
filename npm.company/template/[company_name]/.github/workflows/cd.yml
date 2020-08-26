@@ -5,6 +5,8 @@ on:
         branches:
             - master
             - beta
+        paths:
+            - 'packages/**'
 
 jobs:
     test:
@@ -12,15 +14,20 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
-            - name: Install
+            - name: Install common
               run: yarn install
             - name: Install peers
               run: yarn run install-peers
-            - name: Lint
-              run: yarn run lint
-            - name: Test
-              run: yarn run test
-            - name: Build
-              run: yarn run build
+#            - name: Install (package_name)
+#              working-directory: ./packages/package_name
+#              run: yarn install
+#            - name: Install peers (package_name)
+#              working-directory: ./packages/package_name
+#              run: yarn install-peers
+#            - name: Build (package_name)
+#              working-directory: ./packages/package_name
+#              run: yarn build
             - name: Publish
-              run: yarn semantic-release
+              run: yarn multi-semantic-release
+              env:
+                  GITHUB_TOKEN ${{ secrets.CICD_TOKEN }}
