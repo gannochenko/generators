@@ -1,6 +1,6 @@
 import { Command as CommanderCommand } from 'commander';
 
-import { CommandRun } from './run/run';
+import { CommandRun } from './CommandRun';
 import { ActionCallback } from './type';
 
 export class Commands {

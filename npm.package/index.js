@@ -119,6 +119,7 @@ module.exports.Generator = class Generator {
                 !!use_cli_boilerplate && 'clear',
                 !!use_cli_boilerplate && 'figlet',
                 !!use_cli_boilerplate && 'inquirer',
+                !!use_cli_boilerplate && 'find-up-all',
                 !is_ui && 'debug',
             ],
         };

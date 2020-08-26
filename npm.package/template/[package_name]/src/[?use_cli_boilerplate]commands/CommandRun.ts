@@ -1,11 +1,16 @@
 import { Command as CommanderCommand } from 'commander';
+import inquirer from 'inquirer';
+import execa from 'execa';
+import debug from 'debug';
 import {
     ActionCallback,
     CommandActionArguments,
     CommandProcessor,
     Implements,
-} from '../type';
-import {Application} from '../../lib/application';
+} from './type';
+import {Application} from '../lib/application';
+
+const d = debug('run');
 
 @Implements<CommandProcessor>()
 export class CommandRun {
@@ -33,6 +38,29 @@ export class CommandRun {
         application: Application,
         args: CommandActionArguments,
     ) {
+        const answers = await inquirer.prompt([
+            {
+                message: 'Execute?',
+                name: 'confirm',
+                type: 'confirm',
+                default: false,
+            },
+        ]);
+
+        if (!answers.confirm) {
+            console.log('Aborted');
+            return;
+        }
+
         console.log('Executing command "run"');
+
+        const result = await execa('ls', ['-l'], {
+            cwd: process.cwd(),
+            stdio: ['inherit', 'inherit', 'inherit'],
+        });
+
+        console.log(result);
+
+        d('Executed successfully');
     }
 }
