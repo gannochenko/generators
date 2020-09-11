@@ -137,6 +137,24 @@ yarn;
 yarn start;
 ```
 
+#### Installing a development binary system-wide
+
+Build for the first time and then run consequent on-change builds:
+
+~~~bash
+yarn build;
+yarn build:watch;
+~~~
+
+In another terminal:
+
+~~~bash
+cd $(yarn global bin)
+ln -s PATH_2_YOUR_PROJECT/build.cjs/index.js ./BINARY_NAME
+~~~
+
+Now the binary is available globally!
+
 <!-- ROADMAP -->
 ## Roadmap
 
