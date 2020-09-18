@@ -3,7 +3,7 @@ const path = require('path');
 module.exports.Generator = class Generator {
     getName() {
         // this is the name your generator will appear in the list under
-        return 'blog.post';
+        return 'Blog post template for Gatsby blog';
     }
 
     async getQuestions() {

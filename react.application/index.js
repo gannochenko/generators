@@ -13,7 +13,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'React front-end boilerplate';
+        return 'React application';
     }
 
     getQuestions() {

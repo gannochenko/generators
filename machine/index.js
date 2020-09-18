@@ -8,7 +8,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'Development machine';
+        return 'VirtualBox machine for development';
     }
 
     getQuestions() {

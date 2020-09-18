@@ -7,7 +7,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'Microservice composition';
+        return 'Project root folder';
     }
 
     setContext(context) {
@@ -19,7 +19,7 @@ module.exports.Generator = class Generator {
             {
                 type: 'input',
                 name: 'composition_code',
-                message: 'Composition code',
+                message: 'Project code',
                 validate: async (value) => {
                     if (typeof value !== 'string') {
                         return 'Must be a string';
@@ -40,7 +40,7 @@ module.exports.Generator = class Generator {
             {
                 type: 'input',
                 name: 'composition_name',
-                message: 'Composition name',
+                message: 'Project name',
             },
             {
                 type: 'input',
