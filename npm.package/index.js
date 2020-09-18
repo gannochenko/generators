@@ -152,9 +152,9 @@ module.exports.Generator = class Generator {
                 '@semantic-release/changelog',
                 '@semantic-release/git',
 
-                !is_not_monorepo && 'husky',
-                !is_not_monorepo && 'prettier',
-                !is_not_monorepo && 'pretty-quick',
+                !!is_not_monorepo && 'husky',
+                !!is_not_monorepo && 'prettier',
+                !!is_not_monorepo && 'pretty-quick',
 
                 !!is_cli && 'ts-node',
 

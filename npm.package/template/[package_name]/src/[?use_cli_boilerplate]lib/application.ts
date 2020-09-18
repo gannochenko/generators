@@ -3,11 +3,16 @@ import clear from 'clear';
 import figlet from 'figlet';
 import commander from 'commander';
 import process from 'process';
+import path from 'path';
+import fs from 'fs';
+import { promisify } from 'util';
 
-import { VERSION } from './constants';
 import { Commands } from '../commands';
 import { CommandAction, CommandProcessor } from '../commands/type';
 import { Nullable, ObjectLiteral } from '../type';
+
+const getFileAccessError = promisify(fs.access);
+const readFile = promisify(fs.readFile);
 
 export class Application {
 
@@ -15,7 +20,7 @@ export class Application {
 
     public async run() {
         await this.showIntro();
-        const command = this.processCLI();
+        const command = await this.processCLI();
         if (!command) {
             // eslint-disable-next-line no-console
             console.log('No command specified. Try -h for available commands.');
@@ -40,7 +45,7 @@ export class Application {
         this.introShown = true;
     }
 
-    private processCLI(): CommandAction | null {
+    private async processCLI(): Promise<CommandAction | null> {
         const program = new commander.Command();
 
         let commandToRun: Nullable<CommandProcessor> = null;
@@ -48,9 +53,13 @@ export class Application {
 
         program
             .name('<%- command_name %>')
-            .version(VERSION, '-v, --version', 'output the current version')
+            .version(await this.getVersion(), '-v, --version', 'output the current version')
             .description('<%- application_name %>: a new fancy application')
-            .option('-d, --debug', 'output an additional debug info');
+            .on('--help', () => {
+                console.log(`
+✉️  Contact author: https://www.linkedin.com/in/<%- linkedin_author_code %>/
+🐛 Submit issue or request feature: https://github.com/<%- github_author_code %>/<%- package_name %>/issues
+`);
 
         // @ts-ignore
         Commands.attachCommands(program, command => {
@@ -72,8 +81,26 @@ export class Application {
             command: commandToRun!,
             arguments: {
                 ...commandArguments,
-                debug: program.debug,
             },
         };
+    }
+
+    private async getVersion() {
+        const UNKNOWN_VERSION = '0.0.0';
+
+        const packagePath = path.normalize(path.join(__dirname, '../../package.json'));
+        const accessError = await getFileAccessError(packagePath);
+        // @ts-ignore
+        if (accessError) {
+            return UNKNOWN_VERSION;
+        }
+
+        try {
+            const packageData = JSON.parse((await readFile(packagePath)).toString('utf8'));
+            return packageData.version || UNKNOWN_VERSION;
+        } catch (error) {
+        }
+
+        return UNKNOWN_VERSION;
     }
 }
