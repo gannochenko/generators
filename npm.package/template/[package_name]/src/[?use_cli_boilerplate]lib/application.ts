@@ -85,7 +85,7 @@ export class Application {
         };
     }
 
-    private async getVersion() {
+    private async getVersion(): Promise<string> {
         const UNKNOWN_VERSION = '0.0.0';
 
         const packagePath = path.normalize(path.join(__dirname, '../../package.json'));
