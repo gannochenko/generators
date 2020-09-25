@@ -13,7 +13,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'Node/Express backend';
+        return 'Express-based Node application';
     }
 
     getQuestions() {

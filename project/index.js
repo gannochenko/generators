@@ -7,7 +7,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'Project root folder';
+        return 'Root folder for a monorepo-based project';
     }
 
     setContext(context) {

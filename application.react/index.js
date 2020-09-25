@@ -13,7 +13,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'React application';
+        return 'Vanilla React application';
     }
 
     getQuestions() {
