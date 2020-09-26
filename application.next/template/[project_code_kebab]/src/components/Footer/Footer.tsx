@@ -13,7 +13,7 @@ export const Footer: FunctionComponent<FooterPropsType> = ({
         <FooterRoot {...restProps}>
             <Container contentAlign="center">
                 <Copyright>
-                    &copy; then &mdash; now &laquo;${meta.application.name}&raquo;
+                    &copy; then &mdash; now &laquo;{meta.application.name}&raquo;
                 </Copyright>
                 <Links variant="body2">
                     <Link href="/cookie-policy">Cookie policy</Link>

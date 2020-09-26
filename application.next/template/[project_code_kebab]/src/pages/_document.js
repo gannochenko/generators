@@ -54,7 +54,7 @@ export default class ApplicationDocument extends Document {
                         name="apple-mobile-web-app-title"
                         content={meta.application.name}
                     />
-                    <meta name="description" content={meta.application.name} />
+                    <meta name="description" content={meta.application.description} />
                     <meta name="format-detection" content="telephone=no" />
                     <meta name="mobile-web-app-capable" content="yes" />
                     <meta
