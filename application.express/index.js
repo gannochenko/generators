@@ -13,7 +13,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'Express-based Node application';
+        return 'Express-based Node application (TypeScript, Express, TypeORM + Postgres, Rest, GraphQL, gRPC, Terraform)';
     }
 
     getQuestions() {
