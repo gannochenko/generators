@@ -21,7 +21,7 @@ module.exports.Generator = class Generator {
         // here it is possible to alter some answers before the generation starts
         answers.post_name_kebab = this.util.textConverter.toKebab(
             answers.post_name,
-        );
+        ).replace(/[^a-z0-9-]/ig, '');
 
         const date = new Date();
         answers.date = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;

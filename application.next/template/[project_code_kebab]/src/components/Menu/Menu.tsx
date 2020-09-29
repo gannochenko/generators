@@ -1,6 +1,6 @@
 import { FunctionComponent, useState, useCallback } from 'react';
 import Link from 'next/link';
-import { items } from './items';
+import { menu } from '../../menu';
 
 import {
     MenuRoot,
@@ -28,7 +28,7 @@ export const Menu: FunctionComponent<Props> = () => {
         <MenuRoot>
             <Main>
                 <Items>
-                    {items.map((item) => (
+                    {menu.map((item) => (
                         <Link href={item.link} key={item.link}>
                             <Item href={item.link}>{item.text}</Item>
                         </Link>
@@ -41,7 +41,7 @@ export const Menu: FunctionComponent<Props> = () => {
                 </Hamburger>
             </Main>
             <MobileItems open={mobileMenuOpen}>
-                {items.map((item) => (
+                {menu.map((item) => (
                     <Link href={item.link} key={item.link}>
                         <MobileItem
                             onClick={onMobileItemClick}

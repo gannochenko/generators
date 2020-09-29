@@ -13,8 +13,7 @@ export const ProgressBar = () => {
     useEffect(() => {
         const handleStart = (url: string) =>
             url !== router.pathname && setLoading(true);
-        const handleComplete = (url: string) =>
-            url === router.pathname && setLoading(false);
+        const handleComplete = () => setLoading(false);
 
         router.events.on('routeChangeStart', handleStart);
         router.events.on('routeChangeComplete', handleComplete);
