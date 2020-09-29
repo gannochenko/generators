@@ -30,6 +30,8 @@ const HomePage: PageType = () => {
                     with desktop publishing software like Aldus PageMaker
                     including versions of Lorem Ipsum.
                 </Paragraph>
+
+                <Link href="https://material-ui.com/components/buttons/">Check out which components you can use!</Link>
             </Container>
         </>
     );
