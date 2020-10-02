@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import {
     <%- component_name_pascal %>Root,
@@ -14,4 +15,12 @@ export const <%- component_name_pascal %>: FunctionComponent<<%- component_name_
             {children}
         </<%- component_name_pascal %>Root>
     );
+};
+
+<%- component_name_pascal %>.defaultProps = {
+
+};
+
+<%- component_name_pascal %>.propTypes = {
+
 };

@@ -8,7 +8,7 @@ module.exports.Generator = class Generator {
     // }
 
     getName() {
-        return 'React Component: TypeScript + testing';
+        return 'React Component (TypeScript, jest, Storybook)';
     }
 
     getQuestions() {
