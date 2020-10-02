@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import Head from 'next/head';
 import { Button as MUIButton } from '@material-ui/core';
 import { GetServerSideProps } from 'next';
-import { Layout, Container, Title } from '../components';
+import { Layout, Container, Header } from '../components';
 import { PageType } from '../type';
 
 const BlogPage: PageType = () => {
@@ -13,7 +13,7 @@ const BlogPage: PageType = () => {
             </Head>
 
             <Container>
-                <Title>This is a blog page</Title>
+                <Header>This is a blog page</Header>
 
                 <MUIButton color="primary" variant="contained">
                     Read me

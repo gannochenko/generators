@@ -1,10 +1,14 @@
 import { Theme } from '@material-ui/core';
+import {fonts} from './fonts';
 
 export const reset = (theme: Theme) => {
     const toRem = theme.typography.pxToRem;
 
     return {
         __html: `
+        
+    ${fonts}
+
 	html {
 		font-size: 16px;
 		cursor: default;

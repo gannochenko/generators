@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "serve": "next start",
     "start": "next start",
     "lint": "eslint ./src/ --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "eslint ./src/ --fix --ext .js,.ts,.jsx,.tsx"
