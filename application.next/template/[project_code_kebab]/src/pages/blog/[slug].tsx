@@ -2,10 +2,15 @@ import { ReactNode } from 'react';
 import Head from 'next/head';
 import { Button as MUIButton } from '@material-ui/core';
 import { GetServerSideProps } from 'next';
-import { Layout, Container, Header } from '../components';
-import { PageType } from '../type';
+import { useRouter } from 'next/router';
+import { Layout, Container, Header } from '../../components';
+import { PageType } from '../../type';
 
 const BlogPage: PageType = () => {
+
+    const router = useRouter();
+    const { slug } = router.query;
+
     return (
         <>
             <Head>

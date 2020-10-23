@@ -55,8 +55,8 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 19001, host: 19001, host_ip: "0.0.0.0"
   config.vm.network "forwarded_port", guest: 19002, host: 19002, host_ip: "0.0.0.0"
 
-<% if(add_project_folder) { %>
-  config.vm.synced_folder "/Users/<%- user_name %>/proj/", "/home/vagrant/all-projects/"
+<% if(use_syncfolder) { %>
+  config.vm.synced_folder "/Users/<%- user_name %>/sync/", "/home/vagrant/sync/"
 <% } %>
 
   config.vm.provider "virtualbox" do |vb|
@@ -79,10 +79,17 @@ Vagrant.configure("2") do |config|
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -;
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list;
 
-    ### python3 + awscli
+    sudo apt-get install -y zip unzip g++;
+
+<% if (use_python) { %>
     sudo add-apt-repository ppa:jonathonf/python-3.6;
     sudo apt-get update;
-    sudo apt-get install -y zip unzip g++ chrony python python3.6 awscli;
+    sudo apt-get install -y python python3.6;
+<% } %>
+
+<% if (use_aws) { %>
+    sudo apt-get install -y awscli;
+<% } %>
 
     #### ssh
     if [ ! -f "/home/vagrant/.ssh/id_rsa.pub" ]; then
@@ -101,7 +108,9 @@ Vagrant.configure("2") do |config|
     mkdir /home/vagrant/volume-development/;
     # project folder the machine was created for
     mkdir /home/vagrant/proj;
+    mkdir /home/vagrant/sync;
 
+<% if (use_node) { %>
     #### node
     cd /home/vagrant/;
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash;
@@ -112,42 +121,57 @@ Vagrant.configure("2") do |config|
     nvm alias default 13;
     sudo apt-get install --no-install-recommends yarn;
 
-    #### node global modules
-    npm install --global create-react-app gatsby-cli typescript loadtest;
-    # npm install --global gulp-cli mocha serverless yo generator-generator expo-cli webpack webpack-cli;
+    npm install --global loadtest typescript;
+    # gulp-cli mocha serverless yo generator-generator expo-cli webpack webpack-cli;
+<% } %>
+
+<% if (use_reacttools) { %>
+    npm install --global create-react-app;
+<% } %>
+
+<% if (use_gatsby) { %>
+    npm install --global gatsby-cli;
     gatsby telemetry --disable;
+<% } %>
 
-    #### ruby
-    ## https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04
-    # sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev libpq-dev;
-    # git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
-    # echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc;
-    # echo 'eval "$(rbenv init -)"' >> ~/.bashrc;
-    # source ~/.bashrc;
-    # git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build;
-    # rbenv install 2.7.0;
-    # rbenv global 2.7.0;
-    # echo "gem: --no-document" > ~/.gemrc;
-    # gem install bundler;
+<% if (use_ruby) { %>
+    ### ruby
+    # https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04
+    sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev libpq-dev;
+    git clone https://github.com/rbenv/rbenv.git ~/.rbenv;
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc;
+    echo 'eval "$(rbenv init -)"' >> ~/.bashrc;
+    source ~/.bashrc;
+    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build;
+    rbenv install 2.7.0;
+    rbenv global 2.7.0;
+    echo "gem: --no-document" > ~/.gemrc;
+    gem install bundler;
+<% } %>
 
+<% if (use_heroku) { %>
     #### heroku
     curl https://cli-assets.heroku.com/install.sh | sh;
+<% } %>
 
+<% if (use_mongodb) { %>
     ##### mongodb, just in case you want to test something without docker
-    # sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
-    # echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
-    # sudo apt-get update;
-    # sudo apt-get install -y mongodb-org;
-    # sudo service mongod stop;
-    # sudo sed -i -e 's/bindIp: 127\.0\.0\.1/bindIp: 0.0.0.0/g' /etc/mongod.conf;
-    # sudo service mongod start;
-    # sudo systemctl enable mongod.service;
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+    echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+    sudo apt-get update;
+    sudo apt-get install -y mongodb-org;
+    sudo service mongod stop;
+    sudo sed -i -e 's/bindIp: 127\.0\.0\.1/bindIp: 0.0.0.0/g' /etc/mongod.conf;
+    sudo service mongod start;
+    sudo systemctl enable mongod.service;
+<% } %>
 
     ##### git
     sudo apt-get install -y git;
     git config --global user.name "awesome";
     git config --global user.email "awesome1888@gmail.com";
 
+<% if (use_docker) { %>
     ##### docker
     sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common;
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -;
@@ -161,15 +185,18 @@ Vagrant.configure("2") do |config|
     ##### docker-compose
     sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose;
     sudo chmod +x /usr/local/bin/docker-compose;
+<% } %>
 
     ##### kubectl
-    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-    chmod +x ./kubectl;
-    sudo mv ./kubectl /usr/bin/kubectl;
+    # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    # chmod +x ./kubectl;
+    # sudo mv ./kubectl /usr/bin/kubectl;
 
+<% if (use_terraform) { %>
     ##### terraform
     wget -O ~/terraform.zip https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_linux_amd64.zip;
     sudo unzip ~/terraform.zip -d /usr/bin;
+<% } %>
 
     ##### ntp
     # tmp # /etc/chrony/chrony.conf
