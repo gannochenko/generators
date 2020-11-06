@@ -11,3 +11,6 @@ app.run().catch(error => {
     d(error.stack);
 });
 <% } %>
+<% if (use_ui_boilerplate) { %>
+export * from './components';
+<% } %>

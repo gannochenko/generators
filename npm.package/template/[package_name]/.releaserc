@@ -19,7 +19,7 @@
                 }
             }
         ],
-        "@semantic-release/release-note-generator",
+        "@semantic-release/release-notes-generator",
         "@semantic-release/npm",
         ["@semantic-release/changelog", {
             "changelogFile": "CHANGELOG.md"
