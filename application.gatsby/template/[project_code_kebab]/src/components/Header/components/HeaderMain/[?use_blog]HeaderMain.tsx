@@ -21,7 +21,7 @@ import {
 import { Avatar } from '../../../Avatar';
 import { Social } from '../../../Social';
 import { Copyright } from '../../../Copyright';
-import { links } from '../../../../lib/[?use_blog]links';
+import { links } from '../../../../lib/links';
 
 export const HeaderMain: FunctionComponent<Props> = ({
     backgroundImage,
@@ -58,38 +58,38 @@ export const HeaderMain: FunctionComponent<Props> = ({
                                         effectName="fade-enter"
                                         effectTimeout={timeoutBase}
                                         effectEaseA="preset:bounce"
-                                </HelloLeft>
-                                <HelloRight>
-                                    <NameBlock
-                                        effectName="fade-slide-bottom"
-                                        effectTimeout={timeoutRight}
-                                        effectEaseA="preset:bounce"
                                     >
-                                        <%- author_name %>
-                                    </NameBlock>
-                                    <GreetingBlock
-                                        effectName="fade-slide-bottom"
-                                        effectTimeout={timeoutRight + 300}
-                                        effectEaseA="preset:bounce"
-                                    >
-                                        Fullstack software engineer in
-                                        JS/JS,
-                                        <br />
-                                        open-source contributor, in ❤️ with
-                                        tech
-                                    </GreetingBlock>
-                                    <SocialBar
-                                        effectName="fade-slide-bottom"
-                                        effectTimeout={timeoutRight + 600}
-                                        effectEaseA="preset:bounce"
-                                    >
-                                        <Social
-                                            type="github"
-                                            src={links.github}
-                                        />
-                                        <Social
-                                        >
                                         <Avatar />
+                                    </HelloLeft>
+                                    <HelloRight>
+                                        <NameBlock
+                                            effectName="fade-slide-bottom"
+                                            effectTimeout={timeoutRight}
+                                            effectEaseA="preset:bounce"
+                                        >
+                                            <%- author_name %>
+                                        </NameBlock>
+                                        <GreetingBlock
+                                            effectName="fade-slide-bottom"
+                                            effectTimeout={timeoutRight + 300}
+                                            effectEaseA="preset:bounce"
+                                        >
+                                            Fullstack software engineer in
+                                            JS/JS,
+                                            <br />
+                                            open-source contributor, in ❤️ with
+                                            tech
+                                        </GreetingBlock>
+                                        <SocialBar
+                                            effectName="fade-slide-bottom"
+                                            effectTimeout={timeoutRight + 600}
+                                            effectEaseA="preset:bounce"
+                                        >
+                                            <Social
+                                                type="github"
+                                                src={links.github}
+                                            />
+                                            <Social>
                                                 type="linkedin"
                                                 src={links.linkedin}
                                             />

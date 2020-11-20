@@ -6,7 +6,7 @@
 
 const { introspectionQuery, graphql, printSchema } = require('gatsby/graphql');
 const write = require('write');
-const { fmImagesToRelative } = require('gatsby-remark-relative-images');
+// const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 const path = require('path');
 
 /**
@@ -32,9 +32,9 @@ exports.onPostBootstrap = async ({ store }) => {
     }
 };
 
-exports.onCreateNode = ({ node }) => {
-    fmImagesToRelative(node);
-};
+// exports.onCreateNode = ({ node }) => {
+//     fmImagesToRelative(node);
+// };
 
 <% if(use_blog) { %>
 exports.createPages = ({ graphql, actions }) => {
@@ -165,6 +165,7 @@ exports.onCreateWebpackConfig = ({
         ],
         resolve: {
             modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+            symlinks: false,
         },
     });
 };

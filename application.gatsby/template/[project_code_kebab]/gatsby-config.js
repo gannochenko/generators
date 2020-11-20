@@ -1,5 +1,7 @@
 module.exports = {
-    // pathPrefix: '/path-prefix',
+<% if(path_prefix) { %>
+    pathPrefix: '/<%- path_prefix %>',
+<% } %>
     siteMetadata: {
         title: '<%- project_name %>',
         description: '<%- project_description %>',
@@ -97,7 +99,9 @@ module.exports = {
                 display: 'minimal-ui',
                 categories: [], // https://github.com/w3c/manifest/wiki/Categories
                 icon: 'static/icon.png', // This path is relative to the root of the site.
+<% if (use_offline) { %>
                 cache_busting_mode: 'none',
+<% } %>
             },
         },
 <% if(use_mui) { %>

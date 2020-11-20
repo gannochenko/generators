@@ -19,6 +19,10 @@ module.exports.Generator = class Generator {
                 name: 'project_domain',
             },
             {
+                message: 'Are we using path prefix (like for GitHub pages)?',
+                name: 'path_prefix',
+            },
+            {
                 message: 'Project name',
                 name: 'project_name',
                 default: 'New project',
@@ -85,6 +89,8 @@ module.exports.Generator = class Generator {
         answers.author_email_start = emailParts[0];
         answers.author_email_end = emailParts[1];
 
+        answers.path_prefix = answers.path_prefix ? answers.path_prefix.replace(/^\//, '') : '';
+
         return answers;
     }
 
@@ -125,9 +131,11 @@ module.exports.Generator = class Generator {
                 'markdown-it',
                 'netlify-cms-app',
                 !!use_blog && 'prism-react-renderer',
+                !!use_blog && 'copy-to-clipboard',
                 'react',
                 'react-dom',
                 'react-helmet',
+                'react-router',
                 'sharp',
                 'styled-components@4',
                 'throttle-debounce',
