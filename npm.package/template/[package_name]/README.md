@@ -124,37 +124,40 @@ Just go to the repository you want to have a new version for, and type there:
 ### Development installation
 
 1. Clone the repo
-```sh
-git clone https://github.com/<%- github_author_code %>/<%- package_name %>.git
-```
+
+    ```sh
+    git clone https://github.com/<%- github_author_code %>/<%- package_name %>.git
+    ```
+
 2. Install NPM packages
-```sh
-cd <%- package_name %>;
-yarn;
-```
+
+    ```sh
+    cd <%- package_name %>;
+    yarn;
+    ```
+
 3. Run the application
-```sh
-yarn start;
-```
 
-#### Installing a development binary system-wide
+    ```sh
+    yarn start;
+    ```
+<% if(is_cli) { %>
+### Development "binary" available globally
 
-Build for the first time and then run consequent on-change builds:
+1. Run the link script
 
-~~~bash
-yarn build;
-yarn build:watch;
-~~~
+    ```sh
+    ./scripts/link.sh
+    ```
 
-In another terminal:
+2. Run build in watch mode
 
-~~~bash
-cd $(yarn global bin)
-ln -s PATH_2_YOUR_PROJECT/build.cjs/index.js ./BINARY_NAME
-~~~
+    ```sh
+    yarn build:watch
+    ```
 
-Now the binary is available globally!
-
+3. Use the tool anywhere globally
+<% } %>
 <!-- ROADMAP -->
 ## Roadmap
 

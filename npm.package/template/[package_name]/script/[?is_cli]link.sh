@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-BIN="cli-test"
-
-#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-DIR=$(pwd)
-
-echo ${PWD}
+BIN="<%- command_name %>"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 yarn build:cjs
 cd $(yarn global bin)
