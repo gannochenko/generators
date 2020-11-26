@@ -10,7 +10,7 @@ module.exports.Generator = class Generator {
     getQuestions() {
         return [
             {
-                message: 'What is the NPM company name?',
+                message: 'What is the project name?',
                 name: 'company_name',
             },
             {
