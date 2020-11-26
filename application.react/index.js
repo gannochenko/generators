@@ -13,7 +13,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'Vanilla React application (React, TypeScript, MobX)';
+        return '[DEPRECATED] Vanilla React application (React, TypeScript, MobX)';
     }
 
     getQuestions() {

@@ -4,7 +4,7 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'NPM company';
+        return 'NPM project';
     }
 
     getQuestions() {
