@@ -13,7 +13,7 @@
     "license": "MIT",
     "scripts": {
         "build": "gatsby build",
-        "build:gh": "gatsby build --prefix-paths; cp CNAME public/CNAME",
+        "build:gh": "gatsby build --prefix-paths & cp CNAME public/CNAME",
         "deploy:gh": "gh-pages -d public",
         "develop": "rm -rf ./.cache/; gatsby develop --host=0.0.0.0",
         "dev": "yarn run develop",
