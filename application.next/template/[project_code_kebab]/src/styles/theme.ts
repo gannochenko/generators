@@ -6,7 +6,7 @@ import { meta } from '../meta';
 // Use this tool to configure custom colors: https://material.io/resources/color/
 export const theme = createMuiTheme({
     typography: {
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+        fontFamily: 'Roboto',
 
         // Header
         h4: {

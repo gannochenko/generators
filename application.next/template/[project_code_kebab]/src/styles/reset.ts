@@ -26,7 +26,7 @@ export const reset = (theme: Theme) => {
 		line-height: 1.8;
 		font-size: ${toRem(theme.typography.fontSize)};
 		letter-spacing: -0.05px;
-		font-family: ${theme.typography.fontFamily};
+		font-family: ${theme.typography.fontFamily}, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 		min-width: 320px;
 		overflow-x: hidden;
 	}
