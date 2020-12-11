@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Typography, TypographyTypeMap } from '@material-ui/core';
 import { FunctionComponent } from 'react';
 
-export const Header = styled(Typography).attrs({
+export const Title = styled(Typography).attrs({
     variant: 'h4',
     component: 'h1',
 })`
@@ -10,7 +10,7 @@ export const Header = styled(Typography).attrs({
     color: ${({ theme }) => theme.palette.text.primary};
 `;
 
-export const SubHeader = styled(Typography).attrs({
+export const SubTitle = styled(Typography).attrs({
     variant: 'h5',
     component: 'h2',
 })`
@@ -19,7 +19,7 @@ export const SubHeader = styled(Typography).attrs({
     color: ${({ theme }) => theme.palette.text.primary};
 `;
 
-export const SectionHeader = styled(Typography).attrs({
+export const SectionTitle = styled(Typography).attrs({
     variant: 'h6',
     component: 'h3',
 })`

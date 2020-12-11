@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Button as MUIButton } from '@material-ui/core';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { Layout, Container, Header } from '../../components';
+import { Layout, Container, Title } from '../../components';
 import { PageType } from '../../type';
 
 const BlogPage: PageType = () => {
@@ -18,7 +18,7 @@ const BlogPage: PageType = () => {
             </Head>
 
             <Container>
-                <Header>This is a blog page</Header>
+                <Title>This is a blog page</Title>
 
                 <MUIButton color="primary" variant="contained">
                     Read me

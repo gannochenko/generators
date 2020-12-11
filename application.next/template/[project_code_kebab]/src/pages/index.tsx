@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import Head from 'next/head';
 import { Button } from '@material-ui/core';
 import { PageType } from '../type';
-import { Header, Link, Container, Layout, Paragraph } from '../components';
+import { Title, Link, Container, Layout, Paragraph } from '../components';
 
 const HomePage: PageType = () => {
     return (
@@ -12,7 +12,7 @@ const HomePage: PageType = () => {
             </Head>
 
             <Container>
-                <Header>This project works on Next.js!</Header>
+                <Title>This project works on Next.js!</Title>
 
                 <Paragraph>
                     <Link href="https://www.lipsum.com/">Lorem Ipsum</Link> is
