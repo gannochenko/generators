@@ -11,15 +11,15 @@ module.exports.Generator = class Generator {
         // https://www.npmjs.com/package/inquirer#questions
         return [
             {
-                message: 'What will be the project code?',
+                message: 'Project code',
                 name: 'project_code',
             },
             {
-                message: 'What will be the website domain?',
+                message: 'Website domain',
                 name: 'project_domain',
             },
             {
-                message: 'Are we using path prefix (like for GitHub pages)?',
+                message: 'Path prefix (like for GitHub pages)',
                 name: 'path_prefix',
             },
             {
@@ -44,6 +44,7 @@ module.exports.Generator = class Generator {
             {
                 message: 'GitHub account name',
                 name: 'github_account_name',
+                default: 'gannochenko',
             },
             {
                 message: 'GitHub repository name',
@@ -52,10 +53,12 @@ module.exports.Generator = class Generator {
             {
                 message: 'Author name',
                 name: 'author_name',
+                default: 'Sergei Gannochenko',
             },
             {
                 message: 'Author email',
                 name: 'author_email',
+                default: 'gannochenko.sv@gmail.com',
             },
             {
                 message: 'Google Analytics ID',
@@ -74,7 +77,7 @@ module.exports.Generator = class Generator {
                 default: false,
             },
             {
-                message: 'Enable offline support? (not recommended for frequently changing website)',
+                message: 'Enable offline support? (not recommended for frequently updated website)',
                 name: 'use_offline',
                 type: 'confirm',
                 default: false,
