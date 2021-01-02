@@ -30,12 +30,16 @@ module.exports.Generator = class Generator {
             {
                 message: 'Project short name',
                 name: 'project_pwa_short_name',
-                default: 'New project',
+                default: (answers) => {
+                    return answers.project_name;
+                },
             },
             {
                 message: 'Project description',
                 name: 'project_description',
-                default: 'New project',
+                default: (answers) => {
+                    return answers.project_name;
+                },
             },
             {
                 message: 'GitHub account name',
