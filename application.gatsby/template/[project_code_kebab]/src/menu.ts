@@ -1,4 +1,4 @@
-export const items = [
+export const menu = [
 <% if (use_blog) { %>
     { text: 'Blog', link: '/blog' },
 <% } %>

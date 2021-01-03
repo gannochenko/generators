@@ -6,12 +6,12 @@
 
 import React from 'react';
 import { startEffects } from '@gannochenko/ui';
-import { Root } from './src/components/Root/Root';
+import { Providers } from './src/components/Providers/Providers';
 import { Layout } from './src/components/Layout';
 
 startEffects();
 
-export const wrapRootElement = Root;
+export const wrapRootElement = Providers;
 export const wrapPageElement = ({ element, props }) => {
     return <Layout props={props}>{element}</Layout>;
 };

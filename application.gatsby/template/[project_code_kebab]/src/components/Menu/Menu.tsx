@@ -13,7 +13,7 @@ import {
     MobileItem,
 } from './style';
 
-import { items } from './items';
+import { menu } from '../../menu';
 
 import { Props } from './type';
 
@@ -32,7 +32,7 @@ export const Menu: FunctionComponent<Props> = () => {
                 <Home to="/" onClick={onMobileItemClick} />
                 <Right>
                     <Items>
-                        {items.map(item => <Item to={item.link} key={item.link}>{item.text}</Item>)}
+                        {menu.map(item => <Item to={item.link} key={item.link}>{item.text}</Item>)}
                     </Items>
                     <Hamburger onClick={onHamburgerClick}>
                         <Bar />
@@ -42,7 +42,7 @@ export const Menu: FunctionComponent<Props> = () => {
                 </Right>
             </InnerContainer>
             <MobileItems open={mobileMenuOpen}>
-                {items.map(item => (
+                {menu.map(item => (
                     <MobileItem to={item.link} key={item.link} onClick={onMobileItemClick}>
                         {item.text}
                     </MobileItem>
