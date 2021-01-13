@@ -1,3 +1,7 @@
+## Ticket 
+
+https://your-bugtracker.com/ticket/#TICKET_ID#/
+
 ## Description
 
 * this feature was added
@@ -6,7 +10,3 @@
 ## Dependencies
 
 * do this before or along with merging
-
-## Ticket 
-
-https://your-bugtracker.com/ticket/#TICKET_ID#/

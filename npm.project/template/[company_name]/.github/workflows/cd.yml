@@ -30,4 +30,4 @@ jobs:
             - name: Publish
               run: yarn multi-semantic-release
               env:
-                  GITHUB_TOKEN ${{ secrets.CICD_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

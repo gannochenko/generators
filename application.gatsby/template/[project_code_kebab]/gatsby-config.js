@@ -86,7 +86,6 @@ module.exports = {
                 exclude: ['/ignore-this-path/'],
             },
         },
-        'gatsby-plugin-netlify-cms',
         {
             resolve: 'gatsby-plugin-manifest',
             options: {

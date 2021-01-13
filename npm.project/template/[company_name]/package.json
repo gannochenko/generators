@@ -1,14 +1,6 @@
 {
     "name": "<%- company_name %>",
     "description": "",
-    "scripts": {
-        "build": "lerna run build --npm-client=yarn",
-        "bootstrap": "lerna bootstrap --npm-client=yarn",
-        "install-peers": "lerna run install-peers --npm-client=yarn",
-        "test": "lerna run test --npm-client=yarn",
-        "lint": "lerna run lint --npm-client=yarn",
-        "release": "./script/release.sh"
-    },
     "keywords": [],
     "author": "",
     "license": "MIT",
