@@ -65,18 +65,6 @@ module.exports.Generator = class Generator {
                 name: 'ga_id',
             },
             {
-                message: 'Bootstrap blog?',
-                name: 'use_blog',
-                type: 'confirm',
-                default: false,
-            },
-            {
-                message: 'Enable MaterialUI?',
-                name: 'use_mui',
-                type: 'confirm',
-                default: false,
-            },
-            {
                 message: 'Enable offline support? (not recommended for frequently updated website)',
                 name: 'use_offline',
                 type: 'confirm',
@@ -103,19 +91,17 @@ module.exports.Generator = class Generator {
 
     async getDependencies(answers) {
         // list your dependencies here
-        const { use_blog, ga_id, use_mui } = answers;
+        const { ga_id } = answers;
 
         return {
             destination: '[project_code_kebab]/',
             packages: [
-                '@gannochenko/etc',
-                '@gannochenko/ui',
+                '@gannochenko/ui.styled-components',
                 '@mdx-js/mdx',
                 '@mdx-js/react',
                 'animated-scroll-to',
                 'babel-plugin-styled-components',
                 'color',
-                !!ga_id && 'copy-to-clipboard',
                 'debounce',
                 'events',
                 'gatsby',
@@ -135,25 +121,23 @@ module.exports.Generator = class Generator {
                 'gatsby-transformer-remark',
                 'gatsby-transformer-sharp',
                 'markdown-it',
-                !!use_blog && 'prism-react-renderer',
-                !!use_blog && 'copy-to-clipboard',
                 'react',
                 'react-dom',
                 'react-helmet',
                 'react-router',
                 'sharp',
-                'styled-components@4',
+                'styled-components',
                 'throttle-debounce',
                 'write',
-                !!use_mui && '@material-ui/core',
-                !!use_mui && 'gatsby-plugin-material-ui',
+                '@material-ui/core',
+                'gatsby-plugin-material-ui',
             ],
         };
     }
 
     async getDevDependencies(answers) {
         // list your dev dependencies here
-        const { use_blog, use_mui } = answers;
+        const { use_blog } = answers;
 
         return {
             destination: '[project_code_kebab]/',
@@ -167,7 +151,7 @@ module.exports.Generator = class Generator {
                 '@types/react-helmet',
                 '@types/styled-components@4',
                 '@types/throttle-debounce',
-                !!use_mui && '@types/material-ui',
+                '@types/material-ui',
                 '@typescript-eslint/eslint-plugin',
                 '@typescript-eslint/parser',
                 'eslint',

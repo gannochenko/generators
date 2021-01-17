@@ -1,10 +1,14 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
+import { ObjectLiteralType } from '../../type';
+import { StylePropsType } from '../../style/type';
 
-export interface Props {
-    children?: ReactNode;
-    className?: string;
-    main?: boolean;
-    h2?: boolean;
-    h3?: boolean;
-    h4?: boolean;
-}
+export type TypographyPropsType = Partial<{
+    // custom props here
+
+    enableVerticalGutter: boolean;
+    variant: string;
+}> &
+    HTMLAttributes<HTMLElement> &
+    ObjectLiteralType;
+
+export type TypographyRootPropsType = TypographyPropsType & StylePropsType;

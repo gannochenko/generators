@@ -4,53 +4,71 @@ import React from 'react';
 import { Container } from '../Container';
 import { Typography } from '../Typography';
 import { Link } from '../Link';
-<% if (use_blog) { %>
-import { Listing } from '../Listing';
-<% } %>
-import { HR } from '../HR';
-import { ObjectLiteral } from '../../type';
 
-const margins = { marginTop: '2rem', marginBottom: '2rem' };
+import { HR } from '../HR';
+import { ObjectLiteralType } from '../../type';
 
 export const markdownComponents = {
     a: Link,
-    p: (props: ObjectLiteral) => (
+    p: (props: ObjectLiteralType) => (
         <Container>
-            <p {...props} style={margins} />
+            <Typography
+                {...props}
+                variant="body1"
+                component="p"
+                enableVerticalGutter
+            />
         </Container>
     ),
-    h1: (props: ObjectLiteral) => (
+    h1: (props: ObjectLiteralType) => (
         <Container>
-            <Typography {...props} />
+            <Typography
+                {...props}
+                variant="h1"
+                component="h1"
+                enableVerticalGutter
+            />
         </Container>
     ),
-    h2: (props: ObjectLiteral) => (
+    h2: (props: ObjectLiteralType) => (
         <Container>
-            <Typography h2 {...props} />
+            <Typography
+                {...props}
+                variant="h2"
+                component="h2"
+                enableVerticalGutter
+            />
         </Container>
     ),
-    h3: (props: ObjectLiteral) => (
+    h3: (props: ObjectLiteralType) => (
         <Container>
-            <Typography h3 {...props} />
+            <Typography
+                {...props}
+                variant="h3"
+                component="h3"
+                enableVerticalGutter
+            />
         </Container>
     ),
-    h4: (props: ObjectLiteral) => (
+    h4: (props: ObjectLiteralType) => (
         <Container>
-            <Typography h3 {...props} />
+            <Typography
+                {...props}
+                variant="h4"
+                component="h4"
+                enableVerticalGutter
+            />
         </Container>
     ),
-    ul: (props: ObjectLiteral) => (
+    ul: (props: ObjectLiteralType) => (
         <Container>
             <ul {...props} />
         </Container>
     ),
-    ol: (props: ObjectLiteral) => (
+    ol: (props: ObjectLiteralType) => (
         <Container>
             <ol {...props} />
         </Container>
     ),
     hr: () => <HR />,
-<% if (use_blog) { %>
-    pre: Listing,
-<% } %>
 };

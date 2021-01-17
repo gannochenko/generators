@@ -1,83 +1,119 @@
 import { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
-import { colorWhite, makeTheme, grid, cell } from '@gannochenko/etc';
-import { ObjectLiteral } from '../type';
-import { fontFamilyRaleway, fontFamilyRoboto } from './tokens';
-<% if (use_mui) { %>
+
 import { createMuiTheme } from '@material-ui/core';
-<% } %>
+import { ThemeType } from './type';
+import { makeTokenIndex } from '../util/makeTokenIndex';
+
+// https://material-ui.com/customization/default-theme/
+// https://material.io/resources/color/#!/?view.left=0&view.right=0
+
+const headerFSBase = '2.4rem';
 
 export const themeDeclaration = {
-    color: {
-        backgroundPrimary: colorWhite,
-        backgroundSecondary: '#20232a',
-        textPrimary: '#0a0a0a',
-        textSecondary: colorWhite,
-        link: {
-            normal: '#ce4f4f',
-            hover: '#ce7553',
-            altNormal: colorWhite,
-            altHover: '#ce4f4f',
+    palette: {
+        primary: {
+            main: '#ef9a9a',
+            light: '#ffcccb',
+            dark: '#ba6b6c',
+            contrastText: '#ffffff',
         },
-        secondary: '#6c7a89',
-
+        secondary: {
+            main: '#9c27b0',
+            light: '#d05ce3',
+            dark: '#6a0080',
+            contrastText: '#ffffff',
+        },
         text: {
-            primary: '#0a0a0a',
-            secondary: colorWhite,
-        },
-        background: {
-            primary: colorWhite,
-            secondary: '#0a0a0a',
+            primary: '#333',
+            // secondary: '#ffffff',
         },
     },
     typography: {
-        fontFamily: fontFamilyRoboto,
-        fontFamilyHeader: fontFamilyRaleway,
-    },
-    link: {
-        hoverEffectDuration: '300ms',
-    },
-    grid: {
-        resolution: 12,
-    },
-    fontSize: {
-        large: '1.6rem',
-        medium: '1.4rem',
-        bigger: '1.2rem',
-        standard: '1.0rem',
-        small: '0.8rem',
-        micro: '0.6rem',
-    },
-    breakpoints: {
-        values: {
-            xs: 0,
-            sm: 770,
-            md: 990,
-            lg: 1200,
-            xl: 1920
+        fontFamily:
+            '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+        h1: {
+            fontSize: `calc(${headerFSBase} * 0.8)`,
+            lineHeight: '48px',
+            fontWeight: 700,
+            marginTop: '1.5rem',
+            marginBottom: '1.5rem',
+        },
+        h2: {
+            fontSize: `calc(${headerFSBase} * 0.65)`,
+            fontWeight: 600,
+            marginTop: '1.5rem',
+            marginBottom: '1.5rem',
+        },
+        h3: {
+            fontSize: `calc(${headerFSBase} * 0.5)`,
+            fontWeight: 600,
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+        h4: {
+            fontSize: `calc(${headerFSBase} * 0.5)`,
+            fontWeight: 600,
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+        h5: {
+            fontSize: `calc(${headerFSBase} * 0.5)`,
+            fontWeight: 600,
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+        h6: {
+            fontSize: `calc(${headerFSBase} * 0.5)`,
+            fontWeight: 600,
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+        body1: {
+            fontSize: '1.3rem',
+        },
+        micro: {
+            fontSize: '0.6rem',
         },
     },
-    elevation: {
-        everest: 1000,
+    typographyGutter: {
+        h1: {
+            marginTop: '3rem',
+            marginBottom: '1.5rem',
+        },
+        h2: {
+            marginTop: '1.5rem',
+            marginBottom: '1.5rem',
+        },
+        h3: {
+            marginTop: '1.5rem',
+            marginBottom: '1.2rem',
+        },
+        h4: {
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+        h5: {
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+        h6: {
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+        body1: {
+            marginTop: '1.2rem',
+            marginBottom: '1.2rem',
+        },
     },
     shape: {
-        borderRadius: 2,
+        borderRadius: 1,
     },
+    spacing: (value: number) => value * 4,
 };
 
-export const theme = makeTheme(themeDeclaration);
+export const theme = createMuiTheme(themeDeclaration) as ThemeType;
 
-theme.util = {
-    ...theme.util,
-    grid: (config: ObjectLiteral<string>) => grid(theme, config),
-    cell: (config: ObjectLiteral<string>) => cell(theme, config),
-};
+theme.tokenIndex = makeTokenIndex(theme);
 
-<% if (use_mui) { %>
-export const MUITheme = createMuiTheme(themeDeclaration);
-<% } %>
-
-export const useTheme = () => {
-    const theme = useContext(ThemeContext);
-    return theme || {};
-};
+export const useTheme = () => useContext(ThemeContext);

@@ -1,19 +1,30 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC, FunctionComponent } from 'react';
 import { Query } from './query';
-import { Props } from './type';
-import { HeaderMain } from './components/HeaderMain';
+import { HeaderPropsType } from './type';
+import { Menu } from '../Menu';
+import {
+    MenuOffset,
+    HeaderMainContainer,
+} from './style';
 
-export const Header: FunctionComponent<Props> = ({ short }) => {
+export const Header: FunctionComponent<HeaderPropsType> = () => (
+    <HeaderMainContainer>
+        <MenuOffset />
+        <Menu />
+    </HeaderMainContainer>
+);
+
+const HeaderWithQuery: FC<Pick<HeaderPropsType, 'inner'>> = (props) => {
     return (
         <Query>
             {data => (
-                <HeaderMain
+                <Header
+                    {...props}
                     backgroundImage={data.backgroundImage}
-                    inner={short}
                 />
             )}
         </Query>
     );
 };
 
-export default Header;
+export default HeaderWithQuery;

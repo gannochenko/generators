@@ -11,6 +11,7 @@
     },
     "private": true,
     "workspaces": [
+        "packages/some-module-name"
     ],
     "husky": {
         "hooks": {

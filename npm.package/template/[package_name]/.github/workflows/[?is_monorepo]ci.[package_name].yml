@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         defaults:
             run:
-                working-directory: ./packages/<%- package_name %>
+                working-directory: './packages/<%- package_name %>'
 
         steps:
             - uses: actions/checkout@v2

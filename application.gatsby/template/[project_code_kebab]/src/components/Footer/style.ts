@@ -1,25 +1,31 @@
 import styled from 'styled-components';
-import { align, gap } from '@gannochenko/etc';
+import {
+    muiTypography,
+    muiColor,
+    muiSpacing,
+    contentAlignment,
+    gutter,
+} from '@gannochenko/ui.styled-components';
 
-export const Container = styled.footer`
+export const FooterRoot = styled.footer`
     position: relative;
     margin: 0;
-    padding: 2rem 1rem;
-    ${align('center', 'center', 'column')}
+    padding: ${muiSpacing(8)};
+    ${muiSpacing(4)};
+    ${contentAlignment('center', 'center', 'column')}
 
-    background-color: ${({ theme }) => theme.color.backgroundSecondary};
-    color: ${({ theme }) => theme.color.textSecondary};
-    font-size: ${({ theme }) => theme.fontSize.small};
-    font-weight: 300;
+    background-color: ${muiColor('primary.main')};
+    color: ${muiColor('primary.contrastText')};
+    ${muiTypography('body2')};
     overflow-x: hidden;
     overflow-y: hidden;
 `;
 
-export const Info = styled.div`
+export const FooterInfo = styled.div`
     display: flex;
-    ${gap(null, '1rem')};
+    ${gutter(undefined, '1rem')};
 `;
 
-export const NoWrap = styled.div`
+export const FooterNoWrap = styled.div`
     white-space: nowrap;
 `;

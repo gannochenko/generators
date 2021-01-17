@@ -1,22 +1,23 @@
 import React, { FunctionComponent } from 'react';
-import { Container, Typography, SEO } from '../components';
+import { Container } from '../components';
+import { BodyLayout } from '../components/BodyLayout';
 // import { graphql } from 'gatsby';
 
 type JSPagePropsType = {
     data: any;
 };
 
-const JSPage: FunctionComponent<JSPagePropsType> = ({ data }) => {
+const JSPage: FunctionComponent<JSPagePropsType> = () => {
     return (
-        <Container>
-            <SEO
-                title="JS Page"
-                description="JS Page description"
-                keywords="one, two"
-            />
-            <Typography>Lala</Typography>
-            111
-        </Container>
+        <BodyLayout
+            title="JS Page"
+            keywords="one, two"
+            description="JS Page description"
+        >
+            <Container>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </Container>
+        </BodyLayout>
     );
 };
 

@@ -1,23 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
-import { foregroundColor } from '@gannochenko/etc';
+import { foregroundColor } from '@gannochenko/ui.styled-components';
 import { Link as GatsbyLink } from 'gatsby';
-import { FunctionComponent } from 'react';
+import { LinkPropsType } from './type';
+import { getPropBlocker } from '../../util/getPropBlocker';
 
-type PropLinks = {
-    to?: string;
-    href?: string;
-    fontSize?: string;
-    bright?: boolean;
-    theme?: any;
-    target?: string;
-    rel?: string;
+const customProps = {
+    inner: true,
 };
 
-const fgColors = ({ bright, theme }: PropLinks) => {
-    if (bright) {
+const fgColors = ({ inner, theme }: LinkPropsType) => {
+    if (inner) {
         return css`
-            color: white;
+            color: inherit;
             text-decoration: none;
             &:hover {
                 text-decoration: underline;
@@ -26,25 +21,25 @@ const fgColors = ({ bright, theme }: PropLinks) => {
     }
 
     return foregroundColor(
-        theme.color.link.normal,
-        theme.color.link.hover,
-        theme.link.hoverEffectDuration,
+        theme.palette.primary.main,
+        theme.palette.primary.dark,
+        '200ms',
     );
 };
 
-export const GatsbyLinkStyled = styled(GatsbyLink)<PropLinks>`
-    ${props => fgColors(props)};
-    font-size: ${({ theme, fontSize }) =>
-        fontSize ? theme.fontSize[fontSize] : 'inherit'};
+export const GatsbyLinkStyled = styled(GatsbyLink).withConfig(
+    getPropBlocker(customProps),
+)<LinkPropsType>`
+    ${(props: LinkPropsType) => fgColors(props)};
 `;
 
-export const LinkStyled = styled.a<PropLinks>`
-    ${props => fgColors(props)};
-    font-size: ${({ theme, fontSize }) =>
-        fontSize ? theme.fontSize[fontSize] : 'inherit'};
+export const LinkStyled = styled.a.withConfig(
+    getPropBlocker(customProps),
+)<LinkPropsType>`
+    ${(props: LinkPropsType) => fgColors(props)};
 `;
 
-export const Link: FunctionComponent<PropLinks> = props => {
+export const Link: FC<LinkPropsType> = (props) => {
     const { to, href } = props;
     const link = to || href || '';
 

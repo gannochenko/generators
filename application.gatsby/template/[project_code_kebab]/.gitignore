@@ -6,4 +6,5 @@ yarn-error.log
 node_modules/
 .cache/
 public
-.idea
+.idea/workspace.xml
+.idea/libraries

@@ -1,8 +1,13 @@
 import styled from 'styled-components';
+import {
+    muiTypography,
+    muiColor,
+    muiSpacing,
+} from '@gannochenko/ui.styled-components';
 
-export const CopyrightContainer = styled.div`
+export const CopyrightRoot = styled.div`
     text-align: center;
-    font-size: ${props => props.theme.fontSize.micro};
-    color: ${({ theme }) => theme.color.secondary};
-    margin: 0.5rem 0.25rem;
+    ${muiTypography('micro')};
+    color: ${muiColor('secondary.main')};
+    margin: ${muiSpacing(2)} ${muiSpacing(1)};
 `;

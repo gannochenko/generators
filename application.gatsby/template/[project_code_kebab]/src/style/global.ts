@@ -1,12 +1,17 @@
 import { createGlobalStyle } from 'styled-components';
-import { theme } from './theme';
+import {
+    muiTypography,
+    muiColor,
+    muiToken,
+} from '@gannochenko/ui.styled-components';
 import { fonts } from './fonts';
+import { ThemeType } from './type';
 
-export const GlobalStyle = createGlobalStyle<{ theme: typeof theme }>`
+export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
     ${fonts}
 
     html {
-        font-size: 16px;
+        font-size: ${muiToken('typography.htmlFontSize')}px;
         cursor: default;
         -moz-tab-size: 4;
         tab-size: 4;
@@ -18,20 +23,11 @@ export const GlobalStyle = createGlobalStyle<{ theme: typeof theme }>`
     body {
         padding: 0 !important;
         margin: 0 !important;
-        color: ${({ theme }) => theme.color.text.primary};
-        font-family: ${({ theme }) => theme.typography.fontFamily};
-        color: #333;
-        font-weight: 400;
-        line-height: 1.6;
-        letter-spacing: normal;
+        color: ${muiColor('text.primary')};
+        background-color: ${muiColor('background.default')};
+        ${muiTypography('body1')};
         min-width: 320px;
-        background-color: ${({ theme }) => theme.color.background.primary};
         overflow-x: hidden;
-        font-size: 1.3rem;
-        ${({ theme }) =>
-            theme.util.media({
-                xs: 'font-size: 1.1rem; line-height: 1.6;',
-            })}
     }
 
     html, body, #root {
@@ -245,8 +241,6 @@ export const GlobalStyle = createGlobalStyle<{ theme: typeof theme }>`
     }
 
     p {
-        margin-block-start: 1rem;
-        margin-block-end: 1rem;
         margin-inline-start: 0;
         margin-inline-end: 0;
     }

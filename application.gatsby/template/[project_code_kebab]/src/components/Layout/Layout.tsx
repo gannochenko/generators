@@ -1,23 +1,21 @@
-import React, { FunctionComponent } from 'react';
-import { Body, Main, Overflow } from './style';
-import { Props } from './type';
+import React, { FC } from 'react';
+import { LayoutRoot, LayoutBody } from './style';
+import { LayoutPropsType } from './type';
 import { Header, Footer } from '../';
 import { CookiePopup } from '../CookiePopup';
 
-export const Layout: FunctionComponent<Props> = ({ children, props = {} }) => {
+export const Layout: FC<LayoutPropsType> = ({ children, props = {} }) => {
     const { location: { pathname = '' } = {} } = props;
 
     const isRoot = pathname === '/';
 
     return (
-        <Main>
+        <LayoutRoot>
             <Header short={!isRoot} />
-            <Body>
-                <Overflow>{children}</Overflow>
-            </Body>
+            <LayoutBody>{children}</LayoutBody>
             <Footer />
             <CookiePopup />
-        </Main>
+        </LayoutRoot>
     );
 };
 

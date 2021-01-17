@@ -1,23 +1,23 @@
-import React, { FunctionComponent, useState, useCallback } from 'react';
+import React, { FC, useState, useCallback } from 'react';
 
 import {
-    MenuContainer,
-    InnerContainer,
-    Items,
-    Item,
-    Home,
-    Hamburger,
-    Bar,
-    Right,
-    MobileItems,
-    MobileItem,
+    MenuRoot,
+    MenuInnerContainer,
+    MenuItems,
+    MenuItem,
+    MenuHome,
+    MenuHamburger,
+    MenuBar,
+    MenuRight,
+    MenuMobileItems,
+    MenuMobileItem,
 } from './style';
 
 import { menu } from '../../menu';
 
-import { Props } from './type';
+import { MenuPropsType } from './type';
 
-export const Menu: FunctionComponent<Props> = () => {
+export const Menu: FC<MenuPropsType> = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const onHamburgerClick = useCallback(() => {
         setMobileMenuOpen(!mobileMenuOpen);
@@ -27,27 +27,35 @@ export const Menu: FunctionComponent<Props> = () => {
     }, [setMobileMenuOpen]);
 
     return (
-        <MenuContainer>
-            <InnerContainer>
-                <Home to="/" onClick={onMobileItemClick} />
-                <Right>
-                    <Items>
-                        {menu.map(item => <Item to={item.link} key={item.link}>{item.text}</Item>)}
-                    </Items>
-                    <Hamburger onClick={onHamburgerClick}>
-                        <Bar />
-                        <Bar />
-                        <Bar />
-                    </Hamburger>
-                </Right>
-            </InnerContainer>
-            <MobileItems open={mobileMenuOpen}>
-                {menu.map(item => (
-                    <MobileItem to={item.link} key={item.link} onClick={onMobileItemClick}>
+        <MenuRoot>
+            <MenuInnerContainer>
+                <MenuHome to="/" onClick={onMobileItemClick} />
+                <MenuRight>
+                    <MenuItems>
+                        {menu.map((item) => (
+                            <MenuItem to={item.link} key={item.link}>
+                                {item.text}
+                            </MenuItem>
+                        ))}
+                    </MenuItems>
+                    <MenuHamburger onClick={onHamburgerClick}>
+                        <MenuBar />
+                        <MenuBar />
+                        <MenuBar />
+                    </MenuHamburger>
+                </MenuRight>
+            </MenuInnerContainer>
+            <MenuMobileItems open={mobileMenuOpen}>
+                {menu.map((item) => (
+                    <MenuMobileItem
+                        to={item.link}
+                        key={item.link}
+                        onClick={onMobileItemClick}
+                    >
                         {item.text}
-                    </MobileItem>
+                    </MenuMobileItem>
                 ))}
-            </MobileItems>
-        </MenuContainer>
+            </MenuMobileItems>
+        </MenuRoot>
     );
 };

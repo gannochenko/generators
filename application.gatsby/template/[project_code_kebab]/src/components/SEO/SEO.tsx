@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import Helmet from 'react-helmet';
-import { Props } from './type';
+import { SEOPropsType } from './type';
 import { Query } from './query';
 
-export const SEO: FunctionComponent<Props> = ({
+export const SEO: FC<SEOPropsType> = ({
     description = '',
     lang = 'en',
     meta = [],
@@ -13,19 +13,19 @@ export const SEO: FunctionComponent<Props> = ({
 }) => {
     return (
         <Query>
-            {data => {
+            {(data) => {
                 const metaDescription =
                     description || data.site.siteMetadata.description;
 
                 let allKeywords: string[] = [];
                 if (typeof keywords === 'string') {
                     allKeywords = allKeywords.concat(
-                        keywords.split(',').map(word => word.trim()),
+                        keywords.split(',').map((word) => word.trim()),
                     );
                 }
                 allKeywords = allKeywords
                     .concat(data.site.siteMetadata.keywords)
-                    .filter(x => !!x);
+                    .filter((x) => !!x);
 
                 return (
                     <Helmet
@@ -41,7 +41,7 @@ export const SEO: FunctionComponent<Props> = ({
                             },
                             {
                                 name: 'twitter:creator',
-                                content: '@<%- github_account_name %>',
+                                content: '@gannochenko',
                             },
                             {
                                 name: 'description',
@@ -77,7 +77,7 @@ export const SEO: FunctionComponent<Props> = ({
                                     : [],
                             )
                             .concat(meta)
-                            .filter(x => !!x)}
+                            .filter((x) => !!x)}
                     />
                 );
             }}

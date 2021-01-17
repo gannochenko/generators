@@ -1,17 +1,17 @@
-import React, { FunctionComponent, useCallback, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 
 import {
-    CookiePopupContainer,
-    Picture,
-    Text,
-    AgreeButton,
-    AgreeButtonXS,
-    Copyright,
+    CookiePopupRoot,
+    CookiePopupPicture,
+    CookiePopupText,
+    CookiePopupAgreeButton,
+    CookiePopupAgreeButtonXS,
+    CookiePopupCopyright,
 } from './style';
-import { Props } from './type';
+import { CookiePopupPropsType } from './type';
 import { Link } from '../Link';
 
-export const CookiePopup: FunctionComponent<Props> = () => {
+export const CookiePopup: FC<CookiePopupPropsType> = () => {
     const [displayed, setDisplayed] = useState(
         typeof window === 'undefined'
             ? false
@@ -35,30 +35,32 @@ export const CookiePopup: FunctionComponent<Props> = () => {
     }
 
     return (
-        <CookiePopupContainer fadingAway={fadingAway}>
-            <Picture>
-                <Copyright>
+        <CookiePopupRoot fadingAway={fadingAway}>
+            <CookiePopupPicture>
+                <CookiePopupCopyright>
                     Photo by
                     <br />
                     <Link to="https://unsplash.com/@creativegangsters">
                         Allie Smith
                     </Link>
-                </Copyright>
-            </Picture>
-            <Text>
-                Cookie party! I use cookies to improve your experience with my
-                website.
+                </CookiePopupCopyright>
+            </CookiePopupPicture>
+            <CookiePopupText>
+                Tea party! I use <b>cookies</b> to improve your experience with
+                my website.
                 <br />
                 By further browsing you agree to accept the cookies.
                 <br />
                 More information <Link to="/cookie-policy">here</Link>.
-                <AgreeButton onClick={onAcceptClick}>Accept!</AgreeButton>
+                <CookiePopupAgreeButton onClick={onAcceptClick}>
+                    Accept!
+                </CookiePopupAgreeButton>
                 <div>
-                    <AgreeButtonXS onClick={onAcceptClick}>
+                    <CookiePopupAgreeButtonXS onClick={onAcceptClick}>
                         Accept!
-                    </AgreeButtonXS>
+                    </CookiePopupAgreeButtonXS>
                 </div>
-            </Text>
-        </CookiePopupContainer>
+            </CookiePopupText>
+        </CookiePopupRoot>
     );
 };

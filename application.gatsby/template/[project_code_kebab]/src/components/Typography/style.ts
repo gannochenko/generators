@@ -1,27 +1,37 @@
 import styled from 'styled-components';
-import { colorEdward, foregroundColor } from '@gannochenko/etc';
+import { foregroundColor } from '@gannochenko/ui.styled-components';
+import { Typography } from '@material-ui/core';
+import { TypographyRootPropsType } from './type';
+import { getPropBlocker } from '../../util/getPropBlocker';
 
-export const H1 = styled.h1`
-    margin: 4rem 0 2rem 0;
-    font-size: ${({ theme }) => theme.fontSize.large};
+const customProps = {
+    enableVerticalGutter: true,
+};
+
+const getRootDynamicStyle = ({
+    enableVerticalGutter,
+    variant,
+    theme,
+}: TypographyRootPropsType) => {
+    const { typographyGutter } = theme;
+
+    if (enableVerticalGutter && variant && variant in typographyGutter) {
+        return typographyGutter[variant];
+    }
+};
+
+export const TypographyRoot = styled(Typography).withConfig(
+    getPropBlocker(customProps),
+)<TypographyRootPropsType>`
+    ${getRootDynamicStyle};
 `;
 
-export const H2 = styled.h2`
-    margin: 4rem 0 2rem 0;
-    font-size: 1.5rem;
-`;
-
-export const H3 = styled.h3`
-    margin: 2rem 0 2rem 0;
-    font-size: 1.3rem;
-`;
-
-export const H4 = styled.h3`
-    margin: 2rem 0 2rem 0;
-    font-size: 1.1rem;
-`;
-
-export const Anchor = styled.a<{ name: string; }>`
+export const TypographyAnchor = styled.a<{ name: string }>`
     text-decoration: none;
-    ${({ theme }) => foregroundColor(colorEdward, theme.color.link.hover, '300ms')}
+    ${({ theme }) =>
+        foregroundColor(
+            theme.palette.grey['600'],
+            theme.palette.grey['800'],
+            '300ms',
+        )}
 `;

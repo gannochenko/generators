@@ -1,20 +1,18 @@
-import React, { FunctionComponent } from 'react';
-import {
-    Container,
-    Info,
-    NoWrap,
-} from './style';
+import React, { FC } from 'react';
+import { FooterRoot, FooterInfo, FooterNoWrap } from './style';
 import { Link } from '../Link';
 
-export const Footer: FunctionComponent = () => {
+export const Footer: FC = () => {
     return (
-        <Container>
-            <Info>
-                <NoWrap>&copy; then &mdash; now</NoWrap>
-                <Link to="/cookie-policy" bright>
+        <FooterRoot>
+            <FooterInfo>
+                <FooterNoWrap>
+                    &copy; then &mdash; now ({new Date().getFullYear()})
+                </FooterNoWrap>
+                <Link to="/cookie-policy" inner>
                     Cookie policy
                 </Link>
-            </Info>
-        </Container>
+            </FooterInfo>
+        </FooterRoot>
     );
 };

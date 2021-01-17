@@ -1,71 +1,67 @@
-import styled, { css } from 'styled-components';
-import { align, gap, foregroundColor } from '@gannochenko/etc';
+import styled from 'styled-components';
 import { Link } from 'gatsby';
+import {
+    muiTypography,
+    muiColor,
+    muiSpacing,
+    muiBreakpointDown,
+    muiBreakpointUp,
+    contentAlignment,
+    gutter,
+} from '@gannochenko/ui.styled-components';
+
 import { Container } from '../Container';
 
-export const MenuContainer = styled.header`
+export const MenuRoot = styled.header`
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background-color: ${({ theme }) => theme.color.backgroundSecondary};
-    z-index: ${({ theme }) => theme.elevation.everest};
+    background-color: ${muiColor('primary.main')};
+    z-index: 1000;
     box-shadow: 0px 6px 30px -8px rgba(0, 0, 0, 0.55);
 `;
 
-export const InnerContainer = styled(Container)`
-    ${align('center', 'center')};
+export const MenuInnerContainer = styled(Container)`
+    ${contentAlignment('center', 'center')};
     justify-content: space-between;
     position: relative;
 `;
 
-export const Items = styled.nav`
-    ${gap(null, '1rem')}
-    ${align('center', 'right')}
-    ${({ theme }) =>
-        theme.util.media({
-            xs: css`
-                display: none;
-            `,
-        })}
+export const MenuItems = styled.nav`
+    ${gutter(undefined, '1rem')}
+    ${contentAlignment('right', 'center')}
+    ${muiBreakpointDown('xs')} {
+        display: none;
+    }
 `;
 
-export const Home = styled(Link)`
-    ${align('center', 'center')}
+export const MenuHome = styled(Link)`
+    ${contentAlignment('center', 'center')}
+    ${muiTypography('caption')};
+    font-weight: bold;
     &:before {
-        content: '<%- project_name %>';
+        content: 'Income Bowls';
     }
-    ${({ theme }) => css`
-        &:active,
-        &:focus {
-            color: ${theme.color.link.altNormal};
-        }
-    `}
-    ${({ theme }) =>
-        foregroundColor(
-            theme.color.link.altNormal,
-            theme.color.link.altHover,
-            theme.link.hoverEffectDuration,
-        )};
+
+    color: ${muiColor('primary.contrastText')};
+    &:active,
+    &:focus {
+        color: ${muiColor('primary.contrastText')};
+    }
     text-decoration: none;
     flex-shrink: 0;
-    height: 2.5rem;
-    font-size: ${({ theme }) => theme.fontSize.small};
-    font-weight: bold;
+    height: ${muiSpacing(10)};
 `;
 
-export const Item = styled(Link)`
-    ${({ theme }) =>
-        foregroundColor(
-            theme.color.link.altNormal,
-            theme.color.link.altNormal,
-        )};
+export const MenuItem = styled(Link)`
+    color: ${muiColor('primary.contrastText')};
+    ${muiTypography('caption')};
+    font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
     position: relative;
-    padding-bottom: 3px;
-    font-size: ${props => props.theme.fontSize.small};
-    font-weight: bold;
+    padding-bottom: ${muiSpacing(0.5)};
 
     &:after {
         content: '';
@@ -75,7 +71,7 @@ export const Item = styled(Link)`
         bottom: 0;
         left: 0;
         width: 0;
-        background-color: white;
+        background-color: ${muiColor('primary.contrastText')};
         transition: width ease 200ms;
     }
 
@@ -86,36 +82,33 @@ export const Item = styled(Link)`
     }
 `;
 
-export const Right = styled.div`
-    ${align('center', 'center')};
+export const MenuRight = styled.div`
+    ${contentAlignment('center', 'center')};
     flex-shrink: 0;
     position: relative;
 `;
 
-export const Hamburger = styled.div`
-    ${align('center', 'center', 'column')};
-    width: 2.5rem;
-    height: 2.5rem;
-    ${gap('0.2rem', null)};
-    padding: 0.5rem;
+export const MenuHamburger = styled.div`
+    ${contentAlignment('center', 'center', 'column')};
+    width: ${muiSpacing(10)};
+    height: ${muiSpacing(10)};
+    ${gutter('0.2rem')};
+    padding: ${muiSpacing(2)};
     cursor: pointer;
-    ${({ theme }) =>
-        theme.util.media({
-            '>sm': css`
-                display: none;
-            `,
-        })}
+    ${muiBreakpointUp('sm')} {
+        display: none;
+    }
 `;
 
-export const Bar = styled.div`
-    background-color: ${({ theme }) => theme.color.backgroundPrimary};
-    height: 10px;
+export const MenuBar = styled.div`
+    background-color: ${muiColor('background.default')};
+    height: ${muiSpacing(2.5)};
     width: 100%;
     display: block;
 `;
 
-export const MobileItems = styled.nav<{ open: boolean }>`
-    background-color: white;
+export const MenuMobileItems = styled.nav<{ open: boolean }>`
+    background-color: ${muiColor('background.default')};
     position: absolute;
     top: 100%;
     right: ${({ open }) => (open ? '0' : '-100%')};
@@ -125,14 +118,13 @@ export const MobileItems = styled.nav<{ open: boolean }>`
     transition: right ease 200ms;
 `;
 
-export const MobileItem = styled(Link)`
-    padding: 1rem 2rem;
+export const MenuMobileItem = styled(Link)`
+    padding: ${muiSpacing(4)} ${muiSpacing(8)};
     position: relative;
     display: block;
     text-decoration: none;
-    ${({ theme }) =>
-        foregroundColor(theme.color.textPrimary, theme.color.textPrimary)};
-    border-bottom: 1px solid ${({ theme }) => theme.color.backgroundSecondary};
+    color: ${muiColor('text.primary')};
+    border-bottom: 1px solid ${muiColor('divider')};
 
     &:before {
         content: '';
@@ -142,13 +134,13 @@ export const MobileItem = styled(Link)`
         top: 0;
         left: 0;
         bottom: 0;
-        background-color: ${({ theme }) => theme.color.link.normal};
+        background-color: ${muiColor('primary.main')};
         transition: width 200ms ease;
     }
 
     &:hover {
         &:before {
-            width: 10px;
+            width: ${muiSpacing(2.5)};
         }
     }
 `;

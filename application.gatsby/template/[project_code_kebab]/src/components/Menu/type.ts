@@ -1,5 +1,8 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
+import { ObjectLiteralType } from '../../type';
 
-export interface Props {
-    children?: ReactNode;
-}
+export type MenuPropsType = Partial<{
+    // custom props here
+}> &
+    HTMLAttributes<HTMLElement> &
+    ObjectLiteralType;

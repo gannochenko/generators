@@ -4,14 +4,9 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 
-import { getRenderedEffectNodeIdCollector } from '@gannochenko/ui';
-import { Root } from './src/components/Providers/Providers';
+import { Providers } from './src/components/Providers/Providers';
 import { Layout } from './src/components/Layout';
 import React from 'react';
-
-export const onRenderBody = ({ setPostBodyComponents }) => {
-    setPostBodyComponents([getRenderedEffectNodeIdCollector()]);
-};
 
 export const wrapRootElement = Providers;
 export const wrapPageElement = ({ element, props }) => {

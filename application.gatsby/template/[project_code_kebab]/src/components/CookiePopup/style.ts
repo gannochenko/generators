@@ -1,19 +1,27 @@
 import styled from 'styled-components';
-import { backgroundCover, absoluteCover, align } from '@gannochenko/etc';
-import { Button } from '../Button';
+import { Button } from '@material-ui/core';
+import {
+    muiTypography,
+    muiColor,
+    muiSpacing,
+    backgroundCover,
+    absoluteCover,
+    contentAlignment,
+    muiBreakpointDown,
+} from '@gannochenko/ui.styled-components';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const cookies = require('../../../static/assets/aux/cookies.jpg') as string;
 
-export const CookiePopupContainer = styled.div<{ fadingAway: boolean }>`
+export const CookiePopupRoot = styled.div<{ fadingAway: boolean }>`
     display: flex;
     flex-direction: row;
     align-items: stretch;
     position: fixed;
-    bottom: 1rem;
-    background-color: white;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
+    bottom: ${muiSpacing(5)};
+    background-color: ${muiColor('background.default')};
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
     overflow: hidden;
     box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.1);
     right: ${({ fadingAway }) => (!fadingAway ? 0 : '-1rem')};
@@ -21,42 +29,55 @@ export const CookiePopupContainer = styled.div<{ fadingAway: boolean }>`
     transition: right 500ms ease, opacity 500ms ease;
 `;
 
-export const Picture = styled.div`
+export const CookiePopupPicture = styled.div`
     ${backgroundCover(cookies)};
-    width: 7rem;
-    ${({ theme }) => theme.util.media({ xs: 'display: none;' })}
+    width: ${muiSpacing(30)};
+    ${muiBreakpointDown('sm')} {
+        display: none;
+    }
     position: relative;
     &:hover > * {
         opacity: 1;
     }
 `;
 
-export const Text = styled.div`
-    padding: 0.5rem 1rem;
-    font-size: ${({ theme }) => theme.fontSize.small};
-    line-height: 1.5;
+export const CookiePopupText = styled.div`
+    padding: ${muiSpacing(2)} ${muiSpacing(4)};
+    ${muiTypography('body2')};
     position: relative;
 `;
 
-export const AgreeButton = styled(Button)`
+export const CookiePopupAgreeButton = styled(Button).attrs({
+    variant: 'contained',
+    color: 'primary',
+    size: 'small',
+})`
     position: absolute;
-    right: 1rem;
-    bottom: 0.5rem;
-    ${({ theme }) => theme.util.media({ xs: 'display: none;' })}
+    right: ${muiSpacing(4)};
+    bottom: ${muiSpacing(2)};
+    ${muiBreakpointDown('sm')} {
+        display: none;
+    }
 `;
 
-export const AgreeButtonXS = styled(Button)`
+export const CookiePopupAgreeButtonXS = styled(Button).attrs({
+    variant: 'contained',
+    color: 'primary',
+    size: 'small',
+})`
     display: none;
-    margin-top: 1rem;
-    ${({ theme }) => theme.util.media({ xs: 'display: block;' })}
+    margin-top: ${muiSpacing(4)};
+    ${muiBreakpointDown('sm')} {
+        display: block;
+    }
 `;
 
-export const Copyright = styled.div`
+export const CookiePopupCopyright = styled.div`
     opacity: 0;
-    ${absoluteCover()}
-    background-color: white;
-    color: ${({ theme }) => theme.color.secondary};
-    font-size: ${({ theme }) => theme.fontSize.micro};
-    ${align('center', 'center', 'column')}
+    ${absoluteCover()};
+    color: ${muiColor('secondary.main')};
+    background-color: ${muiColor('background.default')};
+    ${muiTypography('micro')};
+    ${contentAlignment('center', 'center', 'column')};
     transition: opacity 200ms ease;
 `;

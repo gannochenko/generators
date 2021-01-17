@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { muiColor } from '@gannochenko/ui.styled-components';
 
 export const HR = styled.div`
     text-align: center;
@@ -6,6 +7,6 @@ export const HR = styled.div`
     &:before {
         content: '***';
         letter-spacing: 0.5rem;
-        color: ${({ theme }) => theme.color.secondary};
+        color: ${muiColor('grey.600')};
     }
 `;

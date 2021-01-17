@@ -1,12 +1,9 @@
-import React, { FunctionComponent, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 
-import { Props } from './type';
-import { H1, H2, H3, H4, Anchor } from './style';
+import { TypographyPropsType } from './type';
+import { TypographyRoot, TypographyAnchor } from './style';
 
-export const Typography: FunctionComponent<Props> = ({
-    h2,
-    h3,
-    h4,
+export const Typography: FC<TypographyPropsType> = ({
     children,
     ...restProps
 }) => {
@@ -36,23 +33,14 @@ export const Typography: FunctionComponent<Props> = ({
             .replace(/[^a-z0-9_-]/g, '');
     }, [children]);
 
-    let Tag = H1;
-    if (h2) {
-        Tag = H2;
-    } else if (h3) {
-        Tag = H3;
-    } else if (h4) {
-        Tag = H4;
-    }
-
     return (
-        <Tag {...restProps}>
+        <TypographyRoot {...restProps}>
             {trueChildren}{' '}
             {!!aKey && (
-                <Anchor href={`#${aKey}`} name={aKey}>
+                <TypographyAnchor href={`#${aKey}`} name={aKey}>
                     #
-                </Anchor>
+                </TypographyAnchor>
             )}
-        </Tag>
+        </TypographyRoot>
     );
 };

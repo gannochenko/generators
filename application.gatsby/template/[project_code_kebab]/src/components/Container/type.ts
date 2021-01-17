@@ -1,10 +1,11 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
+import { BreakpointNameType } from '../../style/type';
+import { ObjectLiteralType } from '../../type';
 
-export type ContainerType = 'standard' | 'wide' | 'narrow';
+export type ContainerPropsType = Partial<{
+    // custom props here
 
-export interface Props {
-    children?: ReactNode;
-    type?: ContainerType;
-    contentAlign?: 'center' | 'left' | 'right';
-    marginY?: string;
-}
+    maxWidth: false | BreakpointNameType;
+}> &
+    HTMLAttributes<HTMLElement> &
+    ObjectLiteralType;

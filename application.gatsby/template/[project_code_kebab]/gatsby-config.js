@@ -6,7 +6,7 @@ module.exports = {
         title: '<%- project_name %>',
         description: '<%- project_description %>',
         author: '@<%- github_account_name %>',
-        keywords: ['update', 'these', 'keywords', 'later', 'on'],
+        keywords: [],
         siteUrl: 'https://<%- project_domain %>',
     },
     plugins: [
@@ -17,16 +17,7 @@ module.exports = {
                 path: `${__dirname}/static/assets`,
             },
         },
-<% if(use_blog) { %>
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                name: `blog`,
-                path: `${__dirname}/content/blog`,
-            },
-        },
-<% } %>
-<% if(no_blog) { %>
+
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -34,7 +25,6 @@ module.exports = {
                 path: `${__dirname}/content`,
             },
         },
-<% } %>
         'gatsby-plugin-react-helmet',
         'gatsby-transformer-sharp',
         'gatsby-plugin-sharp',
@@ -61,7 +51,7 @@ module.exports = {
                 extensions: [`.mdx`, `.md`],
                 defaultLayouts: {
                     default: require.resolve(
-                        './src/components/LayoutInner/LayoutInner.tsx',
+                        './src/components/BodyLayout/BodyLayout.tsx',
                     ),
                 },
                 gatsbyRemarkPlugins: [
@@ -83,15 +73,15 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-sitemap',
             options: {
-                exclude: ['/ignore-this-path/'],
+                exclude: ['/blog-drafts/', '/blog-drafts/*'],
             },
         },
         {
             resolve: 'gatsby-plugin-manifest',
             options: {
-                name: '<%- project_name %>',
-                short_name: '<%- project_pwa_short_name %>',
-                description: '<%- project_description %>',
+                name: 'Income Bowls',
+                short_name: 'Income Bowls',
+                description: 'Income Bowls',
                 start_url: '/',
                 background_color: '#fff',
                 theme_color: '#333',
@@ -103,7 +93,6 @@ module.exports = {
 <% } %>
             },
         },
-<% if(use_mui) { %>
         {
             resolve: `gatsby-plugin-material-ui`,
             options: {
@@ -112,14 +101,13 @@ module.exports = {
                 },
             },
         },
-<% } %>
         'gatsby-plugin-styled-components',
         'gatsby-plugin-typescript',
         'gatsby-plugin-catch-links',
 <% if (use_offline) { %>
         {
             resolve: 'gatsby-plugin-offline',
-            options: {
+                options: {
                 workboxConfig: {
                     globPatterns: ['**/*'],
                 },

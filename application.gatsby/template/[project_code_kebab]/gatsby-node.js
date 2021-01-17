@@ -32,29 +32,24 @@ exports.onPostBootstrap = async ({ store }) => {
     }
 };
 
-// exports.onCreateNode = ({ node }) => {
-//     fmImagesToRelative(node);
-// };
-
-<% if(use_blog) { %>
 exports.createPages = ({ graphql, actions }) => {
     return new Promise((resolve, reject) => {
         resolve(
             graphql(`
-                query CreatePagesQuery {
-                    allMdx {
-                        edges {
-                            node {
-                                id
-                                frontmatter {
-                                    path
-                                    published
-                                }
+            query CreatePagesQuery {
+                allMdx {
+                    edges {
+                        node {
+                            id
+                            frontmatter {
+                                path
+                                published
                             }
                         }
                     }
                 }
-            `).then(result => {
+            }
+        `).then(result => {
                 if (result.errors) {
                     console.error(result.errors);
                     reject(result.errors);
@@ -68,27 +63,40 @@ exports.createPages = ({ graphql, actions }) => {
                 edges = edges.filter(
                     edge =>
                         edge.node.frontmatter.path &&
-                        edge.node.frontmatter.path.startsWith('/blog'),
+                        edge.node.frontmatter.path.startsWith('/content'),
                 );
                 edges.forEach(({ node }) => {
                     const {
                         frontmatter: { path: pathProperty, published },
                     } = node;
-                    const realPath = published
-                        ? pathProperty
-                        : pathProperty.replace(/^\/blog\//, '/blog-drafts/');
+
+                    let realPath = '';
+                    let component = '';
+
+                    if (pathProperty.startsWith('/content')) {
+                        realPath = published
+                            ? pathProperty
+                            : pathProperty.replace(/^\/content\//, '/content-drafts/');
+                        component = './src/components/ContentPageLayout/ContentPageLayout.tsx';
+                    } else {
+                        console.error(
+                            `There is an entry, but I cant create a page for it: ${pathProperty}`,
+                        );
+                        return;
+                    }
 
                     actions.createPage({
                         // Encode the route
                         path: realPath,
                         // Layout for the page
                         component: path.resolve(
-                            './src/components/BlogPageLayout/BlogPageLayout.tsx',
+                            component,
                         ),
                         // Values defined here are injected into the page as props and can
                         // be passed to a GraphQL query as arguments
                         context: {
                             id: node.id,
+                            body: node.body,
                         },
                     });
                 });
@@ -96,59 +104,6 @@ exports.createPages = ({ graphql, actions }) => {
         );
     });
 };
-<% } %>
-<% if(no_blog) { %>
-    exports.createPages = ({ graphql, actions }) => {
-        return new Promise((resolve, reject) => {
-            resolve(
-                graphql(`
-                query CreatePagesQuery {
-                    allMdx {
-                        edges {
-                            node {
-                                id
-                                frontmatter {
-                                    path
-                                }
-                            }
-                        }
-                    }
-                }
-            `).then(result => {
-                    if (result.errors) {
-                        console.error(result.errors);
-                        reject(result.errors);
-                    }
-
-                    let edges = result.data.allMdx.edges;
-                    if (!edges) {
-                        return;
-                    }
-
-                    edges.forEach(({ node }) => {
-                        const {
-                            frontmatter: { path: pathProperty, published },
-                        } = node;
-
-                        actions.createPage({
-                            // Encode the route
-                            path: pathProperty,
-                            // Layout for the page
-                            component: path.resolve(
-                                './src/components/ContentPageLayout/ContentPageLayout.tsx',
-                            ),
-                            // Values defined here are injected into the page as props and can
-                            // be passed to a GraphQL query as arguments
-                            context: {
-                                id: node.id,
-                            },
-                        });
-                    });
-                }),
-            );
-        });
-    };
-<% } %>
 
 exports.onCreateWebpackConfig = ({
     stage,

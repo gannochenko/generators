@@ -1,18 +1,15 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
+import { Container as MUIContainer } from '@material-ui/core';
+import { ContainerPropsType } from './type';
 
-import { ContainerStandard, ContainerWide, ContainerNarrow } from './style';
+export const Container: FC<ContainerPropsType> = ({children, ...props}) => {
+    return (
+        <MUIContainer {...props}>
+            {children as any}
+        </MUIContainer>
+    );
+};
 
-import { Props } from './type';
-
-/** this container regulates the size of the content **/
-export const Container: FunctionComponent<Props> = props => {
-    const { children, type = 'standard' } = props;
-
-    if (type === 'wide') {
-        return <ContainerWide {...props}>{children}</ContainerWide>;
-    }
-    if (type === 'narrow') {
-        return <ContainerNarrow {...props}>{children}</ContainerNarrow>;
-    }
-    return <ContainerStandard {...props}>{children}</ContainerStandard>;
+Container.defaultProps = {
+    maxWidth: 'lg',
 };
