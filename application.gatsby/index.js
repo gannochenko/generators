@@ -171,6 +171,7 @@ module.exports.Generator = class Generator {
                 'pretty-quick',
                 'typescript',
                 'typescript-styled-plugin',
+                '@gannochenko/gbelt',
             ],
         };
     }
