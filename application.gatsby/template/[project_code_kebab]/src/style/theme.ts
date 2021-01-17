@@ -16,13 +16,13 @@ export const themeDeclaration = {
             main: '#ef9a9a',
             light: '#ffcccb',
             dark: '#ba6b6c',
-            contrastText: '#ffffff',
+            contrastText: '#333',
         },
         secondary: {
             main: '#9c27b0',
             light: '#d05ce3',
             dark: '#6a0080',
-            contrastText: '#ffffff',
+            contrastText: '#333',
         },
         text: {
             primary: '#333',

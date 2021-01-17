@@ -1,12 +1,14 @@
 module.exports = {
 <% if(path_prefix) { %>
     pathPrefix: '/<%- path_prefix %>',
+<% } else { %>
+    // pathPrefix: '/foo',
 <% } %>
     siteMetadata: {
         title: '<%- project_name %>',
         description: '<%- project_description %>',
         author: '@<%- github_account_name %>',
-        keywords: [],
+        keywords: ['one', 'two'],
         siteUrl: 'https://<%- project_domain %>',
     },
     plugins: [

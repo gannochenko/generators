@@ -131,6 +131,7 @@ module.exports.Generator = class Generator {
                 'write',
                 '@material-ui/core',
                 'gatsby-plugin-material-ui',
+                'flat',
             ],
         };
     }
@@ -154,6 +155,7 @@ module.exports.Generator = class Generator {
                 '@types/material-ui',
                 '@typescript-eslint/eslint-plugin',
                 '@typescript-eslint/parser',
+                '@types/flat',
                 'eslint',
                 'eslint-config-airbnb-base',
                 'eslint-config-prettier',

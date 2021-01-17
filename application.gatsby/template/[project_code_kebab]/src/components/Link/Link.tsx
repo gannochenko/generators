@@ -21,8 +21,8 @@ const fgColors = ({ inner, theme }: LinkPropsType) => {
     }
 
     return foregroundColor(
-        theme.palette.primary.main,
         theme.palette.primary.dark,
+        theme.palette.primary.main,
         '200ms',
     );
 };

@@ -41,7 +41,7 @@ export const MenuHome = styled(Link)`
     ${muiTypography('caption')};
     font-weight: bold;
     &:before {
-        content: 'Income Bowls';
+        content: '<%- project_name %>';
     }
 
     color: ${muiColor('primary.contrastText')};
