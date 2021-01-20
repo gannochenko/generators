@@ -177,6 +177,7 @@ module.exports.Generator = class Generator {
                 !!is_ui && 'react-test-renderer',
 
                 !is_ui && '@types/debug',
+                '@gannochenko/gbelt',
             ],
         };
     }
