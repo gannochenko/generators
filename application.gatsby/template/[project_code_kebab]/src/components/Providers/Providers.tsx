@@ -4,7 +4,7 @@ import { MDXProvider } from '@mdx-js/react';
 import { ThemeProvider as MUIThemeProvider } from '@material-ui/core/styles';
 
 import { ThemeProvider } from 'styled-components';
-// import { Provider as StateProvider } from "unstated"
+// import { createContainer } from 'unstated-next'; // https://github.com/jamiebuilds/unstated-next
 import { theme, GlobalStyle } from '../../style';
 import { markdownComponents } from './markdown-components';
 
