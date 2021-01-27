@@ -63,6 +63,7 @@ module.exports.Generator = class Generator {
             {
                 message: 'Google Analytics ID',
                 name: 'ga_id',
+                default: 'GA-XXX',
             },
             {
                 message: 'Enable offline support? (not recommended for frequently updated website)',
