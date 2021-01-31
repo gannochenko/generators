@@ -173,6 +173,7 @@ module.exports.Generator = class Generator {
                 'typescript',
                 'typescript-styled-plugin',
                 '@gannochenko/gbelt',
+                '@generilla/cli',
             ],
         };
     }

@@ -1,12 +1,12 @@
 /* eslint-disable react/display-name */
 
 import React from 'react';
+import { ObjectLiteralType } from '@gannochenko/ui.styled-components';
+
 import { Container } from '../Container';
 import { Typography } from '../Typography';
 import { Link } from '../Link';
-
 import { HR } from '../HR';
-import { ObjectLiteralType } from '../../type';
 
 export const markdownComponents = {
     a: Link,

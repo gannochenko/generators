@@ -1,6 +1,5 @@
 import { HTMLAttributes } from 'react';
-import { BreakpointNameType } from '../../style/type';
-import { ObjectLiteralType } from '../../type';
+import { ObjectLiteralType, BreakpointNameType } from '@gannochenko/ui.styled-components';
 
 export type ContainerPropsType = Partial<{
     // custom props here

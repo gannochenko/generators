@@ -38,6 +38,7 @@ export const Menu: FC<MenuPropsType> = () => {
                             </MenuItem>
                         ))}
                     </MenuItems>
+
                     <MenuHamburger onClick={onHamburgerClick}>
                         <MenuBar />
                         <MenuBar />

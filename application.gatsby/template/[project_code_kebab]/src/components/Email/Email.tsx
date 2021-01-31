@@ -8,10 +8,10 @@ export const Email: FC<EmailPropsType> = ({ ...restProps }) => {
     const [domain, setDomain] = useState('');
     useEffect(() => {
         setTimeout(() => {
-            setEmail('<%- author_email_start %>');
+            setEmail('gannochenko.sv');
         }, 500);
         setTimeout(() => {
-            setDomain('<%- author_email_end %>');
+            setDomain('gmail.com');
         }, 700);
     }, []);
 

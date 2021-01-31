@@ -4,6 +4,7 @@ import {
     muiColor,
     muiToken,
 } from '@gannochenko/ui.styled-components';
+
 import { fonts } from './fonts';
 import { ThemeType } from './type';
 

@@ -41,7 +41,7 @@ export const MenuHome = styled(Link)`
     ${muiTypography('caption')};
     font-weight: bold;
     &:before {
-        content: '<%- project_name %>';
+        content: 'Gatsby Nest';
     }
 
     color: ${muiColor('primary.contrastText')};

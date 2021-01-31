@@ -1,5 +1,6 @@
 import { HTMLAttributes } from 'react';
-import { ContentRecordType, ObjectLiteralType } from '../../type';
+import { ObjectLiteralType } from '@gannochenko/ui.styled-components';
+import { ContentRecordType } from '../../type';
 
 export type BodyLayoutPropsType = Partial<{
     // custom props here

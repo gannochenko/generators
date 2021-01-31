@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
-
 import { createMuiTheme } from '@material-ui/core';
+
 import { ThemeType } from './type';
 import { makeTokenIndex } from '../util/makeTokenIndex';
 

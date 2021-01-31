@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { foregroundColor } from '@gannochenko/ui.styled-components';
+import { foregroundColor, getPropBlocker } from '@gannochenko/ui.styled-components';
 import { Typography } from '@material-ui/core';
 import { TypographyRootPropsType } from './type';
-import { getPropBlocker } from '../../util/getPropBlocker';
 
 const customProps = {
     enableVerticalGutter: true,

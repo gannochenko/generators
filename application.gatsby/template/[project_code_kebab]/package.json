@@ -23,7 +23,8 @@
         "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
         "lint": "eslint ./src/ --ext .jsx,.tsx",
         "lint:fix": "eslint ./src/ --ext .ts,.tsx --fix",
-        "start:local": "yarn build; yarn serve"
+        "start:local": "yarn build; yarn serve",
+        "scaffold:component": "generilla run scaffolders/component -o src/components"
     },
     "repository": {
         "type": "git",
