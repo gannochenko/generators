@@ -11,21 +11,26 @@ module.exports.Generator = class Generator {
         // https://www.npmjs.com/package/inquirer#questions
         return [
             {
+                message: 'Project name',
+                name: 'project_name',
+            },
+            {
                 message: 'Project code',
                 name: 'project_code',
+                default: (answers) => {
+                    return this.util.textConverter.toKebab(
+                        answers.project_name,
+                    )
+                },
             },
             {
                 message: 'Website domain',
                 name: 'project_domain',
+                default: (answers) => `${answers.project_code}.app`,
             },
             {
                 message: 'Path prefix (like for GitHub pages)',
                 name: 'path_prefix',
-            },
-            {
-                message: 'Project name',
-                name: 'project_name',
-                default: 'New project',
             },
             {
                 message: 'Project short name',
@@ -49,6 +54,9 @@ module.exports.Generator = class Generator {
             {
                 message: 'GitHub repository name',
                 name: 'github_repository_name',
+                default: (answers) => {
+                    return answers.project_code;
+                },
             },
             {
                 message: 'Author name',

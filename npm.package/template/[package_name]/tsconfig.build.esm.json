@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "target": "es6",
+    "target": "ES2019",
     "outDir": "./build.esm/",
     "types": []
   },
@@ -13,7 +13,9 @@
     "build:cjs",
     <% if (is_ui) { %>"**/**/*.test.tsx",<% } %>
     <% if (is_ui) { %>"**/**/*.story.tsx",<% } %>
-    <% if (is_ui) { %>"**/**/*.story.ts",<% } %>
+    <% if (is_ui) { %>"**/**/*.story.ts",<% } %>,
+    <% if (is_ui) { %>"**/**/__story__/**",<% } %>,
+    "**/**/__test__/**",
     "**/**/*.test.ts"
   ]
 }
