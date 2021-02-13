@@ -13,4 +13,6 @@ export * from './Menu';
 export * from './NotFound';
 export * from './SEO';
 export * from './Typography';
+<? if (enable_auth) { ?>
 export * from './AuthWidget';
+<? } ?>

@@ -3,7 +3,9 @@ import { MDXProvider } from '@mdx-js/react';
 import { ThemeProvider as MUIThemeProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
+<? if (enable_auth) { ?>
 import { Auth0Provider } from '@auth0/auth0-react';
+<? } ?>
 
 import { theme, GlobalStyle } from '../../style';
 import { markdownComponents } from './markdown-components';
@@ -17,6 +19,7 @@ export const Providers: FC = ({ children }) => {
             <ThemeProvider theme={theme}>
                 <>
                     <GlobalStyle />
+<? if (enable_auth) { ?>
                     <Auth0Provider
                         domain={`${process.env.AUTH0_DOMAIN}.auth0.com`}
                         clientId={process.env.AUTH0_CLIENT_ID!}
@@ -31,12 +34,15 @@ export const Providers: FC = ({ children }) => {
                         cacheLocation={isDev() ? 'localstorage' : undefined}
                         useRefreshTokens={false}
                     >
+<? } ?>
                         <QueryClientProvider client={queryClient}>
                             <MDXProvider components={markdownComponents}>
                                 {children}
                             </MDXProvider>
                         </QueryClientProvider>
+<? if (enable_auth) { ?>
                     </Auth0Provider>
+<? } ?>
                 </>
             </ThemeProvider>
         </MUIThemeProvider>

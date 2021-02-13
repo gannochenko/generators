@@ -149,7 +149,7 @@ module.exports.Generator = class Generator {
 
     async getDependencies(answers) {
         // list your dependencies here
-        const { ga_id } = answers;
+        const { ga_id, auth0_id } = answers;
 
         return {
             destination: '[project_code_kebab]/',
@@ -191,6 +191,8 @@ module.exports.Generator = class Generator {
                 '@material-ui/core',
                 'gatsby-plugin-material-ui',
                 'flat',
+                'react-query',
+                !!auth0_id && '@auth0/auth0-react',
             ],
         };
     }
