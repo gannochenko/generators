@@ -14,7 +14,7 @@
                 "name": "typescript-styled-plugin"
             }
         ],
-        "target": "es2018"
+        "target": "ES2019"
     },
     "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules/*", "public/*"]

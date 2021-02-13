@@ -16,6 +16,9 @@ import {
 import { menu } from '../../menu';
 
 import { MenuPropsType } from './type';
+<% if(enable_auth) { %>
+import { AuthWidget } from '../AuthWidget';
+<% } %>
 
 export const Menu: FC<MenuPropsType> = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -38,7 +41,9 @@ export const Menu: FC<MenuPropsType> = () => {
                             </MenuItem>
                         ))}
                     </MenuItems>
-
+<% if(enable_auth) { %>
+                    <AuthWidget />
+<% } %>
                     <MenuHamburger onClick={onHamburgerClick}>
                         <MenuBar />
                         <MenuBar />

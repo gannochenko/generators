@@ -13,3 +13,4 @@ export * from './Menu';
 export * from './NotFound';
 export * from './SEO';
 export * from './Typography';
+export * from './AuthWidget';

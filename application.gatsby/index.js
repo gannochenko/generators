@@ -24,6 +24,20 @@ module.exports.Generator = class Generator {
                 },
             },
             {
+                type: 'confirm',
+                name: 'is_microservice',
+                message: 'Is this a microservice?',
+                default: false,
+            },
+            {
+                name: 'parent_project_code',
+                message: 'Parent project code',
+                default: path.basename(process.cwd()),
+                when: answers => {
+                    return answers.is_microservice;
+                },
+            },
+            {
                 message: 'Website domain',
                 name: 'project_domain',
                 default: (answers) => `${answers.project_code}.app`,
@@ -74,10 +88,34 @@ module.exports.Generator = class Generator {
                 default: 'GA-XXX',
             },
             {
+                message: 'Auth0 ID',
+                name: 'auth0_id',
+            },
+            {
                 message: 'Enable offline support? (not recommended for frequently updated website)',
                 name: 'use_offline',
                 type: 'confirm',
                 default: false,
+            },
+            {
+                name: 'port',
+                message: 'TCP port',
+                default: (answers) => {
+                    return answers.project_code;
+                },
+                when: answers => {
+                    return answers.is_microservice;
+                },
+            },
+            {
+                message: 'DockerHub account name',
+                name: 'dockerhub_account_name',
+                default: (answers) => {
+                    return answers.github_account_name;
+                },
+                when: answers => {
+                    return answers.is_microservice;
+                },
             },
         ];
     }
@@ -94,6 +132,13 @@ module.exports.Generator = class Generator {
         answers.author_email_end = emailParts[1];
 
         answers.path_prefix = answers.path_prefix ? answers.path_prefix.replace(/^\//, '') : '';
+
+        answers.project_code_global = answers.application_code;
+        if (answers.is_microservice) {
+            answers.project_code_global = `${answers.parent_project_code}_${answers.project_code}`;
+        }
+
+        answers.enable_auth = !!answers.auth0_id;
 
         return answers;
     }
@@ -129,6 +174,7 @@ module.exports.Generator = class Generator {
                 'gatsby-source-filesystem',
                 'gatsby-transformer-remark',
                 'gatsby-transformer-sharp',
+                'gatsby-plugin-google-fonts',
                 'markdown-it',
                 'react',
                 'react-dom',

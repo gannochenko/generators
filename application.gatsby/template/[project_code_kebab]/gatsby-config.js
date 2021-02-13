@@ -17,6 +17,15 @@ module.exports = {
     },
     plugins: [
         {
+            resolve: 'gatsby-plugin-google-fonts',
+            options: {
+                fonts: [
+                    'roboto:300,400',
+                    // 'source sans pro:300,400,400i,700'
+                ],
+            },
+        },
+        {
             resolve: 'gatsby-source-filesystem',
             options: {
                 name: 'images',

@@ -5,12 +5,9 @@ import {
     muiToken,
 } from '@gannochenko/ui.styled-components';
 
-import { fonts } from './fonts';
 import { ThemeType } from './type';
 
 export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
-    ${fonts}
-
     html {
         font-size: ${muiToken('typography.htmlFontSize')}px;
         cursor: default;

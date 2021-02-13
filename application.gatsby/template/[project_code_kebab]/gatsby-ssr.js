@@ -8,7 +8,10 @@ import { Providers } from './src/components/Providers/Providers';
 import { Layout } from './src/components/Layout';
 import React from 'react';
 
-export const wrapRootElement = Providers;
 export const wrapPageElement = ({ element, props }) => {
-    return <Layout props={props}>{element}</Layout>;
+    return (
+        <Providers>
+            <Layout props={props}>{element}</Layout>
+        </Providers>
+    );
 };

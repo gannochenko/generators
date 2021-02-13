@@ -1,5 +1,8 @@
 import { HTMLAttributes } from 'react';
-import { ObjectLiteralType, StylePropsType } from '@gannochenko/ui.styled-components';
+import {
+    ObjectLiteralType,
+    StylePropsType,
+} from '@gannochenko/ui.styled-components';
 
 export type TypographyPropsType = Partial<{
     // custom props here

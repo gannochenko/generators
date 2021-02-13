@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
-import { foregroundColor, getPropBlocker } from '@gannochenko/ui.styled-components';
+import {
+    foregroundColor,
+    getPropBlocker,
+} from '@gannochenko/ui.styled-components';
 import { Link as GatsbyLink } from 'gatsby';
 import { LinkPropsType } from './type';
 

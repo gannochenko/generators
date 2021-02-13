@@ -1,5 +1,5 @@
 {
-    "name": "<%- project_code %>",
+    "name": "<%- project_code_global %>",
     "description": "",
     "version": "1.0.0",
     "author": "<%- author_name %>",
@@ -24,7 +24,14 @@
         "lint": "eslint ./src/ --ext .jsx,.tsx",
         "lint:fix": "eslint ./src/ --ext .ts,.tsx --fix",
         "start:local": "yarn build; yarn serve",
-        "scaffold:component": "generilla run scaffolders/component -o src/components"
+        "scaffold:component": "generilla run scaffolders/component -o src/components",
+        "start:prod": "yarn serve",
+<% if (is_microservice) { %>
+        "image:build": "./script/image.build.sh",
+        "image:run": "./script/image.run.sh",
+        "image:push": "./script/image.push.sh",
+<% } %>
+        "foo": "bar"
     },
     "repository": {
         "type": "git",
