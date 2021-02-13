@@ -134,11 +134,15 @@ module.exports.Generator = class Generator {
         answers.path_prefix = answers.path_prefix ? answers.path_prefix.replace(/^\//, '') : '';
 
         answers.project_code_global = answers.application_code;
-        if (answers.is_microservice) {
+        if (answers.is_microservice && answers.parent_project_code) {
             answers.project_code_global = `${answers.parent_project_code}_${answers.project_code}`;
         }
 
         answers.enable_auth = !!answers.auth0_id;
+
+        answers.dockerhub_account_name = answers.dockerhub_account_name || '';
+        answers.parent_project_code = answers.parent_project_code || '';
+        answers.port = answers.port || 0;
 
         return answers;
     }
