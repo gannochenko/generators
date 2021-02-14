@@ -24,15 +24,14 @@
         "lint": "eslint ./src/ --ext .jsx,.tsx",
         "lint:fix": "eslint ./src/ --ext .ts,.tsx --fix",
         "start:local": "yarn build; yarn serve",
-        "scaffold:component": "generilla run scaffolders/component -o src/components",
         "start:prod": "yarn serve",
-<% if (is_microservice) { %>
+<% if (need_image) { %>
         "image:build": "./script/image.build.sh",
         "image:run": "./script/image.run.sh",
         "image:push": "./script/image.push.sh",
 <% } %>
-        "foo": "bar"
-    },
+        "scaffold:component": "generilla run scaffolders/component -o src/components"
+},
     "repository": {
         "type": "git",
         "url": "https://github.com/<%- github_account_name %>/<%- github_repository_name %>"

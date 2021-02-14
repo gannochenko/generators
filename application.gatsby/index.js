@@ -1,5 +1,9 @@
 const path = require('path');
 
+const DEPLOYMENT_K8S = 'k8s';
+const DEPLOYMENT_GITHUB = 'gh';
+const DEPLOYMENT_VERCEL = 'vercel';
+
 module.exports.Generator = class Generator {
     getName() {
         // this is the name your generator will appear in the list under
@@ -117,6 +121,22 @@ module.exports.Generator = class Generator {
                     return answers.is_microservice;
                 },
             },
+            {
+                type: 'list',
+                message: 'Will be deployed to',
+                name: 'deployment',
+                choices: [
+                    { name: 'GitHUB Pages', value: DEPLOYMENT_GITHUB },
+                    { name: 'Vercel', value: DEPLOYMENT_VERCEL },
+                    { name: 'Kubernetes', value: DEPLOYMENT_K8S },
+                ],
+                default: (answers) => {
+                    return answers.github_account_name;
+                },
+                when: answers => {
+                    return !answers.is_microservice;
+                },
+            },
         ];
     }
 
@@ -143,6 +163,11 @@ module.exports.Generator = class Generator {
         answers.dockerhub_account_name = answers.dockerhub_account_name || '';
         answers.parent_project_code = answers.parent_project_code || '';
         answers.port = answers.port || 0;
+
+        answers.deployment = answers.deployment || DEPLOYMENT_K8S;
+        answers.need_image = answers.deployment === DEPLOYMENT_K8S;
+        answers.need_githubpages = answers.deployment === DEPLOYMENT_GITHUB;
+        answers.need_vercel = answers.deployment === DEPLOYMENT_VERCEL;
 
         return answers;
     }
