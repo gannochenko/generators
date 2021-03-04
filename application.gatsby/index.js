@@ -89,7 +89,7 @@ module.exports.Generator = class Generator {
             {
                 message: 'Google Analytics ID',
                 name: 'ga_id',
-                default: 'GA-XXX',
+                default: 'G-XXX',
             },
             {
                 message: 'Auth0 ID',
@@ -190,7 +190,7 @@ module.exports.Generator = class Generator {
                 'gatsby',
                 'gatsby-image',
                 'gatsby-plugin-catch-links',
-                !!ga_id && 'gatsby-plugin-google-analytics',
+                !!ga_id && 'gatsby-plugin-gtag',
                 'gatsby-plugin-manifest',
                 'gatsby-plugin-mdx',
                 'gatsby-plugin-offline',

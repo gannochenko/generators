@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { ContentPageLayoutPropsType } from './type';
-import { BodyLayout } from '../BodyLayout';
+import { PageContentLayout } from '../PageContentLayout';
 
 /**
  * This component is for wrapping up pages that lay in the content/ folder.
@@ -16,9 +16,9 @@ export const ContentPageLayout: FC<ContentPageLayoutPropsType> = ({
     const location = useMemo(() => ({ pathname: path }), [path]);
 
     return (
-        <BodyLayout pageContext={mdx} location={location}>
+        <PageContentLayout pageContext={mdx} location={location}>
             <MDXRenderer pageContext={mdx}>{mdx.body}</MDXRenderer>
-        </BodyLayout>
+        </PageContentLayout>
     );
 };
 

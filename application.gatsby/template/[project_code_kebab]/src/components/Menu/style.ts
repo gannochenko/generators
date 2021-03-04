@@ -45,13 +45,13 @@ export const MenuHome = styled(Link)`
     }
 
     color: ${muiColor('primary.contrastText')};
-    &:active,
-    &:focus {
+    &:hover {
         color: ${muiColor('primary.contrastText')};
     }
     text-decoration: none;
     flex-shrink: 0;
     height: ${muiSpacing(10)};
+    transition: color 200ms ease;
 `;
 
 export const MenuItem = styled(Link)`

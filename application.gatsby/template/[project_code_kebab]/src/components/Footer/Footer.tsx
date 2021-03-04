@@ -8,7 +8,7 @@ export const Footer: FC = () => {
             <FooterInfo>
                 <FooterNoWrap>
                     &copy; then &mdash; now ({new Date().getFullYear()})
-                </FooterNoWrap>
+                </FooterNoWrap>{' '}
                 <Link to="/cookie-policy" inner>
                     Cookie policy
                 </Link>

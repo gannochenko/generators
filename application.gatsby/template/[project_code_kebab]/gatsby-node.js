@@ -55,20 +55,19 @@ exports.createPages = ({ graphql, actions }) => {
                     reject(result.errors);
                 }
 
-                let edges = result.data.allMdx.edges;
+                const edges = result.data.allMdx.edges;
                 if (!edges) {
                     return;
                 }
 
-                edges = edges.filter(
-                    edge =>
-                        edge.node.frontmatter.path &&
-                        edge.node.frontmatter.path.startsWith('/content'),
-                );
                 edges.forEach(({ node }) => {
                     const {
-                        frontmatter: { path: pathProperty, published },
+                        frontmatter: { path: pathProperty, published } = {},
                     } = node;
+
+                    if (!pathProperty) {
+                        return;
+                    }
 
                     let realPath = '';
                     let component = '';

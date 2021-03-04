@@ -44,11 +44,13 @@ export const Menu: FC<MenuPropsType> = () => {
 <% if(enable_auth) { %>
                     <AuthWidget />
 <% } %>
-                    <MenuHamburger onClick={onHamburgerClick}>
-                        <MenuBar />
-                        <MenuBar />
-                        <MenuBar />
-                    </MenuHamburger>
+                    {!!menu.length && (
+                        <MenuHamburger onClick={onHamburgerClick}>
+                            <MenuBar />
+                            <MenuBar />
+                            <MenuBar />
+                        </MenuHamburger>
+                    )}
                 </MenuRight>
             </MenuInnerContainer>
             <MenuMobileItems open={mobileMenuOpen}>

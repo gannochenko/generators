@@ -1,6 +1,5 @@
-export * from './BodyLayout';
+export * from './PageContentLayout';
 export * from './Container';
-export * from './ContentPageLayout';
 export * from './CookiePopup';
 export * from './Copyright';
 export * from './Email';

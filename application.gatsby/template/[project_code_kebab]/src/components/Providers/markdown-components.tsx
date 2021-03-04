@@ -11,64 +11,44 @@ import { HR } from '../HR';
 export const markdownComponents = {
     a: Link,
     p: (props: ObjectLiteralType) => (
-        <Container>
-            <Typography
-                {...props}
-                variant="body1"
-                component="p"
-                enableVerticalGutter
-            />
-        </Container>
+        <Typography
+            {...props}
+            variant="body1"
+            component="p"
+            enableVerticalGutter
+        />
     ),
     h1: (props: ObjectLiteralType) => (
-        <Container>
-            <Typography
-                {...props}
-                variant="h1"
-                component="h1"
-                enableVerticalGutter
-            />
-        </Container>
+        <Typography
+            {...props}
+            variant="h1"
+            component="h1"
+            enableVerticalGutter
+        />
     ),
     h2: (props: ObjectLiteralType) => (
-        <Container>
-            <Typography
-                {...props}
-                variant="h2"
-                component="h2"
-                enableVerticalGutter
-            />
-        </Container>
+        <Typography
+            {...props}
+            variant="h2"
+            component="h2"
+            enableVerticalGutter
+        />
     ),
     h3: (props: ObjectLiteralType) => (
-        <Container>
-            <Typography
-                {...props}
-                variant="h3"
-                component="h3"
-                enableVerticalGutter
-            />
-        </Container>
+        <Typography
+            {...props}
+            variant="h3"
+            component="h3"
+            enableVerticalGutter
+        />
     ),
     h4: (props: ObjectLiteralType) => (
-        <Container>
-            <Typography
-                {...props}
-                variant="h4"
-                component="h4"
-                enableVerticalGutter
-            />
-        </Container>
-    ),
-    ul: (props: ObjectLiteralType) => (
-        <Container>
-            <ul {...props} />
-        </Container>
-    ),
-    ol: (props: ObjectLiteralType) => (
-        <Container>
-            <ol {...props} />
-        </Container>
+        <Typography
+            {...props}
+            variant="h4"
+            component="h4"
+            enableVerticalGutter
+        />
     ),
     hr: () => <HR />,
 };

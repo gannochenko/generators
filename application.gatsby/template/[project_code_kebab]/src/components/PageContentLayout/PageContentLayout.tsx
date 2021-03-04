@@ -4,7 +4,7 @@ import { BodyLayoutPropsType } from './type';
 import { Container, SEO } from '../';
 import { Typography } from '../Typography';
 
-export const BodyLayout: FC<BodyLayoutPropsType> = (props) => {
+export const PageContentLayout: FC<BodyLayoutPropsType> = (props) => {
     const {
         children,
         // location: { pathname = '' } = {},
@@ -73,4 +73,4 @@ export const BodyLayout: FC<BodyLayoutPropsType> = (props) => {
     );
 };
 
-export default BodyLayout;
+export default PageContentLayout;
