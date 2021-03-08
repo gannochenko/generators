@@ -125,14 +125,12 @@ module.exports.Generator = class Generator {
                 type: 'list',
                 message: 'Will be deployed to',
                 name: 'deployment',
+                default: DEPLOYMENT_VERCEL,
                 choices: [
-                    { name: 'GitHUB Pages', value: DEPLOYMENT_GITHUB },
                     { name: 'Vercel', value: DEPLOYMENT_VERCEL },
+                    { name: 'GitHUB Pages', value: DEPLOYMENT_GITHUB },
                     { name: 'Kubernetes', value: DEPLOYMENT_K8S },
                 ],
-                default: (answers) => {
-                    return answers.github_account_name;
-                },
                 when: answers => {
                     return !answers.is_microservice;
                 },
@@ -217,6 +215,7 @@ module.exports.Generator = class Generator {
                 'gatsby-plugin-material-ui',
                 'flat',
                 'react-query',
+                'simple-react-lightbox',
                 !!auth0_id && '@auth0/auth0-react',
             ],
         };

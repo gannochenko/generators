@@ -23,7 +23,7 @@ export const ContentPageLayout: FC<ContentPageLayoutPropsType> = ({
 };
 
 export const contentPageLayoutQuery = graphql`
-    query ContentEntrytQuery($id: String) {
+    query ContentEntryQuery($id: String) {
         mdx(id: { eq: $id }) {
             id
             body

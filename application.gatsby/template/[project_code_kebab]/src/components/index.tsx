@@ -12,6 +12,8 @@ export * from './Menu';
 export * from './NotFound';
 export * from './SEO';
 export * from './Typography';
+export * from './MainHeader';
+export * from './ImageGallery';
 <? if (enable_auth) { ?>
 export * from './AuthWidget';
 <? } ?>

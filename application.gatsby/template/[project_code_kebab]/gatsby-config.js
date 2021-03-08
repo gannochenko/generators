@@ -2,8 +2,7 @@ require("dotenv").config({
     path: process.env.NODE_ENV === 'development' ? '.env.development' : '.env',
 });
 
-const title = '<%- project_name %>';
-const description = '<%- project_description %>';
+const { title, description, keywords } = require('./src/siteMeta').siteMeta;
 
 module.exports = {
 <% if(path_prefix) { %>
@@ -15,7 +14,7 @@ module.exports = {
         title: title,
         description: description,
         author: '@<%- github_account_name %>',
-        keywords: ['one', 'two'],
+        keywords: keywords,
         siteUrl: 'https://<%- project_domain %>',
     },
     plugins: [

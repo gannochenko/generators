@@ -40,9 +40,6 @@ export const MenuHome = styled(Link)`
     ${contentAlignment('center', 'center')}
     ${muiTypography('caption')};
     font-weight: bold;
-    &:before {
-        content: '<%- project_name %>';
-    }
 
     color: ${muiColor('primary.contrastText')};
     &:hover {

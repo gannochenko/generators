@@ -3,12 +3,11 @@ title: Blog
 ---
 
 import { graphql } from 'gatsby';
-import { Container } from '../components/Container';
-import { BlogPostList } from '../components/BlogPostList';
+import { Container, BlogPostList } from 'components';
 
 <Container>
 
-    <BlogPostList data={props.data.allMdx.edges} />
+<BlogPostList data={props.data.allMdx.edges} />
 
 </Container>
 

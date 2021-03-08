@@ -14,8 +14,18 @@ export const SEO: FC<SEOPropsType> = ({
     return (
         <Query>
             {(data) => {
+                let metaTitle = '';
+                let metaTitleOG = '';
                 const metaDescription =
                     description || data.site.siteMetadata.description;
+
+                if (title) {
+                    metaTitle = `${title} | ${data.site.siteMetadata.title}`;
+                    metaTitleOG = title;
+                } else {
+                    metaTitle = data.site.siteMetadata.title;
+                    metaTitleOG = data.site.siteMetadata.description;
+                }
 
                 let allKeywords: string[] = [];
                 if (typeof keywords === 'string') {
@@ -32,8 +42,12 @@ export const SEO: FC<SEOPropsType> = ({
                         htmlAttributes={{
                             lang,
                         }}
-                        title={title}
-                        titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+                        title={metaTitle}
+                        // titleTemplate={
+                        //     title
+                        //         ? `%s | ${data.site.siteMetadata.title}`
+                        //         : metaTitle
+                        // }
                         meta={[
                             {
                                 name: 'twitter:card',
@@ -49,7 +63,7 @@ export const SEO: FC<SEOPropsType> = ({
                             },
                             {
                                 property: 'og:title',
-                                content: title,
+                                content: metaTitleOG,
                             },
                             {
                                 property: 'og:description',
@@ -61,19 +75,19 @@ export const SEO: FC<SEOPropsType> = ({
                             },
                             image
                                 ? {
-                                      property: 'og:image',
-                                      content: image,
-                                  }
+                                    property: 'og:image',
+                                    content: image,
+                                }
                                 : {},
                         ]
                             .concat(
                                 allKeywords.length > 0
                                     ? [
-                                          {
-                                              name: `keywords`,
-                                              content: allKeywords.join(`, `),
-                                          },
-                                      ]
+                                        {
+                                            name: `keywords`,
+                                            content: allKeywords.join(`, `),
+                                        },
+                                    ]
                                     : [],
                             )
                             .concat(meta)

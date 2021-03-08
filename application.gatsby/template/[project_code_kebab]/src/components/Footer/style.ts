@@ -21,8 +21,27 @@ export const FooterInfo = styled.div`
     &:not(:first-child) {
         padding-top: ${muiSpacing(2)};
     }
+    text-align: center;
 `;
 
 export const FooterNoWrap = styled.span`
     white-space: nowrap;
+`;
+
+export const CICDLink = styled.a`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    cursor: default;
+`;
+
+export const AnalyticsLink = styled.a`
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    cursor: default;
 `;

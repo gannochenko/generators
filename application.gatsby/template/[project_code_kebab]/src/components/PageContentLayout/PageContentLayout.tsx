@@ -27,12 +27,11 @@ export const PageContentLayout: FC<BodyLayoutPropsType> = (props) => {
     const actualKeywords = keywords || keywordsProp;
     const actualDescription = description || descriptionProp;
 
-    // const isRoot = pathname === '/';
     const displayTitle = actualTitle && displayPageTitle !== false;
 
     let coverImage = '';
     if (images) {
-        const coverImageData = images.find((image: any) => image.is_cover);
+        const coverImageData = images[0];
         if (coverImageData && coverImageData.image) {
             if (typeof coverImageData.image === 'string') {
                 coverImage = coverImageData.image;
@@ -48,7 +47,7 @@ export const PageContentLayout: FC<BodyLayoutPropsType> = (props) => {
                 title={actualTitle}
                 keywords={actualKeywords}
                 description={actualDescription}
-                image={coverImage ? coverImage : '/assets/avatar.jpg'}
+                image={coverImage ? coverImage : '/metaImage.jpg'}
             />
             {displayTitle && (
                 <Container>
