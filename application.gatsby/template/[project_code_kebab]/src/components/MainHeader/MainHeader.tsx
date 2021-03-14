@@ -11,6 +11,8 @@ import {
 import { useMainHeader } from './hooks/useMainHeader';
 import { siteMeta } from '../../siteMeta';
 
+const { title, description } = siteMeta;
+
 export const MainHeader: FC<MainHeaderPropsType> = forwardRef(
     function MainHeader(props, ref) {
         const { rootProps } = useMainHeader(ref, props);
@@ -20,10 +22,10 @@ export const MainHeader: FC<MainHeaderPropsType> = forwardRef(
                 <MainHeaderFadeAway>
                     <MainHeaderContainer>
                         <MainHeaderTitle>
-                            {siteMeta.title}
+                            {title}
                         </MainHeaderTitle>
                         <MainHeaderSub>
-                            Application slogan goes here
+                            {description}
                         </MainHeaderSub>
                     </MainHeaderContainer>
                 </MainHeaderFadeAway>

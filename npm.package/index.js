@@ -178,6 +178,7 @@ module.exports.Generator = class Generator {
 
                 !is_ui && '@types/debug',
                 '@gannochenko/gbelt',
+                'del-cli',
             ],
         };
     }
