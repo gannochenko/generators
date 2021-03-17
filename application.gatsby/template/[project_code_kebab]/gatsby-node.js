@@ -32,24 +32,28 @@ exports.onPostBootstrap = async ({ store }) => {
     }
 };
 
+const contentPageLayouts = {
+    '/<%- content_name_kebab %>': './src/components/BuildingDetail/BuildingDetail.tsx',
+};
+
 exports.createPages = ({ graphql, actions }) => {
     return new Promise((resolve, reject) => {
         resolve(
             graphql(`
-            query CreatePagesQuery {
-                allMdx {
-                    edges {
-                        node {
-                            id
-                            frontmatter {
-                                path
-                                published
+                query CreatePagesQuery {
+                    allMdx {
+                        edges {
+                            node {
+                                id
+                                frontmatter {
+                                    path
+                                    published
+                                }
                             }
                         }
                     }
                 }
-            }
-        `).then(result => {
+            `).then((result) => {
                 if (result.errors) {
                     console.error(result.errors);
                     reject(result.errors);
@@ -59,6 +63,8 @@ exports.createPages = ({ graphql, actions }) => {
                 if (!edges) {
                     return;
                 }
+
+                const contentPageKeys = Object.keys(contentPageLayouts);
 
                 edges.forEach(({ node }) => {
                     const {
@@ -72,12 +78,20 @@ exports.createPages = ({ graphql, actions }) => {
                     let realPath = '';
                     let component = '';
 
-                    if (pathProperty.startsWith('/content')) {
-                        realPath = published
-                            ? pathProperty
-                            : pathProperty.replace(/^\/content\//, '/content-drafts/');
-                        component = './src/components/ContentPageLayout/ContentPageLayout.tsx';
-                    } else {
+                    for (let i = 0; i < contentPageKeys.length; i += 1) {
+                        const contentPageKey = contentPageKeys[i];
+                        if (pathProperty.startsWith(contentPageKey)) {
+                            component = contentPageLayouts[contentPageKey];
+                            break;
+                        }
+                    }
+
+                    realPath = pathProperty;
+                    if (!published) {
+                        realPath = `/drafts${realPath}`;
+                    }
+
+                    if (!component) {
                         console.error(
                             `There is an entry, but I cant create a page for it: ${pathProperty}`,
                         );
@@ -88,14 +102,11 @@ exports.createPages = ({ graphql, actions }) => {
                         // Encode the route
                         path: realPath,
                         // Layout for the page
-                        component: path.resolve(
-                            component,
-                        ),
+                        component: path.resolve(component),
                         // Values defined here are injected into the page as props and can
                         // be passed to a GraphQL query as arguments
                         context: {
                             id: node.id,
-                            body: node.body,
                         },
                     });
                 });

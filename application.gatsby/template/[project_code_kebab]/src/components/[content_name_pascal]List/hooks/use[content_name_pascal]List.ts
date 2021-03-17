@@ -1,7 +1,7 @@
 import { Ref } from 'react';
 import { BuildingListPropsType } from '../type';
 
-export const useBuildingList = (
+export const use<%- content_name_pascal %>List = (
     ref: Ref<unknown>,
     { data, ...props }: BuildingListPropsType,
 ) => {

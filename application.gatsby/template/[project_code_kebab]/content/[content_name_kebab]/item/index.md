@@ -1,5 +1,5 @@
 ---
-path: /content/sample-entry-1000
+path: /<%- content_name_kebab %>/item
 published: true
 date: 2020-12-12
 description: ''

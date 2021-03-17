@@ -96,6 +96,11 @@ module.exports.Generator = class Generator {
                 name: 'auth0_id',
             },
             {
+                message: 'Content name',
+                name: 'content_name',
+                default: 'stuff',
+            },
+            {
                 message: 'Enable offline support? (not recommended for frequently updated website)',
                 name: 'use_offline',
                 type: 'confirm',
@@ -143,7 +148,13 @@ module.exports.Generator = class Generator {
         answers.project_code_kebab = this.util.textConverter.toKebab(
             answers.project_code,
         );
-        answers.no_blog = !answers.use_blog;
+
+        answers.content_name_pascal = this.util.textConverter.toPascal(
+            answers.content_name,
+        );
+        answers.content_name_kebab = this.util.textConverter.toKebab(
+            answers.content_name,
+        );
 
         const emailParts = answers.author_email.split('@');
         answers.author_email_start = emailParts[0];

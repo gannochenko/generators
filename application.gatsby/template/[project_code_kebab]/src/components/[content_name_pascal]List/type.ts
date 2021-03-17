@@ -5,7 +5,7 @@ import {
     MarginPropsType,
 } from '@gannochenko/ui.styled-components';
 
-export type BuildingListPropsType = HTMLAttributes<HTMLDivElement> &
+export type <%- content_name_pascal %>ListPropsType = HTMLAttributes<HTMLDivElement> &
     Partial<{
         data: ObjectLiteralType[];
         // put your custom props here
@@ -13,6 +13,4 @@ export type BuildingListPropsType = HTMLAttributes<HTMLDivElement> &
     MarginPropsType &
     ObjectLiteralType;
 
-export type BuildingListRootPropsType = StylePropsType & BuildingListPropsType;
-
-// export type BuildingListInnerNodePropsType = StylePropsType & ObjectLiteralType;
+export type <%- content_name_pascal %>ListRootPropsType = StylePropsType & <%- content_name_pascal %>ListPropsType;

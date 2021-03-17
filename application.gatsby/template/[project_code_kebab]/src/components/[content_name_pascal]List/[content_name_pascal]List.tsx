@@ -3,19 +3,19 @@ import { Grid } from '@material-ui/core';
 
 import { BuildingListPropsType } from './type';
 import {
-    BuildingListRoot,
-    BuildingCardImage,
-    BuildingCard,
-    BuildingCardTitle,
+    <%- content_name_pascal %>ListRoot,
+    <%- content_name_pascal %>CardImage,
+    <%- content_name_pascal %>Card,
+    <%- content_name_pascal %>CardTitle,
 } from './style';
-import { useBuildingList } from './hooks/useBuildingList';
+import { useContent_name_pascalList } from './hooks/use<%- content_name_pascal %>List';
 
-export const BuildingList: FC<BuildingListPropsType> = forwardRef(
+export const Content_name_pascalList: FC<BuildingListPropsType> = forwardRef(
     function BuildingList(props, ref) {
-        const { rootProps, data } = useBuildingList(ref, props);
+        const { rootProps, data } = useContent_name_pascalList(ref, props);
 
         return (
-            <BuildingListRoot {...rootProps}>
+            <<%- content_name_pascal %>ListRoot {...rootProps}>
                 <Grid container spacing={3}>
                     {data.map((building) => {
                         const buildingData = building.node.frontmatter;
@@ -37,21 +37,21 @@ export const BuildingList: FC<BuildingListPropsType> = forwardRef(
                                 xs={12}
                                 key={buildingData.path}
                             >
-                                <BuildingCard to={buildingData.path}>
-                                    <BuildingCardImage
+                                <<%- content_name_pascal %>Card to={buildingData.path}>
+                                    <<%- content_name_pascal %>CardImage
                                         sizes={picture.childImageSharp.fluid}
                                     />
-                                    <BuildingCardTitle>
+                                    <<%- content_name_pascal %>CardTitle>
                                         {buildingData.shortTitle}
-                                    </BuildingCardTitle>
-                                </BuildingCard>
+                                    </<%- content_name_pascal %>CardTitle>
+                                </<%- content_name_pascal %>Card>
                             </Grid>
                         );
                     })}
                 </Grid>
-            </BuildingListRoot>
+            </<%- content_name_pascal %>ListRoot>
         );
     },
 );
 
-BuildingList.defaultProps = {};
+<%- content_name_pascal %>List.defaultProps = {};
