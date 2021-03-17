@@ -1,1 +1,1 @@
-export * from './BodyLayout';
+export * from './PageContentLayout';

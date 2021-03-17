@@ -33,7 +33,7 @@ exports.onPostBootstrap = async ({ store }) => {
 };
 
 const contentPageLayouts = {
-    '/<%- content_name_kebab %>': './src/components/BuildingDetail/BuildingDetail.tsx',
+    '/<%- content_name_kebab %>': './src/components/<%- content_name_pascal %>Detail/<%- content_name_pascal %>Detail.tsx',
 };
 
 exports.createPages = ({ graphql, actions }) => {

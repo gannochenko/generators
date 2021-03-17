@@ -2,18 +2,18 @@ import React, { FC, useMemo } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-import { ContentPageLayoutPropsType } from './type';
+import { <%- content_name_pascal %>DetailPropsType } from './type';
 import { PageContentLayout } from '../PageContentLayout';
 import {
-    BuildingDetailNavigateBack,
-    BuildingDetailNavigateBackContainer,
+    <%- content_name_pascal %>DetailNavigateBack,
+    <%- content_name_pascal %>DetailNavigateBackContainer,
 } from './style';
 
 /**
  * This component is for wrapping up pages that lay in the content/ folder.
  * See gatsby-node.js for details.
  */
-export const BuildingDetail: FC<ContentPageLayoutPropsType> = ({
+export const <%- content_name_pascal %>Detail: FC<<%- content_name_pascal %>DetailPropsType> = ({
     data: { mdx },
     path,
 }) => {
@@ -21,11 +21,11 @@ export const BuildingDetail: FC<ContentPageLayoutPropsType> = ({
 
     return (
         <>
-            <BuildingDetailNavigateBackContainer>
-                <BuildingDetailNavigateBack href="/">
+            <<%- content_name_pascal %>DetailNavigateBackContainer>
+                <<%- content_name_pascal %>DetailNavigateBack href="/">
                     На главную
-                </BuildingDetailNavigateBack>
-            </BuildingDetailNavigateBackContainer>
+                </<%- content_name_pascal %>DetailNavigateBack>
+            </<%- content_name_pascal %>DetailNavigateBackContainer>
             <PageContentLayout pageContext={mdx} location={location}>
                 <MDXRenderer pageContext={mdx}>{mdx.body}</MDXRenderer>
             </PageContentLayout>
@@ -33,8 +33,8 @@ export const BuildingDetail: FC<ContentPageLayoutPropsType> = ({
     );
 };
 
-export const buildingDetailQuery = graphql`
-    query buildingDetailQuery($id: String) {
+export const <%- content_name_pascal %>DetailQuery = graphql`
+    query <%- content_name_pascal %>DetailQuery($id: String) {
         mdx(id: { eq: $id }) {
             id
             body
@@ -59,4 +59,4 @@ export const buildingDetailQuery = graphql`
     }
 `;
 
-export default BuildingDetail;
+export default <%- content_name_pascal %>Detail;

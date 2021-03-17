@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { BodyLayoutContent, BodyLayoutBackLink } from './style';
+import { BodyLayoutContent } from './style';
 import { BodyLayoutPropsType } from './type';
 import { Container, SEO } from '../';
 import { Typography } from '../Typography';
@@ -13,7 +13,6 @@ export const PageContentLayout: FC<BodyLayoutPropsType> = (props) => {
                 title = '',
                 keywords = [],
                 description = '',
-                backUrl = '',
                 images = [],
                 displayPageTitle = true,
             } = {},
@@ -27,6 +26,7 @@ export const PageContentLayout: FC<BodyLayoutPropsType> = (props) => {
     const actualKeywords = keywords || keywordsProp;
     const actualDescription = description || descriptionProp;
 
+    // const isRoot = pathname === '/';
     const displayTitle = actualTitle && displayPageTitle !== false;
 
     let coverImage = '';
@@ -47,7 +47,7 @@ export const PageContentLayout: FC<BodyLayoutPropsType> = (props) => {
                 title={actualTitle}
                 keywords={actualKeywords}
                 description={actualDescription}
-                image={coverImage ? coverImage : '/metaImage.jpg'}
+                image={coverImage ? coverImage : '/assets/metaImage.jpg'}
             />
             {displayTitle && (
                 <Container>
@@ -60,14 +60,7 @@ export const PageContentLayout: FC<BodyLayoutPropsType> = (props) => {
                     </Typography>
                 </Container>
             )}
-            <BodyLayoutContent>
-                {children}
-                {!!backUrl && (
-                    <BodyLayoutBackLink to={backUrl}>
-                        &larr; Go back
-                    </BodyLayoutBackLink>
-                )}
-            </BodyLayoutContent>
+            <BodyLayoutContent>{children}</BodyLayoutContent>
         </>
     );
 };

@@ -68,7 +68,7 @@ module.exports = {
                 extensions: [`.mdx`, `.md`],
                 defaultLayouts: {
                     default: require.resolve(
-                        './src/components/ContentPageLayout/ContentPageLayout.tsx',
+                        './src/components/PageContentLayout/PageContentLayout.tsx',
                     ),
                 },
                 gatsbyRemarkPlugins: [
