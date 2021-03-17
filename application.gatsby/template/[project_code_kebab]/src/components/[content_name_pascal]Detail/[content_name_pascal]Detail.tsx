@@ -4,10 +4,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { <%- content_name_pascal %>DetailPropsType } from './type';
 import { PageContentLayout } from '../PageContentLayout';
-import {
-    <%- content_name_pascal %>DetailNavigateBack,
-    <%- content_name_pascal %>DetailNavigateBackContainer,
-} from './style';
 
 /**
  * This component is for wrapping up pages that lay in the content/ folder.
@@ -20,16 +16,9 @@ export const <%- content_name_pascal %>Detail: FC<<%- content_name_pascal %>Deta
     const location = useMemo(() => ({ pathname: path }), [path]);
 
     return (
-        <>
-            <<%- content_name_pascal %>DetailNavigateBackContainer>
-                <<%- content_name_pascal %>DetailNavigateBack href="/">
-                    На главную
-                </<%- content_name_pascal %>DetailNavigateBack>
-            </<%- content_name_pascal %>DetailNavigateBackContainer>
-            <PageContentLayout pageContext={mdx} location={location}>
-                <MDXRenderer pageContext={mdx}>{mdx.body}</MDXRenderer>
-            </PageContentLayout>
-        </>
+        <PageContentLayout pageContext={mdx} location={location}>
+            <MDXRenderer pageContext={mdx}>{mdx.body}</MDXRenderer>
+        </PageContentLayout>
     );
 };
 
@@ -44,12 +33,12 @@ export const <%- content_name_pascal %>DetailQuery = graphql`
                 keywords
                 description
                 displayPageTitle
-                location
                 images {
                     image {
                         childImageSharp {
                             fluid(maxWidth: 1240, quality: 80) {
-                                ...GatsbyImageSharpFluid_tracedSVG
+                                    ...GatsbyImageSharpFluid_tracedSVG
+                                }
                             }
                         }
                     }

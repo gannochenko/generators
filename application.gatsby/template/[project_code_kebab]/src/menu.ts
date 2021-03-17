@@ -1,4 +1,4 @@
 export const menu = [
-    { text: 'Content', link: '/content' },
+    { text: '<%- content_name %>', link: '/<%- content_name_kebab %>' },
     { text: 'About', link: '/about' },
 ];

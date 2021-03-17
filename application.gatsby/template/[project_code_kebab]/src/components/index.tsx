@@ -14,6 +14,7 @@ export * from './SEO';
 export * from './Typography';
 export * from './MainHeader';
 export * from './ImageGallery';
-<? if (enable_auth) { ?>
+export * from './<%- content_name_pascal %>List';
+<% if (enable_auth) { %>
 export * from './AuthWidget';
-<? } ?>
+<% } %>

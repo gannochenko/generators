@@ -17,6 +17,7 @@ module.exports = {
         keywords: keywords,
         siteUrl: 'https://<%- project_domain %>',
     },
+    flags: { PRESERVE_WEBPACK_CACHE: true },
     plugins: [
         {
             resolve: 'gatsby-plugin-google-fonts',

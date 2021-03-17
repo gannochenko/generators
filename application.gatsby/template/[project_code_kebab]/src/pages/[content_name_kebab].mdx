@@ -1,9 +1,9 @@
 ---
-title: "<%- content_name %>"
+title: "<%- content_name_ucfirst %>"
 ---
 
 import { graphql } from 'gatsby';
-import { Container, BlogPostList } from 'components';
+import { Container, <%- content_name_pascal %>List } from 'components';
 
 <Container>
 
@@ -28,8 +28,9 @@ export const <%- content_name_pascal %>IndexQuery = graphql`
                         images {
                             image {
                                 childImageSharp {
-                                fluid(maxWidth: 1240, quality: 80) {
-                                    ...GatsbyImageSharpFluid_tracedSVG
+                                    fluid(maxWidth: 1240, quality: 80) {
+                                        ...GatsbyImageSharpFluid_tracedSVG
+                                    }
                                 }
                             }
                         }

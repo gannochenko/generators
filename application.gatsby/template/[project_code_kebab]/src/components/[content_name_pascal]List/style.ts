@@ -13,7 +13,7 @@ import { <%- content_name_pascal %>ListRootPropsType } from './type';
 // all unwanted custom props should be blacklisted
 const customProps = {};
 
-export const BuildingListRoot = styled.div.withConfig(
+export const <%- content_name_pascal %>ListRoot = styled.div.withConfig(
     getPropBlocker(customProps),
 )<<%- content_name_pascal %>ListRootPropsType>`
     ${reset};

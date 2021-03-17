@@ -8,11 +8,11 @@ import {
     <%- content_name_pascal %>Card,
     <%- content_name_pascal %>CardTitle,
 } from './style';
-import { useContent_name_pascalList } from './hooks/use<%- content_name_pascal %>List';
+import { use<%- content_name_pascal %>List } from './hooks/use<%- content_name_pascal %>List';
 
 export const Content_name_pascalList: FC<BuildingListPropsType> = forwardRef(
     function BuildingList(props, ref) {
-        const { rootProps, data } = useContent_name_pascalList(ref, props);
+        const { rootProps, data } = use<%- content_name_pascal %>List(ref, props);
 
         return (
             <<%- content_name_pascal %>ListRoot {...rootProps}>
