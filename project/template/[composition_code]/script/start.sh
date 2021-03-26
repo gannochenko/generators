@@ -9,18 +9,18 @@ fi
 
 if [[ $1 = "-d" ]] || [[ $2 = "-d" ]]; then
     docker stop $(docker ps -aq) > /dev/null;
-    docker-compose -f ${DIR}/../infra/development.infra.yml -f ${DIR}/../infra/development.yml up ${REBUILD};
+    docker-compose -f ${DIR}/../infra.dev/compose.infra.yml -f ${DIR}/../infra.dev/compose.yml up ${REBUILD};
 else
     if [[ $1 = "-i" ]] || [[ $2 = "-i" ]]; then
         docker stop $(docker ps -aq) > /dev/null;
-        docker-compose -f ${DIR}/../infra/development.infra.yml up
+        docker-compose -f ${DIR}/../infra.dev/compose.infra.yml up
     else
         if [[ $1 = "-p" ]]; then
             ${DIR}/applications.launch.js $2;
         else
             docker stop $(docker ps -aq) > /dev/null;
             # todo: replace with some adequate concurrency manager
-            docker-compose -f ${DIR}/../infra/development.infra.yml up &
+            docker-compose -f ${DIR}/../infra.dev/compose.infra.yml up &
             sleep 5; ${DIR}/applications.launch.js;
         fi
     fi

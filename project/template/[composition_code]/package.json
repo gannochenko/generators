@@ -7,7 +7,8 @@
         "start": "script/start.sh",
         "dev": "script/start.sh -p",
         "dev:infra": "script/start.sh -i",
-        "pull-images": "script/pull-images.sh"
+        "pull-images": "script/pull-images.sh",
+        "k8s:start": "kubectl apply -f infra"
     },
     "keywords": [],
     "author": "",
@@ -15,5 +16,10 @@
     "devDependencies": {
     },
     "dependencies": {
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
     }
 }

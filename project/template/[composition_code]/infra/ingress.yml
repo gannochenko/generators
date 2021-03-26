@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: api.<%- composition_code %>.app
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: api-service
+              servicePort: 3000

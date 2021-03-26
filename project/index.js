@@ -103,13 +103,14 @@ module.exports.Generator = class Generator {
     }
 
     getDevDependencies(answers) {
-        const { use_graphql, use_grpc } = answers;
-
         return {
             destination: '[composition_code]/',
             packages: [
                 'concurrently',
                 'js-yaml',
+                'husky',
+                'prettier',
+                'pretty-quick',
             ],
         };
     }

@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-<% if (use_postgres) { %>
+
     db:
         image: postgres
         expose:
@@ -9,7 +9,7 @@ services:
         ports:
             - '5432:5432'
         environment:
-            POSTGRES_DB: <%- database_name %>
+            POSTGRES_DB: api
             POSTGRES_USER: root
             POSTGRES_PASSWORD: 123
     db.gui:
@@ -23,8 +23,7 @@ services:
         labels:
             com.list.name: 'Adminer'
             com.list.sort: '2'
-            com.list.link.endpoint: 'Browse database|/?pgsql=db&username=root&db=<%- database_name %>&ns=public'
-<% } %>
+            com.list.link.endpoint: 'Browse database "api"|/?pgsql=db&username=root&db=api&ns=public'
 <% if (use_cache) { %>
     cache:
         build:
@@ -47,14 +46,7 @@ services:
             com.list.sort: '3'
             com.list.link.endpoint: 'Browse cache|/cache:6379/0/keys/'
 <% } %>
-<% if (use_broker) { %>
-    broker:
-        image: 'redis'
-        expose:
-            - 6380
-        ports:
-            - 6380:6379
-<% } %>
+
     container-list:
         image: 'awesome1888/container-list'
         expose:

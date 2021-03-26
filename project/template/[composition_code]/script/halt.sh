@@ -2,4 +2,4 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 
-docker-compose -f ${DIR}/../infra/development.infra.yml -f ${DIR}/../infra/development.yml stop;
+docker-compose -f ${DIR}/../infra.dev/compose.infra.yml -f ${DIR}/../infra.dev/compose.yml stop;
