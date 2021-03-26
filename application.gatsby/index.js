@@ -109,9 +109,7 @@ module.exports.Generator = class Generator {
             {
                 name: 'port',
                 message: 'TCP port',
-                default: (answers) => {
-                    return answers.project_code;
-                },
+                default: 9000,
                 when: answers => {
                     return answers.is_microservice;
                 },
