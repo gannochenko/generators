@@ -8,6 +8,9 @@ const { introspectionQuery, graphql, printSchema } = require('gatsby/graphql');
 const write = require('write');
 // const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 const path = require('path');
+const fillTemplate = require('./src/pathTemplates').fillTemplate;
+
+const <%- content_name_snake_uc %>_DETAIL = require('./src/pathTemplates').<%- content_name_snake_uc %>_DETAIL;
 
 /**
  * Generate GraphQL schema.json file to be read by tslint
@@ -33,7 +36,11 @@ exports.onPostBootstrap = async ({ store }) => {
 };
 
 const contentPageLayouts = {
-    '/<%- content_name_kebab %>': './src/components/<%- content_name_pascal %>Detail/<%- content_name_pascal %>Detail.tsx',
+    '<%- content_name_kebab %>': './src/components/<%- content_name_pascal %>Detail/<%- content_name_pascal %>Detail.tsx',
+};
+
+const contentTypeToPath = {
+    '<%- content_name_kebab %>': <%- content_name_snake_uc %>_DETAIL,
 };
 
 exports.createPages = ({ graphql, actions }) => {
@@ -45,9 +52,10 @@ exports.createPages = ({ graphql, actions }) => {
                         edges {
                             node {
                                 id
+                                fileAbsolutePath
                                 frontmatter {
-                                    path
                                     published
+                                    slug
                                 }
                             }
                         }
@@ -64,36 +72,42 @@ exports.createPages = ({ graphql, actions }) => {
                     return;
                 }
 
-                const contentPageKeys = Object.keys(contentPageLayouts);
-
                 edges.forEach(({ node }) => {
                     const {
-                        frontmatter: { path: pathProperty, published } = {},
+                        fileAbsolutePath,
+                        frontmatter: { slug, published } = {},
                     } = node;
 
-                    if (!pathProperty) {
+                    const match = fileAbsolutePath.match(
+                        /\/content\/([^\/]+)\/([^\/]+)\//,
+                    );
+                    if (!match) {
+                        console.warn(
+                            'Was not able to parse file path structure. Skipping.',
+                        );
                         return;
                     }
 
-                    let realPath = '';
-                    let component = '';
+                    const [, contentType, fileSlug] = match;
+                    const realSlug = slug || fileSlug;
 
-                    for (let i = 0; i < contentPageKeys.length; i += 1) {
-                        const contentPageKey = contentPageKeys[i];
-                        if (pathProperty.startsWith(contentPageKey)) {
-                            component = contentPageLayouts[contentPageKey];
-                            break;
-                        }
+                    if (!realSlug) {
+                        console.warn('Entry without slug detected. Skipping.');
+                        return;
                     }
 
-                    realPath = pathProperty;
+                    const component = contentTypeToPageLayouts[contentType];
+                    let realPath = contentTypeToPath[contentType].replace(
+                        '#SLUG#',
+                        realSlug,
+                    );
                     if (!published) {
                         realPath = `/drafts${realPath}`;
                     }
 
                     if (!component) {
                         console.error(
-                            `There is an entry, but I cant create a page for it: ${pathProperty}`,
+                            `There is an entry, but I cant create a page for it. Skipping.`,
                         );
                         return;
                     }

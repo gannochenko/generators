@@ -1,5 +1,7 @@
 ---
-path: /<%- content_name_kebab %>/item
+kind: <%- content_name_pascal %>
+slug: item-xxx
+title: Item XXX
 published: true
 date: 2020-12-12
 description: ''

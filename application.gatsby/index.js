@@ -153,6 +153,9 @@ module.exports.Generator = class Generator {
         answers.content_name_kebab = this.util.textConverter.toKebab(
             answers.content_name,
         );
+        answers.content_name_snake_uc = this.util.textConverter.toSnake(
+            answers.content_name,
+        ).toUpperCase();
         answers.content_name_ucfirst = answers.content_name.substr(0, 1).toUpperCase() + answers.content_name.substr(1);
 
         const emailParts = answers.author_email.split('@');

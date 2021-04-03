@@ -9,6 +9,7 @@ import {
     <%- content_name_pascal %>CardTitle,
 } from './style';
 import { use<%- content_name_pascal %>List } from './hooks/use<%- content_name_pascal %>List';
+import { fillTemplate, <%- content_name_snake_uc %>_DETAIL } from '../../pathTemplates';
 
 export const Content_name_pascalList: FC<BuildingListPropsType> = forwardRef(
     function BuildingList(props, ref) {
@@ -28,21 +29,25 @@ export const Content_name_pascalList: FC<BuildingListPropsType> = forwardRef(
                             headerImage = 0;
                         }
 
-                        const picture = buildingData.images[headerImage].image;
+                        const { slug, images, shortTitle } = buildingData;
+
+                        const path = fillTemplate(<%- content_name_snake_uc %>_DETAIL, { slug });
+
+                        const picture = images[headerImage].image;
                         return (
                             <Grid
                                 item
                                 md={4}
                                 sm={6}
                                 xs={12}
-                                key={buildingData.path}
+                                key={slug}
                             >
-                                <<%- content_name_pascal %>Card to={buildingData.path}>
+                                <<%- content_name_pascal %>Card to={path}>
                                     <<%- content_name_pascal %>CardImage
                                         sizes={picture.childImageSharp.fluid}
                                     />
                                     <<%- content_name_pascal %>CardTitle>
-                                        {buildingData.shortTitle}
+                                        {shortTitle}
                                     </<%- content_name_pascal %>CardTitle>
                                 </<%- content_name_pascal %>Card>
                             </Grid>

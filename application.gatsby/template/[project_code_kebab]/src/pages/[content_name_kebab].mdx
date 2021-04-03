@@ -15,7 +15,7 @@ export const <%- content_name_pascal %>IndexQuery = graphql`
     query <%- content_name_pascal %>IndexQuery {
         allMdx(
             sort: { fields: [frontmatter___date], order: DESC }
-            filter: { frontmatter: { published: { eq: true }, path: { regex: "/\/<%- content_name_kebab %>/i" } } }
+            filter: { frontmatter: { published: { eq: true }, kind: { eq: "<%- content_name_pascal %>" } } }
         ) {
             edges {
                 node {
@@ -23,7 +23,7 @@ export const <%- content_name_pascal %>IndexQuery = graphql`
                     frontmatter {
                         title
                         date
-                        path
+                        slug
                         published
                         images {
                             image {

@@ -85,12 +85,6 @@ module.exports.Generator = class Generator {
                 message: 'Do we have Redis as a message broker?',
                 default: false,
             },
-            {
-                type: 'confirm',
-                name: 'use_k8s',
-                message: 'Do we have K8S?',
-                default: false,
-            },
         ];
     }
 
