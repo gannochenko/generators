@@ -26,8 +26,8 @@
 <% } %>
         "install-peers": "install-self-peers -- --ignore-scripts",
 <% if (is_cli) { %>
-        "start": "DEBUG=* ts-node src/index.ts",
-        "link-global": "./script/release.sh",
+        "dev": "DEBUG=* ts-node src/index.ts",
+        "link-global": "./script/link.sh",
 <% } %>
         "build": "rm -rf ./build/* && yarn run build:esm && yarn run build:cjs",
         "build:cjs": "del ./build.cjs/* && tsc -p ./tsconfig.build.cjs.json<% if (is_cli) { %> && chmod +x ./build.cjs/index.js<% } %>",

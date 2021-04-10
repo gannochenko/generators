@@ -7,3 +7,4 @@ node_modules/
 public
 .idea/workspace.xml
 .idea/libraries
+.env

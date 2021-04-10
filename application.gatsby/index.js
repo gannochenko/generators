@@ -271,6 +271,7 @@ module.exports.Generator = class Generator {
                 'typescript-styled-plugin',
                 '@gannochenko/gbelt',
                 '@generilla/cli',
+                'dotenv-cli',
             ],
         };
     }
