@@ -14,6 +14,7 @@ export class Commands {
 
     public static processCLI(program: CommanderCommand) {}
 
+    // todo: need to instantiate a command every time, static methods suck
     public static attachCommands(
         program: CommanderCommand,
         actionCallback: ActionCallback,

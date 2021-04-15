@@ -12,6 +12,7 @@ import {Application} from '../lib/application';
 
 const d = debug('run');
 
+// todo: need to instantiate a command every time, static methods suck
 @Implements<CommandProcessor>()
 export class CommandRun {
     public static attach(
