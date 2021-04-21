@@ -19,10 +19,8 @@ module.exports.Generator = class Generator {
                 name: 'project_code',
             },
             {
-                type: 'confirm',
-                name: 'is_microservice',
-                message: 'Is this a microservice?',
-                default: false,
+                name: 'parent_project_code',
+                message: 'What is the parent project code?',
             },
             {
                 message: 'GitHub account name',
@@ -37,21 +35,21 @@ module.exports.Generator = class Generator {
                 },
             },
             {
+                type: 'confirm',
+                name: 'use_nats',
+                message: 'Enable nats?',
+                default: false,
+            },
+            {
                 name: 'port',
-                message: 'TCP port',
+                message: 'What is the TCP port?',
                 default: 3000,
-                when: answers => {
-                    return answers.is_microservice;
-                },
             },
             {
                 message: 'DockerHub account name',
                 name: 'dockerhub_account_name',
                 default: (answers) => {
                     return answers.github_account_name;
-                },
-                when: answers => {
-                    return answers.is_microservice;
                 },
             },
         ];
@@ -64,14 +62,17 @@ module.exports.Generator = class Generator {
         );
 
         answers.project_code_global = answers.project_code;
-        if (answers.is_microservice && answers.parent_project_code) {
+        if (answers.parent_project_code) {
             answers.project_code_global = `${answers.parent_project_code}_${answers.project_code}`;
         }
-        
+
+        answers.use_nats = !!answers.use_nats;
+
         return answers;
     }
 
     async getDependencies(answers) {
+        const { use_nats } = answers;
         return {
             destination: '[project_code_kebab]/',
             packages: [
@@ -81,6 +82,7 @@ module.exports.Generator = class Generator {
                 '@nestjs/platform-express',
                 '@nestjs/swagger',
                 '@nestjs/typeorm',
+                !!use_nats && '@nestjs/microservices',
                 'apollo-server-express',
                 'class-transformer',
                 'class-validator',
@@ -98,6 +100,7 @@ module.exports.Generator = class Generator {
                 'rxjs',
                 'swagger-ui-express',
                 'typeorm',
+                !!use_nats && 'nats',
             ],
         };
     }

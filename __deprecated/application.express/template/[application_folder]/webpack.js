@@ -1,6 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const webpack = require('webpack');
+const webpack = require('__deprecated/application.express/template/[application_folder]/webpack');
 const resolve = require('resolve');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');

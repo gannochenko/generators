@@ -11,7 +11,7 @@
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "start": "nest start",
         "dev": "dotenv yarn start:dev",
-        "dev:infra": "docker-compose up -d",
+<% if(is_not_monorepo) { %>        "dev:infra": "docker-compose up -d",<% } %>
         "start:dev": "nest start --watch",
         "start:debug": "nest start --debug --watch",
         "start:prod": "node dist/main",

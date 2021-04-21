@@ -1,4 +1,4 @@
-import cors from 'cors';
+import cors from '__deprecated/application.react/template/[application_folder]/src/server/cors';
 
 export const useCORS = (app) => {
     let corsHosts = process.env.NETWORK__CORS || [];

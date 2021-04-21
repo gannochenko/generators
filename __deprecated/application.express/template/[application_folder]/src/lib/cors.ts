@@ -1,4 +1,4 @@
-import cors from 'cors';
+import cors from '__deprecated/application.express/template/[application_folder]/src/lib/cors';
 import { Express } from 'express';
 
 export const useCORS = async (app: Express) => {

@@ -7,13 +7,18 @@ module.exports.Generator = class Generator {
     }
 
     getName() {
-        return 'Project';
+        return 'Root folder for a monorepo-based project';
+    }
+
+    setContext(context) {
+        this.context = context;
     }
 
     getQuestions() {
         return [
             {
-                name: 'project_code',
+                type: 'input',
+                name: 'composition_code',
                 message: 'Project code',
                 validate: async (value) => {
                     if (typeof value !== 'string') {
@@ -33,17 +38,19 @@ module.exports.Generator = class Generator {
                 },
             },
             {
-                name: 'project_name',
+                type: 'input',
+                name: 'composition_name',
                 message: 'Project name',
             },
             {
+                type: 'input',
                 name: 'domain',
                 message: 'Public domain (i.e. "my-cool-website.com")',
-                // validate: async () => {
-                //     // todo
-                //
-                //     return true;
-                // },
+                validate: async () => {
+                    // todo
+
+                    return true;
+                },
             },
             {
                 type: 'confirm',
@@ -53,8 +60,8 @@ module.exports.Generator = class Generator {
             },
             {
                 type: 'input',
-                name: 'postgres_database_name',
-                message: 'Postgres database name',
+                name: 'database_name',
+                message: 'Database name',
                 when: answers => {
                     return answers.use_postgres;
                 },
@@ -66,31 +73,35 @@ module.exports.Generator = class Generator {
                     return true;
                 },
             },
-            // {
-            //     type: 'confirm',
-            //     name: 'use_cache',
-            //     message: 'Do we have Redis as cache?',
-            //     default: false,
-            // },
             {
                 type: 'confirm',
-                name: 'use_nats',
-                message: 'Do we have NATS streaming?',
+                name: 'use_cache',
+                message: 'Do we have Redis as cache?',
+                default: false,
+            },
+            {
+                type: 'confirm',
+                name: 'use_broker',
+                message: 'Do we have Redis as a message broker?',
                 default: false,
             },
         ];
     }
 
     refineAnswers(answers) {
-        answers.project_code_kebab = this.util.textConverter.toKebab(answers.project_code);
+        answers.composition_code_kebab = this.util.textConverter.toKebab(answers.composition_code);
+
+        this.answers = answers;
 
         return answers;
     }
 
     getDevDependencies(answers) {
         return {
-            destination: '[project_code]/',
+            destination: '[composition_code]/',
             packages: [
+                'concurrently',
+                'js-yaml',
                 'husky',
                 'prettier',
                 'pretty-quick',
@@ -105,7 +116,7 @@ module.exports.Generator = class Generator {
     async makeScriptsExecutable() {
         const { execa, pathExists } = this.util;
 
-        const scriptsPath = path.join(this.context.destinationPath, this.answers.project_code, 'script');
+        const scriptsPath = path.join(this.context.destinationPath, this.answers.composition_code, 'script');
         if (await pathExists(scriptsPath)) {
             await execa('chmod', ['-R', '+x', scriptsPath], {
                 stdio: ['inherit', 'inherit', 'inherit'],
