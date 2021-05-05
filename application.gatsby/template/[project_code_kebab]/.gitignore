@@ -8,3 +8,11 @@ public
 .idea/workspace.xml
 .idea/libraries
 .env
+.env.*
+
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+

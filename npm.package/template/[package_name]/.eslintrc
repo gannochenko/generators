@@ -13,16 +13,12 @@
     "eslint:recommended",
     "airbnb-base",
     "prettier",
-<% if (is_ui) { %>
-    "prettier/react",
-<% } %>
     "plugin:import/errors",
     "plugin:import/warnings",
 <% if (is_ui) { %>
     "plugin:react/recommended",
 <% } %>
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint"
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
     "prettier/prettier": "warn",

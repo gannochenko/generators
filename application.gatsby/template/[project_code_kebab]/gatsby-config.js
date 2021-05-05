@@ -1,5 +1,5 @@
-require("dotenv").config({
-    path: process.env.NODE_ENV === 'development' ? '.env.development' : '.env',
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`,
 });
 
 const { title, description, keywords } = require('./src/siteMeta').siteMeta;
