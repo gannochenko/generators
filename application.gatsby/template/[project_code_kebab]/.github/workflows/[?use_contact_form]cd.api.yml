@@ -1,0 +1,51 @@
+name: CD.API
+
+on:
+    push:
+        branches:
+            - master
+        paths:
+            - 'api/**'
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - uses: hashicorp/setup-terraform@v1
+            - name: Install contactFormSubmit
+              working-directory: ./api/contactFormSubmit
+              run: yarn
+
+            - name: Build contactFormSubmit
+              working-directory: ./api/contactFormSubmit
+              run: yarn build
+              env:
+                  SENDIN_BLUE_API: ${{ secrets.SENDIN_BLUE_API }}
+                  CORS: https://<%- project_domain %>
+            - name: Zip contactFormSubmit
+              working-directory: ./api/contactFormSubmit/build
+              run: zip ../lambda.zip main.js
+
+            - name: Terraform Init
+              working-directory: ./api/infra
+              run: terraform init
+              env:
+                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            - name: Terraform Validate
+              working-directory: ./api/infra
+              run: terraform validate -no-color
+            - name: Terraform Plan
+              working-directory: ./api/infra
+              run: terraform plan -no-color
+              env:
+                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            - name: Terraform Apply
+              working-directory: ./api/infra
+              run: terraform apply -auto-approve
+              env:
+                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

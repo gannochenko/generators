@@ -65,6 +65,17 @@ module.exports.Generator = class Generator {
                 },
             },
             {
+                type: 'confirm',
+                name: 'use_contact_form',
+                message: 'Add contact form and the infrastructure for it?',
+                default: false,
+            },
+            {
+                name: 'sendinblue_api_key',
+                message: 'Sendinblue API Key:',
+                when: answers => answers.use_contact_form,
+            },
+            {
                 message: 'GitHub account name',
                 name: 'github_account_name',
                 default: 'gannochenko',
@@ -228,6 +239,7 @@ module.exports.Generator = class Generator {
                 'gatsby-plugin-material-ui',
                 'flat',
                 'react-query',
+                'unstated-next',
                 'simple-react-lightbox',
                 !!auth0_id && '@auth0/auth0-react',
             ],

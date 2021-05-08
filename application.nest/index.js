@@ -115,6 +115,7 @@ module.exports.Generator = class Generator {
                 '@types/jest',
                 '@types/node',
                 '@types/supertest',
+                '@types/flat',
                 '@typescript-eslint/eslint-plugin',
                 '@typescript-eslint/parser',
                 'dotenv-cli',

@@ -11,6 +11,7 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { theme, GlobalStyle } from '../../style';
 import { markdownComponents } from './markdown-components';
 import { isDev } from '../../util/isDev';
+import { StateProviders } from '../../states/providers';
 
 const queryClient = new QueryClient();
 
@@ -39,7 +40,7 @@ export const Providers: FC = ({ children }) => {
 <% } %>
                             <QueryClientProvider client={queryClient}>
                                 <MDXProvider components={markdownComponents}>
-                                    {children}
+                                    <StateProviders>{children}</StateProviders>
                                 </MDXProvider>
                             </QueryClientProvider>
 <% if (enable_auth) { %>
