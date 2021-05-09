@@ -10,7 +10,7 @@ import { Auth0Provider } from '@auth0/auth0-react';
 
 import { theme, GlobalStyle } from '../../style';
 import { markdownComponents } from './markdown-components';
-import { isDev } from '../../util/isDev';
+import { isDev } from '../../util';
 import { StateProviders } from '../../states/providers';
 
 const queryClient = new QueryClient();
