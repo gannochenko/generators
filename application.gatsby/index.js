@@ -74,6 +74,7 @@ module.exports.Generator = class Generator {
                 name: 'sendinblue_api_key',
                 message: 'Sendinblue API Key:',
                 when: answers => answers.use_contact_form,
+                default: 'SENDINBLUE-KEY',
             },
             {
                 message: 'GitHub account name',
@@ -100,11 +101,12 @@ module.exports.Generator = class Generator {
             {
                 message: 'Google Analytics ID',
                 name: 'ga_id',
-                default: 'G-XXX',
+                default: 'GA-KEY',
             },
             {
                 message: 'Auth0 ID',
                 name: 'auth0_id',
+                // default: 'AUTH0-KEY',
             },
             {
                 message: 'Content name',
