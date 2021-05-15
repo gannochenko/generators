@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "gann-tf-states"
+    bucket = "<%- project_code %>-tf-states"
     key    = "<%- project_code %>"
     region = "eu-central-1"
   }

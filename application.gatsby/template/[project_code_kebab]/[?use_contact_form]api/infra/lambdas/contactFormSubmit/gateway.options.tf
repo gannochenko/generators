@@ -1,3 +1,5 @@
+// todo: use this instead: https://registry.terraform.io/modules/squidfunk/api-gateway-enable-cors/aws/latest
+
 resource "aws_api_gateway_method" "contact_form_submit_options" {
   rest_api_id   = var.api_gateway_id
   resource_id   = aws_api_gateway_resource.contact_form_submit.id
