@@ -18,3 +18,6 @@ export * from './<%- content_name_pascal %>List';
 <% if (enable_auth) { %>
 export * from './AuthWidget';
 <% } %>
+<% if (use_contact_form) { %>
+export * from './Contacts';
+<% } %>

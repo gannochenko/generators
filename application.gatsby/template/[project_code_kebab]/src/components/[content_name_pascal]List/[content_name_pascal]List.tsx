@@ -1,7 +1,7 @@
 import React, { forwardRef, FC } from 'react';
 import { Grid } from '@material-ui/core';
 
-import { BuildingListPropsType } from './type';
+import { <%- content_name_pascal %>ListPropsType } from './type';
 import {
     <%- content_name_pascal %>ListRoot,
     <%- content_name_pascal %>CardImage,
@@ -11,8 +11,8 @@ import {
 import { use<%- content_name_pascal %>List } from './hooks/use<%- content_name_pascal %>List';
 import { fillTemplate, <%- content_name_snake_uc %>_DETAIL } from '../../pathTemplates';
 
-export const Content_name_pascalList: FC<BuildingListPropsType> = forwardRef(
-    function BuildingList(props, ref) {
+export const <%- content_name_pascal %>List: FC<<%- content_name_pascal %>ListPropsType> = forwardRef(
+    function <%- content_name_pascal %>List(props, ref) {
         const { rootProps, data } = use<%- content_name_pascal %>List(ref, props);
 
         return (

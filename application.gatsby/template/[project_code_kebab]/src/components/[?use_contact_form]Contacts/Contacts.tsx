@@ -41,17 +41,16 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                 <Grid container spacing={6}>
                     <Grid item md={6} sm={12}>
                         <ContactFormTitle>
-                            Напишите нам через форму обратной связи
+                            Please contact us by using this form
                         </ContactFormTitle>
                         {success && (
                             <Alert severity="success">
-                                Спасибо, ваше сообщение отправлено!
+                                Thank you, your message has been sent!
                             </Alert>
                         )}
                         {failure && (
                             <ContactFormFailureMessage severity="error">
-                                К сожалению, произошла ошибка. Попробуйте
-                                отправить сообщение еще раз.
+                                Sorry, an error occurred. Please try again later!
                             </ContactFormFailureMessage>
                         )}
                         {showForm && (
@@ -61,7 +60,7 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                                         multiline
                                         rows={5}
                                         id="outlined-basic"
-                                        label="Ваше сообщение *"
+                                        label="Message *"
                                         variant="outlined"
                                         {...messageFieldProps}
                                     />
@@ -69,7 +68,7 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                                 <ContactFormFieldWrapper fullWidth>
                                     <TextField
                                         multiline
-                                        label="Как с вами связаться"
+                                        label="How to contact you"
                                         variant="outlined"
                                         {...contactFieldProps}
                                     />
@@ -86,7 +85,7 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                                                 size="1.5rem"
                                             />
                                         )}
-                                        Отправить
+                                        Send
                                     </ContactFormSubmitButton>
                                     <ContactFormAgree
                                         control={
@@ -98,10 +97,9 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                                         }
                                         label={
                                             <ContactFormConsent>
-                                                Я даю согласие на{' '}
+                                                I agree with{' '}
                                                 <Link to="/personal-data">
-                                                    обработку персональных
-                                                    данных
+                                                    personal data processing
                                                 </Link>{' '}
                                                 *
                                             </ContactFormConsent>
@@ -109,7 +107,7 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                                     />
                                 </ContactFormActions>
                                 <ContactFormSmallNote>
-                                    * &mdash; поля, обязательные для заполнения
+                                    * &mdash; required fields
                                 </ContactFormSmallNote>
                             </form>
                         )}
@@ -117,7 +115,7 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                     {hasPersonalContacts && (
                         <Grid item md={6} sm={12}>
                             <ContactFormTitle>
-                                Или свяжитесь с нами в соцсетях
+                                Find us in social networks
                             </ContactFormTitle>
                             {children}
                         </Grid>

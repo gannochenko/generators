@@ -96,7 +96,7 @@ exports.createPages = ({ graphql, actions }) => {
                         return;
                     }
 
-                    const component = contentTypeToPageLayouts[contentType];
+                    const component = contentPageLayouts[contentType];
                     let realPath = contentTypeToPath[contentType].replace(
                         '#SLUG#',
                         realSlug,

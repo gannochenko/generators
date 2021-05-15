@@ -44,7 +44,7 @@ module.exports.Generator = class Generator {
             {
                 message: 'Website domain',
                 name: 'project_domain',
-                default: (answers) => `${answers.project_code}.app`,
+                default: (answers) => `${answers.project_code}.gannochenko.dev`,
             },
             {
                 message: 'Path prefix (like for GitHub pages)',
@@ -198,7 +198,7 @@ module.exports.Generator = class Generator {
 
     async getDependencies(answers) {
         // list your dependencies here
-        const { ga_id, auth0_id } = answers;
+        const { ga_id, auth0_id, use_contact_form } = answers;
 
         return {
             destination: '[project_code_kebab]/',
@@ -244,6 +244,8 @@ module.exports.Generator = class Generator {
                 'unstated-next',
                 'simple-react-lightbox',
                 !!auth0_id && '@auth0/auth0-react',
+                'material-ui-popup-state',
+                !!use_contact_form && '@material-ui/lab',
             ],
         };
     }

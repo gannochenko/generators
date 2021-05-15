@@ -28,7 +28,6 @@ export const <%- content_name_pascal %>DetailQuery = graphql`
             id
             body
             frontmatter {
-                path
                 title
                 keywords
                 description
@@ -37,8 +36,7 @@ export const <%- content_name_pascal %>DetailQuery = graphql`
                     image {
                         childImageSharp {
                             fluid(maxWidth: 1240, quality: 80) {
-                                    ...GatsbyImageSharpFluid_tracedSVG
-                                }
+                                ...GatsbyImageSharpFluid_tracedSVG
                             }
                         }
                     }
