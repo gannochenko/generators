@@ -12,6 +12,7 @@ import { theme, GlobalStyle } from '../../style';
 import { markdownComponents } from './markdown-components';
 import { isDev } from '../../util';
 import { StateProviders } from '../../states/providers';
+import { NetworkStatusProvider } from '../NetworkStatusProvider';
 
 const queryClient = new QueryClient();
 
@@ -24,14 +25,14 @@ export const Providers: FC = ({ children }) => {
                         <GlobalStyle />
 <% if (enable_auth) { %>
                         <Auth0Provider
-                            domain={`${process.env.AUTH0_DOMAIN}.auth0.com`}
+                            domain={process.env.AUTH0_DOMAIN}
                             clientId={process.env.AUTH0_CLIENT_ID!}
                             redirectUri={
                                 typeof window !== 'undefined'
                                     ? window.location.origin
                                     : ''
                             }
-                            // audience={`https://${process.env.AUTH0_DOMAIN}.auth0.com/api/v2/`}
+                            // audience={`https://${process.env.AUTH0_DOMAIN}/api/v2/`}
                             audience={`http://localhost:3000`}
                             scope="read:current_user update:current_user_metadata"
                             cacheLocation={isDev() ? 'localstorage' : undefined}
@@ -40,7 +41,9 @@ export const Providers: FC = ({ children }) => {
 <% } %>
                             <QueryClientProvider client={queryClient}>
                                 <MDXProvider components={markdownComponents}>
-                                    <StateProviders>{children}</StateProviders>
+                                    <NetworkStatusProvider>
+                                        <StateProviders>{children}</StateProviders>
+                                    </NetworkStatusProvider>
                                 </MDXProvider>
                             </QueryClientProvider>
 <% if (enable_auth) { %>

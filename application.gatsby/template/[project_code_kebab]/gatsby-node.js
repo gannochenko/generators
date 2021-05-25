@@ -67,6 +67,10 @@ exports.createPages = ({ graphql, actions }) => {
                     reject(result.errors);
                 }
 
+                if (!result.data || !result.data.allMdx) {
+                    return;
+                }
+
                 const edges = result.data.allMdx.edges;
                 if (!edges) {
                     return;
@@ -124,6 +128,9 @@ exports.createPages = ({ graphql, actions }) => {
                         },
                     });
                 });
+            }).catch((error) => {
+                console.error('Was not able to produce content');
+                console.error(error);
             }),
         );
     });

@@ -1,17 +1,13 @@
 import axios from 'axios';
-import { escape } from 'html-escaper';
 import { compile } from 'pug';
 import { template } from './template';
 
+const compiledFunction = compile(template);
+
 export const fn = async (message: string, contact: string) => {
-    const escapedMessage = escape(message);
-    const escapedContact = escape(contact);
-
-    const compiledFunction = compile(template);
-
     const htmlContent = compiledFunction({
-        escapedMessage,
-        escapedContact,
+        message,
+        contact,
     });
 
     return axios.post(

@@ -12,7 +12,6 @@
         "@types/cors": "^2.8.10",
         "@types/ejs": "^3.0.6",
         "@types/express": "^4.17.11",
-        "@types/html-escaper": "^3.0.0",
         "@types/pug": "^2.0.4",
         "dotenv-cli": "^4.0.0",
         "dotenv-webpack": "^7.0.2",
@@ -27,7 +26,6 @@
     "dependencies": {
         "axios": "^0.21.1",
         "cors": "^2.8.5",
-        "html-escaper": "^3.0.3",
         "pug": "^3.0.2"
     }
 }

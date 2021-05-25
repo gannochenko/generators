@@ -3,8 +3,8 @@ html
     body
         h1 New message from "<%- project_name %>"!
         h2 Message:
-        p #{escapedMessage}
-        if escapedContact
+        p #{message}
+        if contact
             h3 Contact the author:
-            p #{escapedContact}
+            p #{contact}
 `;

@@ -3,7 +3,7 @@ import { ThemeContext } from 'styled-components';
 import { createMuiTheme } from '@material-ui/core';
 
 import { ThemeType } from './type';
-import { makeTokenIndex } from '../util/makeTokenIndex';
+import { makeTokenIndex } from '../util';
 
 // https://material-ui.com/customization/default-theme/
 // https://material.io/resources/color/#!/?view.left=0&view.right=0
@@ -16,13 +16,13 @@ export const themeDeclaration = {
             main: '#ef9a9a',
             light: '#ffcccb',
             dark: '#ba6b6c',
-            contrastText: '#333',
+            contrastText: '#fff',
         },
         secondary: {
             main: '#9c27b0',
             light: '#d05ce3',
             dark: '#6a0080',
-            contrastText: '#333',
+            contrastText: '#fff',
         },
         text: {
             primary: '#333',

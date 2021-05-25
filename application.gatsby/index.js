@@ -1,5 +1,6 @@
 const path = require('path');
 
+const DEPLOYMENT_NONE = 'none';
 const DEPLOYMENT_K8S = 'k8s';
 const DEPLOYMENT_GITHUB = 'gh';
 const DEPLOYMENT_VERCEL = 'vercel';
@@ -141,8 +142,9 @@ module.exports.Generator = class Generator {
                 type: 'list',
                 message: 'Will be deployed to',
                 name: 'deployment',
-                default: DEPLOYMENT_VERCEL,
+                default: DEPLOYMENT_NONE,
                 choices: [
+                    { name: 'None', value: DEPLOYMENT_NONE },
                     { name: 'Vercel', value: DEPLOYMENT_VERCEL },
                     { name: 'GitHUB Pages', value: DEPLOYMENT_GITHUB },
                     { name: 'Kubernetes', value: DEPLOYMENT_K8S },
