@@ -16,6 +16,9 @@ import { NetworkStatusProvider } from '../NetworkStatusProvider';
 
 const queryClient = new QueryClient();
 
+/**
+ * This is a top-level wrapper, it wraps everything else, including the ApplicationLayout.
+ */
 export const Providers: FC = ({ children }) => {
     return (
         <SimpleReactLightbox>

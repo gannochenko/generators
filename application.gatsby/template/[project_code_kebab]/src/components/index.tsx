@@ -1,4 +1,4 @@
-export * from './PageContentLayout';
+export * from './PageLayout';
 export * from './Container';
 export * from './CookiePopup';
 export * from './Copyright';
@@ -6,7 +6,7 @@ export * from './Email';
 export * from './Footer';
 export * from './Header';
 export * from './HR';
-export * from './Layout';
+export * from './ApplicationLayout';
 export * from './Link';
 export * from './Menu';
 export * from './NotFound';

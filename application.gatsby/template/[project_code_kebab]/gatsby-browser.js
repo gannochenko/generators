@@ -6,12 +6,12 @@
 
 import React from 'react';
 import { Providers } from './src/components/Providers/Providers';
-import { Layout } from './src/components/Layout';
+import { ApplicationLayout } from './src/components/ApplicationLayout';
 
 export const wrapPageElement = ({ element, props }) => {
     return (
         <Providers>
-            <Layout props={props}>{element}</Layout>
+            <ApplicationLayout props={props}>{element}</ApplicationLayout>
         </Providers>
     );
 };

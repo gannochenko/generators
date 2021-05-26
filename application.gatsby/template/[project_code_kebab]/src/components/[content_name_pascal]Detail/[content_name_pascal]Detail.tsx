@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { <%- content_name_pascal %>DetailPropsType } from './type';
-import { PageContentLayout } from '../PageContentLayout';
+import { PageLayout } from '../PageLayout';
 
 /**
  * This component is for wrapping up pages that lay in the content/ folder.
@@ -16,9 +16,9 @@ export const <%- content_name_pascal %>Detail: FC<<%- content_name_pascal %>Deta
     const location = useMemo(() => ({ pathname: path }), [path]);
 
     return (
-        <PageContentLayout pageContext={mdx} location={location}>
+        <PageLayout pageContext={mdx} location={location}>
             <MDXRenderer pageContext={mdx}>{mdx.body}</MDXRenderer>
-        </PageContentLayout>
+        </PageLayout>
     );
 };
 

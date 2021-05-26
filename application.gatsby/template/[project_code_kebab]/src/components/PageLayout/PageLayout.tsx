@@ -1,10 +1,14 @@
 import React, { FC } from 'react';
-import { BodyLayoutContent } from './style';
+import { PageLayoutContent } from './style';
 import { BodyLayoutPropsType } from './type';
 import { Container, SEO } from '../';
 import { Typography } from '../Typography';
 
-export const PageContentLayout: FC<BodyLayoutPropsType> = (props) => {
+/**
+ * This is a page-level layout. It goes inside of the ApplicationLayout and
+ * defines a common structure of each page of the project.
+ */
+export const PageLayout: FC<BodyLayoutPropsType> = (props) => {
     const {
         children,
         // location: { pathname = '' } = {},
@@ -60,9 +64,9 @@ export const PageContentLayout: FC<BodyLayoutPropsType> = (props) => {
                     </Typography>
                 </Container>
             )}
-            <BodyLayoutContent>{children}</BodyLayoutContent>
+            <PageLayoutContent>{children}</PageLayoutContent>
         </>
     );
 };
 
-export default PageContentLayout;
+export default PageLayout;

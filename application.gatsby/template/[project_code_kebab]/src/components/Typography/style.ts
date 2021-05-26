@@ -20,6 +20,8 @@ const getRootDynamicStyle = ({
     if (enableVerticalGutter && variant && variant in typographyGutter) {
         return typographyGutter[variant];
     }
+
+    return '';
 };
 
 export const TypographyRoot = styled(Typography).withConfig(

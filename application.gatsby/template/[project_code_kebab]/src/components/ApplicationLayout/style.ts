@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const LayoutRoot = styled.div`
+export const ApplicationLayoutRoot = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
 `;
 
-export const LayoutBody = styled.main`
+export const ApplicationLayoutBody = styled.main`
     flex-grow: 1;
 `;
