@@ -10,12 +10,13 @@ import {
 } from './style';
 import { CookiePopupPropsType } from './type';
 import { Link } from '../Link';
+import { getWindow } from '../../util/getWindow';
+
+const win = getWindow();
 
 export const CookiePopup: FC<CookiePopupPropsType> = () => {
     const [displayed, setDisplayed] = useState(
-        typeof window === 'undefined'
-            ? false
-            : !window.localStorage.getItem('cookie-accept'),
+        win ? !win.localStorage.getItem('cookie-accept') : false,
     );
 
     const [fadingAway, setFadingAway] = useState(false);

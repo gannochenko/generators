@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { NetworkStatusContextValueType } from '../type';
+import { getWindow } from '../../../util/getWindow';
+
+const win = getWindow();
 
 export const useNetworkStatusProvider = () => {
     // @ts-ignore
@@ -13,6 +16,10 @@ export const useNetworkStatusProvider = () => {
     });
 
     useEffect(() => {
+        if (!win) {
+            return;
+        }
+
         const onOnline = () => {
             status.setOnline(true);
         };
@@ -20,12 +27,12 @@ export const useNetworkStatusProvider = () => {
             status.setOnline(false);
         };
 
-        window.addEventListener('online', onOnline);
-        window.addEventListener('offline', onOffline);
+        win.addEventListener('online', onOnline);
+        win.addEventListener('offline', onOffline);
 
         return () => {
-            window.removeEventListener('online', onOnline);
-            window.removeEventListener('offline', onOffline);
+            win.removeEventListener('online', onOnline);
+            win.removeEventListener('offline', onOffline);
         };
     }, [status]);
 

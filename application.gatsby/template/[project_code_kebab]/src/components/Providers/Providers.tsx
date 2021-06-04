@@ -9,12 +9,14 @@ import { Auth0Provider } from '@auth0/auth0-react';
 <% } %>
 
 import { theme, GlobalStyle } from '../../style';
-import { markdownComponents } from './markdown-components';
+import { MDXComponents } from './MDXComponents';
 import { isDev } from '../../util';
 import { StateProviders } from '../../states/providers';
 import { NetworkStatusProvider } from '../NetworkStatusProvider';
+import { getWindow } from '../../util/getWindow';
 
 const queryClient = new QueryClient();
+const win = getWindow();
 
 /**
  * This is a top-level wrapper, it wraps everything else, including the ApplicationLayout.
@@ -30,20 +32,15 @@ export const Providers: FC = ({ children }) => {
                         <Auth0Provider
                             domain={process.env.AUTH0_DOMAIN}
                             clientId={process.env.AUTH0_CLIENT_ID!}
-                            redirectUri={
-                                typeof window !== 'undefined'
-                                    ? window.location.origin
-                                    : ''
-                            }
-                            // audience={`https://${process.env.AUTH0_DOMAIN}/api/v2/`}
-                            audience={`http://localhost:3000`}
+                            redirectUri={win ? win.location.origin : ''}
+                            audience={isDev() ? `http://localhost:3000` : `https://${process.env.AUTH0_DOMAIN}/api/v2/`}
                             scope="read:current_user update:current_user_metadata"
                             cacheLocation={isDev() ? 'localstorage' : undefined}
                             useRefreshTokens={false}
                         >
 <% } %>
                             <QueryClientProvider client={queryClient}>
-                                <MDXProvider components={markdownComponents}>
+                                <MDXProvider components={MDXComponents}>
                                     <NetworkStatusProvider>
                                         <StateProviders>{children}</StateProviders>
                                     </NetworkStatusProvider>

@@ -1,0 +1,14 @@
+public
+.idea/workspace.xml
+.idea/libraries
+.env
+
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# other
+*.zip
+.DS_Store

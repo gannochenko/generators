@@ -1,7 +1,7 @@
 import { Ref, useCallback } from 'react';
 import { AuthWidgetPropsType } from '../type';
 import { PropTypes } from '@material-ui/core';
-import { useAuth } from '../../../hooks/useAuth';
+import { useAuth } from '../../../hooks';
 
 export const useAuthWidget = (
     ref: Ref<unknown>,
@@ -13,9 +13,8 @@ export const useAuthWidget = (
         userName,
         signOut,
         avatar,
-        getToken,
+        // getToken,
     } = useAuth();
-    console.log(getToken().then((res) => console.log(res)));
 
     const color: PropTypes.Color = 'primary';
     const variant: 'text' | 'outlined' | 'contained' = 'contained';

@@ -91,7 +91,7 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-sitemap',
             options: {
-                exclude: ['/blog-drafts/', '/blog-drafts/*'],
+                excludes: ['/blog-drafts/', '/blog-drafts/*'],
             },
         },
         {

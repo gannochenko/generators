@@ -10,8 +10,8 @@ import {
     muiBreakpointDown,
 } from '@gannochenko/ui.styled-components';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const cookies = require('../../../static/assets/aux/cookies.jpg') as string;
+// @ts-ignore
+import cookies from '../../../static/assets/aux/cookies.jpg';
 
 export const CookiePopupRoot = styled.div<{ fadingAway: boolean }>`
     display: flex;

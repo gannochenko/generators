@@ -1,0 +1,6 @@
+.idea/workspace.xml
+.idea/libraries
+
+# other
+*.zip
+.DS_Store
