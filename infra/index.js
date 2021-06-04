@@ -27,14 +27,14 @@ module.exports.Generator = class Generator {
         ];
     }
 
-    async refineAnswers(answers) {
-        // here it is possible to alter some answers before the generation starts
-        answers.package_name_kebab = this.util.textConverter.toKebab(
-            answers.package_name,
-        );
-
-        return answers;
-    }
+    // async refineAnswers(answers) {
+    //     // here it is possible to alter some answers before the generation starts
+    //     answers.package_name_kebab = this.util.textConverter.toKebab(
+    //         answers.package_name,
+    //     );
+    //
+    //     return answers;
+    // }
 
     async onAfterExecution() {
         await this.util.execa('chmod', ['-R', '+x', './script/*'], {
