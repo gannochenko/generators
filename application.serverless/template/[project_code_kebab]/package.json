@@ -1,0 +1,13 @@
+{
+    "name": "routine-api",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "dev": "nodemon",
+        "deploy": "./script/deploy.sh"
+    },
+    "devDependencies": {
+    },
+    "dependencies": {}
+}
