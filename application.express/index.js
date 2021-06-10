@@ -14,6 +14,24 @@ module.exports.Generator = class Generator {
                 message: 'Project code',
                 name: 'project_code',
             },
+            {
+                type: 'input',
+                name: 'port',
+                message: 'Port number',
+                default: 3000,
+                validate: async (value) => {
+                    if (typeof value !== 'string') {
+                        return true; // the default value will be used
+                    }
+
+                    value = parseInt(value, 10);
+                    if (isNaN(value) || value < 0 || value > 65535) {
+                        return `Must be a number between 0 and 65535`;
+                    }
+
+                    return true;
+                },
+            },
         ];
     }
 
