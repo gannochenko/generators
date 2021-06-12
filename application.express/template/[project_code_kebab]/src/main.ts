@@ -4,9 +4,6 @@ import { readdir, stat } from 'fs';
 import { promisify } from 'util';
 import { join } from 'path';
 
-const readdirAsync = promisify(readdir);
-const statAsync = promisify(stat);
-
 const app = express();
 
 app.use(cors({ origin: '*' }));
@@ -32,3 +29,5 @@ app.use(
         console.log(`Listening on ${port}`);
     });
 })();
+
+// ш 1200 г 550 в тумбы 500 в 1160

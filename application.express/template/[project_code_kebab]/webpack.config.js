@@ -24,9 +24,9 @@ module.exports = (env, argv) => {
     return {
         mode: 'production',
         // devtool: 'inline-source-map',
-        entry: './src/main.js',
+        entry: './src/main.ts',
         output: {
-            filename: './main.js',
+            filename: './index.js',
             path: path.resolve(__dirname, 'build'),
             libraryTarget: 'commonjs',
         },

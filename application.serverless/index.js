@@ -14,6 +14,10 @@ module.exports.Generator = class Generator {
                 message: 'Project code',
                 name: 'project_code',
             },
+            {
+                message: 'Function name',
+                name: 'function_name',
+            },
         ];
     }
 

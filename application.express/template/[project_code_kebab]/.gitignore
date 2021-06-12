@@ -1,0 +1,14 @@
+.yarn-integrity
+yarn-debug.log
+yarn-error.log
+node_modules/
+.cache/
+.idea/workspace.xml
+.idea/libraries
+.env
+.env.*
+!.env.js
+
+# other
+*.zip
+.DS_Store

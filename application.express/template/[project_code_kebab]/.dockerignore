@@ -10,6 +10,6 @@ script
 .gitignore
 .prettierignore
 .prettierrc
-tsconfig.json
-webpack.js
 yarn-error.log
+.env
+nodemon.json

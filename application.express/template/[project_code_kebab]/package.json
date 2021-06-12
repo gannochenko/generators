@@ -4,7 +4,7 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start": "node ./build/main.js",
+        "start": "node ./build/index.js",
         "dev": "nodemon",
         "build": "webpack --config webpack.config.js --mode production"
     },
