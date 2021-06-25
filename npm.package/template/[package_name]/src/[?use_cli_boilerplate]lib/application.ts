@@ -1,6 +1,4 @@
-import chalk from 'chalk';
-import clear from 'clear';
-import figlet from 'figlet';
+// import clear from 'clear';
 import commander from 'commander';
 import process from 'process';
 import path from 'path';
@@ -34,13 +32,7 @@ export class Application {
             return;
         }
 
-        clear();
-        // eslint-disable-next-line no-console
-        console.log(
-            chalk.red(
-                figlet.textSync('<%- application_name %>', { horizontalLayout: 'full' }),
-            ),
-        );
+        // clear();
 
         this.introShown = true;
     }

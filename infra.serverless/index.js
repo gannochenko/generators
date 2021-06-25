@@ -3,7 +3,7 @@ const path = require('path');
 module.exports.Generator = class Generator {
     getName() {
         // this is the name your generator will appear in the list under
-        return 'Serverless application';
+        return 'Infra for the serverless application';
     }
 
     async getQuestions() {
@@ -30,33 +30,20 @@ module.exports.Generator = class Generator {
         return answers;
     }
 
-    async getDependencies(answers) {
-        return {
-            destination: '[project_code_kebab]/',
-            packages: ['cors'],
-        };
-    }
-
-    async getDevDependencies(answers) {
-        return {
-            destination: '[project_code_kebab]/',
-            packages: [
-                '@types/cors',
-                '@types/ejs',
-                '@types/express',
-                'dotenv-cli',
-                'dotenv-webpack',
-                'express',
-                'nodemon',
-                'ts-loader',
-                'ts-node',
-                'typescript',
-                'webpack',
-                'webpack-cli',
-                'webpack-node-externals',
-            ],
-        };
-    }
+    // async getDependencies(answers) {
+    //     return {
+    //         destination: '[project_code_kebab]/',
+    //         packages: ['cors'],
+    //     };
+    // }
+    //
+    // async getDevDependencies(answers) {
+    //     return {
+    //         destination: '[project_code_kebab]/',
+    //         packages: [
+    //         ],
+    //     };
+    // }
 
     async onAfterExecution() {
         await this.util.execa('chmod', ['-R', '+x', './script'], {

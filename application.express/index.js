@@ -11,7 +11,7 @@ module.exports.Generator = class Generator {
         // https://www.npmjs.com/package/inquirer#questions
         return [
             {
-                message: 'Project code',
+                message: 'Application code',
                 name: 'project_code',
             },
             {

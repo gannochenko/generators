@@ -2,6 +2,14 @@
     "name": "<%- package_name_full %>",
     "version": "0.0.0",
     "license": "MIT",
+<% if (is_cli) { %>
+    "files": [
+        "build.cjs/"
+    ],
+    "bin": {
+        "<%- command_name %>": "./build.cjs/index.js"
+    },
+<% } else { %>
     "main": "build.cjs/index.js",
     "module": "build.esm/index.js",
     "typings": "build.cjs/index.d.ts",
@@ -9,10 +17,6 @@
         "build.esm/",
         "build.cjs/"
     ],
-<% if (is_cli) { %>
-    "bin": {
-        "<%- command_name %>": "./build.cjs/index.js"
-    },
 <% } %>
     "scripts": {
 <% if (is_ui) { %>
@@ -24,16 +28,20 @@
         "test:visual:approve": "cd ./visual && yarn loki approve",
         "test:visual:cicd": "cd ./visual && yarn build-storybook && yarn loki --requireReference --reactUri file:./storybook-static",
 <% } %>
-        "install-peers": "install-self-peers -- --ignore-scripts",
 <% if (is_cli) { %>
         "dev": "DEBUG=* ts-node src/index.ts",
         "link-global": "./script/link.sh",
-<% } %>
+        "build": "rm -rf ./build/* && yarn run build:cjs",
+        "build:cjs": "del ./build.cjs/* && tsc -p ./tsconfig.build.cjs.json && chmod +x ./build.cjs/index.js",
+        "build:bin": "yarn build; yarn pkg ./package.json --out-path ./build.bin",
+<% } else { %>
         "build": "rm -rf ./build/* && yarn run build:esm && yarn run build:cjs",
-        "build:cjs": "del ./build.cjs/* && tsc -p ./tsconfig.build.cjs.json<% if (is_cli) { %> && chmod +x ./build.cjs/index.js<% } %>",
         "build:esm": "del ./build.esm/* && tsc -p ./tsconfig.build.esm.json",
+        "build:cjs": "del ./build.cjs/* && tsc -p ./tsconfig.build.cjs.json",
+<% } %>
         "build:watch": "tsc -w -p ./tsconfig.build.cjs.json",
         "build:dev": "yarn build:watch",
+        "install-peers": "install-self-peers -- --ignore-scripts",
         "test": "jest -c ./jest/config.js --passWithNoTests",
         "test:watch": "jest -c ./jest/config.js --watch",
         "lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",

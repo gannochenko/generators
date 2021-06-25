@@ -3,4 +3,5 @@
 build/*
 build.esm/*
 build.cjs/*
+build.bin/*
 node_modules

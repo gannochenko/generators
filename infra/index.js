@@ -11,16 +11,16 @@ module.exports.Generator = class Generator {
         // https://www.npmjs.com/package/inquirer#questions
         return [
             {
-                message: 'Project code:',
+                message: 'Project code',
                 name: 'project_code',
             },
             {
-                message: 'Repository name:',
+                message: 'Repository name',
                 name: 'repo_name',
                 default: ({project_code}) => `${project_code}_infra`,
             },
             {
-                message: 'Project apex domain:',
+                message: 'Project apex domain',
                 name: 'apex_domain',
                 default: ({project_code}) => `${project_code}.app`,
             },

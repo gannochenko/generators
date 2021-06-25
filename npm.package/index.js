@@ -157,6 +157,7 @@ module.exports.Generator = class Generator {
                 !!is_not_monorepo && 'pretty-quick',
 
                 !!is_cli && 'ts-node',
+                !!is_cli && 'pkg',
 
                 !!use_cli_boilerplate && '@types/fs-extra',
                 !!use_cli_boilerplate && '@types/figlet',
