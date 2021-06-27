@@ -29,18 +29,9 @@ module.exports.Generator = class Generator {
                 },
             },
             {
-                type: 'confirm',
-                name: 'is_microservice',
-                message: 'Is this a microservice?',
-                default: false,
-            },
-            {
                 name: 'parent_project_code',
                 message: 'Parent project code',
                 default: path.basename(process.cwd()),
-                when: answers => {
-                    return answers.is_microservice;
-                },
             },
             {
                 message: 'Website domain',
@@ -109,24 +100,6 @@ module.exports.Generator = class Generator {
                 default: false,
             },
             {
-                name: 'port',
-                message: 'TCP port',
-                default: 9000,
-                when: answers => {
-                    return answers.is_microservice;
-                },
-            },
-            {
-                message: 'DockerHub account name',
-                name: 'dockerhub_account_name',
-                default: (answers) => {
-                    return answers.github_account_name;
-                },
-                when: answers => {
-                    return answers.is_microservice;
-                },
-            },
-            {
                 type: 'list',
                 message: 'Will be deployed to',
                 name: 'deployment',
@@ -137,8 +110,23 @@ module.exports.Generator = class Generator {
                     { name: 'GitHUB Pages', value: DEPLOYMENT_GITHUB },
                     { name: 'Kubernetes', value: DEPLOYMENT_K8S },
                 ],
+            },
+            {
+                name: 'port',
+                message: 'TCP port',
+                default: 9000,
                 when: answers => {
-                    return !answers.is_microservice;
+                    return answers.deployment === DEPLOYMENT_K8S;
+                },
+            },
+            {
+                message: 'DockerHub account name',
+                name: 'dockerhub_account_name',
+                default: (answers) => {
+                    return answers.github_account_name;
+                },
+                when: answers => {
+                    return answers.deployment === DEPLOYMENT_K8S;
                 },
             },
         ];
@@ -168,7 +156,7 @@ module.exports.Generator = class Generator {
         answers.path_prefix = answers.path_prefix ? answers.path_prefix.replace(/^\//, '') : '';
 
         answers.project_code_global = answers.project_code;
-        if (answers.is_microservice && answers.parent_project_code) {
+        if (answers.parent_project_code) {
             answers.project_code_global = `${answers.parent_project_code}_${answers.project_code}`;
         }
 
