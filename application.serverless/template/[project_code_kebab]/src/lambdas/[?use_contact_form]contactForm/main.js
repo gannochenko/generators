@@ -40,9 +40,7 @@ export const handler = (event, context, callback) => {
         return callback(null, makeResponse(400));
     }
 
-    const { contact, message } = body;
-
-    fn(message, contact)
+    fn(body)
         .then(() => {
             callback(null, makeResponse(200));
         })

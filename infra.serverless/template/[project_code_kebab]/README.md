@@ -1,4 +1,4 @@
-How to use in terraform:
+How to add to the main infrastructure:
 
 ~~~
 module "serverless.application" {

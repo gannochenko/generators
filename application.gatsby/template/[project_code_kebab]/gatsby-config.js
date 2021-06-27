@@ -125,10 +125,11 @@ module.exports = {
 <% if (use_offline) { %>
         {
             resolve: 'gatsby-plugin-offline',
-                options: {
+            options: {
                 workboxConfig: {
                     globPatterns: ['**/*'],
                 },
+                // appendScript: require.resolve(`src/custom-sw-code.js`),
             },
         },
 <% } %>

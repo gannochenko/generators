@@ -18,6 +18,12 @@ module.exports.Generator = class Generator {
                 message: 'Function name',
                 name: 'function_name',
             },
+            {
+                message: 'Add contact form lambda?',
+                name: 'use_contact_form',
+                type: 'confirm',
+                default: false,
+            },
         ];
     }
 

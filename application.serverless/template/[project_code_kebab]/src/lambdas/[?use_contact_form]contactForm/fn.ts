@@ -2,13 +2,17 @@ import axios from 'axios';
 import { compile } from 'pug';
 import { template } from './template';
 
+type ContactFormArgsType = {
+    message: string;
+    contact: string;
+};
+
+export const VERB = 'post';
+
 const compiledFunction = compile(template);
 
-export const fn = async (message: string, contact: string) => {
-    const htmlContent = compiledFunction({
-        message,
-        contact,
-    });
+export const fn = async (args: ContactFormArgsType) => {
+    const htmlContent = compiledFunction(args);
 
     return axios.post(
         'https://api.sendinblue.com/v3/smtp/email',

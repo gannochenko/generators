@@ -4,7 +4,7 @@ resource "aws_api_gateway_resource" "<%- project_code_kebab %>_<%- function_name
   path_part = "<%- function_name %>"
 }
 
-resource "aws_api_gateway_method" "<%- project_code_kebab %>_<%- function_name %>_post" {
+resource "aws_api_gateway_method" "<%- project_code_kebab %>_<%- function_name %>" {
   rest_api_id = var.api_gateway_id
   resource_id = aws_api_gateway_resource.<%- project_code_kebab %>.id
   http_method = "GET"
@@ -13,15 +13,15 @@ resource "aws_api_gateway_method" "<%- project_code_kebab %>_<%- function_name %
 
 resource "aws_api_gateway_integration" "<%- project_code_kebab %>_<%- function_name %>" {
   rest_api_id = var.api_gateway_id
-  resource_id = aws_api_gateway_method.<%- project_code_kebab %>_<%- function_name %>_post.resource_id
-  http_method = aws_api_gateway_method.<%- project_code_kebab %>_<%- function_name %>_post.http_method
+  resource_id = aws_api_gateway_method.<%- project_code_kebab %>_<%- function_name %>.resource_id
+  http_method = aws_api_gateway_method.<%- project_code_kebab %>_<%- function_name %>.http_method
 
   integration_http_method = "GET"
   type = "AWS_PROXY"
   uri = aws_lambda_function.<%- function_name %>.invoke_arn
 
   depends_on = [
-    aws_api_gateway_method.<%- project_code_kebab %>_<%- function_name %>_post
+    aws_api_gateway_method.<%- project_code_kebab %>_<%- function_name %>
   ]
 }
 
