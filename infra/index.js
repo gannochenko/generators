@@ -20,7 +20,7 @@ module.exports.Generator = class Generator {
             },
             {
                 message: 'Repository name',
-                name: 'repo_name',
+                name: 'repository_name',
                 default: ({project_code}) => `${project_code}_infra`,
             },
             {

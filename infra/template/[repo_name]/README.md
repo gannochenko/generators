@@ -8,7 +8,7 @@
   <h3 align="center">Infrastructure of the "<%- project_code %>" project</h3>
 
   <p align="center">
-    <a href="https://github.com/gannochenko/<%- repo_name %>">Source</a>
+    <a href="https://github.com/gannochenko/<%- repository_name %>">Source</a>
   </p>
 </p>
 
