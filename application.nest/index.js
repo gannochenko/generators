@@ -19,10 +19,6 @@ module.exports.Generator = class Generator {
                 name: 'project_code',
             },
             {
-                name: 'parent_project_code',
-                message: 'What is the parent project code?',
-            },
-            {
                 message: 'GitHub account name',
                 name: 'github_account_name',
                 default: 'gannochenko',
@@ -62,9 +58,6 @@ module.exports.Generator = class Generator {
         );
 
         answers.project_code_global = answers.project_code;
-        if (answers.parent_project_code) {
-            answers.project_code_global = `${answers.parent_project_code}_${answers.project_code}`;
-        }
 
         answers.use_nats = !!answers.use_nats;
 
