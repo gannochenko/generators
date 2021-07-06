@@ -45,39 +45,39 @@ module.exports.Generator = class Generator {
                 //     return true;
                 // },
             },
-            {
-                type: 'confirm',
-                name: 'use_postgres',
-                message: 'Do we have Postgres?',
-                default: false,
-            },
-            {
-                type: 'input',
-                name: 'postgres_database_name',
-                message: 'Postgres database name',
-                when: answers => {
-                    return answers.use_postgres;
-                },
-                validate: async (value) => {
-                    if (!value.match(/^[a-z0-9_]+$/)) {
-                        return 'Must contain only letters, digits and _ sign';
-                    }
-
-                    return true;
-                },
-            },
+            // {
+            //     type: 'confirm',
+            //     name: 'use_postgres',
+            //     message: 'Do we have Postgres?',
+            //     default: false,
+            // },
+            // {
+            //     type: 'input',
+            //     name: 'postgres_database_name',
+            //     message: 'Postgres database name',
+            //     when: answers => {
+            //         return answers.use_postgres;
+            //     },
+            //     validate: async (value) => {
+            //         if (!value.match(/^[a-z0-9_]+$/)) {
+            //             return 'Must contain only letters, digits and _ sign';
+            //         }
+            //
+            //         return true;
+            //     },
+            // },
             // {
             //     type: 'confirm',
             //     name: 'use_cache',
             //     message: 'Do we have Redis as cache?',
             //     default: false,
             // },
-            {
-                type: 'confirm',
-                name: 'use_nats',
-                message: 'Do we have NATS streaming?',
-                default: false,
-            },
+            // {
+            //     type: 'confirm',
+            //     name: 'use_nats',
+            //     message: 'Do we have NATS streaming?',
+            //     default: false,
+            // },
         ];
     }
 

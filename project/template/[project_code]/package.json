@@ -3,11 +3,6 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "start": "script/start.sh",
-        "dev": "script/start.sh -p",
-        "dev:infra": "script/start.sh -i",
-        "pull-images": "script/pull-images.sh",
-        "k8s:start": "kubectl apply -f infra"
     },
     "keywords": [],
     "author": "",
