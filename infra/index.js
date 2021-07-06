@@ -15,6 +15,10 @@ module.exports.Generator = class Generator {
                 name: 'project_code',
             },
             {
+                name: 'github_account_name',
+                message: 'What is the GitHub account name?',
+            },
+            {
                 message: 'Repository name',
                 name: 'repo_name',
                 default: ({project_code}) => `${project_code}_infra`,
