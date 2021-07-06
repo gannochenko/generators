@@ -31,20 +31,20 @@ module.exports.Generator = class Generator {
         ];
     }
 
-    // async refineAnswers(answers) {
-    //     // here it is possible to alter some answers before the generation starts
-    //     answers.package_name_kebab = this.util.textConverter.toKebab(
-    //         answers.package_name,
-    //     );
-    //
-    //     return answers;
-    // }
+    async refineAnswers(answers) {
+        // here it is possible to alter some answers before the generation starts
+        answers.project_code_kebab = this.util.textConverter.toKebab(
+            answers.project_code,
+        );
+
+        return answers;
+    }
 
     async onAfterExecution() {
         await this.util.execa('chmod', ['-R', '+x', './script/*'], {
             cwd: path.join(
                 this.context.destinationPath,
-                this.answers.package_name_kebab,
+                this.answers.project_code_kebab,
             ),
             stdio: ['inherit', 'inherit', 'inherit'],
         });
