@@ -33,9 +33,9 @@ module.exports.Generator = class Generator {
 
     async refineAnswers(answers) {
         // here it is possible to alter some answers before the generation starts
-        answers.project_code_kebab = this.util.textConverter.toKebab(
+        answers.project_code_infra_kebab = `${this.util.textConverter.toKebab(
             answers.project_code,
-        );
+        )}_infra`;
 
         return answers;
     }
@@ -44,7 +44,7 @@ module.exports.Generator = class Generator {
         await this.util.execa('chmod', ['-R', '+x', './script/*'], {
             cwd: path.join(
                 this.context.destinationPath,
-                this.answers.project_code_kebab,
+                this.answers.project_code_infra_kebab,
             ),
             stdio: ['inherit', 'inherit', 'inherit'],
         });
