@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
 import { ThemeType } from './type';
 import { makeTokenIndex } from '../util';
@@ -112,7 +112,7 @@ export const themeDeclaration = {
     spacing: (value: number) => value * 4,
 };
 
-export const theme = createMuiTheme(themeDeclaration) as ThemeType;
+export const theme = createTheme(themeDeclaration) as ThemeType;
 
 theme.tokenIndex = makeTokenIndex(theme);
 

@@ -4,14 +4,14 @@ import { HeaderPropsType } from './type';
 import { Menu } from '../Menu';
 import {
     MenuOffset,
-    HeaderMainContainer,
+    HeaderRoot,
 } from './style';
 
 export const Header: FunctionComponent<HeaderPropsType> = () => (
-    <HeaderMainContainer>
+    <HeaderRoot>
         <MenuOffset />
         <Menu />
-    </HeaderMainContainer>
+    </HeaderRoot>
 );
 
 const HeaderWithQuery: FC<Pick<HeaderPropsType, 'inner'>> = (props) => {

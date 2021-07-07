@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { muiSpacing } from '@gannochenko/ui.styled-components';
 
-export const HeaderMainContainer = styled.header`
+export const HeaderRoot = styled.header`
     position: relative;
     min-width: 320px;
     flex-shrink: 0;
