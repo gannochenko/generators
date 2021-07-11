@@ -1,12 +1,15 @@
 /* eslint-disable react/display-name */
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ObjectLiteralType } from '@gannochenko/ui.styled-components';
 
 import { Typography } from '../Typography';
 import { Link } from '../Link';
 import { HR } from '../HR';
 import { InlineCode } from '../InlineCode';
+import { Container } from '../Container';
+
+const wrap = (children: ReactNode) => <Container>{children}</Container>;
 
 const Paragraph = (props: ObjectLiteralType) => (
     <Typography

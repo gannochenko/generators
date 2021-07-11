@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
+import { emailFirstPart, emailSecondPart } from '../../meta/email';
 
 import { EmailRoot } from './style';
 import { EmailPropsType } from './type';
@@ -8,10 +9,10 @@ export const Email: FC<EmailPropsType> = ({ ...restProps }) => {
     const [domain, setDomain] = useState('');
     useEffect(() => {
         setTimeout(() => {
-            setEmail('gannochenko.sv');
+            setEmail(emailFirstPart);
         }, 500);
         setTimeout(() => {
-            setDomain('gmail.com');
+            setDomain(emailSecondPart);
         }, 700);
     }, []);
 

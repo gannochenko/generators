@@ -18,18 +18,18 @@ export const <%- content_name_pascal %>List: FC<<%- content_name_pascal %>ListPr
         return (
             <<%- content_name_pascal %>ListRoot {...rootProps}>
                 <Grid container spacing={3}>
-                    {data.map((building) => {
-                        const buildingData = building.node.frontmatter;
+                    {data.map((item) => {
+                        const itemData = item.node.frontmatter;
                         let headerImage =
-                            buildingData.headerImage === undefined ||
-                            buildingData.headerImage === ''
+                            itemData.headerImage === undefined ||
+                            itemData.headerImage === ''
                                 ? 0
-                                : parseInt(buildingData.headerImage, 10);
+                                : parseInt(itemData.headerImage, 10);
                         if (Number.isNaN(headerImage)) {
                             headerImage = 0;
                         }
 
-                        const { slug, images, shortTitle } = buildingData;
+                        const { slug, images, shortTitle } = itemData;
 
                         const path = fillTemplate(<%- content_name_snake_uc %>_DETAIL, { slug });
 

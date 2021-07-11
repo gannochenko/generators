@@ -27,14 +27,25 @@ export interface QueryProps {
 
 export type ContentRecordType = {
     frontmatter: {
+        kind: string;
         title: string;
+        slug: string;
         backUrl?: string;
         keywords?: string[] | string;
         description?: string;
-        images?: any[];
-        path?: string;
+        images?: ContentRecordImageType[];
         displayPageTitle?: boolean;
-    } & ObjectLiteralType;
+    } & Record<string, unknown>;
     body: string;
     id: string;
+};
+
+export type ContentRecordImageType = {
+    author?: string;
+    source?: string;
+    sourceText?: string;
+    isCover?: boolean;
+    image: {
+        childImageSharp: Record<string, unknown>;
+    } | null;
 };

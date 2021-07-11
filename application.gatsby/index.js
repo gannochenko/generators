@@ -187,6 +187,7 @@ module.exports.Generator = class Generator {
                 'events',
                 'gatsby',
                 'gatsby-image',
+                'gatsby-plugin-image',
                 'gatsby-plugin-catch-links',
                 !!ga_id && 'gatsby-plugin-gtag',
                 'gatsby-plugin-manifest',

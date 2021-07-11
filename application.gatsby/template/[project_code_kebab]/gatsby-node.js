@@ -129,8 +129,8 @@ exports.createPages = ({ graphql, actions }) => {
                     });
                 });
             }).catch((error) => {
-                console.warn('Was not able to produce content');
-                // console.error(error);
+                console.error('Was not able to produce content');
+                console.error(error);
             }),
         );
     });

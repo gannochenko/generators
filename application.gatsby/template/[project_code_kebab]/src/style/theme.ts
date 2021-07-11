@@ -28,6 +28,10 @@ export const themeDeclaration = {
             primary: '#333',
             // secondary: '#ffffff',
         },
+        background: {
+            dark: '#20232a',
+            default: '#fafafa',
+        },
     },
     typography: {
         fontFamily:

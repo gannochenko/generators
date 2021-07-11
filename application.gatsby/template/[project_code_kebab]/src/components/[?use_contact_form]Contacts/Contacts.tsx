@@ -98,7 +98,7 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                                         label={
                                             <ContactFormConsent>
                                                 I agree with{' '}
-                                                <Link to="/personal-data">
+                                                <Link to="/personal-data" target="_blank">
                                                     personal data processing
                                                 </Link>{' '}
                                                 *

@@ -42,10 +42,10 @@ export const LinkStyled = styled.a.withConfig(
 `;
 
 export const Link: FC<LinkPropsType> = (props) => {
-    const { to, href } = props;
+    const { to, href, target } = props;
     const link = to || href || '';
 
-    if (!link.startsWith('/')) {
+    if (!link.startsWith('/') || target === '_blank') {
         return <LinkStyled {...props} href={link} target="_blank" />;
     }
 

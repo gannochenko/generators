@@ -51,7 +51,7 @@ export const PageLayout: FC<BodyLayoutPropsType> = (props) => {
                 title={actualTitle}
                 keywords={actualKeywords}
                 description={actualDescription}
-                image={coverImage ? coverImage : '/assets/metaImage.jpg'}
+                image={coverImage ? coverImage : '/assets/icon.jpg'}
             />
             {displayTitle && (
                 <Container>

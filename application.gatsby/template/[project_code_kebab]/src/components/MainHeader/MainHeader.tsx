@@ -9,9 +9,9 @@ import {
     MainHeaderSub,
 } from './style';
 import { useMainHeader } from './hooks/useMainHeader';
-import { siteMeta } from '../../siteMeta';
+import { site } from '../../meta/site';
 
-const { title, description } = siteMeta;
+const { title, description } = site;
 
 export const MainHeader: FC<MainHeaderPropsType> = forwardRef(
     function MainHeader(props, ref) {

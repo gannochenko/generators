@@ -2,7 +2,7 @@ require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`,
 });
 
-const { title, description, keywords } = require('./src/siteMeta').siteMeta;
+const { title, description, keywords, author, baseURL } = require('./src/site').site;
 
 module.exports = {
 <% if(path_prefix) { %>
@@ -13,11 +13,11 @@ module.exports = {
     siteMetadata: {
         title: title,
         description: description,
-        author: '@<%- github_account_name %>',
+        author: author,
         keywords: keywords,
-        siteUrl: 'https://<%- project_domain %>',
+        siteUrl: baseURL,
     },
-    flags: { PRESERVE_WEBPACK_CACHE: true },
+    flags: {},
     plugins: [
         {
             resolve: 'gatsby-plugin-google-fonts',
@@ -26,6 +26,7 @@ module.exports = {
                     'roboto:300,400',
                     // 'source sans pro:300,400,400i,700'
                 ],
+                display: 'swap',
             },
         },
         {
@@ -44,8 +45,9 @@ module.exports = {
             },
         },
         'gatsby-plugin-react-helmet',
-        'gatsby-transformer-sharp',
+        'gatsby-plugin-image',
         'gatsby-plugin-sharp',
+        'gatsby-transformer-sharp',
         {
             resolve: `gatsby-transformer-remark`,
             options: {
