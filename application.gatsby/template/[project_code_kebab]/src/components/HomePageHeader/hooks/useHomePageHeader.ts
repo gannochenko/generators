@@ -1,9 +1,9 @@
 import { Ref } from 'react';
-import { MainHeaderPropsType } from '../type';
+import { HomePageHeaderPropsType } from '../type';
 
-export const useMainHeader = (
+export const useHomePageHeader = (
     ref: Ref<unknown>,
-    { propA, ...props }: MainHeaderPropsType
+    { propA, ...props }: HomePageHeaderPropsType
 ) => {
     return {
         rootProps: {

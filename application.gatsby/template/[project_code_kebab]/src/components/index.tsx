@@ -5,6 +5,7 @@ export * from './Copyright';
 export * from './Email';
 export * from './Footer';
 export * from './Header';
+export * from './HomePageHeader';
 export * from './HR';
 export * from './ApplicationLayout';
 export * from './Link';

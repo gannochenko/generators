@@ -1,5 +1,4 @@
-import React, { FC, FunctionComponent } from 'react';
-import { Query } from './query';
+import React, { FC } from 'react';
 import { HeaderPropsType } from './type';
 import { Menu } from '../Menu';
 import {
@@ -7,24 +6,11 @@ import {
     HeaderRoot,
 } from './style';
 
-export const Header: FunctionComponent<HeaderPropsType> = () => (
+export const Header: FC<HeaderPropsType> = () => (
     <HeaderRoot>
         <MenuOffset />
         <Menu />
     </HeaderRoot>
 );
 
-const HeaderWithQuery: FC<Pick<HeaderPropsType, 'inner'>> = (props) => {
-    return (
-        <Query>
-            {data => (
-                <Header
-                    {...props}
-                    backgroundImage={data.backgroundImage}
-                />
-            )}
-        </Query>
-    );
-};
-
-export default HeaderWithQuery;
+export default Header;

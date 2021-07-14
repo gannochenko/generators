@@ -178,6 +178,7 @@ module.exports.Generator = class Generator {
             destination: '[project_code_kebab]/',
             packages: [
                 '@gannochenko/ui.styled-components',
+                '@gannochenko/ui',
                 '@mdx-js/mdx',
                 '@mdx-js/react',
                 'animated-scroll-to',
