@@ -22,8 +22,8 @@
     * [GoDaddy](#godaddy)
     * [Auth0](#auth0)
     * [Vercel](#vercel)
-    * [Deployment](#deployment)
-    * [Setting up CD](#setting-up-cd)
+  * [Deployment](#deployment)
+* [Setting up CD](#setting-up-cd)
 * [Contact](#contact)
 
 ## Deploying the infrastructure
@@ -70,7 +70,7 @@ Useful resources:
 If you need authentication, there is Auth0.
 
 * Go to the [settings section of the RoboApp](https://manage.auth0.com/dashboard/eu/gannochenko/applications/xsZ4bfyjGVCcZX2uT1jar0fHLvf5FlOQ/settings) and retrieve the following data:
-* Put the values into env vars:
+* Fill out the env vars in the `.env` file:
   ~~~bash
   export AUTH0_DOMAIN=
   export AUTH0_CLIENT_ID=
@@ -86,12 +86,10 @@ Useful resources:
 If you host on Vercel, then:
 
 * Go to the [tokens page](https://vercel.com/account/tokens) and create a new token. Then retrieve the data:
-* Put the values into env vars:
+* Fill out the env vars in the `.env` file:
   ~~~bash
-  printf "export VERCEL_TOKEN=<VERCEL_TOKEN>\n\n" >> ./.env
+  export VERCEL_TOKEN=
   ~~~
-
-If the repository is private, you need to [give Vercel access to it](https://github.com/settings/installations/9893966).
 
 Useful resources:
 * [Terraform provider](https://registry.terraform.io/providers/chronark/vercel/latest/docs)

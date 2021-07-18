@@ -3,7 +3,7 @@ import { ObjectLiteralType } from '@gannochenko/ui.styled-components';
 
 export type LinkPropsType = Partial<{
     to: string;
-    inner: boolean;
+    inverted: boolean;
 }> &
     AnchorHTMLAttributes<HTMLAnchorElement> &
     ObjectLiteralType;

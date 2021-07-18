@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import Alert from '@material-ui/lab/Alert';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { PERSONAL_DATA_POLICY } from '../../pathTemplates';
 
 import { ContactsPropsType } from './type';
 import {
@@ -92,7 +93,7 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                                         label={
                                             <ContactFormConsent>
                                                 I agree with{' '}
-                                                <Link to="/personal-data" target="_blank">
+                                                <Link to={PERSONAL_DATA_POLICY} target="_blank">
                                                     personal data processing
                                                 </Link>{' '}
                                                 *

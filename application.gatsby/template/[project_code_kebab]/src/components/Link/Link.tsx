@@ -11,8 +11,8 @@ const customProps = {
     inner: true,
 };
 
-const fgColors = ({ inner, theme }: LinkPropsType) => {
-    if (inner) {
+const fgColors = ({ inverted, theme }: LinkPropsType) => {
+    if (inverted) {
         return css`
             color: inherit;
             text-decoration: none;

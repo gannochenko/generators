@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { FooterRoot, FooterInfo, FooterNoWrap, CICDLink, AnalyticsLink } from './style';
 import { Link } from '../Link';
+import { COOKIE_POLICY, <% if(use_contact_form) { %>PERSONAL_DATA_POLICY<% } %> } from '../../pathTemplates';
 
 export const Footer: FC = () => {
     return (
@@ -9,9 +10,14 @@ export const Footer: FC = () => {
                 <FooterNoWrap>
                     &copy; then &mdash; now ({new Date().getFullYear()})
                 </FooterNoWrap> &bull;{' '}
-                <Link to="/cookie-policy" inner>
+                <Link to={COOKIE_POLICY} inverted>
                     Cookie policy
                 </Link>
+<% if(use_contact_form) { %>
+                <Link to={PERSONAL_DATA_POLICY} inverted>
+                    Personal data policy
+                </Link>
+<% } %>
             </FooterInfo>
 <% if (deployment === 'vercel') { %>
             <CICDLink

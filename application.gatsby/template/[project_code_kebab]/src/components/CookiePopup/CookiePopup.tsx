@@ -11,6 +11,7 @@ import {
 import { CookiePopupPropsType } from './type';
 import { Link } from '../Link';
 import { getWindow } from '../../util/getWindow';
+import { COOKIE_POLICY } from '../../pathTemplates';
 
 const win = getWindow();
 
@@ -52,7 +53,7 @@ export const CookiePopup: FC<CookiePopupPropsType> = () => {
                 <br />
                 By further browsing you agree to accept the cookies.
                 <br />
-                More information <Link to="/cookie-policy">here</Link>.
+                More information <Link to={COOKIE_POLICY}>here</Link>.
                 <CookiePopupAgreeButton onClick={onAcceptClick}>
                     Accept!
                 </CookiePopupAgreeButton>
