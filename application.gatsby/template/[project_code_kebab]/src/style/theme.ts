@@ -26,7 +26,7 @@ export const themeDeclaration = {
         },
         text: {
             primary: '#333',
-            // secondary: '#ffffff',
+            inverted: '#ffffff',
         },
         background: {
             dark: '#20232a',

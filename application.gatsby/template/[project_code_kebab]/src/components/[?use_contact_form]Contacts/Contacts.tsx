@@ -9,7 +9,6 @@ import { ContactsPropsType } from './type';
 import {
     ContactsRoot,
     ContactFormFieldWrapper,
-    ContactFormTitle,
     ContactFormSmallNote,
     ContactFormActions,
     ContactFormAgree,
@@ -28,8 +27,6 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
             messageFieldProps,
             contactFieldProps,
             consentButtonProps,
-            children,
-            hasPersonalContacts,
             success,
             failure,
             loading,
@@ -40,9 +37,6 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
             <ContactsRoot {...rootProps}>
                 <Grid container spacing={6}>
                     <Grid item md={6} sm={12}>
-                        <ContactFormTitle>
-                            Please contact us by using this form
-                        </ContactFormTitle>
                         {success && (
                             <Alert severity="success">
                                 Thank you, your message has been sent!
@@ -50,7 +44,7 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                         )}
                         {failure && (
                             <ContactFormFailureMessage severity="error">
-                                Sorry, an error occurred. Please try again later!
+                                Sorry, an error occurred. Please try again!
                             </ContactFormFailureMessage>
                         )}
                         {showForm && (
@@ -112,14 +106,6 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                             </form>
                         )}
                     </Grid>
-                    {hasPersonalContacts && (
-                        <Grid item md={6} sm={12}>
-                            <ContactFormTitle>
-                                Find us in social networks
-                            </ContactFormTitle>
-                            {children}
-                        </Grid>
-                    )}
                 </Grid>
             </ContactsRoot>
         );

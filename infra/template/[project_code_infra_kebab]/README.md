@@ -17,9 +17,9 @@
 
 * [Deploying the infrastructure](#deploying-the-infrastructure)
   * [Preparations](#preparations)
+    * [AWS](#aws)
     * [Domain name](#domain-name)
     * [GoDaddy](#godaddy)
-    * [AWS](#aws)
     * [Auth0](#auth0)
     * [Vercel](#vercel)
     * [Deployment](#deployment)
@@ -29,6 +29,22 @@
 ## Deploying the infrastructure
 
 ### Preparations
+
+The infrastructure is managed by [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli). In case if this is a new machine, or the project itself is a brand new one, we must obtain the required access keys first.
+
+#### AWS
+
+AWS is a keystone for everything. We use AWS to store Terraform states, as well as to host different resources, such as Lambdas, S3, DynamoDB, RDS, etc.
+
+* Go to the AWS console and [create a new user](https://console.aws.amazon.com/iam/home#/users$new?step=details) or [add a new access key for an existing one](https://console.aws.amazon.com/iam/home#/users/RoboAdmin?section=security_credentials).
+* Fill out the env vars in the `.env` file:
+  ~~~bash
+  export AWS_ACCESS_KEY_ID=
+  export AWS_SECRET_ACCESS_KEY=
+  ~~~
+
+Useful resources:
+* [Terraform provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 
 #### Domain name
 
@@ -40,26 +56,14 @@ You can also try [RuCenter](https://www.nic.ru/en/), since ru-domains are cheape
 Adding __A__ and __CNAME__ records for your GoDaddy domain.
 
 * Go to Godaddy and [create a new key/secret](https://developer.godaddy.com/keys).
-* Put them into env vars:
+* Fill out the env vars in the `.env` file:
   ~~~bash
-  printf "export GODADDY_API_KEY=<GODADDY_API_KEY>\nexport GODADDY_API_SECRET=<GODADDY_API_SECRET>\n\n" >> ./.env
+  export GODADDY_API_KEY=
+  export GODADDY_API_SECRET=
   ~~~
 
 Useful resources:
 * [Terraform provider](https://registry.terraform.io/providers/n3integration/godaddy/latest)
-
-#### AWS
-
-To host and manage Lambdas and a Database (DynamoDB) we use AWS.
-
-* Go to the AWS console and [create a new user](https://console.aws.amazon.com/iam/home#/users$new?step=details).
-* Put them into env vars:
-  ~~~bash
-  printf "export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>\nexport AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>\n\n" >> ./.env
-  ~~~
-
-Useful resources:
-* [Terraform provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 
 #### Auth0
 
@@ -68,7 +72,9 @@ If you need authentication, there is Auth0.
 * Go to the [settings section of the RoboApp](https://manage.auth0.com/dashboard/eu/gannochenko/applications/xsZ4bfyjGVCcZX2uT1jar0fHLvf5FlOQ/settings) and retrieve the following data:
 * Put the values into env vars:
   ~~~bash
-  printf "export AUTH0_DOMAIN=gannochenko.eu.auth0.com\nexport AUTH0_CLIENT_ID=xsZ4bfyjGVCcZX2uT1jar0fHLvf5FlOQ\nexport AUTH0_CLIENT_SECRET=<AUTH0_CLIENT_SECRET>\n\n" >> ./.env
+  export AUTH0_DOMAIN=
+  export AUTH0_CLIENT_ID=
+  export AUTH0_CLIENT_SECRET=
   ~~~
 
 Useful resources:
@@ -85,7 +91,7 @@ If you host on Vercel, then:
   printf "export VERCEL_TOKEN=<VERCEL_TOKEN>\n\n" >> ./.env
   ~~~
 
-If the repository is private, you need to [give Vercel access to it](https://github.com/settings/installations/9893966). 
+If the repository is private, you need to [give Vercel access to it](https://github.com/settings/installations/9893966).
 
 Useful resources:
 * [Terraform provider](https://registry.terraform.io/providers/chronark/vercel/latest/docs)

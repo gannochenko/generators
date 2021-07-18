@@ -1,5 +1,6 @@
 export * from './PageLayout';
 export * from './Container';
+export * from './PageOffset';
 export * from './CookiePopup';
 export * from './Copyright';
 export * from './Email';

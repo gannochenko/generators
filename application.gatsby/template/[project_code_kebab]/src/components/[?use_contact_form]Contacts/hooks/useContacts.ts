@@ -7,7 +7,7 @@ import { ContactFormState } from '../../../states';
 
 export const useContacts = <E extends HTMLDivElement>(
     ref: ForwardedRef<E>,
-    { children, ...props }: ContactsPropsType,
+    props: ContactsPropsType,
 ) => {
     const {
         message,
@@ -59,8 +59,6 @@ export const useContacts = <E extends HTMLDivElement>(
             disabled: isLoading || !message || !agreed,
             onClick: onSubmitButtonClick,
         },
-        children,
-        hasPersonalContacts: !!children,
         success: isSuccess,
         failure: isError,
         loading: isLoading,
