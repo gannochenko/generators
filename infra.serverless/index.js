@@ -36,29 +36,4 @@ module.exports.Generator = class Generator {
 
         return answers;
     }
-
-    // async getDependencies(answers) {
-    //     return {
-    //         destination: '[application_code_kebab]/',
-    //         packages: ['cors'],
-    //     };
-    // }
-    //
-    // async getDevDependencies(answers) {
-    //     return {
-    //         destination: '[application_code_kebab]/',
-    //         packages: [
-    //         ],
-    //     };
-    // }
-
-    async onAfterExecution() {
-        await this.util.execa('chmod', ['-R', '+x', './script'], {
-            cwd: path.join(
-                this.context.destinationPath,
-                this.answers.project_code_kebab,
-            ),
-            stdio: ['inherit', 'inherit', 'inherit'],
-        });
-    }
 };
