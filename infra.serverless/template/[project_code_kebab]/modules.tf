@@ -1,3 +1,4 @@
+<% if (use_function) { %>
 module "<%- project_code_kebab %>_<%- function_name %>" {
   source = "<%- function_name %>"
 
@@ -9,6 +10,7 @@ module "<%- project_code_kebab %>_<%- function_name %>" {
   s3_bucket = var.aws_lambda_bucket
   aws_iam_role_lambda_arn = var.aws_iam_role_lambda_arn
 }
+<% } %>
 
 <% if (use_contact_form) { %>
 module "<%- project_code_kebab %>_contactForm" {

@@ -32,6 +32,7 @@ module.exports.Generator = class Generator {
         answers.project_code_kebab = this.util.textConverter.toKebab(
             answers.project_code,
         );
+        answers.use_function = !!answers.function_name;
 
         return answers;
     }

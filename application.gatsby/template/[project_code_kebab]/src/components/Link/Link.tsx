@@ -14,11 +14,15 @@ const customProps = {
 const fgColors = ({ inverted, theme }: LinkPropsType) => {
     if (inverted) {
         return css`
-            color: inherit;
             text-decoration: none;
             &:hover {
                 text-decoration: underline;
             }
+            ${foregroundColor(
+                theme.palette.text.inverted,
+                theme.palette.text.inverted,
+                '200ms',
+            )};
         `;
     }
 
