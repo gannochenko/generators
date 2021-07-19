@@ -9,6 +9,7 @@ const write = require('write');
 // const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 const path = require('path');
 const fillTemplate = require('./src/pathTemplates').fillTemplate;
+const allowedEnvVariables = require('./.env.js').allowedEnvVariables;
 
 const <%- content_name_snake_uc %>_DETAIL = require('./src/pathTemplates').<%- content_name_snake_uc %>_DETAIL;
 
@@ -136,6 +137,22 @@ exports.createPages = ({ graphql, actions }) => {
     });
 };
 
+const getEnv = () => {
+    const result = [];
+
+    allowedEnvVariables.forEach((variableName) => {
+        if (
+            variableName in process.env &&
+            process.env[variableName] !== undefined
+        ) {
+            result[`process.env.${variableName}`] =
+                '"' + process.env[variableName] + '"';
+        }
+    });
+
+    return result;
+};
+
 exports.onCreateWebpackConfig = ({
     stage,
     // rules,
@@ -147,6 +164,7 @@ exports.onCreateWebpackConfig = ({
         plugins: [
             plugins.define({
                 __DEV__: stage === `develop` || stage === `develop-html`,
+                ...getEnv(),
             }),
         ],
         resolve: {

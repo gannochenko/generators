@@ -2,7 +2,7 @@ import { ChangeEvent, ForwardedRef, useCallback, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import { ContactsPropsType } from '../type';
 import { useRootRef } from '../../../hooks';
-import { contactFormSubmit } from '../../../services/contactForm';
+import { sendMessage } from '../../../services/message';
 import { ContactFormState } from '../../../states';
 
 export const useContacts = <E extends HTMLDivElement>(
@@ -19,9 +19,9 @@ export const useContacts = <E extends HTMLDivElement>(
 
     const rootRef = useRootRef<E>(ref);
 
-    const formSubmission = useMutation(contactFormSubmit);
+    const formSubmission = useMutation(sendMessage);
     const onSubmitButtonClick = useCallback(() => {
-        formSubmission.mutate({ message, contact });
+        formSubmission.mutate({ text: message, contact });
     }, [formSubmission, message, contact]);
 
     const { isLoading, isSuccess, isError } = formSubmission;
