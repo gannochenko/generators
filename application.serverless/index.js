@@ -15,8 +15,33 @@ module.exports.Generator = class Generator {
                 name: 'project_code',
             },
             {
+                message: 'Add contact form?',
+                name: 'use_contact_form',
+                type: 'confirm',
+                default: false,
+            },
+            {
+                message: 'Project name',
+                name: 'project_name',
+            },
+            {
                 message: 'Function name',
                 name: 'function_name',
+            },
+            {
+                message: 'Project domain',
+                name: 'project_domain',
+                when: (answers) => answers.use_contact_form,
+            },
+            {
+                message: 'Author name',
+                name: 'author_name',
+                when: (answers) => answers.use_contact_form,
+            },
+            {
+                message: 'Author email',
+                name: 'author_email',
+                when: (answers) => answers.use_contact_form,
             },
         ];
     }
