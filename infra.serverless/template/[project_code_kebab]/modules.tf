@@ -17,7 +17,7 @@ module "<%- project_code_kebab %>_contactForm" {
   source = "contactForm"
 
   api_gateway_id = aws_api_gateway_rest_api.<%- project_code_kebab %>.id
-  api_gateway_root_resouce_id = aws_api_gateway_rest_api.<%- project_code_kebab %>.root_resource_id
+  api_gateway_root_resource_id = aws_api_gateway_rest_api.<%- project_code_kebab %>.root_resource_id
   api_gateway_execution_arn = aws_api_gateway_rest_api.<%- project_code_kebab %>.execution_arn
   stage_name = var.stage_name
   cors = "https://<%- project_code_kebab %>.${var.apex_domain}/"

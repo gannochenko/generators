@@ -1,6 +1,6 @@
 resource "aws_api_gateway_resource" "<%- project_code_kebab %>_contactForm" {
   rest_api_id = var.api_gateway_id
-  parent_id = var.api_gateway_root_resouce_id
+  parent_id = var.api_gateway_root_resource_id
   path_part = "contactForm"
 }
 
