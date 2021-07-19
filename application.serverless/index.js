@@ -57,13 +57,17 @@ module.exports.Generator = class Generator {
     }
 
     async getDependencies(answers) {
+        const { use_contact_form } = answers;
+
         return {
             destination: '[project_code_kebab]/',
-            packages: ['cors'],
+            packages: ['cors', !!use_contact_form && 'axios', !!use_contact_form && 'pug'],
         };
     }
 
     async getDevDependencies(answers) {
+        const { use_contact_form } = answers;
+
         return {
             destination: '[project_code_kebab]/',
             packages: [
@@ -80,6 +84,7 @@ module.exports.Generator = class Generator {
                 'webpack',
                 'webpack-cli',
                 'webpack-node-externals',
+                !!use_contact_form && '@types/pug'
             ],
         };
     }
