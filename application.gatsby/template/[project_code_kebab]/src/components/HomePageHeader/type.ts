@@ -1,11 +1,13 @@
 import { HTMLAttributes } from 'react';
-import { StylePropsType, ObjectLiteralType, MarginPropsType } from '@gannochenko/ui.styled-components';
+import {
+    StylePropsType,
+    MarginPropsType,
+} from '@gannochenko/ui.styled-components';
 
-export type HomePageHeaderPropsType = HTMLAttributes<HTMLDivElement> &
-    Partial<{
-        // put your custom props here
-    }> &
-    MarginPropsType &
-    ObjectLiteralType;
+export type MainHeaderPropsType = HTMLAttributes<HTMLDivElement> & {
+    backgroundImage: any; // todo: tighten
+} & MarginPropsType;
 
-export type HomePageHeaderRootPropsType = StylePropsType;
+export type MainHeaderRootPropsType = StylePropsType & {
+    backgroundImage: any;
+};

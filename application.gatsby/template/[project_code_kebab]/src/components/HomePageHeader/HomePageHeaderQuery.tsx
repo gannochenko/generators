@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import { QueryProps } from '../../type';
 
-// https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-plugin-image/
 const query = graphql`
     query HeaderImage {
         backgroundImage: file(relativePath: { eq: "header.jpg" }) {
