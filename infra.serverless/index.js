@@ -39,14 +39,14 @@ module.exports.Generator = class Generator {
 
     // async getDependencies(answers) {
     //     return {
-    //         destination: '[project_code_kebab]/',
+    //         destination: '[application_code_kebab]/',
     //         packages: ['cors'],
     //     };
     // }
     //
     // async getDevDependencies(answers) {
     //     return {
-    //         destination: '[project_code_kebab]/',
+    //         destination: '[application_code_kebab]/',
     //         packages: [
     //         ],
     //     };

@@ -5,7 +5,7 @@
   </a>
   -->
 
-<h3 align="center">Infrastructure of the "<%- project_code %>" project</h3>
+<h3 align="center">The source code of the "<%- application_code %>" application</h3>
 
   <p align="center">
     <a href="https://github.com/gannochenko/<%- repository_name %>">Source</a>

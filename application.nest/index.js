@@ -67,7 +67,7 @@ module.exports.Generator = class Generator {
     async getDependencies(answers) {
         const { use_nats } = answers;
         return {
-            destination: '[project_code_kebab]/',
+            destination: '[application_code_kebab]/',
             packages: [
                 '@nestjs/common',
                 '@nestjs/core',
@@ -100,7 +100,7 @@ module.exports.Generator = class Generator {
 
     async getDevDependencies(answers) {
         return {
-            destination: '[project_code_kebab]/',
+            destination: '[application_code_kebab]/',
             packages: [
                 '@nestjs/schematics',
                 '@nestjs/testing',

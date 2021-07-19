@@ -12,7 +12,7 @@ module.exports.Generator = class Generator {
         return [
             {
                 message: 'Application code',
-                name: 'project_code',
+                name: 'application_code',
             },
             {
                 message: 'Add contact form?',
@@ -34,6 +34,18 @@ module.exports.Generator = class Generator {
                 when: (answers) => answers.use_contact_form,
             },
             {
+                message: 'GitHub account name',
+                name: 'github_account_name',
+                default: 'gannochenko',
+            },
+            {
+                message: 'GitHub repository name',
+                name: 'github_repository_name',
+                default: (answers) => {
+                    return answers.application_code;
+                },
+            },
+            {
                 message: 'Author name',
                 name: 'author_name',
                 when: (answers) => answers.use_contact_form,
@@ -47,9 +59,14 @@ module.exports.Generator = class Generator {
     }
 
     async refineAnswers(answers) {
-        // here it is possible to alter some answers before the generation starts
+        answers.project_code = path.dirname(path.dirname(process.cwd()));
         answers.project_code_kebab = this.util.textConverter.toKebab(
             answers.project_code,
+        );
+
+        // here it is possible to alter some answers before the generation starts
+        answers.application_code_kebab = this.util.textConverter.toKebab(
+            answers.application_code,
         );
         answers.use_function = !!answers.function_name;
 
@@ -60,7 +77,7 @@ module.exports.Generator = class Generator {
         const { use_contact_form } = answers;
 
         return {
-            destination: '[project_code_kebab]/',
+            destination: '[application_code_kebab]/',
             packages: ['cors', !!use_contact_form && 'axios', !!use_contact_form && 'pug'],
         };
     }
@@ -69,7 +86,7 @@ module.exports.Generator = class Generator {
         const { use_contact_form } = answers;
 
         return {
-            destination: '[project_code_kebab]/',
+            destination: '[application_code_kebab]/',
             packages: [
                 '@types/cors',
                 '@types/ejs',

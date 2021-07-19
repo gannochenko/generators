@@ -34,7 +34,7 @@ export const fn = async (args: ContactFormArgsType) => {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                'api-key': process.env.SENDIN_BLUE_API,
+                'api-key': process.env.SENDIN_BLUE_API_KEY,
             },
         },
     );

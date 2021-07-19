@@ -46,7 +46,7 @@ module.exports.Generator = class Generator {
 
     async getDependencies(answers) {
         return {
-            destination: '[project_code_kebab]/',
+            destination: '[application_code_kebab]/',
             packages: [
                 'cors',
                 'express',
@@ -56,7 +56,7 @@ module.exports.Generator = class Generator {
 
     async getDevDependencies(answers) {
         return {
-            destination: '[project_code_kebab]/',
+            destination: '[application_code_kebab]/',
             packages: [
                 '@types/cors',
                 '@types/ejs',

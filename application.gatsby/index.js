@@ -38,14 +38,14 @@ module.exports.Generator = class Generator {
                 name: 'path_prefix',
             },
             {
-                message: 'Project short name',
+                message: 'Application short name',
                 name: 'project_pwa_short_name',
                 default: (answers) => {
                     return answers.project_name;
                 },
             },
             {
-                message: 'Project description',
+                message: 'Application description',
                 name: 'project_description',
                 default: (answers) => {
                     return answers.project_name;
@@ -175,7 +175,7 @@ module.exports.Generator = class Generator {
         const { ga_id, auth0_id, use_contact_form } = answers;
 
         return {
-            destination: '[project_code_kebab]/',
+            destination: '[application_code_kebab]/',
             packages: [
                 '@gannochenko/ui.styled-components',
                 '@gannochenko/ui',
@@ -231,7 +231,7 @@ module.exports.Generator = class Generator {
         const { use_blog } = answers;
 
         return {
-            destination: '[project_code_kebab]/',
+            destination: '[application_code_kebab]/',
             packages: [
                 '@babel/core',
                 '@types/color',
