@@ -1,8 +1,7 @@
 resource "aws_lambda_function" "<%- function_name %>" {
   function_name = local.lambda_function_name
 
-  s3_bucket = var.s3_bucket
-  s3_key = "<%- function_name %>/latest.zip"
+  filename = "function-dummy-src.zip"
 
   handler = "main.handler"
   runtime = "nodejs14.x"

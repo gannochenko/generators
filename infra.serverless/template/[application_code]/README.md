@@ -18,7 +18,7 @@
 Include the module to the project's `terraform` `modules.tf` file:
 
 ~~~
-module "blog_api" {
+module "<%- application_code_tf %>" {
   source = "./%- application_code_kebab %>"
 
   apex_domain = local.applications_apex_domain
