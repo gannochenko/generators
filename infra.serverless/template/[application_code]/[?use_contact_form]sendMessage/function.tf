@@ -1,8 +1,8 @@
-resource "aws_lambda_function" "contactForm" {
+resource "aws_lambda_function" "sendMessage" {
   function_name = local.lambda_function_name
 
   s3_bucket = var.s3_bucket
-  s3_key = "contactForm/latest.zip"
+  s3_key = "sendMessage/latest.zip"
 
   handler = "main.handler"
   runtime = "nodejs14.x"
