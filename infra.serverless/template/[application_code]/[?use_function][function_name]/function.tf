@@ -7,4 +7,10 @@ resource "aws_lambda_function" "<%- function_name %>" {
   runtime = "nodejs14.x"
 
   role = var.aws_iam_role_lambda_arn
+
+  environment {
+    variables = {
+      CORS = var.cors
+    }
+  }
 }

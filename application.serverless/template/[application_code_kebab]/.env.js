@@ -3,4 +3,4 @@
  *  and when we dont have .env file either.
  */
 
-module.exports.allowedEnvVariables = ['SENDIN_BLUE_API', 'CORS'];
+module.exports.allowedEnvVariables = ['SENDIN_BLUE_API_KEY', 'CORS'];

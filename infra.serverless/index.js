@@ -19,6 +19,12 @@ module.exports.Generator = class Generator {
                 name: 'function_name',
             },
             {
+                message: 'API path part',
+                name: 'path_part',
+                when: (answers) => !!answers.function_name,
+                default: (answers) => answers.function_name,
+            },
+            {
                 message: 'Add contact form lambda?',
                 name: 'use_contact_form',
                 type: 'confirm',
@@ -44,8 +50,9 @@ module.exports.Generator = class Generator {
         answers.application_code_kebab = this.util.textConverter.toKebab(
             answers.application_code,
         );
-        answers.application_code_tf = answers.project_code_kebab.replace(/[^a-zA-Z0-9_]/g, '-');
+        answers.application_code_tf = answers.application_code_kebab.replace(/[^a-zA-Z0-9_]/g, '-');
         answers.use_function = !!answers.function_name;
+        answers.gateway_resource_name = answers.path_part.replace(/[^a-zA-Z0-9_]/g, '-');
 
         return answers;
     }
