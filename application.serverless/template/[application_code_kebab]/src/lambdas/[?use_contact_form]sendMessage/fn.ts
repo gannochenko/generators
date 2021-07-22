@@ -3,7 +3,7 @@ import { compile } from 'pug';
 import { template } from './template';
 
 type ContactFormArgsType = {
-    message: string;
+    text: string;
     contact: string;
 };
 
