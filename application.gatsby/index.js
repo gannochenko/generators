@@ -134,6 +134,12 @@ module.exports.Generator = class Generator {
     }
 
     async refineAnswers(answers) {
+        // // parent project code
+        // answers.project_code = path.dirname(path.dirname(process.cwd()));
+        // answers.project_code_kebab = this.util.textConverter.toKebab(
+        //     answers.project_code,
+        // );
+
         // here it is possible to alter some answers before the generation starts
         answers.project_code_kebab = this.util.textConverter.toKebab(
             answers.project_code,

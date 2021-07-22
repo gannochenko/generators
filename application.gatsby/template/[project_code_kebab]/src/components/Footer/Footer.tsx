@@ -1,9 +1,17 @@
 import React, { FC } from 'react';
 import { FooterRoot, FooterInfo, FooterNoWrap, CICDLink, AnalyticsLink } from './style';
 import { Link } from '../Link';
+import { useFooter } from './hooks/useFooter';
 import { COOKIE_POLICY, <% if(use_contact_form) { %>PERSONAL_DATA_POLICY<% } %> } from '../../pathTemplates';
 
 export const Footer: FC = () => {
+    const {
+        deploymentLink,
+        gALink,
+        showDeploymentLink,
+        showGALinkLink,
+    } = useFooter();
+
     return (
         <FooterRoot>
             <FooterInfo>
@@ -19,20 +27,24 @@ export const Footer: FC = () => {
                 </Link>
 <% } %>
             </FooterInfo>
-<% if (deployment === 'vercel') { %>
-            <CICDLink
-                href="https://vercel.com/gannochenko/<%- project_code_global %>/deployments"
-                rel="noreferrer noopener nofollow"
-                target="_blank"
-            />
-<% } %>
-<% if (ga_id) { %>
-            <AnalyticsLink
-                href="https://analytics.google.com/analytics/web/?authuser=1#/INTERNAL_ID/realtime/overview"
-                rel="noreferrer noopener nofollow"
-                target="_blank"
-            />
-<% } %>
+            {
+                showDeploymentLink
+                &&
+                <CICDLink
+                    href={deploymentLink}
+                    rel="noreferrer noopener nofollow"
+                    target="_blank"
+                />
+            }
+            {
+                showGALinkLink
+                &&
+                <AnalyticsLink
+                    href={gALink}
+                    rel="noreferrer noopener nofollow"
+                    target="_blank"
+                />
+            }
         </FooterRoot>
     );
 };
