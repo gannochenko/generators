@@ -2,10 +2,6 @@ variable "apex_domain" {
   type = string
 }
 
-variable "repository" {
-  type = string
-}
-
 variable "aws_region" {
   type = string
 }

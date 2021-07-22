@@ -6,7 +6,7 @@ variable "api_gateway_id" {
   type = string
 }
 
-variable "api_gateway_root_resouce_id" {
+variable "api_gateway_root_resource_id" {
   type = string
 }
 

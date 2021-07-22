@@ -21,9 +21,8 @@ Include the module to the project's `terraform` `modules.tf` file:
 module "<%- application_code_tf %>" {
   source = "./%- application_code_kebab %>"
 
+  # input
   apex_domain = local.applications_apex_domain
-  repository = local.routine_repository
-
   stage_name = var.stage_name
   aws_region = local.aws_region
   aws_lambda_bucket = local.aws_lambda_bucket
