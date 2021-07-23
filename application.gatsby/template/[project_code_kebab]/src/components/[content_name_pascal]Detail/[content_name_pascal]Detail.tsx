@@ -1,9 +1,11 @@
 import React, { FC, useMemo } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { SRLWrapper } from 'simple-react-lightbox';
 
 import { <%- content_name_pascal %>DetailPropsType } from './type';
 import { PageLayout } from '../PageLayout';
+import { lightBoxOptions } from '../../util/lightBoxOptions';
 
 /**
  * This component is for wrapping up pages that lay in the content/ folder.
@@ -17,7 +19,9 @@ export const <%- content_name_pascal %>Detail: FC<<%- content_name_pascal %>Deta
 
     return (
         <PageLayout pageContext={mdx} location={location}>
-            <MDXRenderer pageContext={mdx}>{mdx.body}</MDXRenderer>
+            <SRLWrapper options={lightBoxOptions}>
+                <MDXRenderer pageContext={mdx}>{mdx.body}</MDXRenderer>
+            </SRLWrapper>
         </PageLayout>
     );
 };

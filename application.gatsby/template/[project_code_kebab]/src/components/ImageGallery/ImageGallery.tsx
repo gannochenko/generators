@@ -9,14 +9,7 @@ import {
     ImageGalleryImage,
 } from './style';
 import { useImageGallery } from './hooks/useImageGallery';
-
-const lightBoxOptions = {
-    buttons: {
-        showDownloadButton: false,
-        showAutoplayButton: false,
-        showThumbnailsButton: false,
-    },
-};
+import { lightBoxOptions } from '../../util/lightBoxOptions';
 
 export const ImageGallery: FC<ImageGalleryPropsType> = forwardRef(
     function ImageGallery(props, ref) {
