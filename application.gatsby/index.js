@@ -228,6 +228,7 @@ module.exports.Generator = class Generator {
                 !!auth0_id && '@auth0/auth0-react',
                 'material-ui-popup-state',
                 !!use_contact_form && '@material-ui/lab',
+                'gatsby-plugin-nprogress'
             ],
         };
     }

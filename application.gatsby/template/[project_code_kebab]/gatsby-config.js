@@ -3,6 +3,7 @@ require('dotenv').config({
 });
 
 const { title, description, keywords, author, baseURL } = require('./src/site').site;
+const palette = require('./src/style/palette').palette;
 
 module.exports = {
 <% if(path_prefix) { %>
@@ -124,6 +125,15 @@ module.exports = {
         'gatsby-plugin-styled-components',
         'gatsby-plugin-typescript',
         'gatsby-plugin-catch-links',
+        {
+            resolve: `gatsby-plugin-nprogress`,
+            options: {
+                // Setting a color is optional.
+                color: palette.primary.main,
+                // Disable the loading spinner.
+                showSpinner: false,
+            },
+        },
 <% if (use_offline) { %>
         {
             resolve: 'gatsby-plugin-offline',

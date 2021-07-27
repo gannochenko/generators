@@ -4,6 +4,7 @@ import { createTheme } from '@material-ui/core';
 
 import { ThemeType } from './type';
 import { makeTokenIndex } from '../util';
+import { palette } from './palette';
 
 // https://material-ui.com/customization/default-theme/
 // https://material.io/resources/color/#!/?view.left=0&view.right=0
@@ -11,28 +12,7 @@ import { makeTokenIndex } from '../util';
 const headerFSBase = '2.4rem';
 
 export const themeDeclaration = {
-    palette: {
-        primary: {
-            main: '#ef9a9a',
-            light: '#ffcccb',
-            dark: '#ba6b6c',
-            contrastText: '#fff',
-        },
-        secondary: {
-            main: '#9c27b0',
-            light: '#d05ce3',
-            dark: '#6a0080',
-            contrastText: '#fff',
-        },
-        text: {
-            primary: '#333',
-            inverted: '#ffffff',
-        },
-        background: {
-            dark: '#20232a',
-            default: '#fafafa',
-        },
-    },
+    palette,
     typography: {
         fontFamily:
             '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
