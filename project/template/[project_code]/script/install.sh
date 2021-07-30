@@ -8,4 +8,4 @@ yarn;
 
 # add other apps here
 # example:
-# cd apps/blog && yarn
+# cd apps/blog && yarn && cd ../..
