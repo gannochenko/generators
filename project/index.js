@@ -45,6 +45,18 @@ module.exports.Generator = class Generator {
                 //     return true;
                 // },
             },
+            {
+                message: 'GitHub account name',
+                name: 'github_account_name',
+                default: 'gannochenko',
+            },
+            {
+                message: 'GitHub repository name',
+                name: 'github_repository_name',
+                default: (answers) => {
+                    return answers.project_code;
+                },
+            },
             // {
             //     type: 'confirm',
             //     name: 'use_postgres',
