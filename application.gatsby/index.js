@@ -12,26 +12,28 @@ module.exports.Generator = class Generator {
     }
 
     async getQuestions() {
+        const projectCode = path.basename(path.dirname(process.cwd()));
+
         // see inquirer docs to get more information on the format of questions
         // https://www.npmjs.com/package/inquirer#questions
         return [
             {
                 message: 'Application name',
-                name: 'project_name',
+                name: 'application_name',
             },
             {
                 message: 'Application code',
-                name: 'project_code',
+                name: 'application_code',
                 default: (answers) => {
                     return this.util.textConverter.toKebab(
-                        answers.project_name,
+                        answers.application_name,
                     )
                 },
             },
             {
                 message: 'Website domain',
                 name: 'project_domain',
-                default: (answers) => `${answers.project_code}.gannochenko.dev`,
+                default: (answers) => `${answers.application_code}.gannochenko.dev`,
             },
             {
                 message: 'Path prefix (like for GitHub pages)',
@@ -39,16 +41,16 @@ module.exports.Generator = class Generator {
             },
             {
                 message: 'Application short name',
-                name: 'project_pwa_short_name',
+                name: 'application_pwa_short_name',
                 default: (answers) => {
-                    return answers.project_name;
+                    return answers.application_name;
                 },
             },
             {
                 message: 'Application description',
-                name: 'project_description',
+                name: 'application_description',
                 default: (answers) => {
-                    return answers.project_name;
+                    return answers.application_name;
                 },
             },
             {
@@ -59,8 +61,8 @@ module.exports.Generator = class Generator {
             {
                 message: 'GitHub repository name',
                 name: 'github_repository_name',
-                default: (answers) => {
-                    return answers.project_code;
+                default: () => {
+                    return projectCode;
                 },
             },
             {
@@ -81,12 +83,12 @@ module.exports.Generator = class Generator {
             {
                 message: 'Auth0 ID',
                 name: 'auth0_id',
-                // default: 'AUTH0-KEY',
+                default: 'AUTH0-KEY',
             },
             {
                 message: 'Content name',
                 name: 'content_name',
-                default: 'stuff',
+                default: 'blog',
             },
             {
                 message: 'Enable offline support? (not recommended for frequently updated website)',
@@ -134,15 +136,15 @@ module.exports.Generator = class Generator {
     }
 
     async refineAnswers(answers) {
-        // // parent project code
-        // answers.project_code = path.dirname(path.dirname(process.cwd()));
-        // answers.project_code_kebab = this.util.textConverter.toKebab(
-        //     answers.project_code,
-        // );
-
-        // here it is possible to alter some answers before the generation starts
+        // parent project code
+        answers.project_code = path.basename(path.dirname(process.cwd()));
         answers.project_code_kebab = this.util.textConverter.toKebab(
             answers.project_code,
+        );
+
+        // here it is possible to alter some answers before the generation starts
+        answers.application_code_kebab = this.util.textConverter.toKebab(
+            answers.application_code,
         );
 
         answers.content_name_pascal = this.util.textConverter.toPascal(
@@ -162,7 +164,6 @@ module.exports.Generator = class Generator {
 
         answers.path_prefix = answers.path_prefix ? answers.path_prefix.replace(/^\//, '') : '';
 
-        answers.project_code_global = answers.project_code;
         answers.enable_auth = !!answers.auth0_id;
 
         answers.dockerhub_account_name = answers.dockerhub_account_name || '';
@@ -178,13 +179,14 @@ module.exports.Generator = class Generator {
 
     async getDependencies(answers) {
         // list your dependencies here
-        const { ga_id, auth0_id, use_contact_form } = answers;
+        const { auth0_id, use_contact_form } = answers;
 
         return {
             destination: '[application_code_kebab]/',
             packages: [
                 '@gannochenko/ui.styled-components',
                 '@gannochenko/ui',
+                '@gannochenko/etc',
                 '@mdx-js/mdx',
                 '@mdx-js/react',
                 'animated-scroll-to',
@@ -193,23 +195,6 @@ module.exports.Generator = class Generator {
                 'debounce',
                 'events',
                 'gatsby',
-                'gatsby-image',
-                'gatsby-plugin-image',
-                'gatsby-plugin-catch-links',
-                !!ga_id && 'gatsby-plugin-gtag',
-                'gatsby-plugin-manifest',
-                'gatsby-plugin-mdx',
-                'gatsby-plugin-offline',
-                'gatsby-plugin-react-helmet',
-                'gatsby-plugin-sharp',
-                'gatsby-plugin-sitemap',
-                'gatsby-plugin-styled-components',
-                'gatsby-remark-images',
-                'gatsby-remark-relative-images',
-                'gatsby-source-filesystem',
-                'gatsby-transformer-remark',
-                'gatsby-transformer-sharp',
-                'gatsby-plugin-google-fonts',
                 'markdown-it',
                 'react',
                 'react-dom',
@@ -234,8 +219,7 @@ module.exports.Generator = class Generator {
     }
 
     async getDevDependencies(answers) {
-        // list your dev dependencies here
-        const { use_blog } = answers;
+        const { ga_id } = answers;
 
         return {
             destination: '[application_code_kebab]/',
@@ -271,6 +255,23 @@ module.exports.Generator = class Generator {
                 '@gannochenko/gbelt',
                 '@generilla/cli',
                 'dotenv-cli',
+                'gatsby-image',
+                'gatsby-plugin-image',
+                'gatsby-plugin-catch-links',
+                !!ga_id && 'gatsby-plugin-gtag',
+                'gatsby-plugin-manifest',
+                'gatsby-plugin-mdx',
+                'gatsby-plugin-offline',
+                'gatsby-plugin-react-helmet',
+                'gatsby-plugin-sharp',
+                'gatsby-plugin-sitemap',
+                'gatsby-plugin-styled-components',
+                'gatsby-remark-images',
+                'gatsby-remark-relative-images',
+                'gatsby-source-filesystem',
+                'gatsby-transformer-remark',
+                'gatsby-transformer-sharp',
+                'gatsby-plugin-google-fonts',
             ],
         };
     }
@@ -282,7 +283,7 @@ module.exports.Generator = class Generator {
     async runLinter() {
         const { execa, pathExists } = this.util;
 
-        const applicationFolder = path.join(this.context.destinationPath, this.answers.project_code_kebab);
+        const applicationFolder = path.join(this.context.destinationPath, this.answers.application_code_kebab);
         if (await pathExists(applicationFolder)) {
             await execa('yarn', ['run', 'lint:fix'], {
                 cwd: applicationFolder,

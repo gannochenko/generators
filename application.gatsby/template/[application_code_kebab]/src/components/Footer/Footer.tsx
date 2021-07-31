@@ -22,6 +22,7 @@ export const Footer: FC = () => {
                     Cookie policy
                 </Link>
 <% if(use_contact_form) { %>
+                &bull;{' '}
                 <Link to={PERSONAL_DATA_POLICY} inverted>
                     Personal data policy
                 </Link>

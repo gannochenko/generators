@@ -1,8 +1,8 @@
 module.exports.site = {
-    title: '<%- project_name %>',
-    logoText: '<%- project_name %>',
+    title: '<%- application_name %>',
+    logoText: '<%- application_name %>',
     description:
-        '<%- project_description %>',
+        '<%- application_description %>',
     keywords: [
         'one',
         'two',

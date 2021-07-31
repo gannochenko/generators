@@ -2,7 +2,7 @@ require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`,
 });
 
-const { title, description, keywords, author, baseURL } = require('./src/site').site;
+const { title, description, keywords, author, baseURL } = require('./src/meta/site').site;
 const palette = require('./src/style/palette').palette;
 
 module.exports = {
