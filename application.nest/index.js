@@ -30,12 +30,12 @@ module.exports.Generator = class Generator {
                     return answers.project_code;
                 },
             },
-            {
-                type: 'confirm',
-                name: 'use_nats',
-                message: 'Enable nats?',
-                default: false,
-            },
+            // {
+            //     type: 'confirm',
+            //     name: 'use_nats',
+            //     message: 'Enable nats?',
+            //     default: false,
+            // },
             {
                 name: 'port',
                 message: 'What is the TCP port?',

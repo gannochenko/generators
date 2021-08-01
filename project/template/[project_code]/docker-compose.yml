@@ -25,3 +25,46 @@ services:
         volumes:
             - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
             - "/var/run/docker.sock:/var/run/docker.sock"
+
+#    db.gui:
+#        image: adminer
+#        expose:
+#            - 8080
+#        ports:
+#            - 8080:8080
+#        depends_on:
+#            - db
+
+#    nats:
+#        image: 'nats-streaming'
+#        command:
+#            - "--cluster"
+#            - "nats://0.0.0.0:6222"
+#            - "--cluster_id"
+#            - nats-streaming
+#            - "--clustered"
+#            - "--cluster_bootstrap"
+#            - "--cluster_log_path"
+#            - /data/log
+#            - "--cluster_node_id"
+#            - nats-streaming-1
+#            - "--cluster_raft_logging"
+#            - "--debug"
+#            - "--dir"
+#            - /data/msg
+#            - "--http_port"
+#            - "8222"
+#            - "--port"
+#            - "4222"
+#            - "--store"
+#            - file
+#            - "--stan_debug"
+#            - "--hb_interval"
+#            - 2s
+#            - "--hb_fail_count"
+#            - "1"
+#            - "--hb_timeout"
+#            - 5s
+#        ports:
+#            - "14222:4222"
+#            - "18222:8222"
