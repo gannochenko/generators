@@ -7,6 +7,8 @@ module.exports.Generator = class Generator {
     }
 
     async getQuestions() {
+        const projectCode = path.basename(path.dirname(process.cwd()));
+
         // see inquirer docs to get more information on the format of questions
         // https://www.npmjs.com/package/inquirer#questions
         return [
@@ -41,19 +43,19 @@ module.exports.Generator = class Generator {
             {
                 message: 'GitHub repository name',
                 name: 'github_repository_name',
-                default: (answers) => {
-                    return answers.application_code;
+                default: () => {
+                    return projectCode;
                 },
             },
             {
                 message: 'Author name',
                 name: 'author_name',
-                when: (answers) => answers.use_contact_form,
+                default: 'Sergei Gannochenko',
             },
             {
                 message: 'Author email',
                 name: 'author_email',
-                when: (answers) => answers.use_contact_form,
+                default: 'gannochenko.sv@gmail.com',
             },
         ];
     }

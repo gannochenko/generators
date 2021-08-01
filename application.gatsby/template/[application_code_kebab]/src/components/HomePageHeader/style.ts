@@ -3,9 +3,10 @@ import {
     getPropBlocker,
     backgroundCover,
     absoluteCover,
+    muiSpacing,
+    muiColor,
 } from '@gannochenko/ui.styled-components';
 import { align, central, rectangle } from '@gannochenko/etc';
-import { muiSpacing } from '@gannochenko/ui.styled-components';
 import { withEffects } from '@gannochenko/ui';
 
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -59,6 +60,7 @@ export const ImageOverlay = styled.div`
 
 export const Data = styled.div`
     position: relative;
+    color: ${muiColor('text.inverted')};
     font-family: ${({ theme }) => theme.typography.fontFamilyHeader};
     ${central()};
     ${align('center', 'center', 'column')};

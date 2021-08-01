@@ -12,11 +12,11 @@ module.exports.palette = {
         contrastText: '#fff',
     },
     text: {
-        primary: '#333',
+        primary: '#333', // todo: rename to main
         inverted: '#ffffff',
     },
     background: {
-        dark: '#20232a',
-        default: '#fafafa',
+        default: '#fafafa', // todo: rename to main
+        dark: '#20232a', // todo: rename to inverted
     },
 };
