@@ -1,22 +1,21 @@
-import { Command as CommanderCommand } from 'commander';
-import { ObjectLiteral } from '../type';
-import {Application} from '../lib/application';
+import { Application } from '../lib/application';
 
-export type CommandActionArguments = ObjectLiteral;
+export type CommandArgumentsType = Record<string, string>;
 
-export interface CommandAction {
-    command: CommandProcessor;
-    arguments: CommandActionArguments;
+export interface CommandInstance {
+    execute: () => Promise<void>;
 }
 
-export type ActionCallback = (action: CommandAction) => void;
-
-interface CommandProcessorInstance {}
-
-export interface CommandProcessor {
-    new (): CommandProcessorInstance;
-    attach(program: CommanderCommand, actionCallback: ActionCallback): void;
-    process(application: Application, args?: CommandActionArguments): Promise<void>;
+export interface Command {
+    new (
+        application: Application,
+        args: CommandArgumentsType,
+        flags: CommandArgumentsType,
+    ): CommandInstance;
+    command: string;
+    alias: string;
+    description: string;
+    options: [string, string][];
 }
 
 export function Implements<T>() {

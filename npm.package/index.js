@@ -96,6 +96,7 @@ module.exports.Generator = class Generator {
         answers.is_ui = !!answers.is_ui;
 
         answers.is_not_monorepo = !answers.is_monorepo;
+        answers.is_not_cli = !answers.is_cli;
 
         answers.use_ui_boilerplate = !!answers.use_ui_boilerplate;
 
@@ -158,6 +159,7 @@ module.exports.Generator = class Generator {
 
                 !!is_cli && 'ts-node',
                 !!is_cli && 'pkg',
+                !!is_cli && '@types/node',
 
                 !!use_cli_boilerplate && '@types/fs-extra',
                 !!use_cli_boilerplate && '@types/figlet',

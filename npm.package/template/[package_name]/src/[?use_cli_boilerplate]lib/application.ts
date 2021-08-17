@@ -1,30 +1,20 @@
 // import clear from 'clear';
-import commander from 'commander';
+import commander, { Argument, Command as CommanderCommand } from 'commander';
 import process from 'process';
 import path from 'path';
 import fs from 'fs';
 import { promisify } from 'util';
-
-import { Commands } from '../commands';
-import { CommandAction, CommandProcessor } from '../commands/type';
-import { Nullable, ObjectLiteral } from '../type';
+import { commands } from '../commands';
 
 const getFileAccessError = promisify(fs.access);
 const readFile = promisify(fs.readFile);
 
 export class Application {
-
     private introShown = false;
 
     public async run() {
         await this.showIntro();
-        const command = await this.processCLI();
-        if (!command) {
-            // eslint-disable-next-line no-console
-            console.log('No command specified. Try -h for available commands.');
-        }
-
-        await command!.command.process(this, command!.arguments);
+        await this.processCLI();
     }
 
     public async showIntro() {
@@ -37,50 +27,77 @@ export class Application {
         this.introShown = true;
     }
 
-    private async processCLI(): Promise<CommandAction | null> {
+    private async processCLI() {
         const program = new commander.Command();
-
-        let commandToRun: Nullable<CommandProcessor> = null;
-        let commandArguments: ObjectLiteral = {};
 
         program
             .name('<%- command_name %>')
-            .version(await this.getVersion(), '-v, --version', 'output the current version')
+            .version(
+                await this.getVersion(),
+                '-v, --version',
+                'output the current version',
+            )
             .description('<%- application_name %>: a new fancy application')
             .on('--help', () => {
                 console.log(`
 ✉️  Contact author: https://www.linkedin.com/in/<%- linkedin_author_code %>/
 🐛 Submit issue or request feature: https://github.com/<%- github_author_code %>/<%- package_name %>/issues
 `);
+            });
 
-        // @ts-ignore
-        Commands.attachCommands(program, command => {
-            commandToRun = command.command;
-            commandArguments = command.arguments || {};
+        commands.forEach(CommandClass => {
+            const { command, alias, description, options } = CommandClass;
+            const commandDeclaration = program
+                .command(command)
+                .alias(alias)
+                .description(description);
+
+            if (options) {
+                options.forEach(option => {
+                    commandDeclaration.option(option[0], option[1]);
+                });
+            }
+
+            commandDeclaration.action(async (...args) =>
+                    // something: string,
+                    // anything: string,
+                    // commanderCommand: CommanderCommand,
+                {
+                    const currentCommand: CommanderCommand = args.pop();
+
+                    let callOptions: Record<string, string> = {};
+                    if (args.length) {
+                        callOptions = args.pop();
+                    }
+
+                    const argsValues: Record<string, string> = {};
+
+                    // @ts-ignore
+                    // eslint-disable-next-line no-underscore-dangle
+                    const commandArguments = currentCommand._args as Argument[];
+                    commandArguments.forEach(argument => {
+                        argsValues[argument.name()] = args.shift();
+                    });
+
+                    const instance = new CommandClass(
+                        this,
+                        argsValues,
+                        callOptions,
+                    );
+                    await instance.execute();
+                },
+            );
         });
 
-        program.parse(process.argv);
-
-        if (!commandToRun) {
-            commandToRun = Commands.getDefaultCommand();
-        }
-
-        if (!commandToRun) {
-            return null;
-        }
-
-        return {
-            command: commandToRun!,
-            arguments: {
-                ...commandArguments,
-            },
-        };
+        await program.parse(process.argv);
     }
 
     private async getVersion(): Promise<string> {
         const UNKNOWN_VERSION = '0.0.0';
 
-        const packagePath = path.normalize(path.join(__dirname, '../../package.json'));
+        const packagePath = path.normalize(
+            path.join(__dirname, '../../package.json'),
+        );
         const accessError = await getFileAccessError(packagePath);
         // @ts-ignore
         if (accessError) {
@@ -88,10 +105,11 @@ export class Application {
         }
 
         try {
-            const packageData = JSON.parse((await readFile(packagePath)).toString('utf8'));
+            const packageData = JSON.parse(
+                (await readFile(packagePath)).toString('utf8'),
+            );
             return packageData.version || UNKNOWN_VERSION;
-        } catch (error) {
-        }
+        } catch (error) {}
 
         return UNKNOWN_VERSION;
     }

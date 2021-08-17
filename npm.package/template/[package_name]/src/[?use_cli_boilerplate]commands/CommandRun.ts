@@ -1,44 +1,43 @@
-import { Command as CommanderCommand } from 'commander';
+import debug from 'debug';
 import inquirer from 'inquirer';
 import execa from 'execa';
-import debug from 'debug';
+import { writeFile } from 'fs/promises';
+import { Application } from '../lib/application';
 import {
-    ActionCallback,
-    CommandActionArguments,
-    CommandProcessor,
+    CommandInstance,
+    Command,
     Implements,
+    CommandArgumentsType,
 } from './type';
-import {Application} from '../lib/application';
+import { getProjectFolder } from '../lib/util';
+import { PropertyParser } from '../parser/PropertyParser';
+import { ComponentFinder } from '../parser/ComponentFinder';
+import { PropertyDeclarationType } from '../parser/type';
+
+type ComponentListType = {
+    name: string;
+    properties: PropertyDeclarationType[];
+}[];
 
 const d = debug('run');
 
-// todo: need to instantiate a command every time, static methods suck
-@Implements<CommandProcessor>()
-export class CommandRun {
-    public static attach(
-        program: CommanderCommand,
-        actionCallback: ActionCallback,
-    ) {
-        program
-            .command('run [something]')
-            .alias('r')
-            .description('Run something')
-            .option('-y, --yes', 'Use the default')
-            .action((something: string, command: CommanderCommand) =>
-                actionCallback({
-                    command: this,
-                    arguments: {
-                        something,
-                        yes: command.yes,
-                    },
-                }),
-            );
-    }
+@Implements<Command>()
+export class Run implements CommandInstance {
+    static command = 'run [something] [cool]';
+    static alias = 'r';
+    static description = 'Run the thing';
+    static options: Command['options'] = [
+        ['-o, --output <path>', 'Output file'],
+        ['-y, --yes', 'Use the default'],
+    ];
 
-    public static async process(
-        application: Application,
-        args: CommandActionArguments,
-    ) {
+    constructor(
+        private application: Application,
+        private args: CommandArgumentsType,
+        private options: CommandArgumentsType,
+    ) {}
+
+    async execute() {
         const answers = await inquirer.prompt([
             {
                 message: 'Execute?',

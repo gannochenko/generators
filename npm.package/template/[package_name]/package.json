@@ -2,27 +2,21 @@
     "name": "<%- package_name_full %>",
     "version": "0.0.0",
     "license": "MIT",
-<% if (is_cli) { %>
-    "files": [
-        "build.cjs/"
-    ],
-    "bin": {
-        "<%- command_name %>": "./build.cjs/index.js"
-    },
-<% } else { %>
-    "main": "build.cjs/index.js",
-    "module": "build.esm/index.js",
-    "typings": "build.cjs/index.d.ts",
     "files": [
         "build.esm/",
         "build.cjs/"
     ],
+<% if (is_cli) { %>
+    "bin": {
+        "<%- command_name %>": "./build.cjs/index.js"
+    },
 <% } %>
+    "main": "build.cjs/index.js",
+    "module": "build.esm/index.js",
+    "typings": "build.cjs/index.d.ts",
     "scripts": {
 <% if (is_ui) { %>
         "dev": "./script/dev.sh",
-        "doc": "./script/doc.sh",
-        "doc:deploy": "./script/doc.deploy.sh",
         "test:visual": "cd ./visual && yarn loki test",
         "test:visual:update": "cd ./visual && yarn loki update",
         "test:visual:approve": "cd ./visual && yarn loki approve",
@@ -31,14 +25,10 @@
 <% if (is_cli) { %>
         "dev": "DEBUG=* ts-node src/index.ts",
         "link-global": "./script/link.sh",
-        "build": "rm -rf ./build/* && yarn run build:cjs",
-        "build:cjs": "del ./build.cjs/* && tsc -p ./tsconfig.build.cjs.json && chmod +x ./build.cjs/index.js",
-        "build:bin": "yarn build; yarn pkg ./package.json --out-path ./build.bin",
-<% } else { %>
+<% } %>
         "build": "rm -rf ./build/* && yarn run build:esm && yarn run build:cjs",
         "build:esm": "del ./build.esm/* && tsc -p ./tsconfig.build.esm.json",
         "build:cjs": "del ./build.cjs/* && tsc -p ./tsconfig.build.cjs.json",
-<% } %>
         "build:watch": "tsc -w -p ./tsconfig.build.cjs.json",
         "build:dev": "yarn build:watch",
         "install-peers": "install-self-peers -- --ignore-scripts",

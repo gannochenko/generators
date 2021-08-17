@@ -17,16 +17,6 @@
         "emitDecoratorMetadata": true,
         "sourceMap": true,
         "baseUrl": ".",
-        "paths": {
-<% if (is_ui) { %>
-            "@storybook/addon-knobs": [
-                "dev/node_modules/@storybook/addon-knobs"
-            ],
-            "@storybook/addon-actions": [
-                "dev/node_modules/@storybook/addon-actions"
-            ]
-<% } %>
-        },
         <% if (is_ui) { %>"jsx": "react",<% } %>
         "declaration": true
     },
