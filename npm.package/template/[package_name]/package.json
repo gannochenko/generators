@@ -24,6 +24,7 @@
 <% } %>
 <% if (is_cli) { %>
         "dev": "DEBUG=* ts-node src/index.ts",
+        "debug": "node --inspect-brk -r ts-node/register src/index.ts",
         "link-global": "./script/link.sh",
 <% } %>
         "build": "rm -rf ./build/* && yarn run build:esm && yarn run build:cjs",
