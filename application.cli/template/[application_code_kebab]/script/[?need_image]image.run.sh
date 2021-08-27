@@ -6,4 +6,4 @@ APPLICATION_NAME="<%- application_code_kebab %>"
 VERSION="${1:-latest}"
 TAG=${VENDOR}/${APPLICATION_NAME}:${VERSION}
 
-docker run -it -p <%- port %>:<%- port %> ${TAG}
+docker run -it ${TAG}
