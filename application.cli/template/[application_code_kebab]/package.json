@@ -1,5 +1,5 @@
 {
-    "name": "<%- package_name_full %>",
+    "name": "<%- application_code_kebab %>",
     "version": "0.0.0",
     "license": "MIT",
     "files": [
@@ -21,12 +21,15 @@
         "build:cjs": "del ./build.cjs/* && tsc -p ./tsconfig.build.cjs.json",
         "build:watch": "tsc -w -p ./tsconfig.build.cjs.json",
         "build:dev": "yarn build:watch",
-        "install-peers": "install-self-peers -- --ignore-scripts",
-        "test": "jest -c ./jest/config.js --passWithNoTests",
-        "test:watch": "jest -c ./jest/config.js --watch",
         "lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",
         "lint:fix": "eslint ./src --fix --ext .js,.ts,.jsx,.tsx",
-        "release": "./script/release.sh"
+        <% if (need_image) { %>
+        "image:build": "./script/image.build.sh",
+        "image:run": "./script/image.run.sh",
+        "image:push": "./script/image.push.sh",
+        <% } %>
+        "test": "jest -c ./jest/config.js --passWithNoTests",
+        "test:watch": "jest -c ./jest/config.js --watch"
     },
     "dependencies": {
     },
@@ -35,12 +38,6 @@
             "pre-commit": "pretty-quick --staged"
         }
     },
-<% if (github_author_code) { %>
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:<%- github_author_code %>/<%- package_name %>.git"
-    },
-<% } %>
     "publishConfig": {
         "access": "public"
     }

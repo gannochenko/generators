@@ -93,6 +93,9 @@ module.exports.Generator = class Generator {
             answers.application_code,
         );
 
+        answers.deployment = answers.deployment || DEPLOYMENT_K8S;
+        answers.need_image = answers.deployment === DEPLOYMENT_K8S;
+
         if (process.env.DEBUG) {
             console.log(answers);
         }
@@ -121,7 +124,6 @@ module.exports.Generator = class Generator {
         return {
             destination: '[application_code_kebab]/',
             packages: [
-                '@team-griffin/install-self-peers',
                 'jest',
                 'jest-chain',
                 'ts-jest',
