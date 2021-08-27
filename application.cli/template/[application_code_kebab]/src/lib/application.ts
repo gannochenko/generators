@@ -41,7 +41,7 @@ export class Application {
             .on('--help', () => {
                 console.log(`
 ✉️  Contact author: https://www.linkedin.com/in/<%- linkedin_author_code %>/
-🐛 Submit issue or request feature: https://github.com/<%- github_author_code %>/<%- package_name %>/issues
+🐛 Submit issue or request feature: https://github.com/<%- github_account_name %>/<%- github_repository_name %>/issues
 `);
             });
 

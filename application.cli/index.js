@@ -49,6 +49,11 @@ module.exports.Generator = class Generator {
                 },
             },
             {
+                message: 'Author\'s account code on LinkedIn',
+                name: 'linkedin_author_code',
+                default: 'gannochenko',
+            },
+            {
                 message: 'Author name',
                 name: 'author_name',
                 default: 'Sergei Gannochenko',
