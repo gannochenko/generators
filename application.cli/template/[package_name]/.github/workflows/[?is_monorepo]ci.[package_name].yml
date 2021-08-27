@@ -1,0 +1,34 @@
+name: CI.<%- package_name %>
+
+on:
+    pull_request:
+        branches:
+            - dev
+            - master
+        paths:
+            - 'packages/<%- package_name %>/**'
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: './packages/<%- package_name %>'
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Install
+              run: yarn install
+            - name: Install peers
+              run: yarn install-peers
+            - name: Lint
+              run: yarn lint
+            - name: Test
+              run: yarn test
+            #            - name: Test visual (install)
+            #              working-directory: ./packages/<%- package_name %>/visual
+            #              run: yarn install
+            #            - name: Test visual
+            #              run: yarn test:visual:cicd
+            - name: Build
+              run: yarn run build

@@ -1,0 +1,47 @@
+{
+    "name": "<%- package_name_full %>",
+    "version": "0.0.0",
+    "license": "MIT",
+    "files": [
+        "build.esm/",
+        "build.cjs/"
+    ],
+    "bin": {
+        "<%- command_name %>": "./build.cjs/index.js"
+    },
+    "main": "build.cjs/index.js",
+    "module": "build.esm/index.js",
+    "typings": "build.cjs/index.d.ts",
+    "scripts": {
+        "dev": "DEBUG=* ts-node src/index.ts",
+        "debug": "node --inspect-brk -r ts-node/register src/index.ts",
+        "link-global": "./script/link.sh",
+        "build": "rm -rf ./build/* && yarn run build:esm && yarn run build:cjs",
+        "build:esm": "del ./build.esm/* && tsc -p ./tsconfig.build.esm.json",
+        "build:cjs": "del ./build.cjs/* && tsc -p ./tsconfig.build.cjs.json",
+        "build:watch": "tsc -w -p ./tsconfig.build.cjs.json",
+        "build:dev": "yarn build:watch",
+        "install-peers": "install-self-peers -- --ignore-scripts",
+        "test": "jest -c ./jest/config.js --passWithNoTests",
+        "test:watch": "jest -c ./jest/config.js --watch",
+        "lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",
+        "lint:fix": "eslint ./src --fix --ext .js,.ts,.jsx,.tsx",
+        "release": "./script/release.sh"
+    },
+    "dependencies": {
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    },
+<% if (github_author_code) { %>
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:<%- github_author_code %>/<%- package_name %>.git"
+    },
+<% } %>
+    "publishConfig": {
+        "access": "public"
+    }
+}

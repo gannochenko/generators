@@ -198,14 +198,6 @@ module.exports.Generator = class Generator {
             });
         }
 
-        const docPath = path.join(rootPath, 'doc');
-        if (await pathExists(docPath)) {
-            await execa('yarn', [], {
-                cwd: docPath,
-                stdio: ['inherit', 'inherit', 'inherit'],
-            });
-        }
-
         const devPath = path.join(rootPath, 'dev');
         if (await pathExists(devPath)) {
             await execa('yarn', [], {

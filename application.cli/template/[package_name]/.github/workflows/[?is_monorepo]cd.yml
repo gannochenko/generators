@@ -1,0 +1,29 @@
+name: CD
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Install common
+              run: yarn install
+            - name: Install (<%- package_name %>)
+              working-directory: ./packages/<%- package_name %>
+              run: yarn install
+            - name: Install peers (<%- package_name %>)
+              working-directory: ./packages/<%- package_name %>
+              run: yarn install-peers
+            - name: Build (<%- package_name %>)
+              working-directory: ./packages/<%- package_name %>
+              run: yarn build
+            - name: Publish
+              run: yarn multi-semantic-release
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.CICD }}
