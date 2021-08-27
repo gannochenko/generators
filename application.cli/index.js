@@ -30,6 +30,13 @@ module.exports.Generator = class Generator {
                 },
             },
             {
+                message: 'Command name',
+                name: 'command_name',
+                default: (answers) => {
+                    return answers.application_code;
+                },
+            },
+            {
                 message: 'GitHub account name',
                 name: 'github_account_name',
                 default: 'gannochenko',
