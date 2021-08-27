@@ -13,6 +13,8 @@ module.exports.Generator = class Generator {
     }
 
     getQuestions() {
+        const projectCode = path.basename(path.dirname(process.cwd()));
+
         return [
             {
                 message: 'Application name',
