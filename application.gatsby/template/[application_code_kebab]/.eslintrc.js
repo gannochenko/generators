@@ -20,7 +20,6 @@ module.exports = {
         ecmaFeatures: {
             jsx: true,
         },
-        ecmaVersion: 6,
         sourceType: 'module',
     },
     settings: {
@@ -34,7 +33,7 @@ module.exports = {
         },
     },
     env: {
-        es6: true,
+        es2021: true,
         browser: true,
         jest: true,
         node: true,

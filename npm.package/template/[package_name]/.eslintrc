@@ -44,7 +44,6 @@
     "@typescript-eslint/ban-ts-comment": "off"
   },
   "parserOptions": {
-    "ecmaVersion": 6,
     "sourceType": "module"
   },
   "globals": {
@@ -62,7 +61,7 @@
     }
   },
   "env": {
-    "es6": true,
+    "es2021": true,
     "browser": true,
     "node": true,
     "jest": true
