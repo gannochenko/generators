@@ -2,8 +2,8 @@ require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`,
 });
 
-const { title, description, keywords, author, baseURL } = require('./src/meta/site').site;
-const palette = require('./src/style/palette').palette;
+const { site: { title, description, keywords, author, baseURL } } = require('./src/meta/site');
+const { palette } = require('./src/style/palette');
 
 module.exports = {
 <% if(path_prefix) { %>
@@ -12,10 +12,10 @@ module.exports = {
     // pathPrefix: '/foo',
 <% } %>
     siteMetadata: {
-        title: title,
-        description: description,
-        author: author,
-        keywords: keywords,
+        title,
+        description,
+        author,
+        keywords,
         siteUrl: baseURL,
     },
     flags: {},
