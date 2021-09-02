@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "target": "ES2019",
     "outDir": "./build.cjs/",
     "types": []
   },

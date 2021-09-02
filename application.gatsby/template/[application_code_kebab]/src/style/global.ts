@@ -3,11 +3,10 @@ import {
     muiTypography,
     muiColor,
     muiToken,
+    MUIThemeType,
 } from '@gannochenko/ui.styled-components';
 
-import { ThemeType } from './type';
-
-export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
+export const GlobalStyle = createGlobalStyle<{ theme: MUIThemeType }>`
     html {
         font-size: ${muiToken('typography.htmlFontSize')}px;
         cursor: default;

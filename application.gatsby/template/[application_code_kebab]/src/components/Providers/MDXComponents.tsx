@@ -11,7 +11,7 @@ import { Container } from '../Container';
 
 const wrap = (children: ReactNode) => <Container>{children}</Container>;
 
-const Paragraph = (props: ObjectLiteralType) => (
+const Paragraph = (props: ObjectLiteralType) => wrap(
     <Typography
         {...props}
         variant="body1"
@@ -20,7 +20,7 @@ const Paragraph = (props: ObjectLiteralType) => (
     />
 );
 
-const Header1 = (props: ObjectLiteralType) => (
+const H1 = (props: ObjectLiteralType) => wrap(
     <Typography
         {...props}
         variant="h1"
@@ -29,7 +29,7 @@ const Header1 = (props: ObjectLiteralType) => (
     />
 );
 
-const Header2 = (props: ObjectLiteralType) => (
+const H2 = (props: ObjectLiteralType) => wrap(
     <Typography
         {...props}
         variant="h2"
@@ -38,7 +38,7 @@ const Header2 = (props: ObjectLiteralType) => (
     />
 );
 
-const Header3 = (props: ObjectLiteralType) => (
+const H3 = (props: ObjectLiteralType) => wrap(
     <Typography
         {...props}
         variant="h3"
@@ -47,7 +47,7 @@ const Header3 = (props: ObjectLiteralType) => (
     />
 );
 
-const Header4 = (props: ObjectLiteralType) => (
+const H4 = (props: ObjectLiteralType) => wrap(
     <Typography
         {...props}
         variant="h4"
@@ -56,16 +56,16 @@ const Header4 = (props: ObjectLiteralType) => (
     />
 );
 
-const Separator = () => <HR />;
+const PageSeparator = () => <HR />;
 
 export const MDXComponents = {
     a: Link,
     p: Paragraph,
-    h1: Header1,
-    h2: Header2,
-    h3: Header3,
-    h4: Header4,
-    hr: Separator,
+    h1: H1,
+    h2: H2,
+    h3: H3,
+    h4: H4,
+    hr: PageSeparator,
     // pre: Listing,
     inlineCode: InlineCode,
 };

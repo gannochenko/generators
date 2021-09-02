@@ -213,7 +213,8 @@ module.exports.Generator = class Generator {
                 !!auth0_id && '@auth0/auth0-react',
                 'material-ui-popup-state',
                 !!use_contact_form && '@material-ui/lab',
-                'gatsby-plugin-nprogress'
+                'gatsby-plugin-nprogress',
+                'gatsby-plugin-image',
             ],
         };
     }
@@ -231,7 +232,7 @@ module.exports.Generator = class Generator {
                 '@types/markdown-it',
                 '@types/mdx-js__react',
                 '@types/react-helmet',
-                '@types/styled-components@4',
+                '@types/styled-components',
                 '@types/throttle-debounce',
                 '@types/material-ui',
                 '@typescript-eslint/eslint-plugin',
@@ -246,6 +247,7 @@ module.exports.Generator = class Generator {
                 'eslint-plugin-react',
                 'eslint-plugin-react-hooks',
                 'gatsby-plugin-typescript',
+                'gatsby-plugin-ts',
                 'gh-pages',
                 'husky',
                 'prettier',
@@ -256,7 +258,6 @@ module.exports.Generator = class Generator {
                 '@generilla/cli',
                 'dotenv-cli',
                 'gatsby-image',
-                'gatsby-plugin-image',
                 'gatsby-plugin-catch-links',
                 !!ga_id && 'gatsby-plugin-gtag',
                 'gatsby-plugin-manifest',

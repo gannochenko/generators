@@ -123,7 +123,21 @@ module.exports = {
             },
         },
         'gatsby-plugin-styled-components',
-        'gatsby-plugin-typescript',
+        // 'gatsby-plugin-typescript',
+        {
+            // https://github.com/d4rekanguok/gatsby-typescript/tree/master/packages/gatsby-plugin-ts
+            resolve: `gatsby-plugin-ts`,
+            options: {
+                tsLoader: {
+                    logLevel: 'warn',
+                },
+                // forkTsCheckerPlugin: {
+                // },
+                fileName: `types/graphql-types.ts`,
+                codegen: false,
+                codegenDelay: 250,
+            },
+        },
         'gatsby-plugin-catch-links',
         {
             resolve: `gatsby-plugin-nprogress`,

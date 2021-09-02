@@ -1,4 +1,4 @@
-import React, { forwardRef, FC } from 'react';
+import React, { forwardRef } from 'react';
 
 import { MainHeaderPropsType } from './type';
 import {
@@ -19,7 +19,7 @@ import { site } from '../../meta/site';
 
 const { title, description } = site;
 
-export const HomePageHeader: FC<MainHeaderPropsType> = forwardRef(
+export const HomePageHeader = forwardRef<HTMLDivElement, MainHeaderPropsType>(
     function HomePageHeader(props, ref) {
         const { rootProps, infoProps, arrowProps } = useHomePageHeader(
             ref,

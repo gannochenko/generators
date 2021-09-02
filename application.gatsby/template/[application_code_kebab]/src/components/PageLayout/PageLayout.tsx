@@ -36,11 +36,12 @@ export const PageLayout: FC<BodyLayoutPropsType> = (props) => {
     let coverImage = '';
     if (images) {
         const coverImageData = images[0];
-        if (coverImageData && coverImageData.image) {
-            if (typeof coverImageData.image === 'string') {
-                coverImage = coverImageData.image;
-            } else if (coverImageData.image.childImageSharp) {
-                coverImage = coverImageData.image.childImageSharp.fluid.src;
+        if (coverImageData?.image) {
+            if (typeof coverImageData?.image === 'string') {
+                coverImage = coverImageData?.image;
+            } else if (coverImageData?.image.childImageSharp) {
+                // @ts-ignore
+                coverImage = coverImageData?.image.childImageSharp.fluid.src;
             }
         }
     }
@@ -51,7 +52,7 @@ export const PageLayout: FC<BodyLayoutPropsType> = (props) => {
                 title={actualTitle}
                 keywords={actualKeywords}
                 description={actualDescription}
-                image={coverImage ? coverImage : '/assets/icon.jpg'}
+                image={coverImage ?? '/assets/icon.jpg'}
             />
             {displayTitle && (
                 <Container>

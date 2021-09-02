@@ -1,10 +1,10 @@
-import { Ref, useCallback } from 'react';
+import { useCallback, ForwardedRef } from 'react';
 import animateScrollTo from 'animated-scroll-to';
 import { MainHeaderPropsType } from '../type';
 import { HEADER_HEIGHT } from '../constants';
 
-export const useHomePageHeader = (
-    ref: Ref<unknown>,
+export const useHomePageHeader = <E extends HTMLDivElement>(
+    ref: ForwardedRef<E>,
     props: MainHeaderPropsType,
 ) => {
     const scrollWindow = useCallback(() => {
@@ -29,7 +29,7 @@ export const useHomePageHeader = (
 
     return {
         rootProps: {
-            ref, // same for the ref
+            ref: ref as {}, // todo: fix this
         },
         infoProps: {
             enableEffects: true,
