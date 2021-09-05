@@ -215,6 +215,7 @@ module.exports.Generator = class Generator {
                 !!use_contact_form && '@material-ui/lab',
                 'gatsby-plugin-nprogress',
                 'gatsby-plugin-image',
+                '@reach/router',
             ],
         };
     }

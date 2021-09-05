@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { PageLayoutContent } from './style';
-import { BodyLayoutPropsType } from './type';
+import { PageLayoutPropsType } from './type';
 import { Container, SEO } from '../';
 import { Typography } from '../Typography';
 
@@ -8,7 +8,7 @@ import { Typography } from '../Typography';
  * This is a page-level layout. It goes inside of the ApplicationLayout and
  * defines a common structure of each page of the project.
  */
-export const PageLayout: FC<BodyLayoutPropsType> = (props) => {
+export const PageLayout: FC<PageLayoutPropsType> = (props) => {
     const {
         children,
         // location: { pathname = '' } = {},
@@ -24,6 +24,7 @@ export const PageLayout: FC<BodyLayoutPropsType> = (props) => {
         title: titleProp = '',
         keywords: keywordsProp = [],
         description: descriptionProp = '',
+        displayPageTitle: displayPageTitleProp,
     } = props;
 
     const actualTitle = title || titleProp;
@@ -31,7 +32,11 @@ export const PageLayout: FC<BodyLayoutPropsType> = (props) => {
     const actualDescription = description || descriptionProp;
 
     // const isRoot = pathname === '/';
-    const displayTitle = actualTitle && displayPageTitle !== false;
+    const reallyDisplayTitle =
+        displayPageTitleProp === undefined
+            ? displayPageTitle !== false
+            : displayPageTitleProp;
+    const displayTitle = actualTitle && reallyDisplayTitle;
 
     let coverImage = '';
     if (images) {

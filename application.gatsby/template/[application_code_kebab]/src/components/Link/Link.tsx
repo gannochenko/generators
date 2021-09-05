@@ -6,6 +6,7 @@ import {
 } from '@gannochenko/ui.styled-components';
 import { Link as GatsbyLink } from 'gatsby';
 import { LinkPropsType } from './type';
+import { useLink } from './hooks/useLink';
 
 const customProps = {
     inner: true,
@@ -46,12 +47,7 @@ export const LinkStyled = styled.a.withConfig(
 `;
 
 export const Link: FC<LinkPropsType> = (props) => {
-    const { to, href, target } = props;
-    const link = to || href || '';
+    const { rootProps, newTab } = useLink(props);
 
-    if (!link.startsWith('/') || target === '_blank') {
-        return <LinkStyled {...props} href={link} target="_blank" />;
-    }
-
-    return <GatsbyLinkStyled to={link} {...props} />;
+    return newTab ? <LinkStyled {...rootProps} /> : <GatsbyLinkStyled {...rootProps} />;
 };
