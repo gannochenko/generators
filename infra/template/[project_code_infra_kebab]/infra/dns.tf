@@ -1,5 +1,5 @@
 // gannochenko.app
-resource "godaddy_domain_record" "<%- project_code %>-app" {
+resource "godaddy_domain_record" "<%- project_code %>-apex" {
   domain = local.apex_domain
 
   // applications on sub-domains
