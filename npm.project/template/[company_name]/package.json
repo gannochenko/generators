@@ -1,18 +1,8 @@
 {
-    "name": "<%- company_name %>",
-    "description": "",
-    "keywords": [],
-    "author": "",
-    "license": "MIT",
-    "devDependencies": {
-    },
     "publishConfig": {
         "access": "public"
     },
-    "private": true,
-    "workspaces": [
-        "packages/some-module-name"
-    ],
+    "workspaces": [],
     "husky": {
         "hooks": {
             "pre-commit": "pretty-quick --staged"

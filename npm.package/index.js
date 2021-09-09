@@ -49,12 +49,12 @@ module.exports.Generator = class Generator {
                     return !!answers.is_cli;
                 },
             },
-            {
-                message: 'Are we inside of a monorepo?',
-                name: 'is_monorepo',
-                type: 'confirm',
-                default: false,
-            },
+            // {
+            //     message: 'Are we inside of a monorepo?',
+            //     name: 'is_monorepo',
+            //     type: 'confirm',
+            //     default: false,
+            // },
             {
                 message: 'Would you like to add CLI application boilerplate?',
                 name: 'use_cli_boilerplate',
@@ -95,6 +95,7 @@ module.exports.Generator = class Generator {
         answers.application_name = answers.application_name || '';
         answers.is_ui = !!answers.is_ui;
 
+        answers.is_monorepo = true;
         answers.is_not_monorepo = !answers.is_monorepo;
         answers.is_not_cli = !answers.is_cli;
 
