@@ -1,7 +1,7 @@
 <% if (is_cli) { %>#!/usr/bin/env node<% } %>
 <% if (use_cli_boilerplate) { %>
 import debug from 'debug';
-import { Application } from './lib/application';
+import { Application } from './lib/Application';
 
 const d = debug('app');
 

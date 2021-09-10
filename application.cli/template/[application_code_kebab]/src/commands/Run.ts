@@ -1,7 +1,7 @@
 import debug from 'debug';
 import inquirer from 'inquirer';
 import execa from 'execa';
-import { Application } from '../lib/application';
+import { Application } from '../lib/Application';
 import {
     CommandInstance,
     Command,
