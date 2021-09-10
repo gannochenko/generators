@@ -6,8 +6,7 @@
 
 import React from 'react';
 import { getRenderedEffectNodeIdCollector } from '@gannochenko/ui';
-import { Providers } from './src/components/Providers/Providers';
-import { ApplicationLayout } from './src/components';
+import { Providers, ApplicationLayout } from './src/components';
 
 export const onRenderBody = ({ setPostBodyComponents }) => {
     setPostBodyComponents([getRenderedEffectNodeIdCollector()]);

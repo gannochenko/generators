@@ -12,7 +12,7 @@ import { theme, GlobalStyle } from '../../style';
 import { MDXComponents } from './MDXComponents';
 import { isDev } from '../../util';
 import { StateProviders } from '../../states/providers';
-import { NetworkStatusProvider } from '../NetworkStatusProvider';
+import { NetworkStatusProvider } from '../default/NetworkStatusProvider';
 import { getWindow } from '../../util/getWindow';
 
 const queryClient = new QueryClient();

@@ -1,9 +1,6 @@
 import { HTMLAttributes } from 'react';
-import { ObjectLiteralType } from '@gannochenko/ui.styled-components';
 
 export type SEOPropsType = Partial<{
-    // custom props here
-
     description: string;
     lang: string;
     meta: Meta[];
@@ -11,8 +8,7 @@ export type SEOPropsType = Partial<{
     title: string;
     image: string;
 }> &
-    HTMLAttributes<HTMLElement> &
-    ObjectLiteralType;
+    HTMLAttributes<HTMLElement>;
 
 export interface Meta {
     name: string;

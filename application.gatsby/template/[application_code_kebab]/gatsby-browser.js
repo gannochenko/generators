@@ -5,8 +5,7 @@
  */
 
 import React from 'react';
-import { Providers } from './src/components/Providers/Providers';
-import { ApplicationLayout } from './src/components/ApplicationLayout';
+import { Providers, ApplicationLayout } from './src/components';
 
 export const wrapPageElement = ({ element, props }) => {
     return (

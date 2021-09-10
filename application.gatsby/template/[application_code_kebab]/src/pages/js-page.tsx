@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
 import { Container, PageOffset } from '../components';
-import { PageLayout } from '../components/PageLayout';
+import { PageLayout } from '../components/default/PageLayout';
 // import { graphql } from 'gatsby';
 
 type JSPagePropsType = {

@@ -3,11 +3,11 @@
 import React, { ReactNode } from 'react';
 import { ObjectLiteralType } from '@gannochenko/ui.styled-components';
 
-import { Typography } from '../Typography';
-import { Link } from '../Link';
-import { HR } from '../HR';
-import { InlineCode } from '../InlineCode';
-import { Container } from '../Container';
+import { Typography } from '../default/Typography';
+import { Link } from '../default/Link';
+import { HR } from '../default/HR';
+import { InlineCode } from '../default/InlineCode';
+import { Container } from '../default/Container';
 
 const wrap = (children: ReactNode) => <Container>{children}</Container>;
 
