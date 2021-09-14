@@ -86,6 +86,12 @@ module.exports.Generator = class Generator {
     }
 
     refineAnswers(answers) {
+        // parent project code
+        answers.project_code = path.basename(path.dirname(process.cwd()));
+        answers.project_code_kebab = this.util.textConverter.toKebab(
+            answers.project_code,
+        );
+
         answers.package_name_full = answers.package_name;
         if (answers.company_name) {
             answers.package_name_full = `@${answers.company_name}/${answers.package_name}`;

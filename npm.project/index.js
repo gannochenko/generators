@@ -22,6 +22,7 @@ module.exports.Generator = class Generator {
 
     refineAnswers(answers) {
         answers.year = (new Date()).getFullYear();
+        answers.project_name = answers.company_name;
 
         return answers;
     }
