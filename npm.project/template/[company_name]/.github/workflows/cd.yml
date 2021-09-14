@@ -16,8 +16,6 @@ jobs:
             - uses: actions/checkout@v2
             - name: Install common
               run: yarn install
-            - name: Install peers
-              run: yarn run install-peers
 #            - name: Install (package_name)
 #              working-directory: ./packages/package_name
 #              run: yarn install
