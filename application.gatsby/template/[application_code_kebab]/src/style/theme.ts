@@ -7,7 +7,6 @@ import { makeTokenIndex } from '../util';
 import { palette } from './palette';
 
 // https://material-ui.com/customization/default-theme/
-// https://material.io/resources/color/#!/?view.left=0&view.right=0
 
 const headerFSBase = '2.4rem';
 

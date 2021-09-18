@@ -1,15 +1,16 @@
+// https://material.io/resources/color/#!/?view.left=0&view.right=0
 module.exports.palette = {
     primary: {
-        main: '#ef9a9a',
-        light: '#ffcccb',
-        dark: '#ba6b6c',
-        contrastText: '#fff',
+        main: '#ffd54f',
+        light: '#ffff81',
+        dark: '#c8a415',
+        contrastText: '#000',
     },
     secondary: {
-        main: '#9c27b0',
-        light: '#d05ce3',
-        dark: '#6a0080',
-        contrastText: '#fff',
+        main: '#9e9e9e',
+        light: '#cfcfcf',
+        dark: '#707070',
+        contrastText: '#000',
     },
     text: {
         primary: '#333', // todo: rename to main
