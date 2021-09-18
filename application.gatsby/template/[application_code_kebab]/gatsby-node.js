@@ -37,7 +37,7 @@ exports.onPostBootstrap = async ({ store }) => {
 };
 
 const contentPageLayouts = {
-    '<%- content_name_kebab %>': './src/components/<%- content_name_pascal %>Detail/<%- content_name_pascal %>Detail.tsx',
+    '<%- content_name_kebab %>': './src/components/default/<%- content_name_pascal %>Detail/<%- content_name_pascal %>Detail.tsx',
 };
 
 const contentTypeToPath = {

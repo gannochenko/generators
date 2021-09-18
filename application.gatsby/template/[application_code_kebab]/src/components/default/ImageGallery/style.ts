@@ -2,17 +2,14 @@ import styled from 'styled-components';
 import {
     marginProps,
     reset,
-    getPropBlocker,
+    getPropsBlocker,
 } from '@gannochenko/ui.styled-components';
 
 import { ImageGalleryRootPropsType } from './type';
 import Img from 'gatsby-image';
 
-// all unwanted custom props should be blacklisted
-const customProps = {};
-
 export const ImageGalleryRoot = styled.div.withConfig(
-    getPropBlocker(customProps),
+    getPropsBlocker,
 )<ImageGalleryRootPropsType>`
     ${reset};
     ${marginProps};

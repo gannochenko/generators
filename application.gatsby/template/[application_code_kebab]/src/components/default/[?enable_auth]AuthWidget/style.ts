@@ -2,18 +2,14 @@ import styled from 'styled-components';
 import {
     marginProps,
     reset,
-    getPropBlocker,
+    getPropsBlocker,
     muiSpacing,
 } from '@gannochenko/ui.styled-components';
 import { Avatar, Popover, Typography } from '@material-ui/core';
 import { AuthWidgetRootPropsType } from './type';
 
-// all unwanted custom props should be blacklisted
-const customProps = {};
-
-// @ts-ignore
 export const AuthWidgetRoot = styled.div.withConfig(
-    getPropBlocker(customProps),
+    getPropsBlocker,
 )<AuthWidgetRootPropsType>`
     ${reset};
     padding-left: ${muiSpacing(5)};

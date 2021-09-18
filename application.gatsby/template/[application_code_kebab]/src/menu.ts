@@ -1,4 +1,10 @@
-import { <%- content_name_snake_uc %>_LIST, ABOUT, CONTACTS } from './pathTemplates';
+import {
+    <%- content_name_snake_uc %>_LIST,
+    ABOUT,
+    <% if(use_contact_form) { %>
+    CONTACTS,
+    <% } %>
+} from './pathTemplates';
 
 type MenuItemsType = {
     text: string;

@@ -11,7 +11,7 @@ import {
 import { useImageGallery } from './hooks/useImageGallery';
 import { lightBoxOptions } from '../../../util/lightBoxOptions';
 
-export const ImageGallery: FC<ImageGalleryPropsType> = forwardRef(
+export const ImageGallery = forwardRef<HTMLDivElement, ImageGalleryPropsType>(
     function ImageGallery(props, ref) {
         const { rootProps, images } = useImageGallery(ref, props);
 

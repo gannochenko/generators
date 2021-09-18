@@ -30,7 +30,7 @@ export const Providers: FC = ({ children }) => {
                         <GlobalStyle />
 <% if (enable_auth) { %>
                         <Auth0Provider
-                            domain={process.env.AUTH0_DOMAIN}
+                            domain={process.env.AUTH0_DOMAIN!}
                             clientId={process.env.AUTH0_CLIENT_ID!}
                             redirectUri={win ? win.location.origin : ''}
                             audience={isDev() ? `http://localhost:3000` : `https://${process.env.AUTH0_DOMAIN}/api/v2/`}

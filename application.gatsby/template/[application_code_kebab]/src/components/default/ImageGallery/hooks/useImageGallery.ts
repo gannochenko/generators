@@ -2,7 +2,7 @@ import { Ref } from 'react';
 import { ImageGalleryPropsType } from '../type';
 
 export const useImageGallery = (
-    ref: Ref<unknown>,
+    ref: Ref<HTMLDivElement>,
     { images, ...props }: ImageGalleryPropsType,
 ) => {
     return {

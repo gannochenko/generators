@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
     marginProps,
     reset,
-    getPropBlocker,
+    getPropsBlocker,
     muiSpacing,
 } from '@gannochenko/ui.styled-components';
 import Img from 'gatsby-image';
@@ -10,11 +10,8 @@ import { Link } from 'gatsby';
 
 import { <%- content_name_pascal %>ListRootPropsType } from './type';
 
-// all unwanted custom props should be blacklisted
-const customProps = {};
-
 export const <%- content_name_pascal %>ListRoot = styled.div.withConfig(
-    getPropBlocker(customProps),
+    getPropsBlocker,
 )<<%- content_name_pascal %>ListRootPropsType>`
     ${reset};
     ${marginProps};

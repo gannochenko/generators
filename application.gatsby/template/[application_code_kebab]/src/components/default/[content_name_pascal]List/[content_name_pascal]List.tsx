@@ -9,9 +9,9 @@ import {
     <%- content_name_pascal %>CardTitle,
 } from './style';
 import { use<%- content_name_pascal %>List } from './hooks/use<%- content_name_pascal %>List';
-import { fillTemplate, <%- content_name_snake_uc %>_DETAIL } from '../../pathTemplates';
+import { fillTemplate, <%- content_name_snake_uc %>_DETAIL } from '../../../pathTemplates';
 
-export const <%- content_name_pascal %>List: FC<<%- content_name_pascal %>ListPropsType> = forwardRef(
+export const <%- content_name_pascal %>List = forwardRef<HTMLDivElement, <%- content_name_pascal %>ListPropsType>(
     function <%- content_name_pascal %>List(props, ref) {
         const { rootProps, data } = use<%- content_name_pascal %>List(ref, props);
 

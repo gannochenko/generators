@@ -21,7 +21,7 @@ const transformOrigin = {
     horizontal: 'right',
 } as PopoverOrigin;
 
-export const AuthWidget: FC<AuthWidgetPropsType> = forwardRef(
+export const AuthWidget = forwardRef<HTMLDivElement, AuthWidgetPropsType>(
     function AuthWidget(props, ref) {
         const {
             rootProps,

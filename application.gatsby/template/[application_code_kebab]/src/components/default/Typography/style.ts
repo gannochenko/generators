@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {
     foregroundColor,
-    getPropBlocker,
+    getPropsBlocker,
 } from '@gannochenko/ui.styled-components';
 import { Typography } from '@material-ui/core';
 import { TypographyRootPropsType } from './type';
@@ -25,7 +25,7 @@ const getRootDynamicStyle = ({
 };
 
 export const TypographyRoot = styled(Typography).withConfig(
-    getPropBlocker(customProps),
+    getPropsBlocker,
 )<TypographyRootPropsType>`
     ${getRootDynamicStyle};
 `;

@@ -2,7 +2,7 @@ import { Ref } from 'react';
 import { <%- content_name_pascal %>ListPropsType } from '../type';
 
 export const use<%- content_name_pascal %>List = (
-    ref: Ref<unknown>,
+    ref: Ref<HTMLDivElement>,
     { data, ...props }: <%- content_name_pascal %>ListPropsType,
 ) => {
     return {

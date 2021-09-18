@@ -2,17 +2,13 @@ import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 import {
     foregroundColor,
-    getPropBlocker,
+    getPropsBlocker,
 } from '@gannochenko/ui.styled-components';
 import { Link as GatsbyLink } from 'gatsby';
-import { LinkPropsType } from './type';
+import { LinkRootPropsType } from './type';
 import { useLink } from './hooks/useLink';
 
-const customProps = {
-    inner: true,
-};
-
-const fgColors = ({ inverted, theme }: LinkPropsType) => {
+const fgColors = ({ inverted, theme }: LinkRootPropsType) => {
     if (inverted) {
         return css`
             text-decoration: none;
@@ -35,13 +31,13 @@ const fgColors = ({ inverted, theme }: LinkPropsType) => {
 };
 
 export const GatsbyLinkStyled = styled(GatsbyLink).withConfig(
-    getPropBlocker(customProps),
+    getPropsBlocker,
 )<LinkPropsType>`
     ${(props: LinkPropsType) => fgColors(props)};
 `;
 
 export const LinkStyled = styled.a.withConfig(
-    getPropBlocker(customProps),
+    getPropsBlocker,
 )<LinkPropsType>`
     ${(props: LinkPropsType) => fgColors(props)};
 `;

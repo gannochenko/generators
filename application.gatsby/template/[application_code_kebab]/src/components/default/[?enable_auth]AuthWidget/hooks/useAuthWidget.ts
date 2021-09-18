@@ -4,7 +4,7 @@ import { PropTypes } from '@material-ui/core';
 import { useAuth } from '../../../../hooks';
 
 export const useAuthWidget = (
-    ref: Ref<unknown>,
+    ref: Ref<HTMLDivElement>,
     props: AuthWidgetPropsType,
 ) => {
     const {

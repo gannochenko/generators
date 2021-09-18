@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 import {
-    getPropBlocker,
+    getPropsBlocker,
     backgroundCover,
     absoluteCover,
     muiSpacing,
@@ -14,17 +14,14 @@ import { MainHeaderRootPropsType } from './type';
 import arrow from './assets/arrow.svg';
 import { HEADER_HEIGHT } from './constants';
 
-// all unwanted custom props should be blacklisted
-const customProps = {};
-
 export const HomePageHeaderRoot = styled.div.withConfig(
-    getPropBlocker(customProps),
+    getPropsBlocker,
 )<MainHeaderRootPropsType>`
     margin-bottom: 4rem;
 `;
 
 export const HomePageHeaderMainContainer = styled.div.withConfig(
-    getPropBlocker(customProps),
+    getPropsBlocker,
 )<MainHeaderRootPropsType>`
     position: relative;
     min-width: 320px;
