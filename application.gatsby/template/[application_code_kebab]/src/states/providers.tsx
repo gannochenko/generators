@@ -7,6 +7,6 @@ export const StateProviders: FC = ({ children }) => {
 <% if (use_contact_form) { %>
     return <ContactFormState.Provider>{children}</ContactFormState.Provider>;
 <% } else { %>
-    return <>children</>;
+    return <>{children}</>;
 <% } %>
 };

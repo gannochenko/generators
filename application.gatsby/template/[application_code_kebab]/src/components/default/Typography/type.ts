@@ -1,14 +1,12 @@
 import { HTMLAttributes } from 'react';
-import {
-    StylePropsType,
-} from '@gannochenko/ui.styled-components';
+import { StylePropsType } from '@gannochenko/ui.styled-components';
+import { TypographyProps } from '@material-ui/core';
 
 export type TypographyPropsType = Partial<{
-    // custom props here
-
     enableVerticalGutter: boolean;
-    variant: string;
+    variant: TypographyProps['variant'];
+    component: string;
 }> &
-    HTMLAttributes<HTMLElement>;
+    Omit<HTMLAttributes<HTMLElement>, 'color'>;
 
-export type TypographyRootPropsType = TypographyPropsType & StylePropsType;
+export type MainHeaderRootPropsType = StylePropsType;

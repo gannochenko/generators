@@ -4,10 +4,6 @@ import {
     MarginPropsType,
 } from '@gannochenko/ui.styled-components';
 
-export type MainHeaderPropsType = HTMLAttributes<HTMLDivElement> & {
-    backgroundImage: any; // todo: tighten
-} & MarginPropsType;
+export type MainHeaderPropsType = HTMLAttributes<HTMLDivElement> & MarginPropsType;
 
-export type MainHeaderRootPropsType = StylePropsType & {
-    backgroundImage: any;
-};
+export type MainHeaderRootPropsType = StylePropsType;

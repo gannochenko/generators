@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { FooterRoot, FooterInfo, FooterNoWrap, CICDLink, AnalyticsLink } from './style';
 import { Link } from '../Link';
 import { useFooter } from './hooks/useFooter';
-import { COOKIE_POLICY, <% if(use_contact_form) { %>PERSONAL_DATA_POLICY<% } %> } from '../../pathTemplates';
+import { COOKIE_POLICY, <% if(use_contact_form) { %>PERSONAL_DATA_POLICY<% } %> } from '../../../pathTemplates';
 
 export const Footer: FC = () => {
     const {

@@ -1,30 +1,26 @@
 import { LinkPropsType } from '../type';
 
 export const useLink = ({ to, href, target, ...props }: LinkPropsType) => {
-
     const link = to || href || '';
-    const newTab = (!link.startsWith('/') && !link.startsWith('?')) || target === '_blank';
-
-    let rootProps = {
-        ...props,
-    };
-
-    if (newTab) {
-        rootProps = {
-            ...rootProps,
-            href: link,
-            target: target ?? '_blank',
-        };
-    } else {
-        rootProps = {
-            ...rootProps,
-            to: link,
-            target,
-        };
-    }
+    const newTab =
+        (!link.startsWith('/') && !link.startsWith('?')) || target === '_blank';
 
     return {
-        rootProps,
+        props,
         newTab,
+        getLinkProps: () => {
+            return {
+                ...props,
+                href: link,
+                target: target ?? '_blank',
+            };
+        },
+        getGatsbyLinkProps: () => {
+            return {
+                ...props,
+                to: link,
+                target,
+            };
+        },
     };
 };

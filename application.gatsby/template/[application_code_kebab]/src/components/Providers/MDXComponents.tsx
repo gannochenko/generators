@@ -1,17 +1,10 @@
 /* eslint-disable react/display-name */
-
 import React, { ReactNode } from 'react';
-import { ObjectLiteralType } from '@gannochenko/ui.styled-components';
-
-import { Typography } from '../default/Typography';
-import { Link } from '../default/Link';
-import { HR } from '../default/HR';
-import { InlineCode } from '../default/InlineCode';
-import { Container } from '../default/Container';
+import { Typography, Link, HR, InlineCode, Container } from '../default';
 
 const wrap = (children: ReactNode) => <Container>{children}</Container>;
 
-const Paragraph = (props: ObjectLiteralType) => wrap(
+const Paragraph = (props: Record<string, any>) => wrap(
     <Typography
         {...props}
         variant="body1"
@@ -20,7 +13,7 @@ const Paragraph = (props: ObjectLiteralType) => wrap(
     />
 );
 
-const H1 = (props: ObjectLiteralType) => wrap(
+const H1 = (props: Record<string, any>) => wrap(
     <Typography
         {...props}
         variant="h1"
@@ -29,7 +22,7 @@ const H1 = (props: ObjectLiteralType) => wrap(
     />
 );
 
-const H2 = (props: ObjectLiteralType) => wrap(
+const H2 = (props: Record<string, any>) => wrap(
     <Typography
         {...props}
         variant="h2"
@@ -38,7 +31,7 @@ const H2 = (props: ObjectLiteralType) => wrap(
     />
 );
 
-const H3 = (props: ObjectLiteralType) => wrap(
+const H3 = (props: Record<string, any>) => wrap(
     <Typography
         {...props}
         variant="h3"
@@ -47,7 +40,7 @@ const H3 = (props: ObjectLiteralType) => wrap(
     />
 );
 
-const H4 = (props: ObjectLiteralType) => wrap(
+const H4 = (props: Record<string, any>) => wrap(
     <Typography
         {...props}
         variant="h4"

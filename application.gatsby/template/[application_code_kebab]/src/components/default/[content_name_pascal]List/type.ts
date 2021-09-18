@@ -6,7 +6,7 @@ import {
 
 export type <%- content_name_pascal %>ListPropsType = HTMLAttributes<HTMLDivElement> &
     Partial<{
-        data: ObjectLiteralType[];
+        data: Record<string, any>[];
         // put your custom props here
     }> &
     MarginPropsType;

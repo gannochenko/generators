@@ -22,7 +22,7 @@ export const HomePageHeaderRoot = styled.div.withConfig(
 
 export const HomePageHeaderMainContainer = styled.div.withConfig(
     getPropsBlocker,
-)<MainHeaderRootPropsType>`
+)`
     position: relative;
     min-width: 320px;
     flex-shrink: 0;

@@ -6,10 +6,6 @@ import {
 import { Typography } from '@material-ui/core';
 import { TypographyRootPropsType } from './type';
 
-const customProps = {
-    enableVerticalGutter: true,
-};
-
 const getRootDynamicStyle = ({
     enableVerticalGutter,
     variant,

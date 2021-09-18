@@ -1,9 +1,5 @@
 import { ReactNode } from 'react';
 
-export interface ObjectLiteralType<P = any> {
-    [k: string]: P;
-}
-
 export type ScalarType = string | number;
 
 export interface Graphics {
