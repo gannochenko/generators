@@ -20,9 +20,7 @@ const getRootDynamicStyle = ({
     return '';
 };
 
-export const TypographyRoot = styled(Typography).withConfig(
-    getPropsBlocker,
-)<TypographyRootPropsType>`
+export const TypographyRoot = styled(Typography)<TypographyRootPropsType>`
     ${getRootDynamicStyle};
 `;
 
