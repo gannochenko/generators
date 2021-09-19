@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+export type RecordString<V = unknown> = Record<string, V>;
+
 export type ScalarType = string | number;
 
 export interface Graphics {
