@@ -9,6 +9,7 @@
         "moduleResolution": "node",
         "noUnusedLocals": false,
         "noUnusedParameters": false,
+        "experimentalDecorators": true,
         "plugins": [
             {
                 "name": "typescript-styled-plugin"

@@ -5,8 +5,10 @@ import {
     absoluteCover,
     muiSpacing,
     muiColor,
+    align,
+    central,
+    rectangle,
 } from '@gannochenko/ui.styled-components';
-import { align, central, rectangle } from '@gannochenko/etc';
 import { withEffects } from '@gannochenko/ui';
 
 import { GatsbyImage } from 'gatsby-plugin-image';

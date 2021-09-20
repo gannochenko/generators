@@ -186,7 +186,6 @@ module.exports.Generator = class Generator {
             packages: [
                 '@gannochenko/ui.styled-components',
                 '@gannochenko/ui',
-                '@gannochenko/etc',
                 '@mdx-js/mdx',
                 '@mdx-js/react',
                 'animated-scroll-to',

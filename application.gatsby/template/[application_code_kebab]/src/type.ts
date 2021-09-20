@@ -4,6 +4,13 @@ export type RecordString<V = unknown> = Record<string, V>;
 
 export type ScalarType = string | number;
 
+export function Implements<T>() {
+    return <U extends T>(constructor: U) => {
+        // eslint-disable-next-line no-unused-expressions
+        constructor;
+    };
+}
+
 export interface Graphics {
     source?: string;
     author?: string;
