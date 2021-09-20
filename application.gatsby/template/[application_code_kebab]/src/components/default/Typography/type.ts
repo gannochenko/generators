@@ -9,4 +9,4 @@ export type TypographyPropsType = Partial<{
 }> &
     Omit<HTMLAttributes<HTMLElement>, 'color'>;
 
-export type MainHeaderRootPropsType = StylePropsType;
+export type TypographyRootPropsType = TypographyPropsType & StylePropsType;
