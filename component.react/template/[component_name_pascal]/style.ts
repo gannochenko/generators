@@ -6,7 +6,7 @@ import {
     <%- component_name_pascal %>RootPropsType,
 } from './type';
 
-const getRootStyle = ({ propA }: <%- component_name_pascal %>RootPropsType) => {
+const getRootStyle = (props: <%- component_name_pascal %>RootPropsType) => {
     let result = {};
 
     // if (propA) {

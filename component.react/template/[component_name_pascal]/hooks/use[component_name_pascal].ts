@@ -8,7 +8,7 @@ export const use<%- component_name_pascal %> = <E extends HTMLDivElement>(
 <% if (forward_ref) { %>
     ref: ForwardedRef<E>,
 <% } %>
-    { propA, ...props }: <%- component_name_pascal %>PropsType
+    { ...props }: <%- component_name_pascal %>PropsType
 ) => {
 <% if (forward_ref) { %>
     const rootRef = useRootRef<E>(ref);
