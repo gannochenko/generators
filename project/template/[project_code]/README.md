@@ -8,11 +8,10 @@
 <h3 align="center">The source code of the "<%- project_code %>" project</h3>
 
   <p align="center">
-    <a href="https://github.com/gannochenko/<%- github_repository_name %>">Source</a>
+    <a href="https://github.com/c/<%- github_repository_name %>">Source</a>
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
 * [Installation](#installation)
@@ -26,6 +25,11 @@ Just run the following script to do so:
 ~~~bash
 yarn install-all
 ~~~
+
+## Github setup
+
+* Create a [new repository](https://github.com/new) called "<%- github_repository_name %>".
+* Change the default branch from master to dev [here](https://github.com/<%- github_account_name %>/<%- github_repository_name %>/settings/branches).
 
 ## Contact
 

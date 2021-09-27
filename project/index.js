@@ -106,6 +106,7 @@ module.exports.Generator = class Generator {
                 'husky',
                 'prettier',
                 'pretty-quick',
+                '@gannochenko/fea-cli',
             ],
         };
     }

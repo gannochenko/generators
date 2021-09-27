@@ -4,7 +4,8 @@
     "description": "",
     "scripts": {
         "install-all": "./script/install.sh",
-        "infra": "docker-compose up"
+        "infra": "docker-compose up",
+        "feat": "fea create"
     },
     "keywords": [],
     "author": "",
