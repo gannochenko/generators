@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { Router } from '@reach/router';
-import { CodePage } from '../../clientPages/code';
+import { SampleClientPage } from '../../clientPages/SampleClientPage';
 
 const Docs: FC = () => {
     return (
-        <Router basepath="/docs">
-            <CodePage path="/code" />
+        <Router basepath="/app">
+            <SampleClientPage path="/code" />
         </Router>
     );
 };

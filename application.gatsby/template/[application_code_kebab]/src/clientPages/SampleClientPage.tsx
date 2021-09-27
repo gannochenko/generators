@@ -1,21 +1,21 @@
 import React, { FC } from 'react';
 
-import { Container, PageOffset, LiveSnippet } from '../components';
+import { Container, PageOffset } from '../components';
 import { PageLayout } from '../components/default/PageLayout';
 
-type CodePagePropsType = {
+type SampleClientPagePropsType = {
     path: string;
 };
 
-export const CodePage: FC<CodePagePropsType> = () => {
+export const SampleClientPage: FC<SampleClientPagePropsType> = () => {
     return (
         <PageLayout
-            title="Button"
+            title="Sample Client Page"
             keywords="one, two"
-            description="JS Page description"
+            description="Sample Client Page description"
         >
             <Container>
-                <LiveSnippet />
+                Hello
             </Container>
             <PageOffset />
         </PageLayout>
