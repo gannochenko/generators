@@ -3,7 +3,7 @@
 <h3 align="center">The infrastructure of the "<%- application_code %>" application</h3>
 
   <p align="center">
-    <a href="https://github.com/<%- github_account_name %>/<%- repository_name %>_infra">Source</a>
+    <a href="https://github.com/<%- github_account_name %>/<%- github_repository_name %>_infra">Source</a>
   </p>
 </p>
 
