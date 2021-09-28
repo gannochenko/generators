@@ -14,8 +14,16 @@
 
 ## Table of Contents
 
+* [Github setup](#github-setup)
 * [Installation](#installation)
+* [Running locally](#running-locally)
 * [Contact](#contact)
+
+## Github setup
+
+* Create a [new repository](https://github.com/new) called "<%- github_repository_name %>".
+* Change the default branch from master to dev [here](https://github.com/<%- github_account_name %>/<%- github_repository_name %>/settings/branches).
+
 
 ## Installation
 
@@ -26,10 +34,13 @@ Just run the following script to do so:
 yarn install-all
 ~~~
 
-## Github setup
+## Running locally
 
-* Create a [new repository](https://github.com/new) called "<%- github_repository_name %>".
-* Change the default branch from master to dev [here](https://github.com/<%- github_account_name %>/<%- github_repository_name %>/settings/branches).
+Docker Compose is used to run the infrastructure locally. To start it, type:
+
+~~~bash
+yarn infra
+~~~
 
 ## Contact
 

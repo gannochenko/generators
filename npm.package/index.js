@@ -145,6 +145,7 @@ module.exports.Generator = class Generator {
                 'ts-jest',
                 'typescript',
                 '@types/jest',
+                'jest-transform-stub',
                 'eslint',
                 '@typescript-eslint/parser',
                 'eslint-config-airbnb-base',
