@@ -1,10 +1,4 @@
 <p align="center">
-  <!--
-  <a href="https://github.com/<%- github_account_name %>/<%- repository_name %>">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-  -->
-
   <h3 align="center">Infrastructure of the "<%- project_code %>" project</h3>
 
   <p align="center">
