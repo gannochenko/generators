@@ -8,7 +8,7 @@
 <h3 align="center">The source code of the "<%- application_code %>" application</h3>
 
   <p align="center">
-    <a href="https://github.com/<%- github_account_name %>/<%- repository_name %>">Source</a>
+    <a href="https://github.com/<%- github_account_name %>/<%- github_repository_name %>">Source</a>
   </p>
 </p>
 
