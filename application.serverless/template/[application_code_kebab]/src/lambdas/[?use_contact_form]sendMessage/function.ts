@@ -7,8 +7,6 @@ type ContactFormArgsType = {
     contact: string;
 };
 
-export const VERB = 'post';
-
 const compiledFunction = compile(template);
 
 export const fn = async (args: ContactFormArgsType) => {

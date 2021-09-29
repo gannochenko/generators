@@ -2,6 +2,7 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const { DefinePlugin } = require('webpack');
+const slsw = require('serverless-webpack');
 const { allowedEnvVariables } = require('./.env.js');
 
 const getEnv = () => {
@@ -20,35 +21,34 @@ const getEnv = () => {
     return result;
 };
 
-module.exports = (env, argv) => {
-    return {
-        mode: 'production',
-        // devtool: 'inline-source-map',
-        // entry: './src/main.js',
-        output: {
-            filename: './main.js',
-            path: path.resolve(__dirname, 'build'),
-            libraryTarget: 'umd',
-        },
-        resolve: {
-            extensions: ['.ts', '.js'],
-        },
-        // externals: [nodeExternals()],
-        target: 'node',
-        module: {
-            rules: [
-                {
-                    test: /\.ts$/,
-                    loader: 'ts-loader',
-                    exclude: /node_modules/,
-                },
-            ],
-        },
-        plugins: [
-            new Dotenv({
-                systemvars: false,
-            }),
-            new DefinePlugin(getEnv()),
+module.exports = {
+    entry: slsw.lib.entries,
+    mode: 'production',
+    // devtool: 'inline-source-map',
+    output: {
+        libraryTarget: 'commonjs',
+        // pay attention to this
+        path: path.join(__dirname, '.webpack'),
+        filename: '[name].js',
+    },
+    resolve: {
+        extensions: ['.ts', '.js'],
+    },
+    // externals: [nodeExternals()],
+    target: 'node',
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+            },
         ],
-    };
+    },
+    plugins: [
+        new Dotenv({
+            systemvars: false,
+        }),
+        new DefinePlugin(getEnv()),
+    ],
 };

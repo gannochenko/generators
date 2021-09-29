@@ -99,14 +99,16 @@ module.exports.Generator = class Generator {
                 'dotenv-cli',
                 'dotenv-webpack',
                 'express',
-                'nodemon',
                 'ts-loader',
                 'ts-node',
                 'typescript',
                 'webpack',
                 'webpack-cli',
                 'webpack-node-externals',
-                !!use_contact_form && '@types/pug'
+                !!use_contact_form && '@types/pug',
+                'serverless',
+                'serverless-offline',
+                'serverless-webpack',
             ],
         };
     }

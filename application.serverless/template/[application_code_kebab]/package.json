@@ -4,7 +4,7 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "dev": "nodemon",
+        "dev": "serverless offline start -r eu-central-1 --noTimeout --host 0.0.0.0",
         "deploy": "./script/deploy.sh"
     },
     "devDependencies": {

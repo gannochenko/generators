@@ -4,6 +4,7 @@
     "description": "",
     "scripts": {
         "install-all": "./script/install.sh",
+        "seed": "./script/seed.sh",
         "infra": "docker-compose up",
         "feat": "fea create"
     },

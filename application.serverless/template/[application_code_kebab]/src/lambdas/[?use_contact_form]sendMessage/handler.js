@@ -1,4 +1,4 @@
-import { fn } from './fn';
+import { fn } from './function';
 
 const makeResponse = (code, message = 'Ok') => {
     if (code === 400) {
