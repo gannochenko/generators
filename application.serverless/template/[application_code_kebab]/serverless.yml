@@ -41,3 +41,5 @@ custom:
         webpackConfig: 'webpack.config.js' # name of webpack configuration file
         includeModules: true # add excluded modules to the bundle
         packager: 'yarn' # package manager we use
+    serverless-offline:
+        useChildProcesses: true

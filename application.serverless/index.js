@@ -83,7 +83,7 @@ module.exports.Generator = class Generator {
 
         return {
             destination: '[application_code_kebab]/',
-            packages: ['cors', !!use_contact_form && 'axios', !!use_contact_form && 'pug'],
+            packages: ['cors', !!use_contact_form && 'axios', !!use_contact_form && 'pug', 'aws-sdk'],
         };
     }
 

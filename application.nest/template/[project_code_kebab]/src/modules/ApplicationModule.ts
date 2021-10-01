@@ -19,7 +19,7 @@ import { UserRoleEntity } from '../entities/UserRoleEntity';
 
 import { isDev } from '../utils/isDev';
 import { AuthorsResolver } from '../gql/resolvers/AuthorsResolver';
-import { AuthenticationMiddleware } from '../middlewares/AuthenticationMiddleware';
+import { Auth0AuthenticationMiddleware } from '../middlewares/Auth0AuthenticationMiddleware';
 
 @Module({
     imports: [
@@ -59,7 +59,7 @@ import { AuthenticationMiddleware } from '../middlewares/AuthenticationMiddlewar
 export class ApplicationModule {
     public configure(consumer: MiddlewareConsumer) {
         consumer
-            .apply(AuthenticationMiddleware)
+            .apply(Auth0AuthenticationMiddleware)
             .forRoutes({ path: '*', method: RequestMethod.ALL });
     }
 }

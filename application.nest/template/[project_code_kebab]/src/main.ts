@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import * as helmet from 'helmet';
+import helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
 
 import { ApplicationModule } from './modules/ApplicationModule';

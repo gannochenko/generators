@@ -4,11 +4,12 @@ import { expressJwtSecret } from 'jwks-rsa';
 import { getConnection } from 'typeorm';
 import { UserEntity } from '../entities/UserEntity';
 
-export class AuthenticationMiddleware implements NestMiddleware {
+export class Auth0AuthenticationMiddleware implements NestMiddleware {
     use(req, res, next) {
         const domain = process.env.AUTH0_DOMAIN;
         const audience = process.env.AUTH0_AUDIENCE;
 
+        // https://auth0.com/blog/json-web-token-signing-algorithms-overview/
         jwt({
             secret: expressJwtSecret({
                 cache: true,
@@ -16,8 +17,8 @@ export class AuthenticationMiddleware implements NestMiddleware {
                 jwksRequestsPerMinute: 5,
                 jwksUri: `https://${domain}.auth0.com/.well-known/jwks.json`,
             }),
-            audience: audience,
-            issuer: `https://${domain}.auth0.com/`,
+            audience: audience, // https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3
+            issuer: `https://${domain}.auth0.com/`, // https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.1
             algorithms: ['RS256'],
         })(req, res, (err) => {
             if (err) {

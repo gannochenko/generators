@@ -1,4 +1,4 @@
-// const nodeExternals = require('webpack-node-externals');
+const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const { DefinePlugin } = require('webpack');
@@ -34,7 +34,7 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.js'],
     },
-    // externals: [nodeExternals()],
+    externals: [nodeExternals()],
     target: 'node',
     module: {
         rules: [
