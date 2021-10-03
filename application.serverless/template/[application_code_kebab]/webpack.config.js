@@ -6,7 +6,7 @@ const slsw = require('serverless-webpack');
 const { allowedEnvVariables } = require('./.env.js');
 
 const getEnv = () => {
-    const result = [];
+    const result = {};
 
     allowedEnvVariables.forEach((variableName) => {
         if (

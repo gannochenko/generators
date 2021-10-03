@@ -1,0 +1,6 @@
+.webpack/
+build/
+*.test.js
+*.spec.js
+webpack.config.js
+webpack.build.config.js

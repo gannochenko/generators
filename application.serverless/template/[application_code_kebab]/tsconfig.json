@@ -14,7 +14,8 @@
         "module": "CommonJS",
         "removeComments": true,
         "emitDecoratorMetadata": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "strictPropertyInitialization": false
     },
     "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules/*"]
