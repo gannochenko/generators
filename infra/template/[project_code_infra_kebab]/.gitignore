@@ -11,4 +11,5 @@ public
 
 # other
 *.zip
+!function-dummy-src.zip
 .DS_Store

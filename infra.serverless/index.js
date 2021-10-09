@@ -19,7 +19,7 @@ module.exports.Generator = class Generator {
                 name: 'function_name',
             },
             {
-                message: 'API path part',
+                message: 'Lambda function path part',
                 name: 'path_part',
                 when: (answers) => !!answers.function_name,
                 default: (answers) => answers.function_name,

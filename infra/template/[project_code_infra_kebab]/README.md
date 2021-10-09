@@ -52,10 +52,10 @@ Steps to follow:
     * [Official docs on how to do it](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html)
     * [There is also a document with screenshots](https://gannochenko.notion.site/Creating-AWS-Billing-alarm-20a6eed780b247cfb93c8a6cf23eaea8)
 4. [Create a new non-root user](https://console.aws.amazon.com/iam/home#/users$new?step=details) and obtain the access credentials.
-5. Paste the credentials into env vars in the `.env` file:
+5. Paste the credentials into env vars in the `.envvars` file:
   ~~~bash
-  AWS_ACCESS_KEY_ID=
-  AWS_SECRET_ACCESS_KEY=
+  export AWS_ACCESS_KEY_ID=
+  export AWS_SECRET_ACCESS_KEY=
   ~~~
 
 Useful resources:
@@ -73,10 +73,10 @@ The Terraform provider adds the __A__ and __CNAME__ records to your GoDaddy doma
 Steps to follow:
 
 * Go to Godaddy and [create a new key/secret](https://developer.godaddy.com/keys).
-* Fill out the env vars in the `.env` file:
+* Fill out the env vars in the `.envvars` file:
   ~~~bash
-  GODADDY_API_KEY=
-  GODADDY_API_SECRET=
+  export GODADDY_API_KEY=
+  export GODADDY_API_SECRET=
   ~~~
 
 Useful resources:
@@ -89,11 +89,11 @@ If we use Auth0 for authentication, then it also needs setup.
 Steps to follow:
 
 * Go to the [settings section of the RoboApp](https://manage.auth0.com/dashboard/eu/gannochenko/applications/xsZ4bfyjGVCcZX2uT1jar0fHLvf5FlOQ/settings) and retrieve the following data:
-* Fill out the env vars in the `.env` file:
+* Fill out the env vars in the `.envvars` file:
   ~~~bash
-  AUTH0_DOMAIN=
-  AUTH0_CLIENT_ID=
-  AUTH0_CLIENT_SECRET=
+  export AUTH0_DOMAIN=
+  export AUTH0_CLIENT_ID=
+  export AUTH0_CLIENT_SECRET=
   ~~~
 
 Useful resources:
@@ -107,9 +107,9 @@ Vercel is used to host web applications.
 Steps to follow:
 
 * Go to the [tokens page](https://vercel.com/account/tokens) and create a new token. Then retrieve the data:
-* Fill out the env vars in the `.env` file:
+* Fill out the env vars in the `.envvars` file:
   ~~~bash
-  VERCEL_TOKEN=
+  export VERCEL_TOKEN=
   ~~~
 
 Useful resources:
@@ -123,9 +123,9 @@ Useful resources:
 ./script/apply.sh
 ~~~
 
-## Setting up CD
+## Deploying via CD
 
-Take all variables from the `./.env` file and create [repository secrets](https://github.com/gannochenko/gannochenko.dev_infra/settings/secrets/actions) with the same names:
+Take all variables from the `./.envvars` file and create [repository secrets](https://github.com/gannochenko/gannochenko.dev_infra/settings/secrets/actions) with the same names:
 
 * AWS_ACCESS_KEY_ID
 * AWS_SECRET_ACCESS_KEY

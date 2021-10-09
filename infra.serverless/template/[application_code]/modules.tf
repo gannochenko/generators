@@ -3,7 +3,7 @@ module "<%- application_code_tf %>_<%- function_name %>" {
   source = "./<%- function_name %>"
 
   # input
-  path = "api"
+  path = "<%- path_part %>"
   cors = var.cors
   api_gateway_id = aws_api_gateway_rest_api.<%- application_code_tf %>.id
   api_gateway_root_resource_id = aws_api_gateway_rest_api.<%- application_code_tf %>.root_resource_id
