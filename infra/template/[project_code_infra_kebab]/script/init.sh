@@ -2,11 +2,11 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-if [ -f .env ]
+if [ -f .envvars ]
 then
-  export $(cat .env | xargs)
+  export $(cat .envvars | xargs)
 fi
 
 cd "${DIR}/../infra" || exit
-aws s3api create-bucket --bucket=gannochenko-terraform-states --region=eu-central-1 --create-bucket-configuration LocationConstraint=eu-central-1
+aws s3api create-bucket --bucket=gannochenko-<%- project_code %>-terraform-states --region=eu-central-1 --create-bucket-configuration LocationConstraint=eu-central-1
 terraform init -reconfigure -upgrade

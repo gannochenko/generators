@@ -18,6 +18,10 @@ variable "aws_iam_role_lambda_arn" {
   type = string
 }
 
+variable "path" {
+  type = string
+}
+
 variable "cors" {
   type = string
   default = "*"

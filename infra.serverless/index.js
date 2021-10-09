@@ -58,6 +58,12 @@ module.exports.Generator = class Generator {
     }
 
     async refineAnswers(answers) {
+        // parent project code
+        answers.project_code = path.basename(path.dirname(process.cwd()));
+        answers.project_code_kebab = this.util.textConverter.toKebab(
+            answers.project_code,
+        );
+
         // here it is possible to alter some answers before the generation starts
         answers.application_code_kebab = this.util.textConverter.toKebab(
             answers.application_code,
@@ -69,7 +75,7 @@ module.exports.Generator = class Generator {
         answers.dynamodb_table_name_tf = this.util.textConverter.toKebab(
             answers.dynamodb_table_name || '',
         ).replace(/[^a-zA-Z0-9_]/g, '-');
-        answers.dynamodb_table_global_name = `${answers.application_code}_${answers.dynamodb_table_name};`
+        answers.dynamodb_table_global_name = `${answers.application_code}_${answers.dynamodb_table_name}`
 
         return answers;
     }

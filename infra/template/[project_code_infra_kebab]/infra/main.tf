@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "gannochenko-terraform-states"
+    bucket = "gannochenko-<%- project_code %>-terraform-states"
     key    = "<%- project_code %>"
     region = "eu-central-1"
   }

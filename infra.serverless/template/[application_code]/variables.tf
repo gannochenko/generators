@@ -1,4 +1,8 @@
-variable "apex_domain" {
+variable "domain" {
+  type = string
+}
+
+variable "cors" {
   type = string
 }
 

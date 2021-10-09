@@ -19,10 +19,11 @@ Include the module to the project's `terraform` `modules.tf` file:
 
 ~~~
 module "<%- application_code_tf %>" {
-  source = "./%- application_code_kebab %>"
+  source = "./<%- application_code %>"
 
   # input
-  apex_domain = local.applications_apex_domain
+  domain = godaddy_domain_record.apex.domain
+  cors = "https://${godaddy_domain_record.apex.domain}"
   stage_name = var.stage_name
   aws_region = local.aws_region
   aws_lambda_bucket = local.aws_lambda_bucket
