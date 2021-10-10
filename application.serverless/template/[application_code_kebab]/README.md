@@ -68,7 +68,8 @@ Example:
 
 It is possible to run Continuous Delivery for the lambda functions using Github Actions. Take the `.github/workflow.example.yml`, replace the function name placeholder with the actual function name, and put the file to the `.github/workflows` folder of your root project.
 
-Create repository secrets to store the following variables:
+Take all variables from the `./.env` file and create
+[a new "production" environment](https://github.com/gannochenko/legacy/settings/environments/new) with the following secrets:
 
 * `AWS_ACCESS_KEY_ID`
 * `AWS_SECRET_ACCESS_KEY`

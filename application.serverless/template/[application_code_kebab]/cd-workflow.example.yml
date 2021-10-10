@@ -27,5 +27,3 @@ jobs:
       - name: Build and Deploy
         run: ./script/deploy.sh #FUNCTION_NAME#
         working-directory: ./apps/<%- application_code_kebab %>/
-        env:
-          SENDIN_BLUE_API_KEY: ${{ secrets.SENDIN_BLUE_API_KEY }}
