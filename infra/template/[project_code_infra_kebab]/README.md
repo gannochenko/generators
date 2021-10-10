@@ -125,7 +125,8 @@ Useful resources:
 
 ## Deploying via CD
 
-Take all variables from the `./.envvars` file and create [repository secrets](https://github.com/gannochenko/gannochenko.dev_infra/settings/secrets/actions) with the same names:
+Take all variables from the `./.envvars` file and create
+[a new "production" environment](https://github.com/gannochenko/legacy/settings/environments/new) with the following secrets:
 
 * AWS_ACCESS_KEY_ID
 * AWS_SECRET_ACCESS_KEY

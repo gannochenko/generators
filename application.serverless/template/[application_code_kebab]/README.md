@@ -37,15 +37,15 @@ The deployment script uses AWS CLI, which you will have to [install](https://for
 To deploy the lambda functions manually, first copy the `.env.example` file to `.env` and update the AWS secrets.
 
 ~~~bash
-export AWS_ACCESS_KEY_ID=
-export AWS_SECRET_ACCESS_KEY=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
 ~~~
 
 There are also two other variables, for `CORS` and `SENDIN_BLUE_API_KEY`.
 `SendinBlue` is used to send email. Either [reuse your previous API key](https://account.sendinblue.com/advanced/api/), or [create a new one](https://account.sendinblue.com/advanced/api/).
 
 ~~~bash
-export SENDIN_BLUE_API_KEY=
+SENDIN_BLUE_API_KEY=
 ~~~
 
 As for `CORS`, it is not required to define it here, because the value of this variable comes from the infrastructure.
