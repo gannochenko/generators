@@ -8,7 +8,6 @@
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
 * [Project list](#project-list)
@@ -126,18 +125,8 @@ Useful resources:
 ## Deploying via CD
 
 Take all variables from the `./.envvars` file and create
-[a new "production" environment](https://github.com/gannochenko/legacy/settings/environments/new) with the following secrets:
+[a new "production" environment](https://github.com/gannochenko/legacy/settings/environments/new) with the corresponding secrets.
 
-* AWS_ACCESS_KEY_ID
-* AWS_SECRET_ACCESS_KEY
-* AUTH0_DOMAIN
-* AUTH0_CLIENT_ID
-* AUTH0_CLIENT_SECRET
-* VERCEL_TOKEN
-* GODADDY_API_KEY
-* GODADDY_API_SECRET
-
-<!-- CONTACT -->
 ## Contact
 
 Sergei Gannochenko - [Linkedin](https://www.linkedin.com/in/gannochenko/)

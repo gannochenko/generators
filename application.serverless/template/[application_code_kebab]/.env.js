@@ -6,4 +6,5 @@
 module.exports.allowedEnvVariables = [
     'SENDIN_BLUE_API_KEY',
     'CORS',
+    'AWS_REGION',
 ];
