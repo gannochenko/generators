@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-S3_BUCKET=gannochenko-<%- application_code_tf %>-<%- application_code_kebab %>-lambda-src
+S3_BUCKET=gannochenko--<%- project_code_tf %>--<%- application_code_tf %>--lambda-src
 FN_NAME=${1}
 FN_NAME_GLOBAL=<%- application_code_tf %>_"${FN_NAME}"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

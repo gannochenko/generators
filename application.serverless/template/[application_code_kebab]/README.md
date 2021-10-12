@@ -67,8 +67,13 @@ Example:
 
 It is possible to run Continuous Delivery for the lambda functions using Github Actions. Take the `.github/workflow.example.yml`, replace the function name placeholder with the actual function name, and put the file to the `.github/workflows` folder of your root project.
 
-Take all variables from the `./.env` file and create [a new "production" environment](https://github.com/gannochenko/legacy/settings/environments/new) with the corresponding secrets.
-There is no need to define the `CORS` variable, as it's value comes from the infrastructure.
+Take the following variables from the `./.env` file and create [a new "production" environment](https://github.com/gannochenko/legacy/settings/environments/new) with the corresponding secrets:
+
+* AWS_ACCESS_KEY_ID
+* AWS_SECRET_ACCESS_KEY
+* AWS_REGION
+
+There could be more variables in case if the project has other API keys crucial to be stored as secrets.
 
 Take the `cd-workflow.example.yml`, replace the #FUCNTION_NAME# placeholder and put the file into the `.github/workflows` folder in the root of the repository. Do it for every function you wish to run the CD for.
 

@@ -36,6 +36,10 @@ module.exports.Generator = class Generator {
         answers.project_code_infra_kebab = `${this.util.textConverter.toKebab(
             answers.project_code,
         )}_infra`;
+        answers.project_code_kebab = this.util.textConverter.toKebab(
+            answers.project_code,
+        );
+        answers.project_code_tf = answers.project_code_kebab.replace(/[^a-zA-Z0-9_]/g, '-');
 
         return answers;
     }

@@ -25,18 +25,6 @@ module.exports.Generator = class Generator {
                 default: (answers) => answers.function_name,
             },
             {
-                message: 'Add DynamoDB?',
-                name: 'use_dynamodb',
-                type: 'confirm',
-                default: false,
-            },
-            {
-                message: 'DynamoDB table name',
-                name: 'dynamodb_table_name',
-                default: 'users',
-                when: ({ use_dynamodb }) => !!use_dynamodb,
-            },
-            {
                 message: 'Add contact form Lambda?',
                 name: 'use_contact_form',
                 type: 'confirm',

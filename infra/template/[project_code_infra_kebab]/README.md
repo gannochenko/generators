@@ -124,8 +124,17 @@ Useful resources:
 
 ## Deploying via CD
 
-Take all variables from the `./.envvars` file and create
-[a new "production" environment](https://github.com/gannochenko/legacy/settings/environments/new) with the corresponding secrets.
+Take at least the following variables from the `./.envvars` file and create
+[a new "production" environment](https://github.com/gannochenko/legacy/settings/environments/new) with the corresponding secrets:
+
+* AWS_ACCESS_KEY_ID
+* AWS_SECRET_ACCESS_KEY
+* AWS_REGION
+* GODADDY_API_KEY
+* GODADDY_API_SECRET
+* VERCEL_TOKEN
+
+There could be more variables in case if the project has other API keys crucial to be stored as secrets.
 
 ## Contact
 

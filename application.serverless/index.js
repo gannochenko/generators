@@ -62,17 +62,17 @@ module.exports.Generator = class Generator {
 
     async refineAnswers(answers) {
         // parent project code
-        answers.project_code = path.dirname(path.dirname(process.cwd()));
+        answers.project_code = path.basename(path.dirname(process.cwd()));
         answers.project_code_kebab = this.util.textConverter.toKebab(
             answers.project_code,
         );
-
-        answers.application_code_tf = answers.project_code_kebab.replace(/[^a-zA-Z0-9_]/g, '-');
+        answers.project_code_tf = answers.project_code_kebab.replace(/[^a-zA-Z0-9_]/g, '-');
 
         // here it is possible to alter some answers before the generation starts
         answers.application_code_kebab = this.util.textConverter.toKebab(
             answers.application_code,
         );
+        answers.application_code_tf = answers.application_code_kebab.replace(/[^a-zA-Z0-9_]/g, '-');
         answers.use_function = !!answers.function_name;
 
         return answers;
