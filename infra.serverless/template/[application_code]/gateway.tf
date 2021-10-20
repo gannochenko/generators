@@ -1,5 +1,6 @@
 resource "aws_api_gateway_rest_api" "<%- application_code_tf %>" {
   name = "<%- application_code_tf %>"
+  binary_media_types = ["multipart/form-data", "image/png", "image/jpeg"]
 }
 
 resource "aws_api_gateway_resource" "<%- application_code_tf %>_dummy" {
