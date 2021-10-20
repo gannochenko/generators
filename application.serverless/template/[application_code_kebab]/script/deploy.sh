@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export AWS_PAGER=""
+
 S3_BUCKET=gannochenko--<%- project_code_tf %>--<%- application_code_tf %>--lambda-src
 FN_NAME=${1}
 FN_NAME_GLOBAL=<%- application_code_tf %>_"${FN_NAME}"

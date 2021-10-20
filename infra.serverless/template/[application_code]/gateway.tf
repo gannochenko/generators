@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "<%- application_code_tf %>" {
-  name = local.code
+  name = "<%- application_code_tf %>"
 }
 
 resource "aws_api_gateway_resource" "<%- application_code_tf %>_dummy" {
@@ -64,6 +64,21 @@ resource "aws_api_gateway_integration_response" "<%- application_code_tf %>_dumm
 
 resource "aws_api_gateway_deployment" "<%- application_code_tf %>" {
   rest_api_id = aws_api_gateway_rest_api.<%- application_code_tf %>.id
-  stage_name  = var.stage_name
 }
 
+resource "aws_api_gateway_stage" "<%- application_code_tf %>" {
+  deployment_id = aws_api_gateway_deployment.<%- application_code_tf %>.id
+  rest_api_id = aws_api_gateway_rest_api.<%- application_code_tf %>.id
+  stage_name = var.stage_name
+}
+
+resource "aws_api_gateway_method_settings" "<%- application_code_tf %>" {
+  rest_api_id = aws_api_gateway_rest_api.<%- application_code_tf %>.id
+  stage_name  = aws_api_gateway_stage.<%- application_code_tf %>.stage_name
+  method_path = "*/*"
+
+  settings {
+    metrics_enabled = true
+    logging_level   = "INFO"
+  }
+}

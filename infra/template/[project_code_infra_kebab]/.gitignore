@@ -13,3 +13,4 @@ public
 *.zip
 !function-dummy-src.zip
 .DS_Store
+main.js

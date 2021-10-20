@@ -26,8 +26,6 @@ module "<%- application_code_tf %>" {
   cors = "https://${godaddy_domain_record.apex.domain}"
   stage_name = var.stage_name
   aws_region = local.aws_region
-  aws_lambda_bucket = local.aws_lambda_bucket
-  aws_iam_role_lambda_arn = aws_iam_role.lambda.arn
 }
 ~~~
 

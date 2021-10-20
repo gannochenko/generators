@@ -7,14 +7,14 @@
 //}
 
 resource "aws_lambda_function" "<%- function_name %>" {
-  function_name = local.lambda_function_name
+  function_name = "<%- application_code_tf %>_<%- function_name %>"
 
   filename = "lambda-function-dummy.zip"
 
   handler = "main.handler"
   runtime = "nodejs14.x"
 
-  role = var.aws_iam_role_lambda_arn
+  role = aws_iam_role.lambda_<%- function_name %>.arn
 
 //  layers = [aws_lambda_layer_version.some-massive-library.arn]
 

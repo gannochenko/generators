@@ -2,7 +2,7 @@ import { NestMiddleware } from '@nestjs/common';
 import * as jwt from 'express-jwt';
 import { expressJwtSecret } from 'jwks-rsa';
 import { getConnection } from 'typeorm';
-import { UserEntity } from '../entities/UserEntity';
+import { UserEntity } from '../entities/UserEntity/UserEntity';
 
 export class Auth0AuthenticationMiddleware implements NestMiddleware {
     use(req, res, next) {

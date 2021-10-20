@@ -5,5 +5,4 @@ locals {
   repository = "gannochenko/<%- project_code %>"
 
   aws_region = "eu-central-1"
-  aws_lambda_bucket = "${local.code}-lambda-code"
 }

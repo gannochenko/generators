@@ -16,7 +16,7 @@ resource "aws_api_gateway_integration" "<%- application_code_tf %>_<%- gateway_r
   resource_id = aws_api_gateway_method.<%- application_code_tf %>_<%- gateway_resource_name %>.resource_id
   http_method = aws_api_gateway_method.<%- application_code_tf %>_<%- gateway_resource_name %>.http_method
 
-  integration_http_method = "GET"
+  integration_http_method = aws_api_gateway_method.<%- application_code_tf %>.http_method
   type = "AWS_PROXY"
   uri = aws_lambda_function.<%- function_name %>.invoke_arn
 
