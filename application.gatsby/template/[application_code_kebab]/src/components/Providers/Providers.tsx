@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { MDXProvider } from '@mdx-js/react';
-import { ThemeProvider as MUIThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider as MUIThemeProvider, StylesProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import SimpleReactLightbox from 'simple-react-lightbox';
@@ -24,34 +24,36 @@ const win = getWindow();
 export const Providers: FC = ({ children }) => {
     return (
         <SimpleReactLightbox>
-            <MUIThemeProvider theme={theme}>
-                <ThemeProvider theme={theme}>
-                    <>
-                        <GlobalStyle />
+            <StylesProvider injectFirst>
+                <MUIThemeProvider theme={theme}>
+                    <ThemeProvider theme={theme}>
+                        <>
+                            <GlobalStyle />
 <% if (enable_auth) { %>
-                        <Auth0Provider
-                            domain={process.env.AUTH0_DOMAIN!}
-                            clientId={process.env.AUTH0_CLIENT_ID!}
-                            redirectUri={win ? win.location.origin : ''}
-                            audience={isDev() ? `http://localhost:3000` : `https://${process.env.AUTH0_DOMAIN}/api/v2/`}
-                            scope="read:current_user update:current_user_metadata"
-                            cacheLocation={isDev() ? 'localstorage' : undefined}
-                            useRefreshTokens={false}
-                        >
+                            <Auth0Provider
+                                domain={process.env.AUTH0_DOMAIN!}
+                                clientId={process.env.AUTH0_CLIENT_ID!}
+                                redirectUri={win ? win.location.origin : ''}
+                                audience={isDev() ? `http://localhost:3000` : `https://${process.env.AUTH0_DOMAIN}/api/v2/`}
+                                scope="read:current_user update:current_user_metadata"
+                                cacheLocation={isDev() ? 'localstorage' : undefined}
+                                useRefreshTokens={false}
+                            >
 <% } %>
-                            <QueryClientProvider client={queryClient}>
-                                <MDXProvider components={MDXComponents}>
-                                    <NetworkStatusProvider>
-                                        <StateProviders>{children}</StateProviders>
-                                    </NetworkStatusProvider>
-                                </MDXProvider>
-                            </QueryClientProvider>
+                                <QueryClientProvider client={queryClient}>
+                                    <MDXProvider components={MDXComponents}>
+                                        <NetworkStatusProvider>
+                                            <StateProviders>{children}</StateProviders>
+                                        </NetworkStatusProvider>
+                                    </MDXProvider>
+                                </QueryClientProvider>
 <% if (enable_auth) { %>
-                        </Auth0Provider>
+                            </Auth0Provider>
 <% } %>
-                    </>
-                </ThemeProvider>
-            </MUIThemeProvider>
+                        </>
+                    </ThemeProvider>
+                </MUIThemeProvider>
+            </StylesProvider>
         </SimpleReactLightbox>
     );
 };

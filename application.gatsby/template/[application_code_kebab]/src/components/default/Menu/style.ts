@@ -19,7 +19,7 @@ export const MenuRoot = styled.div`
     right: 0;
     background-color: ${muiColor('primary.main')};
     z-index: 1000;
-    box-shadow: 0px 6px 30px -8px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 6px 30px -8px rgba(0, 0, 0, 0.55);
 `;
 
 export const MenuInnerContainer = styled(Container)`
