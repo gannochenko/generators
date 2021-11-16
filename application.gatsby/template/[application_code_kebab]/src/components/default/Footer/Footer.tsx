@@ -17,12 +17,14 @@ export const Footer: FC = () => {
             <FooterInfo>
                 <FooterNoWrap>
                     &copy; then &mdash; now ({new Date().getFullYear()})
-                </FooterNoWrap> &bull;{' '}
+                </FooterNoWrap>
+
+                {' '}&bull;{' '}
                 <Link to={COOKIE_POLICY} inverted>
                     Cookie policy
                 </Link>
 <% if(use_contact_form) { %>
-                &bull;{' '}
+                {' '}&bull;{' '}
                 <Link to={PERSONAL_DATA_POLICY} inverted>
                     Personal data policy
                 </Link>

@@ -21,14 +21,16 @@ jobs:
               run: yarn install
             - name: Install peers
               run: yarn install-peers
+
             - name: Lint
               run: yarn lint
             - name: Test
               run: yarn test
-            #            - name: Test visual (install)
-            #              working-directory: ./packages/<%- package_name %>/visual
-            #              run: yarn install
-            #            - name: Test visual
-            #              run: yarn test:visual:cicd
+#            - name: Test visual (install)
+#              working-directory: ./packages/<%- package_name %>/visual
+#              run: yarn install
+#            - name: Test visual
+#              run: yarn test:visual:cicd
+
             - name: Build
               run: yarn run build

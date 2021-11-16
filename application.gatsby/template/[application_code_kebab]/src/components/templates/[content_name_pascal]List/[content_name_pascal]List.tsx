@@ -44,7 +44,10 @@ export const <%- content_name_pascal %>List = forwardRef<HTMLDivElement, <%- con
                             >
                                 <<%- content_name_pascal %>Card to={path}>
                                     <<%- content_name_pascal %>CardImage
-                                        sizes={picture.childImageSharp.fluid}
+                                        image={
+                                            picture.childImageSharp.gatsbyImageData
+                                        }
+                                        alt={shortTitle}
                                     />
                                     <<%- content_name_pascal %>CardTitle>
                                         {shortTitle}

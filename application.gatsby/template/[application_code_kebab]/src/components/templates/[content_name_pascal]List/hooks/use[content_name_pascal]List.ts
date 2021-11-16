@@ -10,6 +10,6 @@ export const use<%- content_name_pascal %>List = (
             ...props, // rest props go to the root node, as before
             ref, // same for the ref
         },
-        data: data || [],
+        data: data ?? [],
     };
 };

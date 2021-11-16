@@ -30,7 +30,13 @@ module.exports.Generator = class Generator {
     getDevDependencies() {
         return {
             destination: '[company_name]/',
-            packages: ['husky', 'prettier', 'pretty-quick', 'multi-semantic-release'],
+            packages: [
+                '@team-griffin/install-self-peers',
+                'husky',
+                'prettier',
+                'pretty-quick',
+                'multi-semantic-release',
+            ],
         };
     }
 };

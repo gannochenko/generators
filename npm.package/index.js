@@ -139,7 +139,6 @@ module.exports.Generator = class Generator {
         return {
             destination: '[package_name]/',
             packages: [
-                '@team-griffin/install-self-peers',
                 'jest',
                 'jest-chain',
                 'ts-jest',

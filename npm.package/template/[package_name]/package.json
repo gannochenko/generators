@@ -32,7 +32,6 @@
         "build:cjs": "del ./build.cjs/* && tsc -p ./tsconfig.build.cjs.json",
         "build:watch": "tsc -w -p ./tsconfig.build.cjs.json",
         "build:dev": "yarn build:watch",
-        "install-peers": "install-self-peers -- --ignore-scripts",
         "test": "jest -c ./jest/config.js --passWithNoTests",
         "test:watch": "jest -c ./jest/config.js --watch",
         "lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",

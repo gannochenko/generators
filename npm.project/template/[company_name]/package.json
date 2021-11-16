@@ -1,5 +1,8 @@
 {
     "name": "<%- project_name %>",
+    "scripts": {
+        "install-peers": "install-self-peers -- --ignore-scripts -W"
+    },
     "publishConfig": {
         "access": "public"
     },

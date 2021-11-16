@@ -5,7 +5,7 @@ import {
     getPropsBlocker,
     muiSpacing,
 } from '@gannochenko/ui.styled-components';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 
 import { <%- content_name_pascal %>ListRootPropsType } from './type';
@@ -26,7 +26,7 @@ export const <%- content_name_pascal %>Card = styled(Link)`
     display: block;
 `;
 
-export const <%- content_name_pascal %>CardImage = styled(Img)`
+export const <%- content_name_pascal %>CardImage = styled(GatsbyImage)`
     background-color: #c4c4c4;
     height: 15rem;
 `;
