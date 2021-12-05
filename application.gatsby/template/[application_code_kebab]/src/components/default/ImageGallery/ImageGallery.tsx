@@ -15,10 +15,6 @@ export const ImageGallery = forwardRef<HTMLDivElement, ImageGalleryPropsType>(
     function ImageGallery(props, ref) {
         const { rootProps, images } = useImageGallery(ref, props);
 
-        if (!images?.length) {
-            return null;
-        }
-
         return (
             <ImageGalleryRoot {...rootProps}>
                 <SRLWrapper options={lightBoxOptions}>

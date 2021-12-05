@@ -3,9 +3,9 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #export TF_LOG=DEBUG
 
-if [ -f .envvars ]
+if [ -f .env ]
 then
-  export $(cat .envvars | xargs)
+  export $(cat .env | xargs)
 fi
 
 cd "${DIR}/../infra" || exit

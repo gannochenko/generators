@@ -2,10 +2,6 @@ variable "domain" {
   type = string
 }
 
-variable "cors" {
-  type = string
-}
-
 variable "repository" {
   type = string
 }

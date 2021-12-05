@@ -27,16 +27,15 @@ module "<%- application_code_tf %>" {
 
   # input
   domain = godaddy_domain_record.apex.domain
-  cors = "https://${godaddy_domain_record.apex.domain}"
-  repository = local.<%- application_code_tf %>_repository
+  repository = local.repository
   gtag = "G-XXXXYYYYZZZ"
   ga_link = "https://analytics.google.com/analytics/web/?authuser=0#/pXXXXYYYZZZ/reports/reportinghub"
   deployment_link = "https://vercel.com/<%- github_account_name %>/<%- application_code_tf %>"
 
 <% if (use_api) { %>
-  api_url = module.<%- application_code_tf %>_api.api_gateway_deployment_invoke_url
+  api_url = module.<%- application_code_tf %>-api.api_gateway_deployment_invoke_url
 
-  depends_on = [module.<%- application_code_tf %>_api]
+  depends_on = [module.<%- application_code_tf %>-api]
 <% } %>
 }
 ~~~

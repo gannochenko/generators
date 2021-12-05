@@ -11,6 +11,6 @@ export const useImageGallery = (
             ref, // same for the ref
         },
 
-        images,
+        images: images ?? [],
     };
 };
