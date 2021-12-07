@@ -1,5 +1,5 @@
 resource "vercel_project" "<%- application_code %>" {
-  name = local.code
+  name = "<%- application_code_tf %>"
   framework = "gatsby"
   git_repository {
     type = "github"
@@ -18,6 +18,14 @@ resource "vercel_env" "<%- application_code %>_env_api_url" {
   type = "plain"
   key = "API_URL"
   value = var.api_url
+  target = ["production", "preview", "development"]
+}
+
+resource "vercel_env" "<%- application_code %>_env_api_env" {
+  project_id = vercel_project.<%- application_code %>.id
+  type = "plain"
+  key = "API_ENV"
+  value = "prod"
   target = ["production", "preview", "development"]
 }
 

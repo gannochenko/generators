@@ -12,6 +12,11 @@ const allowedEnvVariables = require('./.env.js').allowedEnvVariables;
 
 const { fillTemplate, <%- content_name_snake_uc %>_DETAIL } = require('./src/pathTemplates');
 
+const vercelEnv = process.env.VERCEL_GIT_COMMIT_REF;
+if (vercelEnv !== undefined && vercelEnv !== 'master') {
+    throw new Error('Vercel, dont make me do this.');
+}
+
 /**
  * Generate GraphQL schema.json file to be read by tslint
  * Thanks: https://gist.github.com/kkemple/6169e8dc16369b7c01ad7408fc7917a9
