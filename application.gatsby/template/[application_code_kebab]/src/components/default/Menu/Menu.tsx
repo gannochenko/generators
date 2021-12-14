@@ -7,7 +7,9 @@ import {
     MenuItem,
     MenuHome,
     MenuHamburger,
-    MenuBar,
+    MenuHamburgerBarTop,
+    MenuHamburgerBarMiddle,
+    MenuHamburgerBarBottom,
     MenuRight,
     MenuMobileItems,
     MenuMobileItem,
@@ -48,10 +50,10 @@ export const Menu: FC<MenuPropsType> = () => {
                     <AuthWidget />
 <% } %>
                     {!!menu.length && (
-                        <MenuHamburger onClick={onHamburgerClick}>
-                            <MenuBar />
-                            <MenuBar />
-                            <MenuBar />
+                        <MenuHamburger onClick={onHamburgerClick} open={mobileMenuOpen}>
+                            <MenuHamburgerBarTop />
+                            <MenuHamburgerBarMiddle />
+                            <MenuHamburgerBarBottom />
                         </MenuHamburger>
                     )}
                 </MenuRight>

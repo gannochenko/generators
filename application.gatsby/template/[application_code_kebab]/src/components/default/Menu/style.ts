@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 import {
     muiTypography,
@@ -85,23 +85,63 @@ export const MenuRight = styled.div`
     position: relative;
 `;
 
-export const MenuHamburger = styled.div`
-    ${contentAlignment('center', 'center', 'column')};
-    width: ${muiSpacing(10)};
-    height: ${muiSpacing(10)};
-    ${gutter('0.2rem')};
-    padding: ${muiSpacing(2)};
-    cursor: pointer;
-    ${muiBreakpointUp('sm')} {
-        display: none;
-    }
+export const MenuHamburger = styled.svg<{ open: boolean }>`
+  width: ${muiSpacing(5)};
+  height: ${muiSpacing(5)};
+  cursor: pointer;
+  ${muiBreakpointUp('sm')} {
+	display: none;
+  }
+  ${({ open }) =>
+		  open
+				  ? css`
+                  .MenuHamburgerBarTop {
+                      transform: rotate(45deg);
+                  }
+                  .MenuHamburgerBarMiddle {
+                      transform: scaleX(0.1);
+                  }
+                  .MenuHamburgerBarBottom {
+                      transform: rotate(-45deg);
+                  }
+              `
+				  : ''}
 `;
 
-export const MenuBar = styled.div`
-    background-color: ${muiColor('background.default')};
-    height: ${muiSpacing(2.5)};
-    width: 100%;
-    display: block;
+export const MenuHamburgerBar = styled.line`
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transform-origin: center;
+  stroke: white;
+  stroke-width: 10%;
+`;
+
+export const MenuHamburgerBarTop = styled(MenuHamburgerBar).attrs({
+    x1: '0',
+    y1: '50%',
+    x2: '100%',
+    y2: '50%',
+    className: 'MenuHamburgerBarTop',
+})`
+    transform: translateY(-40%);
+`;
+
+export const MenuHamburgerBarMiddle = styled(MenuHamburgerBar).attrs({
+    x1: '0',
+    y1: '50%',
+    x2: '100%',
+    y2: '50%',
+    className: 'MenuHamburgerBarMiddle',
+})``;
+
+export const MenuHamburgerBarBottom = styled(MenuHamburgerBar).attrs({
+    x1: '0',
+    y1: '50%',
+    x2: '100%',
+    y2: '50%',
+    className: 'MenuHamburgerBarBottom',
+})`
+    transform: translateY(40%);
 `;
 
 export const MenuMobileItems = styled.nav<{ open: boolean }>`
