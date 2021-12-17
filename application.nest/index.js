@@ -7,6 +7,8 @@ module.exports.Generator = class Generator {
     }
 
     async getQuestions() {
+        const projectCode = path.basename(path.dirname(process.cwd()));
+
         // see inquirer docs to get more information on the format of questions
         // https://www.npmjs.com/package/inquirer#questions
         return [
@@ -16,7 +18,12 @@ module.exports.Generator = class Generator {
             },
             {
                 message: 'Application code',
-                name: 'project_code',
+                name: 'application_code',
+                default: (answers) => {
+                    return this.util.textConverter.toKebab(
+                        answers.application_name,
+                    )
+                },
             },
             {
                 message: 'GitHub account name',
@@ -26,8 +33,8 @@ module.exports.Generator = class Generator {
             {
                 message: 'GitHub repository name',
                 name: 'github_repository_name',
-                default: (answers) => {
-                    return answers.project_code;
+                default: () => {
+                    return projectCode;
                 },
             },
             // {
