@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Connection, Repository } from 'typeorm';
 import { PostEntity } from '../../entities';
 import {AuthorsService} from '../AuthorsModule/AuthorsService';
+import { tryExecute } from '../../utils/tryExecute';
 
 type SearchRequestType = {
     authorId: string;
@@ -20,10 +21,12 @@ export class PostsService {
     }
 
     async findAll({ authorId }: SearchRequestType) {
-        if (!await this.authorsService.isElementExists(authorId)) {
-            return [];
-        }
+        return tryExecute(async () => {
+            if (!await this.authorsService.isElementExists(authorId)) {
+                return [];
+            }
 
-        return [];
+            return [];
+        });
     }
 }
