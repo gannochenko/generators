@@ -14,7 +14,7 @@ module.exports.Generator = class Generator {
         return [
             {
                 message: 'Application name',
-                name: 'project_name',
+                name: 'application_name',
             },
             {
                 message: 'Application code',
@@ -60,11 +60,11 @@ module.exports.Generator = class Generator {
 
     async refineAnswers(answers) {
         // here it is possible to alter some answers before the generation starts
-        answers.project_code_kebab = this.util.textConverter.toKebab(
-            answers.project_code,
+        answers.application_code_kebab = this.util.textConverter.toKebab(
+            answers.application_code,
         );
 
-        answers.project_code_global = answers.project_code;
+        answers.application_code_global = answers.application_code;
 
         answers.use_nats = !!answers.use_nats;
 
@@ -142,7 +142,7 @@ module.exports.Generator = class Generator {
     //     await this.util.execa('git', ['init'], {
     //         cwd: path.join(
     //             this.context.destinationPath,
-    //             this.answers.project_code_kebab,
+    //             this.answers.application_code_kebab,
     //         ),
     //         stdio: ['inherit', 'inherit', 'inherit'],
     //     });

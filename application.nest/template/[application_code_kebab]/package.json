@@ -1,5 +1,5 @@
 {
-    "name": "<%- project_code_global %>",
+    "name": "<%- application_code_global %>",
     "version": "0.0.1",
     "description": "",
     "author": "",
