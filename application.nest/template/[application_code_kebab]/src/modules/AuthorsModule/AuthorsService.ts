@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Repository, Connection, FindOneOptions } from 'typeorm';
+import debug from 'debug';
 import { AuthorEntity } from '../../entities';
 import { tryExecute } from '../../utils/tryExecute';
 import {
@@ -7,6 +8,8 @@ import {
     UpdateAuthorInputType,
     FindAuthorsInputType,
 } from './type';
+
+const d = debug('app.AuthorsService');
 
 // https://github.com/typeorm/typeorm/blob/master/docs/repository-api.md
 
@@ -20,6 +23,7 @@ export class AuthorsService {
 
     async create(data: CreateAuthorInputType) {
         return tryExecute(async () => {
+            d('Create');
             const element = this.usersRepository.create(data);
             return await this.usersRepository.save(element);
         });
@@ -30,6 +34,7 @@ export class AuthorsService {
         id: string,
         data: UpdateAuthorInputType,
     ) {
+        d('Update');
         return tryExecute(async () => {
             await this.usersRepository.update(id, data);
             return await this.usersRepository.findOne(id);
@@ -38,6 +43,7 @@ export class AuthorsService {
 
     // todo: get only the requested fields, don't use *
     async delete(id: string) {
+        d('Delete');
         return tryExecute(async () => {
             const element = await this.usersRepository.findOne(id);
 

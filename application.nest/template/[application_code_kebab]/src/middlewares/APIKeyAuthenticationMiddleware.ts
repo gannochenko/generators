@@ -1,6 +1,9 @@
 import { NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
+import debug from 'debug';
 import { UserRoleEnum } from '../entities';
+
+const d = debug('app.APIKeyAuthenticationMiddleware');
 
 export class APIKeyAuthenticationMiddleware implements NestMiddleware {
     use(
@@ -26,6 +29,8 @@ export class APIKeyAuthenticationMiddleware implements NestMiddleware {
                 roles: roles,
             };
         }
+
+        d('roles', roles);
 
         next();
     }

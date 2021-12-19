@@ -132,6 +132,7 @@ module.exports.Generator = class Generator {
                 'ts-node',
                 'tsconfig-paths',
                 'typescript',
+                'debug',
             ],
         };
     }

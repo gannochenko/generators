@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Connection, Repository } from 'typeorm';
+import debug from 'debug';
 import { PostEntity } from '../../entities';
 import {AuthorsService} from '../AuthorsModule/AuthorsService';
 import { tryExecute } from '../../utils/tryExecute';
 import { FindAllPostsInputType } from './type';
+
+const d = debug('app.PostsService');
 
 @Injectable()
 export class PostsService {
@@ -19,6 +22,7 @@ export class PostsService {
 
     async findAll({ authorId }: FindAllPostsInputType) {
         return tryExecute(async () => {
+            d('FindAll');
             if (!await this.authorsService.isElementExists(authorId)) {
                 return [];
             }
