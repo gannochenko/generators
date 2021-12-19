@@ -4,13 +4,8 @@ import { AuthorEntity } from '../../entities';
 import { tryExecute } from '../../utils/tryExecute';
 import {
     CreateAuthorInputType,
-    CreateAuthorOutputType,
     UpdateAuthorInputType,
-    UpdateAuthorOutputType,
-    DeleteAuthorOutputType,
     FindAuthorsInputType,
-    FindAuthorsOutputType,
-    FindOneAuthorOutputType,
 } from './type';
 
 // https://github.com/typeorm/typeorm/blob/master/docs/repository-api.md
@@ -23,7 +18,7 @@ export class AuthorsService {
         this.usersRepository = connection.getRepository(AuthorEntity);
     }
 
-    async create(data: CreateAuthorInputType): Promise<CreateAuthorOutputType> {
+    async create(data: CreateAuthorInputType) {
         return tryExecute(async () => {
             const element = this.usersRepository.create(data);
             return await this.usersRepository.save(element);
@@ -34,7 +29,7 @@ export class AuthorsService {
     async update(
         id: string,
         data: UpdateAuthorInputType,
-    ): Promise<UpdateAuthorOutputType> {
+    ) {
         return tryExecute(async () => {
             await this.usersRepository.update(id, data);
             return await this.usersRepository.findOne(id);
@@ -42,7 +37,7 @@ export class AuthorsService {
     }
 
     // todo: get only the requested fields, don't use *
-    async delete(id: string): Promise<DeleteAuthorOutputType> {
+    async delete(id: string) {
         return tryExecute(async () => {
             const element = await this.usersRepository.findOne(id);
 
@@ -52,9 +47,7 @@ export class AuthorsService {
         });
     }
 
-    async findAll({ filter, limit }: FindAuthorsInputType): Promise<
-        FindAuthorsOutputType
-    > {
+    async findAll({ filter, limit }: FindAuthorsInputType) {
         return tryExecute(async () => {
             return this.usersRepository.find(filter);
         });
@@ -64,7 +57,7 @@ export class AuthorsService {
     async findOneById(
         id: string,
         { select }: FindOneOptions<AuthorEntity> = {},
-    ): Promise<FindOneAuthorOutputType> {
+    ) {
         return tryExecute(async () => {
             return this.usersRepository.findOne(id, {
                 select,
@@ -72,7 +65,7 @@ export class AuthorsService {
         });
     }
 
-    async isElementExists(id: string): Promise<boolean> {
+    async isElementExists(id: string) {
         return tryExecute(async () => {
             const element = await this.usersRepository.findOne(id, {
                 select: ['id'],

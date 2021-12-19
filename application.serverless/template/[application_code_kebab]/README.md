@@ -15,6 +15,8 @@
 
 ## Installation
 
+Copy `.env.example` to `.env`.
+
 To prepare the application, simply install `node_modules`:
 
 ~~~bash

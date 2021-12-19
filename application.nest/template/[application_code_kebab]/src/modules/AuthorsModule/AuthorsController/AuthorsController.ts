@@ -11,19 +11,15 @@ import {
     Delete,
     HttpException,
     HttpStatus,
-    UseInterceptors,
-    FileInterceptor,
-    UploadedFile,
 } from '@nestjs/common';
 import { AuthorsService } from '../AuthorsService';
 import {
     CreateAuthorDto,
     FindAuthorsDto,
     UpdateAuthorDto,
-    UploadAuthorPhotoDto,
 } from './AuthorsDTO';
 import { Roles } from '../../../utils/Roles';
-import { UserStandardRoleEnum } from '../../../entities';
+import { UserRoleEnum } from '../../../entities';
 
 @Controller('authors')
 export class AuthorsController {
@@ -33,7 +29,7 @@ export class AuthorsController {
     @Post()
     // @Header('Cache-Control', 'none')
     // @HttpCode(204)
-    @Roles(UserStandardRoleEnum.admin)
+    @Roles(UserRoleEnum.admin)
     async create(
         @Body() data: CreateAuthorDto,
     ) {
@@ -44,7 +40,7 @@ export class AuthorsController {
 
     // todo: filter outgoing data
     @Patch(':id')
-    @Roles(UserStandardRoleEnum.admin)
+    @Roles(UserRoleEnum.admin)
     async update(
         @Param('id') id: string,
         @Body() data: UpdateAuthorDto,
@@ -61,7 +57,7 @@ export class AuthorsController {
 
     // todo: filter outgoing data
     @Delete(':id')
-    @Roles(UserStandardRoleEnum.admin)
+    @Roles(UserRoleEnum.admin)
     async delete(@Param('id') id: string) {
         if (!(await this.authorsService.isElementExists(id))) {
             // https://docs.nestjs.com/exception-filters
@@ -97,18 +93,6 @@ export class AuthorsController {
 
         return {
             data: element,
-        };
-    }
-
-    @Post('upload')
-    @UseInterceptors(FileInterceptor('file'))
-    @Roles(UserStandardRoleEnum.admin)
-    async upload(
-        @Body() data: UploadAuthorPhotoDto,
-        @UploadedFile() file: Express.Multer.File,
-    ) {
-        return {
-            data: [],
         };
     }
 }

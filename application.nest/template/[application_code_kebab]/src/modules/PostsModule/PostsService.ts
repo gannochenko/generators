@@ -3,10 +3,7 @@ import { Connection, Repository } from 'typeorm';
 import { PostEntity } from '../../entities';
 import {AuthorsService} from '../AuthorsModule/AuthorsService';
 import { tryExecute } from '../../utils/tryExecute';
-
-type SearchRequestType = {
-    authorId: string;
-};
+import { FindAllPostsInputType } from './type';
 
 @Injectable()
 export class PostsService {
@@ -20,7 +17,7 @@ export class PostsService {
         this.authorsService = authorsService;
     }
 
-    async findAll({ authorId }: SearchRequestType) {
+    async findAll({ authorId }: FindAllPostsInputType) {
         return tryExecute(async () => {
             if (!await this.authorsService.isElementExists(authorId)) {
                 return [];

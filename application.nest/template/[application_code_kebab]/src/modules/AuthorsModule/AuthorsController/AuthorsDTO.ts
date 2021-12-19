@@ -25,6 +25,3 @@ export class FindAuthorsDto {
     @IsOptional()
     limit: number;
 }
-
-export class UploadAuthorPhotoDto {
-}

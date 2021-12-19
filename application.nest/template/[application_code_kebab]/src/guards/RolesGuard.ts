@@ -1,6 +1,6 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { UserStandardRoleEnum } from '../entities/UserEntity';
+import { UserRoleEnum } from '../entities';
 
 const matchRoles = (roles: string[], userRoles: string[]) =>
     roles.filter((value) => userRoles.includes(value)).length > 0;
@@ -29,7 +29,7 @@ export class RolesGuard implements CanActivate {
         }
 
         const userRoles = user.roles as string[];
-        if (userRoles.includes(UserStandardRoleEnum.admin)) {
+        if (userRoles.includes(UserRoleEnum.admin)) {
             return true;
         }
 
