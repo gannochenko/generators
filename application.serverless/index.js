@@ -114,11 +114,21 @@ module.exports.Generator = class Generator {
     }
 
     async onAfterExecution() {
+        const applicationCode = this.answers.application_code_kebab;
+        const applicationFolder = path.join(
+            this.context.destinationPath,
+            applicationCode,
+        );
+
         await this.util.execa('chmod', ['-R', '+x', './script'], {
-            cwd: path.join(
-                this.context.destinationPath,
-                this.answers.project_code_kebab,
-            ),
+            cwd: applicationFolder,
+            stdio: ['inherit', 'inherit', 'inherit'],
+        });
+
+        await this.util.execa('mv', [
+            path.join(applicationFolder, `cd.${applicationCode}.yml`, '../../.github/workflows')
+        ], {
+            cwd: applicationFolder,
             stdio: ['inherit', 'inherit', 'inherit'],
         });
     }
