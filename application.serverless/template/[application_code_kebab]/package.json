@@ -1,5 +1,5 @@
 {
-    "name": "routine-api",
+    "name": "<%- application_code_kebab %>-api",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",

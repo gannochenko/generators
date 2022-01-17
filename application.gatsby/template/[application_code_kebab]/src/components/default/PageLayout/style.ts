@@ -1,12 +1,5 @@
-import styled from 'styled-components';
-// import { Link } from 'gatsby';
-// import { muiTypography } from '@gannochenko/ui.styled-components';
+import styled from '@emotion/styled';
 
-export const PageLayoutContent = styled.div`
+export const PageLayoutRoot = styled.div`
     flex-grow: 1;
 `;
-
-// export const PageLayoutBackLink = styled(Link)`
-//     text-decoration: none;
-//     ${muiTypography('caption')};
-// `;

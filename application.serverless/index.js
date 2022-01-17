@@ -57,6 +57,11 @@ module.exports.Generator = class Generator {
                 name: 'author_email',
                 default: 'gannochenko.sv@gmail.com',
             },
+            {
+                message: 'Local development port',
+                name: 'local_development_port',
+                default: 3000,
+            },
         ];
     }
 

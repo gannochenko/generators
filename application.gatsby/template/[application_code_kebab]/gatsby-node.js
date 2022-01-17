@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define, no-console, @typescript-eslint/no-var-requires */
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -88,7 +89,7 @@ const createMDXPages = async ({ graphql, actions }) => {
             return;
         }
 
-        const [, contentType, fileSlug] = match;
+        const [, fileSlug] = match;
         const realSlug = slug || fileSlug;
 
         if (!realSlug) {

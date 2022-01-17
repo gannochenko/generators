@@ -29,7 +29,8 @@
         "image:push": "./script/image.push.sh",
         <% } %>
         "test": "jest -c ./jest/config.js --passWithNoTests",
-        "test:watch": "jest -c ./jest/config.js --watch"
+        "test:watch": "jest -c ./jest/config.js --watch",
+        "start": "node ./build.cjs/index.js"
     },
     "dependencies": {
     },

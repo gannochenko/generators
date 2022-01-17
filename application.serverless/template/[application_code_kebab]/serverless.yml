@@ -43,3 +43,6 @@ custom:
         packager: 'yarn' # package manager we use
     serverless-offline:
         useChildProcesses: true
+        httpPort: <%- local_development_port %>
+        websocketPort: <%- local_development_port + 1 %>
+        lambdaPort: <%- local_development_port + 2 %>

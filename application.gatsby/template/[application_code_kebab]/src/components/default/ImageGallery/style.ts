@@ -4,9 +4,9 @@ import {
     reset,
     getPropsBlocker,
 } from '@gannochenko/ui.styled-components';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 import { ImageGalleryRootPropsType } from './type';
-import Img from 'gatsby-image';
 
 export const ImageGalleryRoot = styled.div.withConfig(
     getPropsBlocker,
@@ -15,16 +15,19 @@ export const ImageGalleryRoot = styled.div.withConfig(
     ${marginProps};
 `;
 
-export const ImageGalleryImageWrapper = styled.div`
+export const ImageGalleryImageWrapper = styled.a`
     box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.1);
     border-radius: 2px;
     overflow: hidden;
     position: relative;
     display: block;
     cursor: pointer;
+    height: 15rem;
 `;
 
-export const ImageGalleryImage = styled(Img)`
+export const ImageGalleryImage = styled(GatsbyImage)`
     background-color: #c4c4c4;
-    height: 15rem;
+    object-fit: contain !important;
+    width: 100% !important;
+    height: 100% !important;
 `;

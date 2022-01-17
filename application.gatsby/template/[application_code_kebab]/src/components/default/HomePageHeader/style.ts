@@ -102,8 +102,10 @@ export const Arrow = withEffects(styled.div<{
         }
     `};
 
-    // @ts-ignore
-    ${(props) => props.runStandardEffect()};
+    ${
+      // @ts-ignore
+      (props) => props.runStandardEffect()
+    };
 `);
 
 export const DataColumn = styled.div`

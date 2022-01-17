@@ -24,4 +24,3 @@ export * from './PageOffset';
 export * from './Typography';
 
 export * from './<%- content_name_pascal %>List';
-export * from './<%- content_name_pascal %>Detail';
