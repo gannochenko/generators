@@ -17,14 +17,14 @@ module.exports.Generator = class Generator {
                 name: 'application_code',
             },
             {
+                message: 'Project name',
+                name: 'project_name',
+            },
+            {
                 message: 'Add contact form API?',
                 name: 'use_contact_form',
                 type: 'confirm',
                 default: false,
-            },
-            {
-                message: 'Project name',
-                name: 'project_name',
             },
             {
                 message: 'Add API?',
