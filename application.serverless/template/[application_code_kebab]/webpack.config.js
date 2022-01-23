@@ -3,23 +3,6 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const { DefinePlugin } = require('webpack');
 const slsw = require('serverless-webpack');
-const { allowedEnvVariables } = require('./.env.js');
-
-const getEnv = () => {
-    const result = {};
-
-    allowedEnvVariables.forEach((variableName) => {
-        if (
-            variableName in process.env &&
-            process.env[variableName] !== undefined
-        ) {
-            result[`process.env.${variableName}`] =
-                '"' + process.env[variableName] + '"';
-        }
-    });
-
-    return result;
-};
 
 module.exports = {
     entry: slsw.lib.entries,
@@ -49,6 +32,8 @@ module.exports = {
         new Dotenv({
             systemvars: false,
         }),
-        new DefinePlugin(getEnv()),
+        new DefinePlugin({
+            __DEV__: true,
+        }),
     ],
 };

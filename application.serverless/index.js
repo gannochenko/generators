@@ -17,7 +17,7 @@ module.exports.Generator = class Generator {
                 name: 'application_code',
             },
             {
-                message: 'Add contact form?',
+                message: 'Add contact form API?',
                 name: 'use_contact_form',
                 type: 'confirm',
                 default: false,
@@ -25,6 +25,17 @@ module.exports.Generator = class Generator {
             {
                 message: 'Project name',
                 name: 'project_name',
+            },
+            {
+                message: 'Add API?',
+                name: 'use_api',
+                type: 'confirm',
+                default: false,
+            },
+            {
+                message: 'Entity name?',
+                name: 'entity_name',
+                when: (answers) => answers.use_api,
             },
             {
                 message: 'Function name',
@@ -80,20 +91,62 @@ module.exports.Generator = class Generator {
         answers.application_code_tf = answers.application_code_kebab.replace(/[^a-zA-Z0-9_]/g, '-');
         answers.use_function = !!answers.function_name;
 
+        answers.use_api = !!answers.use_api;
+        answers.entity_name = answers.entity_name ?? '';
+        answers.entity_name_camel = this.util.textConverter.toCamel(
+            answers.entity_name,
+        );
+        answers.entity_name_su = this.util.textConverter.toSnake(
+            answers.entity_name,
+        ).toUpperCase();
+
         return answers;
     }
 
     async getDependencies(answers) {
-        const { use_contact_form } = answers;
+        const { use_contact_form, use_api } = answers;
 
         return {
             destination: '[application_code_kebab]/',
-            packages: ['cors', !!use_contact_form && 'axios', !!use_contact_form && 'pug', 'aws-sdk'],
+            packages: [
+                'cors',
+                'aws-sdk',
+                ...(
+                    use_contact_form ? ['axios', 'pug'] : []
+                ),
+                ...(use_api ? [
+                    '@nestjs/common',
+                    '@nestjs/core',
+                    '@nestjs/microservices',
+                    '@nestjs/platform-express',
+                    '@nestjs/platform-socket.io',
+                    '@nestjs/websockets',
+                    'amqp-connection-manager',
+                    'amqplib',
+                    'aws-lambda',
+                    'aws-serverless-express',
+                    'body-parser',
+                    'bufferutil',
+                    'cache-manager',
+                    'class-transformer',
+                    'class-validator',
+                    'helmet',
+                    'kafkajs',
+                    'latinize',
+                    'mqtt',
+                    'nats',
+                    'redis',
+                    'reflect-metadata',
+                    'rxjs',
+                    'serverless-offline',
+                    'uuid',
+                ] : []),
+            ],
         };
     }
 
     async getDevDependencies(answers) {
-        const { use_contact_form } = answers;
+        const { use_contact_form, use_api } = answers;
 
         return {
             destination: '[application_code_kebab]/',
@@ -114,6 +167,17 @@ module.exports.Generator = class Generator {
                 'serverless',
                 'serverless-offline',
                 'serverless-webpack',
+
+                ...(use_api ? [
+                    '@types/aws-lambda',
+                    '@types/aws-serverless-express',
+                    '@types/latinize',
+                    '@types/uuid',
+                    '@types/aws-lambda',
+                    '@types/aws-lambda',
+                    'serverless',
+                    'serverless-webpack',
+                ] : []),
             ],
         };
     }

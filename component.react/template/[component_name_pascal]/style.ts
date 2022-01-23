@@ -1,6 +1,5 @@
-import styled, { css } from 'styled-components';
-import { marginProps, reset } from '@gannochenko/ui.styled-components';
-import { propsBlocker } from '../../util';
+import styled from '@emotion/styled';
+import { marginProps, reset } from '@gannochenko/ui.emotion';
 
 import {
     <%- component_name_pascal %>RootPropsType,
@@ -22,7 +21,7 @@ const getRootStyle = (props: <%- component_name_pascal %>RootPropsType) => {
     return result;
 };
 
-export const <%- component_name_pascal %>Root = styled.div.withConfig(propsBlocker)<<%- component_name_pascal %>RootPropsType>`
+export const <%- component_name_pascal %>Root = styled.div<<%- component_name_pascal %>RootPropsType>`
     ${reset};
     ${getRootStyle};
     ${marginProps};

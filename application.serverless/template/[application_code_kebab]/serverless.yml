@@ -22,8 +22,8 @@ functions:
         # in order to do so, we create a REST endpoint
         events:
             - http:
-                  path: sendMessage # path for the endpoint
-                  method: any # HTTP method for the endpoint
+                  path: message # path for the endpoint
+                  method: post # HTTP method for the endpoint
 <% } %>
 <% if(use_function) { %>
     <%- function_name %>: # function name
@@ -33,7 +33,17 @@ functions:
         events:
             - http:
                   path: <%- function_name %> # path for the endpoint
-                  method: any # HTTP method for the endpoint
+                  method: post # HTTP method for the endpoint
+<% } %>
+<% if(use_api) { %>
+    runAPI: # function name
+        handler: src/lambdas/runAPI/handler.handler # where the actual code is located
+        # to call our function from outside, we need to expose it to the outer world
+        # in order to do so, we create a REST endpoint
+        events:
+            - http:
+                  path: /api/{any+}
+                  method: post
 <% } %>
 
 custom:

@@ -3,10 +3,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends vim && apt-get 
 
 WORKDIR /app
 
-ENV NODE_ENV=production
+COPY package.json .
+RUN yarn
 
 COPY . .
-RUN yarn
-RUN build
+
+ENV NODE_ENV=production
+RUN yarn build
 
 CMD [ "yarn", "start" ]
