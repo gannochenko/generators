@@ -93,7 +93,7 @@ module.exports.Generator = class Generator {
 
         answers.use_api = !!answers.use_api;
         answers.entity_name = answers.entity_name ?? '';
-        answers.entity_name_camel = this.util.textConverter.toCamel(
+        answers.entity_name_camel = this.util.textConverter.toPascal(
             answers.entity_name,
         );
         answers.entity_name_su = this.util.textConverter.toSnake(
