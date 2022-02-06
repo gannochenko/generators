@@ -1,6 +1,6 @@
 import { NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import { UserRoleEnum } from '../entities/UserEntity/enums';
+import { UserRoleEnum } from '../entities';
 
 export class APIKeyAuthenticationMiddleware implements NestMiddleware {
     use(

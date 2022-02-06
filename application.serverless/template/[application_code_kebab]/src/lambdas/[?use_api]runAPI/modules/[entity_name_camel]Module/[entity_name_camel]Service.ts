@@ -16,6 +16,7 @@ import {
 import { tryExecute } from '../../utils/tryExecute';
 import { OptionsService } from '../OptionsModule/OptionsService';
 import { OptionCodes } from '../OptionsModule/type';
+import { <%- entity_name_camel %>Entity } from '../../entities';
 
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html
@@ -23,7 +24,7 @@ const dynamoDB = new DynamoDB.DocumentClient({
     ...awsOptions,
     apiVersion: '2012-08-10',
 });
-const TABLE_NAME = process.env.AWS_OBJECT_TABLE_NAME ?? '';
+const TABLE_NAME = process.env.AWS_<%- entity_name_su %>_TABLE_NAME ?? '';
 
 @Injectable()
 export class <%- entity_name_camel %>Service {
@@ -64,7 +65,7 @@ export class <%- entity_name_camel %>Service {
             );
         }
 
-        return { data: dynamodbItem, aux: {} };
+        return { data: dynamodbItem };
     }
 
     public async findAll({
@@ -101,7 +102,6 @@ export class <%- entity_name_camel %>Service {
         const item = await this.getItem(id);
         return {
             data: (item as FieldsType) ?? null,
-            aux: {},
         };
     }
 

@@ -33,9 +33,15 @@ module.exports.Generator = class Generator {
                 default: false,
             },
             {
-                message: 'Entity name?',
+                message: 'Entity name',
                 name: 'entity_name',
                 when: (answers) => answers.use_api,
+            },
+            {
+                message: 'API path prefix',
+                name: 'api_path_prefix',
+                when: (answers) => answers.use_api,
+                default: 'api',
             },
             {
                 message: 'Function name',
@@ -96,9 +102,13 @@ module.exports.Generator = class Generator {
         answers.entity_name_camel = this.util.textConverter.toPascal(
             answers.entity_name,
         );
+        answers.entity_name_lc = answers.entity_name_camel.toLowerCase();
         answers.entity_name_su = this.util.textConverter.toSnake(
             answers.entity_name,
         ).toUpperCase();
+        answers.local_development_port = parseInt(answers.local_development_port, 10);
+
+        answers.api_path_prefix = answers.api_path_prefix ?? '';
 
         return answers;
     }

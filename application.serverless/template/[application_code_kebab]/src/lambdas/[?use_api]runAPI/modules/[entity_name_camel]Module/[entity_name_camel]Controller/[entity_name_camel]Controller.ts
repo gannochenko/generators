@@ -12,11 +12,11 @@ import {
     CreateDto,
     FindDto,
     // UpdateDto,
-} from './CoolDTO';
+} from './<%- entity_name_camel %>DTO';
 import { Roles } from '../../../utils/Roles';
 import { UserRoleEnum } from '../../../entities';
 
-@Controller('<%- entity_name %>')
+@Controller('<%- entity_name_lc %>')
 export class <%- entity_name_camel %>Controller {
     constructor(
         private readonly service: <%- entity_name_camel %>Service,

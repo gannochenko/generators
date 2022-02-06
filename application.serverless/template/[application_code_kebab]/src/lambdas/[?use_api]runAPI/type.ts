@@ -1,4 +1,9 @@
-export type ServiceResponseType<D, A = Record<string, unknown>> = {
+type ServiceResponseErrorType = {
+    code: string;
+    message?: string;
+};
+
+export type ServiceResponseType<D> = {
     data: D;
-    aux: A;
+    errors?: ServiceResponseErrorType[];
 };

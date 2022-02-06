@@ -162,6 +162,7 @@ module.exports.Generator = class Generator {
                 '@types/debug',
                 '@gannochenko/gbelt',
                 'del-cli',
+                'dotenv-cli',
             ],
         };
     }

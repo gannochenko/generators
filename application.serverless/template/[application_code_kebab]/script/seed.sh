@@ -18,23 +18,24 @@ then
 
 ################################################################################################
 ## DynamoDB
+## https://docs.aws.amazon.com/cli/latest/reference/dynamodb/create-table.html
 ################################################################################################
 
 echo "Delete tables"
 
 ${AWS} dynamodb \
     delete-table \
-    --table-name "<%- application_code_kebab %>.api_<%- entity_name_camel %>Collection"
+    --table-name "<%- project_code_kebab %>.<%- application_code_kebab %>_<%- entity_name_camel %>"
 
 ${AWS} dynamodb \
     delete-table \
-    --table-name "<%- application_code_kebab %>.api_Flags"
+    --table-name "<%- project_code_kebab %>.<%- application_code_kebab %>_Flags"
 
 echo "Re-create tables"
 
 ${AWS} dynamodb \
     create-table \
-    --table-name "<%- application_code_kebab %>.api_<%- entity_name_camel %>Collection" \
+    --table-name "<%- project_code_kebab %>.<%- application_code_kebab %>_<%- entity_name_camel %>" \
     --attribute-definitions \
         AttributeName=id,AttributeType=S \
     --key-schema \
@@ -43,7 +44,7 @@ ${AWS} dynamodb \
 
 ${AWS} dynamodb \
     create-table \
-    --table-name "prussiascan.api_Flags" \
+    --table-name "<%- project_code_kebab %>.<%- application_code_kebab %>_Flags" \
     --attribute-definitions \
         AttributeName=code,AttributeType=S \
     --key-schema \

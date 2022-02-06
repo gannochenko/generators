@@ -32,7 +32,7 @@ export class OptionsService {
             throw new InternalServerErrorException('Could not set a value');
         }
 
-        return { data: dynamodbItem.value, aux: {} };
+        return { data: dynamodbItem.value };
     }
 
     public async get(code: string) {

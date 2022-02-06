@@ -1,13 +1,21 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, RelationId } from 'typeorm';
+import {AuthorEntity} from '../AuthorEntity';
 
-@Entity()
+@Entity({
+    name: 'post',
+})
 export class PostEntity {
     @PrimaryGeneratedColumn('uuid')
     id: number;
 
+    @Column({ type: 'varchar' })
     @Column()
     title: string;
 
-    @Column()
+    @RelationId((item: PostEntity) => item.author)
+    @Column({ type: 'varchar' })
     authorId: string;
+
+    @ManyToOne((type) => AuthorEntity)
+    author: AuthorEntity;
 }

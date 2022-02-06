@@ -35,10 +35,10 @@ export type FindAllInputType = {
 };
 
 export type FindAllOutputType = ServiceResponseType<
-    CoolFieldsType[],
+    FieldsType[],
     { lastId: string | null }
 >;
 
 export type GetByIdOutputType =
-    ServiceResponseType<<%- entity_name_camel %>FieldsType | null>;
+    ServiceResponseType<FieldsType | null>;
 

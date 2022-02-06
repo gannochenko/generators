@@ -1,4 +1,6 @@
+<% if (forward_ref) { %>
 import { ForwardedRef } from 'react';
+<% } %>
 import { <%- component_name_pascal %>PropsType } from '../type';
 <% if (forward_ref) { %>
 import { useRootRef } from '../../../hooks'

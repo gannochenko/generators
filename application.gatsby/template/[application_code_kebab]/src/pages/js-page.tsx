@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 
 import { Container, PageOffset } from '../components';
 import { PageLayout } from '../components/default/PageLayout';
@@ -8,7 +8,7 @@ type JSPagePropsType = {
     data: any;
 };
 
-const JSPage: FunctionComponent<JSPagePropsType> = () => {
+const JSPage: FC<JSPagePropsType> = () => {
     return (
         <PageLayout
             title="JS Page"
@@ -23,8 +23,8 @@ const JSPage: FunctionComponent<JSPagePropsType> = () => {
     );
 };
 
-// export const pageQuery = graphql`
-//     query HomePageQuery {
+// export const query = graphql`
+//     query {
 //     }
 // `;
 

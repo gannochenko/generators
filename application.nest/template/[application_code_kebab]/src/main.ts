@@ -8,7 +8,11 @@ import { ApplicationModule } from './modules/ApplicationModule';
 import { isDev } from './utils/isDev';
 
 (async () => {
-    const app = await NestFactory.create(ApplicationModule, { cors: !isDev() });
+    const app = await NestFactory.create(ApplicationModule, {
+        cors: {
+            origin: isDev() ? '*' : 'https://our-host-name.com'
+        },
+    });
     if (!isDev()) {
         // gql playground will not work with helmet
         app.use(helmet());
