@@ -38,9 +38,10 @@ resource "aws_iam_policy" "<%- application_code_tf %>_run-api" {
     },
     {
       "Action": [
-        "dynamodb:PutItem",
+        "dynamodb:Query",
         "dynamodb:Scan",
         "dynamodb:GetItem",
+        "dynamodb:PutItem",
         "dynamodb:UpdateItem"
       ],
       "Resource": "arn:aws:dynamodb:*:*:*",
