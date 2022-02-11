@@ -42,6 +42,12 @@ module.exports.Generator = class Generator {
                 when: (answers) => answers.use_api,
             },
             {
+                message: 'API path prefix',
+                name: 'api_path_prefix',
+                when: (answers) => answers.use_api,
+                default: 'api',
+            },
+            {
                 message: 'GitHub account name',
                 name: 'github_account_name',
                 default: 'gannochenko',
@@ -86,6 +92,8 @@ module.exports.Generator = class Generator {
             answers.entity_name,
         );
         answers.entity_name_tf = answers.entity_name_snake.replace(/[^a-zA-Z0-9_]/g, '-');
+
+        answers.api_path_prefix = answers.api_path_prefix ?? '';
 
         return answers;
     }
