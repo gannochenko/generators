@@ -69,19 +69,23 @@ module.exports.Generator = class Generator {
         );
         answers.application_code_tf = answers.application_code_kebab.replace(/[^a-zA-Z0-9_]/g, '-');
         answers.use_function = !!answers.function_name;
+        answers.function_name = answers.function_name ?? '';
+        answers.function_name_kebab = this.util.textConverter.toKebab(answers.function_name);
+        answers.function_name_tf = answers.function_name_kebab.replace(/[^a-zA-Z0-9_]/g, '-');
         answers.gateway_resource_name = answers.path_part.replace(/[^a-zA-Z0-9_]/g, '-');
 
         answers.entity_name = answers.entity_name ?? '';
         answers.entity_name_camel = this.util.textConverter.toPascal(
             answers.entity_name,
         );
+        answers.entity_name_camel_uc = answers.entity_name_camel.toUpperCase();
         answers.entity_name_kebab = this.util.textConverter.toKebab(
             answers.entity_name,
         );
         answers.entity_name_snake = this.util.textConverter.toSnake(
             answers.entity_name,
         );
-        answers.entity_name_tf = answers.application_code_kebab.replace(/[^a-zA-Z0-9_]/g, '-');
+        answers.entity_name_tf = answers.entity_name_snake.replace(/[^a-zA-Z0-9_]/g, '-');
 
         return answers;
     }

@@ -14,7 +14,7 @@ resource "aws_lambda_function" "<%- application_code_tf %>_run-api" {
   handler = "main.handler"
   runtime = "nodejs14.x"
 
-  role = aws_iam_role.lambda_<%- application_code_tf %>_run-api.arn
+  role = aws_iam_role.<%- application_code_tf %>_run-api.arn
 
 #  layers = [aws_lambda_layer_version.sharp.arn]
 
@@ -23,10 +23,8 @@ resource "aws_lambda_function" "<%- application_code_tf %>_run-api" {
   environment {
     variables = {
       CORS = var.CORS
-      AWS_OBJECT_TABLE_NAME = aws_dynamodb_table.<%- application_code_tf %>-<%- entity_name_tf %>.name
-      AWS_OBJECT_PHOTOS_BUCKET_NAME = aws_s3_bucket.<%- application_code_tf %>-<%- entity_name_tf %>-upload.bucket
-      CICD_API_KEY = var.CICD_API_KEY
-      CONTRIBUTOR_API_KEY = var.CONTRIBUTOR_API_KEY
+      <%- entity_name_camel_uc %>_TABLE_NAME = aws_dynamodb_table.<%- application_code_tf %>_<%- entity_name_tf %>.name
+      <%- entity_name_camel_uc %>_UPLOAD_BUCKET_NAME = aws_s3_bucket.<%- application_code_tf %>_<%- entity_name_tf %>-upload.bucket
     }
   }
 }

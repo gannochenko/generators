@@ -16,7 +16,7 @@ resource "aws_api_gateway_integration" "<%- application_code_tf %>_message" {
   resource_id = aws_api_gateway_method.<%- application_code_tf %>_message.resource_id
   http_method = aws_api_gateway_method.<%- application_code_tf %>_message.http_method
 
-  integration_http_method = aws_api_gateway_method.<%- application_code_tf %>.http_method
+  integration_http_method = aws_api_gateway_method.<%- application_code_tf %>_message.http_method
   type = "AWS_PROXY"
   uri = aws_lambda_function.sendMessage.invoke_arn
 

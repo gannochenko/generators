@@ -6,7 +6,7 @@
 //  compatible_runtimes = ["nodejs14.x"]
 //}
 
-resource "aws_lambda_function" "<%- function_name %>" {
+resource "aws_lambda_function" "<%- application_code_tf %>_<%- function_name_tf %>" {
   function_name = "<%- application_code_tf %>_<%- function_name %>"
 
   filename = "lambda-function-dummy.zip"
@@ -14,13 +14,13 @@ resource "aws_lambda_function" "<%- function_name %>" {
   handler = "main.handler"
   runtime = "nodejs14.x"
 
-  role = aws_iam_role.lambda_<%- function_name %>.arn
+  role = aws_iam_role.<%- application_code_tf %>_<%- function_name_tf %>.arn
 
 //  layers = [aws_lambda_layer_version.some-massive-library.arn]
 
   environment {
     variables = {
-      CORS = var.cors
+      CORS = var.CORS
     }
   }
 }

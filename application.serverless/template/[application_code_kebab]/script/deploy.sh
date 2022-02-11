@@ -20,7 +20,7 @@ aws s3api create-bucket --bucket="${S3_BUCKET}" --region="${S3_REGION}" --create
 
 # build
 yarn || exit
-yarn webpack --config webpack.build.config.js --mode production --entry ./src/lambdas/"${FN_NAME}"/main.js -o ./build/lambdas/"${FN_NAME}"/ || exit
+yarn webpack --config webpack.build.config.js --mode production --entry ./src/lambdas/"${FN_NAME}"/handler.js -o ./build/lambdas/"${FN_NAME}"/ || exit
 cd ./build/lambdas/"${FN_NAME}"
 zip ./"${ZIP}" main.js
 

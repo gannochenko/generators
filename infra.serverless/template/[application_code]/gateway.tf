@@ -70,7 +70,7 @@ resource "aws_api_gateway_deployment" "<%- application_code_tf %>" {
 resource "aws_api_gateway_stage" "<%- application_code_tf %>" {
   deployment_id = aws_api_gateway_deployment.<%- application_code_tf %>.id
   rest_api_id = aws_api_gateway_rest_api.<%- application_code_tf %>.id
-  stage_name = var.stage_name
+  stage_name = var.STAGE
 }
 
 resource "aws_api_gateway_method_settings" "<%- application_code_tf %>" {

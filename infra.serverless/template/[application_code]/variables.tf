@@ -1,19 +1,15 @@
-variable "domain" {
+variable "DOMAIN" {
   type = string
 }
 
-variable "cors" {
+variable "CORS" {
   type = string
 }
 
-variable "aws_region" {
+variable "AWS_REGION" {
   type = string
 }
 
-variable "aws_lambda_bucket" {
-  type = string
-}
-
-variable "stage_name" {
+variable "STAGE" {
   type = string
 }

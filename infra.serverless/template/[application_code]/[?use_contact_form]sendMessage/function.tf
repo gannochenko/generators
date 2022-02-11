@@ -10,7 +10,7 @@ resource "aws_lambda_function" "sendMessage" {
 
   environment {
     variables = {
-      CORS = var.cors
+      CORS = var.CORS
     }
   }
 }

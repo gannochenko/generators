@@ -21,11 +21,11 @@ Include the module to the project's `terraform` `modules.tf` file:
 module "<%- application_code_tf %>" {
   source = "./<%- application_code %>"
 
-  # input
-  domain = godaddy_domain_record.apex.domain
-  cors = "https://${godaddy_domain_record.apex.domain}"
-  stage_name = var.stage_name
-  aws_region = local.aws_region
+  # variables
+  DOMAIN = godaddy_domain_record.apex.domain
+  CORS = "https://${godaddy_domain_record.apex.domain}"
+  STAGE = var.stage_name
+  AWS_REGION = local.aws_region
 }
 ~~~
 

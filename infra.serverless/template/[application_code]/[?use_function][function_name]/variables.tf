@@ -1,3 +1,7 @@
+variable "path" {
+  type = string
+}
+
 variable "api_gateway_id" {
   type = string
 }
@@ -10,15 +14,11 @@ variable "api_gateway_execution_arn" {
   type = string
 }
 
-variable "path" {
-  type = string
-}
-
-variable "cors" {
+variable "CORS" {
   type = string
   default = "*"
 }
 
-variable "stage_name" {
+variable "STAGE" {
   type = string
 }

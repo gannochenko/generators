@@ -1,5 +1,5 @@
-resource "aws_iam_role" "lambda_<%- application_code_tf %>_run-api" {
-  name = "lambda_<%- application_code_tf %>_run-api"
+resource "aws_iam_role" "<%- application_code_tf %>_run-api" {
+  name = "<%- application_code_tf %>_run-api"
 
   assume_role_policy = <<ROLE
 {
@@ -18,8 +18,8 @@ resource "aws_iam_role" "lambda_<%- application_code_tf %>_run-api" {
 ROLE
 }
 
-resource "aws_iam_policy" "lambda_<%- application_code_tf %>_run-api" {
-  name = "lambda_<%- application_code_tf %>_run-api"
+resource "aws_iam_policy" "<%- application_code_tf %>_run-api" {
+  name = "<%- application_code_tf %>_run-api"
   path = "/"
   description = "IAM policy for runAPI lambda"
 
@@ -62,9 +62,9 @@ resource "aws_iam_policy" "lambda_<%- application_code_tf %>_run-api" {
 POLICY
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_<%- application_code_tf %>_run-api_logging" {
-  role = aws_iam_role.lambda_<%- application_code_tf %>_run-api.name
-  policy_arn = aws_iam_policy.lambda_<%- application_code_tf %>_run-api.arn
+resource "aws_iam_role_policy_attachment" "<%- application_code_tf %>_run-api_logging" {
+  role = aws_iam_role.<%- application_code_tf %>_run-api.name
+  policy_arn = aws_iam_policy.<%- application_code_tf %>_run-api.arn
 }
 
 resource "aws_s3_bucket_policy" "s3_bucket_<%- application_code_tf %>_object-photos" {

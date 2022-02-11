@@ -1,5 +1,5 @@
-resource "aws_iam_role" "lambda_<%- function_name %>" {
-  name = "lambda_<%- function_name %>"
+resource "aws_iam_role" "<%- application_code_tf %>_<%- function_name_tf %>" {
+  name = "<%- application_code_tf %>_<%- function_name_tf %>"
 
   assume_role_policy = <<ROLE
 {
@@ -18,8 +18,8 @@ resource "aws_iam_role" "lambda_<%- function_name %>" {
 ROLE
 }
 
-resource "aws_iam_policy" "lambda_<%- function_name %>" {
-  name = "lambda_<%- function_name %>"
+resource "aws_iam_policy" "lambda_<%- function_name_tf %>" {
+  name = "<%- application_code_tf %>_<%- function_name_tf %>"
   path = "/"
   description = "IAM policy for <%- function_name %> lambda"
 
@@ -48,7 +48,7 @@ resource "aws_iam_policy" "lambda_<%- function_name %>" {
 POLICY
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_<%- function_name %>" {
-  role = aws_iam_role.lambda_<%- function_name %>.name
-  policy_arn = aws_iam_policy.lambda_<%- function_name %>.arn
+resource "aws_iam_role_policy_attachment" "<%- application_code_tf %>_<%- function_name_tf %>" {
+  role = aws_iam_role.<%- application_code_tf %>_<%- function_name_tf %>.name
+  policy_arn = aws_iam_policy.<%- application_code_tf %>_<%- function_name_tf %>.arn
 }

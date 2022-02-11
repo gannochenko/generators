@@ -2,6 +2,14 @@
 
 if [[ $1 == "local" ]]
 then
+    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    ENV="${DIR}"/../.env
+
+    if [ -f "${ENV}" ]
+    then
+      export $(cat "${ENV}" | xargs)
+    fi
+
     export NODE_ENV="development"
     export TYPEORM_URL="postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:5432/${DB_NAME}"
 else
@@ -18,4 +26,4 @@ export TYPEORM_CONNECTION="postgres"
 export TYPEORM_ENTITIES="src/entities/*.ts"
 export TYPEORM_MIGRATIONS="src/migrations/*-*.ts"
 
-ts-node ./node_modules/typeorm/cli.js migration:run
+yarn ts-node ./node_modules/typeorm/cli.js migration:run
