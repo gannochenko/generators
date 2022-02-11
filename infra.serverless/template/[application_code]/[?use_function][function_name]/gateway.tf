@@ -7,7 +7,7 @@ resource "aws_api_gateway_resource" "<%- application_code_tf %>_<%- gateway_reso
 resource "aws_api_gateway_method" "<%- application_code_tf %>_<%- gateway_resource_name %>" {
   rest_api_id = var.api_gateway_id
   resource_id = aws_api_gateway_resource.<%- application_code_tf %>_<%- gateway_resource_name %>.id
-  http_method = "GET"
+  http_method = "POST"
   authorization = "NONE"
 }
 

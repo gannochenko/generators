@@ -10,7 +10,7 @@ import { isDev } from './utils/isDev';
 (async () => {
     const app = await NestFactory.create(ApplicationModule, {
         cors: {
-            origin: isDev() ? '*' : 'https://our-host-name.com'
+            origin: isDev() ? '*' : process.env.CORS
         },
     });
     if (!isDev()) {
