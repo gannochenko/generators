@@ -1,4 +1,4 @@
-module "<%- application_code_tf %>_gateway_cors" {
+module "<%- application_code_tf %>_<%- function_name_tf %>_gateway_cors" {
   source = "squidfunk/api-gateway-enable-cors/aws"
   version = "0.3.3"
 
