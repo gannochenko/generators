@@ -1,12 +1,9 @@
 import { HTMLAttributes } from 'react';
-import {
-    StylePropsType,
-    MarginPropsType,
-} from '@gannochenko/ui.styled-components';
+import { StylePropsType, MarginPropsType } from '@gannochenko/ui.emotion';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 export type ImageGalleryImageType = {
-    childImageSharp: {
+    childImageSharp?: {
         gatsbyImageData: IGatsbyImageData;
     };
     url: string;
@@ -22,6 +19,7 @@ export type ImageGalleryImageType = {
 export type ImageGalleryPropsType = HTMLAttributes<HTMLDivElement> &
     Partial<{
         images: ImageGalleryImageType[];
+        enableAddButton: boolean;
         // put your custom props here
     }> &
     MarginPropsType;

@@ -1,20 +1,30 @@
 import React, { forwardRef } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { SRLWrapper } from 'simple-react-lightbox';
 
 import { ImageGalleryPropsType } from './type';
 import {
     ImageGalleryRoot,
     ImageGalleryImageWrapper,
-    ImageGalleryImage,
+    ImageGalleryGatsbyImage,
+    ImageGalleryAddButton,
+    Image,
 } from './style';
 import { useImageGallery } from './hooks/useImageGallery';
 import { lightBoxOptions } from '../../../util/lightBoxOptions';
 
 export const ImageGallery = forwardRef<HTMLDivElement, ImageGalleryPropsType>(
     function ImageGallery(props, ref) {
-        const { rootProps, images, getImageProps, getImageWrapperProps } =
-            useImageGallery(ref, props);
+        const {
+            rootProps,
+            images,
+            getGatsbyImageProps,
+            getImageProps,
+            getImageWrapperProps,
+            showAddButton,
+            getAddButtonProps,
+            isGatsbyImage,
+        } = useImageGallery(ref, props);
 
         return (
             <ImageGalleryRoot {...rootProps}>
@@ -30,18 +40,28 @@ export const ImageGallery = forwardRef<HTMLDivElement, ImageGalleryPropsType>(
                                     <ImageGalleryImageWrapper
                                         {...getImageWrapperProps(image)}
                                     >
-                                        <ImageGalleryImage
-                                            {...getImageProps(image)}
-                                        />
+                                        {isGatsbyImage(image) && (
+                                            <ImageGalleryGatsbyImage
+                                                {...getGatsbyImageProps(image)}
+                                            />
+                                        )}
+                                        {!isGatsbyImage(image) && (
+                                            <Image {...getImageProps(image)} />
+                                        )}
                                     </ImageGalleryImageWrapper>
                                 </Grid>
                             );
                         })}
+                        {showAddButton && (
+                            <Grid item md={4} sm={6} xs={12} key="placeholder">
+                                <ImageGalleryAddButton {...getAddButtonProps()}>
+                                    Добавить фотографию
+                                </ImageGalleryAddButton>
+                            </Grid>
+                        )}
                     </Grid>
                 </SRLWrapper>
             </ImageGalleryRoot>
         );
     },
 );
-
-ImageGallery.defaultProps = {};

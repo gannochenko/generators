@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { muiColor } from '@gannochenko/ui.styled-components';
+import styled from '@emotion/styled';
+import { muiColor } from '@gannochenko/ui.emotion';
 
 export const HR = styled.div`
     text-align: center;

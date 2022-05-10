@@ -1,9 +1,5 @@
-import styled from 'styled-components';
-import {
-    muiTypography,
-    muiColor,
-    muiSpacing,
-} from '@gannochenko/ui.styled-components';
+import styled from '@emotion/styled';
+import { muiTypography, muiColor, muiSpacing } from '@gannochenko/ui.emotion';
 
 export const CopyrightRoot = styled.div`
     text-align: center;

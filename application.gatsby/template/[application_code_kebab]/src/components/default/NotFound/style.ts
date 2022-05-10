@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import {
     muiTypography,
     muiColor,
     muiSpacing,
     backgroundCover,
     muiBreakpointDown,
-} from '@gannochenko/ui.styled-components';
+} from '@gannochenko/ui.emotion';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const image01 = require('../../../../static/assets/404/01.jpg') as string;

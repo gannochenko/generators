@@ -54,11 +54,21 @@ export const CookiePopup: FC<CookiePopupPropsType> = () => {
                 By further browsing you agree to accept the cookies.
                 <br />
                 More information <Link to={COOKIE_POLICY}>here</Link>.
-                <CookiePopupAgreeButton onClick={onAcceptClick}>
+                <CookiePopupAgreeButton
+                    onClick={onAcceptClick}
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                >
                     Accept!
                 </CookiePopupAgreeButton>
                 <div>
-                    <CookiePopupAgreeButtonXS onClick={onAcceptClick}>
+                    <CookiePopupAgreeButtonXS
+                        onClick={onAcceptClick}
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                    >
                         Accept!
                     </CookiePopupAgreeButtonXS>
                 </div>

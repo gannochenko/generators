@@ -1,10 +1,9 @@
-import { LinkRootPropsType } from './type';
-import styled, { css } from 'styled-components';
-import {
-    foregroundColor,
-    getPropsBlocker,
-} from '@gannochenko/ui.styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { foregroundColor } from '@gannochenko/ui.emotion';
 import { Link as GatsbyLink } from 'gatsby';
+
+import { LinkRootPropsType } from './type';
 
 const fgColors = ({ inverted, theme }: LinkRootPropsType) => {
     if (inverted) {
@@ -14,28 +13,24 @@ const fgColors = ({ inverted, theme }: LinkRootPropsType) => {
                 text-decoration: underline;
             }
             ${foregroundColor(
-                theme.palette.primary.contrastText,
-                theme.palette.primary.contrastText,
+                theme?.palette.primary.contrastText ?? '',
+                theme?.palette.primary.contrastText ?? '',
                 '200ms',
             )};
         `;
     }
 
     return foregroundColor(
-        theme.palette.primary.main,
-        theme.palette.primary.dark,
+        theme?.palette.primary.main ?? '',
+        theme?.palette.primary.dark ?? '',
         '200ms',
     );
 };
 
-export const GatsbyLinkStyled = styled(GatsbyLink).withConfig(
-    getPropsBlocker,
-)<LinkRootPropsType>`
+export const GatsbyLinkStyled = styled(GatsbyLink)<LinkRootPropsType>`
     ${fgColors};
 `;
 
-export const LinkStyled = styled.a.withConfig(
-    getPropsBlocker,
-)<LinkRootPropsType>`
+export const LinkStyled = styled.a<LinkRootPropsType>`
     ${fgColors};
 `;

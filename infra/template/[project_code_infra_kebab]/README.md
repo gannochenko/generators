@@ -81,6 +81,21 @@ Steps to follow:
 Useful resources:
 * [GoDaddy Terraform provider](https://registry.terraform.io/providers/n3integration/godaddy/latest)
 
+#### Vercel
+
+Vercel is used to host web applications.
+
+Steps to follow:
+
+* Go to the [tokens page](https://vercel.com/account/tokens) and create a new token. Then retrieve the data:
+* Fill out the env vars in the `.env` file:
+  ~~~bash
+  export VERCEL_TOKEN=
+  ~~~
+
+Useful resources:
+* [Vercel Terraform provider](https://registry.terraform.io/providers/chronark/vercel/latest/docs)
+
 #### Auth0
 
 If we use Auth0 for authentication, then it also needs setup.
@@ -98,21 +113,6 @@ Steps to follow:
 Useful resources:
 * [Tutorial](https://auth0.com/blog/use-terraform-to-manage-your-auth0-configuration/)
 * [Auth0 Terraform provider](https://registry.terraform.io/providers/alexkappa/auth0/latest/docs)
-
-#### Vercel
-
-Vercel is used to host web applications.
-
-Steps to follow:
-
-* Go to the [tokens page](https://vercel.com/account/tokens) and create a new token. Then retrieve the data:
-* Fill out the env vars in the `.env` file:
-  ~~~bash
-  export VERCEL_TOKEN=
-  ~~~
-
-Useful resources:
-* [Vercel Terraform provider](https://registry.terraform.io/providers/chronark/vercel/latest/docs)
 
 ### Deploying locally
 

@@ -1,8 +1,5 @@
 import { HTMLAttributes } from 'react';
-import {
-    StylePropsType,
-    MarginPropsType,
-} from '@gannochenko/ui.styled-components';
+import { StylePropsType, MarginPropsType } from '@gannochenko/ui.emotion';
 
 export type AuthWidgetPropsType = HTMLAttributes<HTMLDivElement> &
     Partial<{

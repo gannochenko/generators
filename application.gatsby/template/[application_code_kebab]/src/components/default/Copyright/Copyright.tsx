@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Link } from '../../index';
+import { Link } from '../Link';
 import { CopyrightRoot } from './style';
 import { CopyrightPropsType } from './type';
 

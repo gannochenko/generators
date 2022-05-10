@@ -11,7 +11,7 @@ import { lightBoxOptions } from '../../../util/lightBoxOptions';
  * This component is for wrapping up pages that lay in the content/ folder.
  * See gatsby-node.js for details.
  */
-export const <%- content_name_pascal %>Detail: FC<<%- content_name_pascal %>DetailPropsType> = ({
+export const <%- content_name_pascal %>DetailTemplate: FC<<%- content_name_pascal %>DetailPropsType> = ({
     data: { mdx },
     path,
 }) => {
@@ -39,9 +39,7 @@ export const <%- content_name_pascal %>DetailQuery = graphql`
                 images {
                     image {
                         childImageSharp {
-                            fluid(maxWidth: 1240, quality: 80) {
-                                ...GatsbyImageSharpFluid_tracedSVG
-                            }
+                            gatsbyImageData(width: 1000, layout: FIXED)
                         }
                     }
                 }

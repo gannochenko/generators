@@ -184,12 +184,11 @@ module.exports.Generator = class Generator {
         return {
             destination: '[application_code_kebab]/',
             packages: [
-                '@gannochenko/ui.styled-components',
+                '@gannochenko/ui.emotion',
                 '@gannochenko/ui',
                 '@mdx-js/mdx',
                 '@mdx-js/react',
                 'animated-scroll-to',
-                'babel-plugin-styled-components',
                 'color',
                 'debounce',
                 'events',
@@ -200,10 +199,10 @@ module.exports.Generator = class Generator {
                 'react-helmet',
                 'react-router',
                 'sharp',
-                'styled-components',
                 'throttle-debounce',
                 'write',
-                '@material-ui/core',
+                '@mui/material',
+                '@emotion/styled',
                 'gatsby-plugin-material-ui',
                 'flat',
                 'react-query',
@@ -215,6 +214,9 @@ module.exports.Generator = class Generator {
                 'gatsby-plugin-nprogress',
                 'gatsby-plugin-image',
                 '@reach/router',
+                'notistack',
+                'i18next',
+                'react-i18next',
             ],
         };
     }

@@ -1,11 +1,8 @@
 import { HTMLAttributes } from 'react';
-import {
-    BreakpointNameType,
-} from '@gannochenko/ui.styled-components';
+import { BreakpointNameType, HeightPropsType } from '@gannochenko/ui.emotion';
 
 export type ContainerPropsType = Partial<{
-    // custom props here
-
     maxWidth: false | BreakpointNameType;
 }> &
+    HeightPropsType &
     HTMLAttributes<HTMLElement>;

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import styled from '@emotion/styled';
+import { Button } from '@mui/material';
 import {
     muiTypography,
     muiColor,
@@ -8,12 +8,16 @@ import {
     absoluteCover,
     contentAlignment,
     muiBreakpointDown,
-} from '@gannochenko/ui.styled-components';
+    MUIThemeType,
+} from '@gannochenko/ui.emotion';
 
 // @ts-ignore
 import cookies from '../../../../static/assets/aux/cookies.jpg';
 
-export const CookiePopupRoot = styled.div<{ fadingAway: boolean }>`
+export const CookiePopupRoot = styled.div<{
+    fadingAway: boolean;
+    theme?: MUIThemeType;
+}>`
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -47,11 +51,7 @@ export const CookiePopupText = styled.div`
     position: relative;
 `;
 
-export const CookiePopupAgreeButton = styled(Button).attrs({
-    variant: 'contained',
-    color: 'primary',
-    size: 'small',
-})`
+export const CookiePopupAgreeButton = styled(Button)`
     position: absolute;
     right: ${muiSpacing(4)};
     bottom: ${muiSpacing(2)};
@@ -60,11 +60,7 @@ export const CookiePopupAgreeButton = styled(Button).attrs({
     }
 `;
 
-export const CookiePopupAgreeButtonXS = styled(Button).attrs({
-    variant: 'contained',
-    color: 'primary',
-    size: 'small',
-})`
+export const CookiePopupAgreeButtonXS = styled(Button)`
     display: none;
     margin-top: ${muiSpacing(4)};
     ${muiBreakpointDown('sm')} {

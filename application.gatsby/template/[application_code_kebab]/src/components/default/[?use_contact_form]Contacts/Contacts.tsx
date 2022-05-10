@@ -1,9 +1,11 @@
 import React, { forwardRef } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Checkbox from '@material-ui/core/Checkbox';
-import Alert from '@material-ui/lab/Alert';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import {
+    TextField,
+    Checkbox,
+    Alert,
+    Grid,
+    CircularProgress,
+} from '@mui/material';
 import { PERSONAL_DATA_POLICY } from '../../../pathTemplates';
 
 import { ContactsPropsType } from './type';
@@ -62,7 +64,6 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                                 </ContactFormFieldWrapper>
                                 <ContactFormFieldWrapper fullWidth>
                                     <TextField
-                                        multiline
                                         label="How to contact you"
                                         variant="outlined"
                                         {...contactFieldProps}
@@ -93,7 +94,10 @@ export const Contacts = forwardRef<HTMLDivElement, ContactsPropsType>(
                                         label={
                                             <ContactFormConsent>
                                                 I agree with{' '}
-                                                <Link to={PERSONAL_DATA_POLICY} target="_blank">
+                                                <Link
+                                                    to={PERSONAL_DATA_POLICY}
+                                                    target="_blank"
+                                                >
                                                     personal data processing
                                                 </Link>{' '}
                                                 *

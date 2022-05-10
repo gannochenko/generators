@@ -1,6 +1,6 @@
-import React, { forwardRef, FC } from 'react';
+import React, { forwardRef } from 'react';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-import { Button, PopoverOrigin } from '@material-ui/core';
+import { Button, PopoverOrigin } from '@mui/material';
 
 import { AuthWidgetPropsType } from './type';
 import {
@@ -10,6 +10,7 @@ import {
     AuthWidgetUserName,
 } from './style';
 import { useAuthWidget } from './hooks/useAuthWidget';
+import { Link } from '../Link';
 
 const anchorOrigin = {
     vertical: 'bottom',
@@ -30,6 +31,7 @@ export const AuthWidget = forwardRef<HTMLDivElement, AuthWidgetPropsType>(
             avatarProps,
             userNameProps,
             authenticated,
+            getInvitationRequestButtonProps,
         } = useAuthWidget(ref, props);
 
         return (
@@ -49,18 +51,30 @@ export const AuthWidget = forwardRef<HTMLDivElement, AuthWidgetPropsType>(
                             >
                                 {authenticated && (
                                     <>
-                                        <AuthWidgetUserName
-                                            {...userNameProps}
-                                        />
+                                        <AuthWidgetUserName {...userNameProps}>
+                                            Вы авторизованы
+                                        </AuthWidgetUserName>
                                         <Button {...signOutButtonProps}>
-                                            Sign out
+                                            Выйти
                                         </Button>
                                     </>
                                 )}
                                 {!authenticated && (
-                                    <Button {...signUpButtonProps}>
-                                        Log in / Sign up
-                                    </Button>
+                                    // <Button {...signUpButtonProps}>
+                                    //     Log in / Sign up
+                                    // </Button>
+                                    <div>
+                                        Вы можете войти по приглашению.
+                                        <br />
+                                        <br />
+                                        <Link to="/contacts">
+                                            <Button
+                                                {...getInvitationRequestButtonProps()}
+                                            >
+                                                Получить приглашение
+                                            </Button>
+                                        </Link>
+                                    </div>
                                 )}
                             </AuthWidgetPopover>
                         </>

@@ -1,12 +1,18 @@
 import React, { FC } from 'react';
-import { muiSpacing } from '@gannochenko/ui.styled-components';
-import { Container as MUIContainer } from '@material-ui/core';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import {
+    heightProps,
+    HeightPropsType,
+    muiSpacing,
+} from '@gannochenko/ui.emotion';
+import { Container as MUIContainer } from '@mui/material';
+
 import { ContainerPropsType } from './type';
 
-const ContainerRoot = styled(MUIContainer)`
+const ContainerRoot = styled(MUIContainer)<HeightPropsType>`
     padding-left: ${muiSpacing(5)};
     padding-right: ${muiSpacing(5)};
+    ${heightProps};
 `;
 
 export const Container: FC<ContainerPropsType> = ({ children, ...props }) => {

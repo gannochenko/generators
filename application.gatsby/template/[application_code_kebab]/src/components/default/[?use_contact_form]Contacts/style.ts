@@ -1,17 +1,16 @@
-import styled from 'styled-components';
-import { marginProps, reset } from '@gannochenko/ui.styled-components';
-import MUIFormControl from '@material-ui/core/FormControl';
-import Typography from '@material-ui/core/Typography';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Button from '@material-ui/core/Button';
-import Alert from '@material-ui/lab/Alert';
-import { propsBlocker } from '../../../util';
+import styled from '@emotion/styled';
+import { marginProps, reset } from '@gannochenko/ui.emotion';
+import {
+    Button,
+    Alert,
+    FormControl as MUIFormControl,
+    Typography,
+    FormControlLabel,
+} from '@mui/material';
 
 import { ContactsRootPropsType } from './type';
 
-export const ContactsRoot = styled.div.withConfig(
-    propsBlocker,
-)<ContactsRootPropsType>`
+export const ContactsRoot = styled.div<ContactsRootPropsType>`
     ${reset};
     ${marginProps};
 `;

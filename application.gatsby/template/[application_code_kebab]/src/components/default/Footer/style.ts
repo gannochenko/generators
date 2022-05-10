@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import {
     muiTypography,
     muiColor,
     muiSpacing,
     contentAlignment,
-} from '@gannochenko/ui.styled-components';
+} from '@gannochenko/ui.emotion';
 
 export const FooterRoot = styled.footer`
     position: relative;
@@ -18,9 +18,6 @@ export const FooterRoot = styled.footer`
 `;
 
 export const FooterInfo = styled.div`
-    &:not(:first-child) {
-        padding-top: ${muiSpacing(2)};
-    }
     text-align: center;
 `;
 

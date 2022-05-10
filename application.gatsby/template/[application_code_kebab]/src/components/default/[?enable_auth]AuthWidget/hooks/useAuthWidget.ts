@@ -1,20 +1,16 @@
 import { Ref, useCallback } from 'react';
 import { AuthWidgetPropsType } from '../type';
-import { PropTypes } from '@material-ui/core';
-import { useAuth } from '../../../../hooks';
+import { PropTypes } from '@mui/material';
+import { AuthState } from '../../../../states';
 
 export const useAuthWidget = (
     ref: Ref<HTMLDivElement>,
     props: AuthWidgetPropsType,
 ) => {
-    const {
-        isAuthenticated,
-        signIn,
-        userName,
-        signOut,
-        avatar,
-        // getToken,
-    } = useAuth();
+    const { signOut, signIn, isAuthenticated, user } = AuthState.useContainer();
+
+    // console.log('USER');
+    // console.log(user);
 
     const color: PropTypes.Color = 'primary';
     const variant: 'text' | 'outlined' | 'contained' = 'contained';
@@ -37,11 +33,15 @@ export const useAuthWidget = (
             color,
             variant,
         },
+        getInvitationRequestButtonProps: () => ({
+            color,
+            variant,
+        }),
         avatarProps: {
-            src: avatar,
+            src: '',
         },
         userNameProps: {
-            children: userName,
+            // children: userId,
         },
         authenticated: isAuthenticated,
     };

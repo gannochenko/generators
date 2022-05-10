@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const ApplicationLayoutRoot = styled.div`
     height: 100vh;

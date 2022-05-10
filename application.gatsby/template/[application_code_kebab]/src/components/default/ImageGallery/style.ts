@@ -1,18 +1,34 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import {
     marginProps,
+    muiColor,
+    muiTypography,
     reset,
-    getPropsBlocker,
-} from '@gannochenko/ui.styled-components';
+} from '@gannochenko/ui.emotion';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
 import { ImageGalleryRootPropsType } from './type';
 
-export const ImageGalleryRoot = styled.div.withConfig(
-    getPropsBlocker,
-)<ImageGalleryRootPropsType>`
+export const ImageGalleryRoot = styled.div<ImageGalleryRootPropsType>`
     ${reset};
     ${marginProps};
+`;
+
+export const ImageGalleryAddButton = styled.button`
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 15rem;
+    appearance: none;
+    width: 100%;
+    border: 1px solid ${muiColor('secondary.light')};
+    color: ${muiColor('secondary.main')};
+    ${muiTypography('h3')};
+    background-color: ${muiColor('background.default')};
 `;
 
 export const ImageGalleryImageWrapper = styled.a`
@@ -25,9 +41,21 @@ export const ImageGalleryImageWrapper = styled.a`
     height: 15rem;
 `;
 
-export const ImageGalleryImage = styled(GatsbyImage)`
+export const ImageGalleryGatsbyImage = styled(GatsbyImage)`
     background-color: #c4c4c4;
     object-fit: contain !important;
     width: 100% !important;
     height: 100% !important;
+
+    [data-placeholder-image=''] {
+        object-fit: contain !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+`;
+
+export const Image = styled.img`
+    background-color: #c4c4c4;
+    object-fit: contain !important;
+    width: 100% !important;
 `;
