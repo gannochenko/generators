@@ -9,10 +9,10 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [Installation](#installation)
+* [Local installation](#local-installation)
 * [Contact](#contact)
 
-## Installation
+## Local installation
 
 To prepare the application, simply install `node_modules`:
 

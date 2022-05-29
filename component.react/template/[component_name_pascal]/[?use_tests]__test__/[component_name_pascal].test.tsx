@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { fireEvent, cleanup, render, prettyDOM, wait, waitForElement } from '@testing-library/react';
+import { fireEvent, cleanup, render, prettyDOM, waitFor, waitForElement, act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import { renderHook, cleanup as cleanupHooks } from '@testing-library/react-hooks';
@@ -22,7 +22,7 @@ describe('<<%- component_name_pascal %> />', () => {
     });
 
     it('should render itself without errors', async () => {
-        const { container, getByTestId } = render(
+        const { container } = render(
             <<%- component_name_pascal %> />,
         );
 
@@ -36,20 +36,25 @@ describe('<<%- component_name_pascal %> />', () => {
         // const node = container.querySelector(
         //     '.some-selector'
         // ) as HTMLElement;
-        // const anotherNode = getByTestId('search-input') as HTMLElement;
+        // const anotherNode = screen.getByTestId('search-input') as HTMLElement;
         //
         // // how to fire events
-        // fireEvent.click(button);
-        // fireEvent.change(input, { target: { value: 'some value' } });
+        // act(() => {
+        //     fireEvent.click(button);
+        // });
+        //
+        // act(() => {
+        //     fireEvent.change(input, { target: { value: 'some value' } });
+        // });
         //
         // // how to wait for an assertion to be fulfilled
-        // await wait(() => {
+        // await waitFor(() => {
         //     expect(something).toBeTrue();
         // });
         //
         // // how to wait for async events to change the DOM:
         // const element = await waitForElement(
-        //     () => getByTestId(container, 'element'),
+        //     () => screen.getByTestId(container, 'element'),
         //     { container, timeout: 1000 }
         // );
         //

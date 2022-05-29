@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 ################################################################################################
+## This script creates AWS resources needed to run this microservice with Localstack.
+################################################################################################
+
+################################################################################################
 ## https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_AttributeValue.html
 ################################################################################################
 
@@ -8,11 +12,6 @@
 
 export AWS_PAGER=""
 AWS="aws --endpoint-url http://localhost:4566 --profile legacy"
-
-read -p "Running this script will wipe out clean all your local data. Proceed? " -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
 
 <% if (use_api) { %>
 
@@ -59,7 +58,5 @@ ${AWS} dynamodb \
 #
 #${AWS} s3 mb s3://somebasket-photos
 #${AWS} s3api put-bucket-acl --bucket somebasket-photos --acl public-read
-
-fi
 
 <% } %>

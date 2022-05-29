@@ -15,7 +15,7 @@
 ## Table of Contents
 
 * [Github setup](#github-setup)
-* [Installation](#installation)
+* [Local installation](#local-installation)
 * [Running locally](#running-locally)
 * [Contact](#contact)
 
@@ -24,22 +24,23 @@
 * Create a [new repository](https://github.com/new) called "<%- github_repository_name %>".
 * Change the default branch from master to dev [here](https://github.com/<%- github_account_name %>/<%- github_repository_name %>/settings/branches).
 
-## Installation
+## Local installation
 
-To prepare everything it is crucial to install `node_modules` for each application.
-Just run the following script to do so:
-
-~~~bash
-yarn install-all
-~~~
+1. Clone the repo, `cd` to the folder.
+2. Run `yarn setup` to install all npm modules for every application.
 
 ## Running locally
 
-Docker Compose is used to run the infrastructure locally. To start it, type:
+1. Run `yarn infra` to launch the local infrastructure. 
+2. Wait until the infrastructure is ready.
+3. If not done before, in the other terminal, run `yarn seed` to seed the resources in the Localstack.
+4. In the other terminal, run `cd apps/someapp & yarn dev` to launch the **blah** application.
 
-~~~bash
-yarn infra
-~~~
+## Deployment
+
+To deploy, just create a PR from `dev` branch to `master`, and merge it.
+
+The infrastructure lives in the other repository.
 
 ## Contact
 
