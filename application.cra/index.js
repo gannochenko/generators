@@ -78,6 +78,7 @@ module.exports.Generator = class Generator {
             packages: [
                 'animated-scroll-to',
                 'styled-components',
+                'react-router-dom',
             ],
         };
     }
