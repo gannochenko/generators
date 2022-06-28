@@ -11,7 +11,7 @@
 1. Clone the repo, `cd` to the folder.
 2. Run `make install` to install all local dependencies for every application.
 
-### Localstack profile
+### Localstack profile (if needed)
 
 ~~~
 mkdir ~/.aws
@@ -21,7 +21,7 @@ printf "[<%- project_code %>]\naws_access_key_id=doesnt-matter\naws_secret_acces
 ### Env file
 
 1. Copy the env file template: `cp ./.env.example ./.env.local`
-2. Fill up the secret variables
+2. Fill the variables up
 
 ### Running all services
 

@@ -101,54 +101,34 @@ module.exports.Generator = class Generator {
 
     getDevDependencies(answers) {
         return {
-            destination: '__[project_code]/',
+            destination: '[project_code]/',
             packages: [
-                'husky',
-                'prettier',
-                'pretty-quick',
-                '@gannochenko/fea-cli',
             ],
         };
     }
 
     async onAfterExecution() {
-        await this.makeScriptsExecutable();
         await this.initGit();
-    }
-
-    async makeScriptsExecutable() {
-        const { execa, pathExists } = this.util;
-
-        const scriptsPath = path.join(this.context.destinationPath, this.answers.project_code, 'script');
-        if (await pathExists(scriptsPath)) {
-            await execa('chmod', ['-R', '+x', scriptsPath], {
-                stdio: ['inherit', 'inherit', 'inherit'],
-            });
-        }
     }
 
     async initGit() {
         const { execa, pathExists } = this.util;
-        const { github_account_name, github_repository_name } = this.answers;
+        const { github_account_name, github_repository_name, project_code } = this.answers;
 
-        const applicationFolder = path.join(this.context.destinationPath, this.answers.application_code_kebab);
-        if (await pathExists(applicationFolder)) {
+        const projectFolder = path.join(this.context.destinationPath, project_code);
+        if (await pathExists(projectFolder)) {
             await execa('git', ['init'], {
-                cwd: applicationFolder,
-                stdio: ['inherit', 'inherit', 'inherit'],
-            });
-            await execa('git', ['checkout', '-b', 'master'], {
-                cwd: applicationFolder,
+                cwd: projectFolder,
                 stdio: ['inherit', 'inherit', 'inherit'],
             });
             await execa('git', ['checkout', '-b', 'dev'], {
-                cwd: applicationFolder,
+                cwd: projectFolder,
                 stdio: ['inherit', 'inherit', 'inherit'],
             });
             if (github_account_name.length && github_repository_name.length) {
                 const repoName = `git@github.com:${github_account_name}/${github_repository_name}.git`;
                 await execa('git', ['remote', 'add', 'origin', repoName], {
-                    cwd: applicationFolder,
+                    cwd: projectFolder,
                     stdio: ['inherit', 'inherit', 'inherit'],
                 });
             }
