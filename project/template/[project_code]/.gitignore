@@ -4,6 +4,8 @@ node_modules
 .idea/libraries
 .DS_Store
 .env
+.env.*
+!.env.example
 .localstack
 .mongo
 
@@ -11,5 +13,5 @@ node_modules
 **/.terraform/*
 *.tfstate
 *.tfstate.*
-
-backup
+/backup/legacy/
+/.builder/

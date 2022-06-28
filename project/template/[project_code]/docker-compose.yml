@@ -24,6 +24,8 @@ services:
             - './.localstack:/tmp/localstack'
             - "/var/run/docker.sock:/var/run/docker.sock"
 
+
+
 #    mongodb:
 #        image : mongo
 #        container_name: mongodb
@@ -36,15 +38,6 @@ services:
 #        ports:
 #            - 27017:27017
 #        restart: unless-stopped
-
-#    db.gui:
-#        image: adminer
-#        expose:
-#            - 8080
-#        ports:
-#            - 8080:8080
-#        depends_on:
-#            - db
 
 #    nats:
 #        image: 'nats-streaming'

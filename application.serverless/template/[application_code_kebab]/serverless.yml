@@ -1,4 +1,4 @@
-service: prussiascans-api
+service: <%- application_code_kebab %>
 
 # enable required plugins, in order to make what we want
 plugins:

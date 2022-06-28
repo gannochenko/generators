@@ -101,7 +101,7 @@ module.exports.Generator = class Generator {
 
     getDevDependencies(answers) {
         return {
-            destination: '[project_code]/',
+            destination: '__[project_code]/',
             packages: [
                 'husky',
                 'prettier',
