@@ -114,23 +114,26 @@ module.exports.Generator = class Generator {
     async initGit() {
         const { execa, pathExists } = this.util;
         const { github_account_name, github_repository_name, project_code } = this.answers;
+        const { destinationPath } = this.context;
 
-        const projectFolder = path.join(this.context.destinationPath, project_code);
+        const projectFolder = path.join(destinationPath, project_code);
         if (await pathExists(projectFolder)) {
-            await execa('git', ['init'], {
+            const exec = async (cmd, args) => execa(cmd, args, {
                 cwd: projectFolder,
                 stdio: ['inherit', 'inherit', 'inherit'],
             });
-            await execa('git', ['checkout', '-b', 'dev'], {
-                cwd: projectFolder,
-                stdio: ['inherit', 'inherit', 'inherit'],
-            });
+
+            await exec('git', ['init']);
+            await exec('git', ['checkout', '-b', 'dev']);
             if (github_account_name.length && github_repository_name.length) {
                 const repoName = `git@github.com:${github_account_name}/${github_repository_name}.git`;
-                await execa('git', ['remote', 'add', 'origin', repoName], {
-                    cwd: projectFolder,
-                    stdio: ['inherit', 'inherit', 'inherit'],
-                });
+                await exec('git', ['remote', 'add', 'origin', repoName]);
+                await exec('git', ['add', '-A', './']);
+                await exec('git', ['commit', '-m', '"initial"']);
+                await exec('git', ['push', '--set-upstream', 'origin', 'dev']);
+                await exec('git', ['checkout', '-b', 'master']);
+                await exec('git', ['push', 'origin', 'master']);
+                await exec('git', ['checkout', 'dev']);
             }
         }
     }
