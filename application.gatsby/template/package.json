@@ -1,0 +1,43 @@
+{
+    "name": "<%- application_code_kebab %>",
+    "description": "",
+    "version": "1.0.0",
+    "author": "<%- author_name %>",
+    "dependencies": {
+    },
+    "devDependencies": {
+    },
+    "keywords": [
+        "gatsby"
+    ],
+    "license": "MIT",
+    "scripts": {
+        "build": "gatsby build",
+        "build:gh": "gatsby build --prefix-paths",
+        "deploy:gh": "gh-pages -d public",
+        "develop": "gatsby develop --host=0.0.0.0",
+        "dev": "yarn run develop",
+        "clearcache": "rm -rf ./.cache/;",
+        "format": "prettier --write src/**/*.{js,jsx}",
+        "start": "yarn run develop",
+        "serve": "gatsby serve --host=0.0.0.0",
+        "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
+        "lint": "eslint ./src/ --ext .jsx,.tsx",
+        "lint:fix": "eslint ./src/ --ext .ts,.tsx --fix",
+        "start:local": "yarn build; yarn serve",
+        "start:prod": "yarn serve",
+        "scaffold:component": "generilla run scaffolders/component -o src/components"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/<%- github_account_name %>/<%- github_repository_name %>"
+    },
+    "bugs": {
+        "url": "https://github.com/<%- github_account_name %>/<%- github_repository_name %>/issues"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    }
+}

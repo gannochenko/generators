@@ -1,0 +1,32 @@
+---
+title: 'Выдающиеся объекты'
+---
+
+import { Container, HomePageHeader, PageOffset, HeritageObjectList } from 'components';
+import { Button } from '@mui/material';
+import { graphql } from 'gatsby';
+
+<Container>
+    <HeritageObjectList data={props.data.allHeritageObject.nodes} />
+</Container>
+
+<PageOffset />
+
+export const pageQuery = graphql`
+    query {
+        allHeritageObject(
+            filter: { remarkable: {eq: true}, lost: { ne: true } }
+            sort: { fields: [name], order: ASC }
+        ) {
+            nodes {
+                name
+                slug
+                previewPhotoImage {
+                    childImageSharp {
+                        gatsbyImageData(width: 500, layout: FIXED)
+                    }
+                }
+            }
+        }
+    }
+`;

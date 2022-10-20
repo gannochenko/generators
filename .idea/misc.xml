@@ -7,7 +7,7 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/application.gatsby/template/[application_code_kebab]/gatsby-config.js" />
+    <file url="file://$PROJECT_DIR$/__deprecated/application.gatsby/template/[application_code_kebab]/gatsby-config.js" />
     <file url="file://$PROJECT_DIR$/component.react/index.js" />
   </component>
 </project>
