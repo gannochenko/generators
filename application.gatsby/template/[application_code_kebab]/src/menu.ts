@@ -6,6 +6,6 @@ type MenuItemsType = {
 }[];
 
 export const menu: MenuItemsType = [
-    { text: 'О проекте', link: ABOUT },
-    { text: 'Контакты', link: CONTACTS },
+    { text: 'About', link: ABOUT },
+    { text: 'Contacts', link: CONTACTS },
 ];

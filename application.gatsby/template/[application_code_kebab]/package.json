@@ -17,7 +17,7 @@
         "deploy:gh": "gh-pages -d public",
         "develop": "gatsby develop --host=0.0.0.0",
         "dev": "yarn run develop",
-        "clearcache": "rm -rf ./.cache/;",
+        "clean": "gatsby clean",
         "format": "prettier --write src/**/*.{js,jsx}",
         "start": "yarn run develop",
         "serve": "gatsby serve --host=0.0.0.0",
