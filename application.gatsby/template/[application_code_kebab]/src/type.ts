@@ -1,8 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, FunctionComponent } from 'react';
 
 export type RecordString<V = unknown> = Record<string, V>;
 
 export type ScalarType = string | number;
+
+export type FC<P = {}> = FunctionComponent<P & {children: ReactNode}>;
 
 export interface Graphics {
     source?: string;

@@ -17,22 +17,18 @@ import { menu } from '../../../menu';
 import { site } from '../../../meta/site';
 
 import { MenuPropsType } from './type';
+import { useMenu } from './hooks/useMenu';
 
 import { AuthWidget } from '../AuthWidget';
 
 export const Menu: FC<MenuPropsType> = () => {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const onHamburgerClick = useCallback(() => {
-        setMobileMenuOpen(!mobileMenuOpen);
-    }, [mobileMenuOpen, setMobileMenuOpen]);
-    const onMobileItemClick = useCallback(() => {
-        setMobileMenuOpen(false);
-    }, [setMobileMenuOpen]);
+    const { homeProps, hamburgerProps, mobileItemsProps, onMobileItemClick } =
+        useMenu();
 
     return (
         <MenuRoot>
             <MenuInnerContainer>
-                <MenuHome to="/" onClick={onMobileItemClick}>
+                <MenuHome {...homeProps}>
                     {site.logoText}
                 </MenuHome>
                 <MenuRight>
@@ -47,7 +43,7 @@ export const Menu: FC<MenuPropsType> = () => {
                     <AuthWidget />
 
                     {!!menu.length && (
-                        <MenuHamburger onClick={onHamburgerClick}>
+                        <MenuHamburger {...hamburgerProps}>
                             <MenuBar />
                             <MenuBar />
                             <MenuBar />
@@ -55,7 +51,7 @@ export const Menu: FC<MenuPropsType> = () => {
                     )}
                 </MenuRight>
             </MenuInnerContainer>
-            <MenuMobileItems open={mobileMenuOpen}>
+            <MenuMobileItems {...mobileItemsProps}>
                 {menu.map((item) => (
                     <MenuMobileItem
                         to={item.link}

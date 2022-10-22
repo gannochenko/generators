@@ -271,7 +271,7 @@ module.exports.Generator = class Generator {
                 'gatsby-plugin-ts',
                 'gatsby-plugin-typescript',
                 'gatsby-remark-images',
-                'gatsby-remark-relative-images',
+                'gatsby-remark-relative-images-v2',
                 'gatsby-source-filesystem',
                 'gatsby-transformer-remark',
                 'gatsby-transformer-sharp',
@@ -282,6 +282,7 @@ module.exports.Generator = class Generator {
                 'typescript',
                 'typescript-styled-plugin',
                 !!ga_id && 'gatsby-plugin-gtag',
+                'process',
             ],
         };
     }

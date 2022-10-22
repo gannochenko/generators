@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import { ThemeProvider } from '@mui/material/styles';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -11,6 +11,7 @@ import { MDXComponents } from './MDXComponents';
 import { StateProviders } from '../../states/providers';
 import { NetworkStatusProvider } from '../default';
 import { i18n } from '../../i18n/i18n';
+import { FC } from '../../type';
 
 const queryClient = new QueryClient();
 

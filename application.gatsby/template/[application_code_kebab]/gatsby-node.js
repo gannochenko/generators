@@ -66,6 +66,7 @@ exports.onCreateWebpackConfig = ({
         resolve: {
             modules: [path.resolve(__dirname, 'src'), 'node_modules'],
             symlinks: false,
+            allback: { process: require.resolve('process/browser') },
         },
     });
 };

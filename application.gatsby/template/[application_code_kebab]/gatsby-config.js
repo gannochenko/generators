@@ -49,7 +49,13 @@ module.exports = {
                 path: `${__dirname}/static/assets`,
             },
         },
-
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `pages`,
+                path: `${__dirname}/src/pages`,
+            },
+        },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -66,14 +72,16 @@ module.exports = {
             options: {
                 plugins: [
                     {
-                        resolve: `gatsby-remark-relative-images`,
-                        options: {
-                            name: 'images',
-                        },
+                        resolve: `gatsby-remark-relative-images-v2`,
+                        // options: {
+                        //     name: 'images',
+                        // },
                     },
                     {
                         resolve: `gatsby-remark-images`,
-                        options: {},
+                        options: {
+                            maxWidth: 590,
+                        },
                     },
                 ],
             },

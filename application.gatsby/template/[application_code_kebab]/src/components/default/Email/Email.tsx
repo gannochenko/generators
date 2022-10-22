@@ -1,24 +1,19 @@
-import React, { FC, useEffect, useState } from 'react';
-import { emailFirstPart, emailSecondPart } from '../../../meta/email';
+import React, { FC } from 'react';
 
 import { EmailRoot } from './style';
 import { EmailPropsType } from './type';
+import { useEmail } from './hooks/useEmail';
 
 export const Email: FC<EmailPropsType> = ({ ...restProps }) => {
-    const [email, setEmail] = useState('');
-    const [domain, setDomain] = useState('');
-    useEffect(() => {
-        setTimeout(() => {
-            setEmail(emailFirstPart);
-        }, 500);
-        setTimeout(() => {
-            setDomain(emailSecondPart);
-        }, 700);
-    }, []);
+    const { noRender, email, domain } = useEmail();
 
-    if (!email || !domain) {
+    if (noRender) {
         return null;
     }
 
-    return <EmailRoot {...restProps}>{email}@{domain}</EmailRoot>;
+    return (
+        <EmailRoot {...restProps}>
+            {email}@{domain}
+        </EmailRoot>
+    );
 };
