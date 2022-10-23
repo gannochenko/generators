@@ -21,7 +21,7 @@ export const GlobalStyle = () => {
                 body {
                     padding: 0 !important;
                     margin: 0 !important;
-                    color: ${theme.palette.primary};
+                    color: ${theme.palette.text.primary};
                     background-color: ${theme.palette.background.default};
                     ${theme.typography.body1};
                     min-width: 320px;
@@ -30,7 +30,9 @@ export const GlobalStyle = () => {
 
                 html,
                 body,
-                #root {
+                #root,
+                #___gatsby,
+                #gatsby-focus-wrapper {
                     height: 100%;
                 }
 
