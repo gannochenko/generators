@@ -18,7 +18,7 @@ const JoinPage: FC<JoinPagePropsType> = () => {
     }, [location]);
 
     return (
-        <PageLayout title="Присоединиться">
+        <PageLayout title="Join">
             <Container>
                 <Join token={token} email={email} />
             </Container>

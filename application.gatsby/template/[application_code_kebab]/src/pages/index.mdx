@@ -1,10 +1,13 @@
 ---
 title: 'Home'
+displayPageTitle: false
 ---
 
 import { Container, HomePageHeader, PageOffset, HeritageObjectList } from 'components';
 import { Button } from '@mui/material';
 import { graphql } from 'gatsby';
+
+export { PageLayout as default } from 'components';
 
 <Container>
     <HeritageObjectList data={props.data.allHeritageObject.nodes} />
